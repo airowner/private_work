@@ -1,0 +1,69 @@
+@charset "utf-8";
+/* CSS Document */
+
+.heder{ height:154px; width:100%; background:url(http://s.gopo.com/images/hebg.gif) repeat-x 0 0;}
+.henr{ width:950px; margin:0 auto; position:relative;}
+.logo{ position:absolute; left:0; top:45px;}
+a{ color:#000;}
+.riqz ul li{ overflow:hidden; zoom:1;}
+.menu{ background:url(http://s.gopo.com/images/imenu.png) no-repeat 0 0; width:491px; height:30px; position:absolute; left:460px; top:60px; padding-top:5px; padding-left:15px;}
+.menu ul li{ width:93px; height:28px; float:left; margin-left:18px;}
+.mime{ background:url(http://s.gopo.com/images/mimen.png) no-repeat 0 0; width:344px; height:26px; position:absolute; left:550px; top:95px;}
+.mime ul li{ font-size:12px;font-family:"微软雅黑","宋体"; float:left; margin-left:50px; display:inline;}
+.mime ul li a{ color:#FFF;}
+
+.main{ background:url(http://s.gopo.com/images/qzbg.gif) no-repeat 0 0; width:1450px;position:absolute; left:50%; margin-left:-725px; padding-top:8px;}
+.content{ width:950px; margin:0 auto;}
+.xx,.zcnr{ overflow:hidden; zoom:1;}
+.xx{ height:24px;}
+.xx li{ float:left;}
+.zcnr{ border:1px solid #a0a0a0; background-color:#FFF; padding:30px; padding-bottom:300px;}
+.zcxq{ width:560px; float:left;}
+.ycnr{ background:url(http://s.gopo.com/images/lotb.gif) no-repeat 0 0; padding-left:100px; width:220px; float:right; line-height:18px;}
+.ycnr h3{ background:url(http://s.gopo.com/images/zchv.gif) no-repeat 0 0; width:215px; height:42px; text-indent:-9999px;}
+.ycnr p{ margin-bottom:10px;}
+.zcxq ul li b{ width:80px; display:block; text-align:right; float:left; font-size:16px;}
+.rizc{ width:460px; float:left; margin-left:10px;}
+.zcxq ul li{ margin-bottom:20px;}
+.tx,.yzm{ width:236px; height:24px; line-height:24px; border:1px solid #a0a0a0; padding:0 3px; float:left;}
+.zcxq ul li p{ border:1px solid #ebebeb; color:#b6b6b6; font-family:Arial; float:left; padding:0 3px; margin-left:5px;}
+.yzm{ width:100px;}
+.zcxq ul li img{ float:left; margin:0 10px;}
+.zcxq ul li a{ float:left; color:#587d83;}
+.zca{ background:url(http://s.gopo.com/images/zc.gif) no-repeat 0 0; width:64px; height:31px; border:none; cursor:pointer;}
+
+.yxnr{ font-family:Arial;}
+.yxxx{ font-size:14px;}
+.red{ color:#b80300; font-size:12px;}
+.yzan{ margin:10px 0;}
+.yxnr a{ color:#246d7e; margin:0 5px;}
+.yxnr img{ margin:0 5px;}
+.green{ color:#7f9e58;font-size:12px;}
+.yxnr h3{ background:url(http://s.gopo.com/images/hyld.gif) no-repeat 0 0; width:167px; height:23px; text-indent:-9999px; margin-bottom:10px;}
+.yzz{ margin-left:20px;}
+.qd{ margin:20px;}
+.qdan{ background:url(http://s.gopo.com/images/qdan.gif) no-repeat 0 0; width:64px; height:31px; border:none; cursor:pointer;}
+
+.zhfl{ border-bottom:1px dashed #bbb; margin-bottom:30px;}
+.zhfl span{ margin:0 8px;}
+.zhfl a.dq{ font-weight:bold;}
+.tjan{ background:url(http://s.gopo.com/images/tjan.gif) no-repeat 0 0;width:64px; height:31px; border:none; cursor:pointer;}
+.yhfs{ font-size:14px; font-family:Arial; font-weight:bold;}
+.mysd{ color:#a1a1a1;}
+.mysd a{ color:#6c8484; margin-left:10px;}
+
+.leqz{ width:210px; float:left; color:#999;}
+.leqz h3{ background:url(http://s.gopo.com/images/qz1.gif) no-repeat 0 0; width:168px; height:22px; text-indent:-999px;}
+.qztp{ width:208px; height:208px; border:1px solid #959595; margin:20px 0;}
+
+.riqz{ width:480px; float:left; margin-left:50px;}
+.rili{ width:300px; float:left;}
+.riqz h3{ background:url(http://s.gopo.com/images/yc.gif) no-repeat 0 0; width:238px; height:22px; text-indent:-999px; margin-bottom:20px;} 
+.riqz ul li{ margin-bottom:15px;}
+.riqz ul li b{ width:130px; float:left; text-align:right; display:block; font-size:16px; line-height:18px; margin-right:20px;}
+.riqz ul li b span{ font-size:12px; font-family:Arial; text-transform:uppercase;}
+.qtx{ width:294px; height:24px; padding:0 3px; border:1px solid #a0a0a0; line-height:24px;}
+.riqz ul li i{ color:#a6a6a6; font-style:normal; font-family:Arial;}
+.fkbg{ background:url(http://s.gopo.com/images/qzflbg.gif) no-repeat 0 0; width:127px; height:28px; line-height:28px; padding-left:10px;}
+.rili textarea{ width:294px; padding:3px; height:224px;border:1px solid #a0a0a0;}
+.wccj{ background:url(http://s.gopo.com/images/wccj.gif) no-repeat 0 0; width:110px; height:31px; border:none; cursor:pointer;}

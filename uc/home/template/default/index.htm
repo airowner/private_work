@@ -1,0 +1,476 @@
+<!--{eval $_TPL['titles'] = array(); $_TPL['nosidebar']=1;}-->
+<!--{template header}-->
+<link rel="stylesheet" type="text/css" href="{$_USER_SC['domain']}css/index.css" />
+<script type="text/javascript" src="{$_USER_SC['domain']}js/jquery-min.js"></script>
+<script type="text/javascript" src="{$_USER_SC['domain']}js/jQueryTimer.js"></script>
+<script type="text/javascript" src="{$_USER_SC['domain']}js/xsph.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("div[id*='listbox']").hover(
+		function(){$(this).animate({"margin-top":"-5px"},200)},
+		function(){$(this).animate({"margin-top":"0px"},200);}
+	);
+	var tmp=$("div[id*='listbox']").eq(0).children("img").attr("src");
+	//鼠标点击过程
+	$("div[id*='listbox']").click(function(){
+		  if(parseInt($(this).css("z-index"))<=3){
+			  var curZindex = parseInt($(this).css("z-index"));
+			  //通过z-index差计算该层需要经过几次轮换效果置顶，
+			  var  fntimes = 4-curZindex;
+			  //对于当前处于第一位的图片点击无效果.
+			  $(document).everyTime(300,function(){
+				  $("div[id*='listbox']").each(function(){
+					  if(parseInt($(this).css("z-index"))==4){$(this).css("z-index","1");}
+					  else{$(this).css("z-index",""+(parseInt($(this).css("z-index"))+1)+"");}
+					  $(this).css("margin-top","0px");
+					  $(this).animate({"margin-left":((4-parseInt($(this).css("z-index")))*21)+"px"},300);
+				  });
+			  },fntimes);
+		  }
+	  });
+	
+
+
+    setInterval(function(){
+            $("div[id*='listbox']").each(function(){
+                if(parseInt($(this).css("z-index"))==4){$(this).css("z-index","1");}
+                else{$(this).css("z-index",""+(parseInt($(this).css("z-index"))+1)+"");}
+                $(this).animate({"margin-left":((4-parseInt($(this).css("z-index")))*21)+"px"},300);
+                });
+            },3000);
+})
+
+</script>
+<script type="text/javascript">
+
+function t$(id){
+	return "string"==typeof id?document.getElementById(id):id;
+}
+function getCls(obj,tn){
+	var a=new Array();
+	var cn=obj.childNodes;
+	for(var i=0;i<cn.length;i++){
+		var c=cn[i];
+		if(!!c.tagName&&c.tagName.toLowerCase()==tn){
+		  a.push(c);
+		}
+	}
+	return a;
+}
+var getInfo=function(o){//获取对象相对于body的位置
+	var to=new Object();
+	to.left=to.right=to.top=to.bottom=0;
+	var twidth=o.offsetWidth;
+	var theight=o.offsetHeight;
+	while(o!=document.body){
+		try{
+		  to.left+=o.offsetLeft;
+		  to.top+=o.offsetTop;
+		  o=o.offsetParent;
+		}
+		catch(e){
+		  break;
+		}
+	}
+	to.right=to.left+twidth;
+	to.bottom=to.top+theight;
+	return to;
+}
+var CancelBubble=function(e){//取消冒泡
+	e=e?e:window.event;
+	if(!!(window.attachEvent&&!window.opera)){
+		e.cancelBubble=true;
+	}else {
+		e.stopPropagation();
+	}
+	return e;
+}
+var CancelSelect=function(e){//取消选择
+	if(!!(window.attachEvent&&!window.opera)){
+		document.onselectstart=function(event){
+			var e=event;
+			e=e?e:window.event;
+			e.returnValue=false;
+		}
+	}
+	else {
+		document.body.style.MozUserSelect="none";
+	}
+};
+var UnCancelSelect=function(){
+	if(!!(window.attachEvent&&!window.opera)){
+		document.onselectstart=new Function();
+	}
+	else {
+		document.body.style.MozUserSelect="text";
+	}
+}
+
+function CB(){
+	var moveObj,scrollObj,p,pW;
+	var mDown=function(e){
+		e=e?e:window.event;
+		CancelSelect(e);
+		//CancelBubble(e);
+		pW=parseInt(moveObj.offsetWidth);
+
+		var place=getInfo(scrollObj);
+		scrollObj.lastX=e.clientX-place.left;
+		window.status = scrollObj.lastX;
+		var self=this;
+		document.onmousemove=mMove;
+		document.onmouseup=function(){
+			document.onmousemove=new Function();
+			document.onmouseup=new Function();
+			UnCancelSelect();
+		}
+	}
+	var mMove=function(e){
+		e=e?e:window.event;
+		CancelBubble(e);
+		var cx=e.clientX;
+		var place=getInfo(scrollObj.parentNode);
+		var left=cx-place.left-scrollObj.lastX;
+		left=left+30>138?138-30:left;
+		left=left<0?0:left;
+		scrollObj.style.left=left+"px";
+		var tl=parseInt(left);
+		moveObj.style.left="-"+tl+"px";
+	}
+	var mOut=function(e){
+	}
+	var init=function(){
+		var obj=t$("CBPeople");
+		var cn=getCls(obj,"div");
+		moveObj=cn[0];
+		scrollObj=cn[1];
+		var s=getCls(scrollObj,"div")[0];
+		s.onmousedown=mDown;
+		scrollObj=s;
+	}
+	init();
+}
+
+//页面初始化调用
+window.onload=function()
+{
+	CB();
+}
+
+    </script>
+<!--[if IE 6]>
+<script type="text/javascript" src="<?=$_USER_SC['domain']?>js/png.js"></script>
+<script type="text/javascript">EvPNG.fix('img,div,h3');</script>
+<![endif]-->
+
+<div class="header">
+	<div class="henr">
+		<div class="logo"><a href="<!--{eval echo usr_url('index')}-->"><img alt="狗咆" src="<?=$_USER_SC['domain']?>images/logo.png" /></a></div>
+        <div class="menu">
+        	<ul>
+            	<li><a href="<!--{eval echo usr_url('index')}-->"><img alt="首页" src="<?=$_USER_SC['domain']?>images/home.gif" /></a></li>
+                <li><a href="<!--{eval echo usr_url('network')}-->"><img alt="广场" src="<?=$_USER_SC['domain']?>images/gc.png" /></a></li>
+                <li><a href="<!--{eval echo usr_url('space', array('do'=>'mtag'))}-->"><img alt="圈子" src="<?=$_USER_SC['domain']?>images/qz_index.png" /></a></li>
+                <li><a href="<!--{eval echo usr_url('space', array('do'=>'event'))}-->"><img alt="活动" src="<?=$_USER_SC['domain']?>images/hd.png" /></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="nr">
+	<div class="main">
+		<div class="mime">
+        	<ul>
+            	<li><a href="<!--{eval echo usr_url('space', array('do'=>'blog'))}-->">日志</a></li>
+                <li><a href="<!--{eval echo usr_url('space')}-->">空间</a></li>
+                <li><a href="<!--{eval echo usr_url('space', array('do'=>'album'))}-->">相册</a></li>
+                <li><a href="<!--{eval echo usr_url('space', array('do'=>'mtag'))}-->">部落</a></li>
+            </ul>
+        </div>
+        <div class="content">
+        	<div class="lenr">
+            	<div class="login">
+                    <form id="loginform" name="loginform" action="<!--{eval echo usr_url('do', array('ac'=>$_SCONFIG[login_action],'ref'=>''))}-->" method="post">
+                    <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+                    	<div class="dlxx">
+                            <div class="zhxx">
+                                <div class="xxsr"><span>帐号</span><input class="txt" type="text" name="username" id="username" /></div>
+                                <div class="xxsr"><span>密码</span><input class="txt" type="text" name="password" id="password" /></div>
+                            </div>
+                            <div class="dlan"><input class="an" type="submit" id="loginsubmit" name="loginsubmit"/></div>
+                        </div>
+                        <input type="checkbox" id="cookietime" name="cookietime" value="315360000" checked />下次自动登录<i>></i><a href="#" target="_blank">忘记密码?</a></span>
+                        <p class="zc"><a href="<!--{eval echo usr_url('do', array('ac'=>$_SCONFIG[register_action]))}-->" target="_blank">新注册</a>Gopo欢迎您加入</p>
+                    </form>
+                </div>
+                <!--活动开始-->
+                <h3><a href="#">M</a></h3>
+                <div class="hdnr">
+                	<ul class="ph">
+                        <li class="lidldd">
+                            <dl><dt style="border-top:none;">六月甘蓝清澈风景边走边拍</dt>
+                                <dd><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/hdim.gif"/></a></dd>
+                            </dl>
+                        </li>
+                        <li class="lidldt">
+                            <dl><dt class="on">六月甘蓝清澈风景边走边拍</dt>
+                                <dd><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/hdim.gif"/></a></dd>
+                            </dl>
+                        </li>
+                        <li class="lidldt">
+                            <dl><dt class="tw">六月甘蓝清澈风景边走边拍</dt>
+                                <dd><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/hdim.gif"/></a></dd>
+                            </dl>
+                        </li>
+                        <li class="lidldt" >
+                            <dl><dt  class="th">六月甘蓝清澈风景边走边拍</dt>
+                                <dd><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/hdim.gif"/></a></dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+                <!--活动结束-->
+                <div class="gg"><img src="<?=$_USER_SC['domain']?>images/gg_index.gif" /></div>
+            </div>
+            <div class="minr">
+            	<div class="showbox">
+                    <div id="listbox0"><img src="<?=$_USER_SC['domain']?>images/QQad0.png" height="154" width="490" border="0" /></div>
+                    <div id="listbox1"><img src="<?=$_USER_SC['domain']?>images/QQad1.png" height="154" width="490" border="0" /></div>
+                    <div id="listbox2"><img src="<?=$_USER_SC['domain']?>images/QQad2.png" height="154" width="490" border="0" /></div>
+                    <div id="listbox3"><img src="<?=$_USER_SC['domain']?>images/QQad3.png" height="154" width="490" border="0" /></div>
+                </div>
+                <div class="mitp">
+                	<div class="lemi">
+                    	<h3><a href="#">M</a></h3>
+                        <div class="managebox" id="CBPeople" style="position: relative; width:138px; overflow: hidden; margin: 0 auto; padding-left:10px;">
+                        	<div id="love_div" class="peoplebox" style="position: absolute; left:0px;">
+                            	<table border="0" cellpadding="0" cellspacing="7" width="275px;">
+                                <tbody>
+                            	<tr>
+                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                 </tr>
+                                 <tr>
+                                	<td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                 </tr>
+                                 <tr>
+                                	<td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                 </tr>
+				</tbody>
+                                </table>
+                            </div>
+
+                            <div class="member_drag">
+                                <div class="pointer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rimi">
+                    	<h3><a href="#">M</a></h3>
+                        <div class="honr">
+                        	<div class="hoto">
+                            	<div class="leim"><a href="#"><img src="<?=$_USER_SC['domain']?>images/hotim.jpg" /></a></div>
+                                <div class="ritx">
+                                	<ul>
+                                        <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜新装扮</a></li>
+                                        <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜新装扮</a></li>
+                                        <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜新装扮</a></li>
+                                        <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜新装扮</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="qtnr">
+                            	<div class="tjqz">
+                                	<h4><a href="#">M</a></h3>
+                                    <div class="qznr">
+                                    	<div class="leqz"><a href="#"><img src="<?=$_USER_SC['domain']?>images/hotim.jpg" /></a></div>
+                                        <div class="riqz">
+                                        	<h6><a href="#">长发圈</a></h6>
+                                            <ul>
+                                                <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜</a></li>
+                                                <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜</a></li>
+                                                <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美装扮</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="qffg"></div>
+                                <div class="tjyx">
+                                	<h4><a href="#">M</a></h4>
+                                    <ul>
+                                        <li><a href="<!--{eval echo usr_url('index')}-->"><img src="<?=$_USER_SC['domain']?>images/tjyx.gif" /></a></li>
+                                        <li><a href="<!--{eval echo usr_url('index')}-->"><img src="<?=$_USER_SC['domain']?>images/tjyx.gif" /></a></li>
+                                        <li><a href="<!--{eval echo usr_url('index')}-->"><img src="<?=$_USER_SC['domain']?>images/tjyx.gif" /></a></li>
+                                        <li><a href="<!--{eval echo usr_url('index')}-->"><img src="<?=$_USER_SC['domain']?>images/tjyx.gif" /></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rinr">
+            	<div class="jybz">
+                	<h3><a href="#" target="_blank">M</a></h3>
+                    <div class="bznr">
+                    	<div class="obz">
+                            <div class="tx"><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/cxtx.jpg" /></a></div>
+                            <div class="ycxx">
+                                <p class="mz"><a href="<!--{eval echo usr_url('index')}-->" target="_blank">Admin</a></p>
+                                <p>榜上有名</p>
+                                <p>积分：2133</p>
+                            </div>
+                        </div>
+                        <h4><a href="#" target="_blank">M</a></h4>
+                        <div class="obz xbz">
+                            <div class="tx"><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xbztx.jpg" /></a></div>
+                            <div class="ycxx">
+                                <p class="mz"><a href="<!--{eval echo usr_url('index')}-->" target="_blank">Admin</a></p>
+                                <p>榜上有名</p>
+                                <p>积分：2133</p>
+                            </div>
+                        </div>
+                        <div class="obz xbz">
+                            <div class="tx"><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xbztx.jpg" /></a></div>
+                            <div class="ycxx">
+                                <p class="mz"><a href="<!--{eval echo usr_url('index')}-->" target="_blank">Admin</a></p>
+                                <p>榜上有名</p>
+                                <p>积分：2133</p>
+                            </div>
+                        </div>
+                        <div class="obz xbz">
+                            <div class="tx"><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xbztx.jpg" /></a></div>
+                            <div class="ycxx">
+                                <p class="mz"><a href="<!--{eval echo usr_url('index')}-->" target="_blank">Admin</a></p>
+                                <p>榜上有名</p>
+                                <p>积分：2133</p>
+                            </div>
+                        </div>
+                        <div class="obz xbz">
+                            <div class="tx"><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xbztx.jpg" /></a></div>
+                            <div class="ycxx">
+                                <p class="mz"><a href="<!--{eval echo usr_url('index')}-->" target="_blank">Admin</a></p>
+                                <p>榜上有名</p>
+                                <p>积分：2133</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php /* ?>
+<div id="network">
+<style type="text/css">
+#radomuser .nbox_c { width: 970px; width: 966px; }
+#radomuser ul { padding: 10px 0 0 10px; }
+#radomuser li { float: left; width: 190px; height: 70px; color: #999; overflow: hidden; }
+</style>
+<script type="text/javascript">
+function setintro(type) {
+	var intro = '';
+	var bPosition = '';
+	if(type == 'doing') {
+		intro = '用一句话记录自己生活中的点点滴滴';
+		bPosition = '0';
+	} else if(type == 'mtag') {
+		intro = '创建自己的小圈子，与大家交流感兴趣的话题';
+		bPosition = '175px';
+	} else if(type == 'pic') {
+		intro = '上传照片，分享生活中的精彩瞬间';
+		bPosition = '55px';
+	} else if(type == 'app') {
+		intro = '与好友一起玩转游戏和应用，增加好友感情';
+		bPosition = '118px';
+	} else {
+		intro = '马上注册，与好友分享日志、照片，一起玩转游戏';
+		bPosition = '0';
+	}
+	$('guest_intro').innerHTML = intro + '......';
+	$('guest_intro').style.backgroundPosition = bPosition + ' 100%'
+}
+</script>
+
+<div id="guestbar" class="nbox">
+	<div class="nbox_c">
+		<p id="guest_intro">马上注册，与好友分享日志、照片，一起玩转游戏......</p>
+		<a href="do.php?ac=$_SCONFIG[register_action]" id="regbutton" onmouseover="setintro('register');">马上注册</a>
+		<p id="guest_app">
+			<a href="javascript:;" class="appdoing" onmouseover="setintro('doing');">记录</a>
+			<a href="javascript:;" class="appphotos" onmouseover="setintro('pic');">照片</a>
+			<a href="javascript:;" class="appgames" onmouseover="setintro('app');">游戏</a>
+			<a href="javascript:;" class="appgroups" onmouseover="setintro('mtag');">群组</a> 
+		</p>
+	</div>	
+	<div class="nbox_s side_rbox" id="nlogin_box">
+		<h3 class="ntitle">请登录</h3>
+		<div class="side_rbox_c">
+			<form name="loginform" action="do.php?ac=$_SCONFIG[login_action]&$url_plus&ref" method="post">
+				<p><label for="username">用户名</label> <input type="text" name="username" id="username" class="t_input" value="$membername" /></p>
+				<p><label for="password">密　码</label> <input type="password" name="password" id="password" class="t_input" value="$password" /></p>
+				<p class="checkrow"><input type="checkbox" id="cookietime" name="cookietime" value="315360000" $cookiecheck style="margin-bottom: -2px;" /><label for="cookietime">下次自动登录</label></p>
+				<p class="submitrow">
+					<input type="hidden" name="refer" value="space.php?do=home" />
+					<input type="submit" id="loginsubmit" name="loginsubmit" value="登录" class="submit" />
+					<a href="do.php?ac=lostpasswd">忘记密码?</a>
+					<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+				</p>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--{if $myappcount}-->
+<div class="nbox">
+	<div class="nbox_c" style="border: none;">
+		<ul class="applist">
+		<!--{loop $myapplist $value}-->
+			<li>
+				<p class="aimg"><a href="userapp.php?id=$value[appid]" target="_blank"><img src="http://appicon.manyou.com/logos/$value[appid]" alt="$value[appname]" /></a></p>
+				<p><a href="userapp.php?id=$value[appid]" target="_blank">$value[appname]</a></p>
+			</li>
+		<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="susb">
+		<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
+			<div class="appmo">
+				<p>共有 <span>$myappcount</span> 个应用</p>
+				<p class="appmobutton"><a href="cp.php?ac=userapp&my_suffix=%2Fapp%2Flist">查看更多应用</a></p>
+			</div>
+		</div></div></div></div>	
+	</div>
+</div>
+<!--{/if}-->
+
+
+<div id="radomuser" class="nbox">
+	<div class="nbox_c">
+		<h2 class="ntitle">欢迎您，与大家一起交流与分享吧</h2>
+		<ul class="s_clear">
+		<!--{loop $spacelist $value}-->
+			<li>
+				<div class="d_avatar avatar48"><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}" target="_blank"><!--{avatar($value[uid],small)}--></a></div>
+				<p><a href="space.php?uid=$value[uid]" target="_blank">{$_SN[$value[uid]]}</a></p>
+				<p>$value[resideprovince] $value[residecity]</p>
+				<p>$value[friendnum] 位好友</p>
+			</li>
+		<!--{/loop}-->
+		</ul>
+	</div>
+</div>
+
+
+</div>
+<?php */ ?>
+
+<!--{template footer}-->

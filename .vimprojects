@@ -1,0 +1,901 @@
+UCHome=/srv/http/uc/home CD=. filter="*.php *.htm *.js" {
+ admincp.php
+ app.php
+ common.php
+ config.php
+ cp.php
+ do.php
+ editor.php
+ help.php
+ index.php
+ invite.php
+ js.php
+ link.php
+ magic.php
+ network.php
+ rss.php
+ space.php
+ userapp.php
+ ver.php
+ xmlrpc.php
+ admin=admin {
+  admincp_ad.php
+  admincp_album.php
+  admincp_app.php
+  admincp_backup.php
+  admincp_block.php
+  admincp_blog.php
+  admincp_cache.php
+  admincp_censor.php
+  admincp_click.php
+  admincp_comment.php
+  admincp_config.php
+  admincp_credit.php
+  admincp_cron.php
+  admincp_doing.php
+  admincp_event.php
+  admincp_eventclass.php
+  admincp_feed.php
+  admincp_hotuser.php
+  admincp_index.php
+  admincp_ip.php
+  admincp_log.php
+  admincp_magic.php
+  admincp_magiclog.php
+  admincp_mtag.php
+  admincp_network.php
+  admincp_pic.php
+  admincp_poll.php
+  admincp_post.php
+  admincp_privacy.php
+  admincp_profield.php
+  admincp_profilefield.php
+  admincp_report.php
+  admincp_share.php
+  admincp_space.php
+  admincp_spam.php
+  admincp_stat.php
+  admincp_tag.php
+  admincp_task.php
+  admincp_template.php
+  admincp_thread.php
+  admincp_userapp.php
+  admincp_usergroup.php
+  index.htm
+  tpl=tpl {
+   ad.htm
+   album.htm
+   app.htm
+   backup.htm
+   block.htm
+   blog.htm
+   cache.htm
+   censor.htm
+   click.htm
+   comment.htm
+   config.htm
+   credit.htm
+   cron.htm
+   doing.htm
+   event.htm
+   eventclass.htm
+   feed.htm
+   footer.htm
+   header.htm
+   hotuser.htm
+   index.htm
+   ip.htm
+   log.htm
+   login.htm
+   magic.htm
+   magiclog.htm
+   message.htm
+   mtag.htm
+   network.htm
+   pic.htm
+   poll.htm
+   post.htm
+   privacy.htm
+   profield.htm
+   profilefield.htm
+   report.htm
+   share.htm
+   side.htm
+   space.htm
+   space_manage.htm
+   spam.htm
+   stat.htm
+   tag.htm
+   task.htm
+   template.htm
+   thread.htm
+   userapp.htm
+   usergroup.htm
+   image=image {
+   }
+  }
+ }
+ api=api {
+  dbbak.php
+  discuz.php
+  my.php
+  uc.php
+  channel.htm
+  getmaillist.htm
+  index.htm
+  class=class {
+   APIErrorResponse.php
+   APIResponse.php
+   Application.php
+   Credit.php
+   Feed.php
+   Friends.php
+   ImbotMsn.php
+   MiniBlog.php
+   MyBase.php
+   NewsFeed.php
+   Notifications.php
+   Photo.php
+   Profile.php
+   Request.php
+   Site.php
+   UserApplication.php
+   Users.php
+   VideoAuth.php
+  }
+  discuz=discuz {
+   album.php
+   doing.php
+   feed.php
+   js.php
+   space.php
+  }
+ }
+ attachment=attachment {
+  index.htm
+ }
+ data=data {
+  data_ad.php
+  data_app.php
+  data_block.php
+  data_censor.php
+  data_click.php
+  data_config.php
+  data_creditrule.php
+  data_eventclass.php
+  data_magic.php
+  data_mail.php
+  data_network.php
+  data_profield.php
+  data_profilefield.php
+  data_setting.php
+  data_spam.php
+  data_task.php
+  data_userapp.php
+  data_usergroup.php
+  data_usergroup_1.php
+  data_usergroup_2.php
+  data_usergroup_3.php
+  data_usergroup_4.php
+  data_usergroup_5.php
+  data_usergroup_6.php
+  data_usergroup_7.php
+  data_usergroup_8.php
+  data_usergroup_9.php
+  index.htm
+  adtpl=adtpl {
+   index.htm
+  }
+  avatar=avatar {
+   index.htm
+  }
+  block_cache=block_cache {
+   index.htm
+  }
+  blocktpl=blocktpl {
+   index.htm
+  }
+  log=log {
+   index.htm
+  }
+  temp=temp {
+   index.htm
+  }
+  tpl_cache=tpl_cache {
+   template_default_index.php
+   template_default_showmessage.php
+   template_default_space_feed.php
+   template_default_space_index.php
+   index.htm
+  }
+ }
+ image=image {
+  app=app {
+  }
+  click=click {
+  }
+  digimg=digimg {
+  }
+  doodle=doodle {
+   big=big {
+   }
+   thumb=thumb {
+   }
+  }
+  editor=editor {
+   editor_base.js
+   editor_function.js
+  }
+  event=event {
+  }
+  face=face {
+  }
+  foreground=foreground {
+   default=default {
+   }
+   nature=nature {
+   }
+  }
+  group=group {
+  }
+  help=help {
+  }
+  icon=icon {
+  }
+  magic=magic {
+   egg=egg {
+   }
+   frame=frame {
+   }
+   paper=paper {
+   }
+   star=star {
+   }
+  }
+  my=my {
+  }
+  poke=poke {
+  }
+  seccode=seccode {
+   OCR_A_Extended=OCR_A_Extended {
+    index.htm
+   }
+   Small_Fonts=Small_Fonts {
+    index.htm
+   }
+  }
+  task=task {
+  }
+ }
+ install=install {
+  index.php
+ }
+ language=language {
+  lang_cp.php
+  lang_cpmessage.php
+  lang_exif.php
+  lang_showmessage.php
+  lang_source.php
+  index.htm
+ }
+ source=source {
+  class_mysql.php
+  class_tree.php
+  class_xmlrpc.php
+  class_zib.php
+  cp_advance.php
+  cp_album.php
+  cp_avatar.php
+  cp_blog.php
+  cp_class.php
+  cp_click.php
+  cp_comment.php
+  cp_common.php
+  cp_credit.php
+  cp_doing.php
+  cp_domain.php
+  cp_event.php
+  cp_feed.php
+  cp_friend.php
+  cp_import.php
+  cp_invite.php
+  cp_magic.php
+  cp_mtag.php
+  cp_password.php
+  cp_pm.php
+  cp_poke.php
+  cp_poll.php
+  cp_privacy.php
+  cp_profile.php
+  cp_relatekw.php
+  cp_sendmail.php
+  cp_share.php
+  cp_space.php
+  cp_task.php
+  cp_theme.php
+  cp_thread.php
+  cp_top.php
+  cp_topic.php
+  cp_upload.php
+  cp_userapp.php
+  cp_videophoto.php
+  do_ajax.php
+  do_emailcheck.php
+  do_inputpwd.php
+  do_login.php
+  do_lostpasswd.php
+  do_register.php
+  do_seccode.php
+  do_sendmail.php
+  do_stat.php
+  do_swfupload.php
+  function_admincp.php
+  function_bbcode.php
+  function_block.php
+  function_blog.php
+  function_cache.php
+  function_common.php
+  function_cp.php
+  function_cron.php
+  function_delete.php
+  function_exif.php
+  function_feed.php
+  function_ftp.php
+  function_image.php
+  function_magic.php
+  function_op.php
+  function_sendmail.php
+  function_space.php
+  function_stat.php
+  function_template.php
+  function_userapp.php
+  inc_debug.php
+  inc_magicaward.php
+  magic_anonymous.php
+  magic_attachsize.php
+  magic_bgimage.php
+  magic_call.php
+  magic_color.php
+  magic_detector.php
+  magic_doodle.php
+  magic_downdateline.php
+  magic_flicker.php
+  magic_frame.php
+  magic_friendnum.php
+  magic_gift.php
+  magic_hot.php
+  magic_icon.php
+  magic_invisible.php
+  magic_reveal.php
+  magic_superstar.php
+  magic_thunder.php
+  magic_updateline.php
+  magic_viewmagic.php
+  magic_viewmagiclog.php
+  magic_viewvisitor.php
+  magic_visit.php
+  network.php
+  space_album.php
+  space_blog.php
+  space_doing.php
+  space_event.php
+  space_feed.php
+  space_friend.php
+  space_index.php
+  space_info.php
+  space_mood.php
+  space_mtag.php
+  space_notice.php
+  space_pm.php
+  space_poll.php
+  space_share.php
+  space_tag.php
+  space_thread.php
+  space_top.php
+  space_topic.php
+  space_videophoto.php
+  space_wall.php
+  index.htm
+  script_ajax.js
+  script_autocomplete.js
+  script_blog.js
+  script_calendar.js
+  script_city.js
+  script_common.js
+  script_cookie.js
+  script_couplet.js
+  script_drag.js
+  script_face.js
+  script_manage.js
+  script_menu.js
+  script_swfobject.js
+  script_upload.js
+  cron=cron {
+   cleanfeed.php
+   cleannotification.php
+   cleantrace.php
+   getfeed.php
+   log.php
+   index.htm
+  }
+  task=task {
+   avatar.php
+   blog.php
+   email.php
+   friend.php
+   gift.php
+   invite.php
+   profile.php
+   sample.php
+   index.htm
+  }
+ }
+ template=template {
+  blue=blue {
+   image=image {
+   }
+  }
+  default=default {
+   cp_advance.htm
+   cp_album.htm
+   cp_avatar.htm
+   cp_blog.htm
+   cp_class.htm
+   cp_click.htm
+   cp_comment.htm
+   cp_common.htm
+   cp_credit.htm
+   cp_doing.htm
+   cp_domain.htm
+   cp_event.htm
+   cp_event_sheet.htm
+   cp_feed.htm
+   cp_friend.htm
+   cp_header.htm
+   cp_import.htm
+   cp_invite.htm
+   cp_magic.htm
+   cp_mtag.htm
+   cp_password.htm
+   cp_pm.htm
+   cp_poke.htm
+   cp_poll.htm
+   cp_privacy.htm
+   cp_profile.htm
+   cp_sendmail.htm
+   cp_share.htm
+   cp_space.htm
+   cp_task.htm
+   cp_theme.htm
+   cp_thread.htm
+   cp_topic.htm
+   cp_topic_menu.htm
+   cp_upload.htm
+   cp_userapp.htm
+   cp_videophoto.htm
+   do_ajax.htm
+   do_inputpwd.htm
+   do_login.htm
+   do_lostpasswd.htm
+   do_register.htm
+   do_stat.htm
+   do_swfupload.htm
+   footer.htm
+   header.htm
+   common_header.htm
+   sns_header.htm
+   sns_footer.htm
+   help.htm
+   iframe.htm
+   index.htm
+   invite.htm
+   magic_anonymous.htm
+   magic_attachsize.htm
+   magic_bgimage.htm
+   magic_call.htm
+   magic_color.htm
+   magic_detector.htm
+   magic_doodle.htm
+   magic_downdateline.htm
+   magic_flicker.htm
+   magic_frame.htm
+   magic_friendnum.htm
+   magic_gift.htm
+   magic_hot.htm
+   magic_icon.htm
+   magic_invisible.htm
+   magic_reveal.htm
+   magic_superstar.htm
+   magic_thunder.htm
+   magic_updateline.htm
+   magic_viewmagic.htm
+   magic_viewmagiclog.htm
+   magic_viewvisitor.htm
+   magic_visit.htm
+   network.htm
+   sendmail.htm
+   showmessage.htm
+   space_album_list.htm
+   space_album_pic.htm
+   space_album_view.htm
+   space_blog_list.htm
+   space_blog_view.htm
+   space_click.htm
+   space_comment_li.htm
+   space_doing.htm
+   space_doing_form.htm
+   space_doing_li.htm
+   space_event_list.htm
+   space_event_view.htm
+   space_feed.htm
+   space_feed_li.htm
+   space_friend.htm
+   space_index.htm
+   space_info.htm
+   space_list.htm
+   space_menu.htm
+   space_mood.htm
+   space_mtag.htm
+   space_mtag_event.htm
+   space_mtag_field.htm
+   space_mtag_index.htm
+   space_mtag_list.htm
+   space_mtag_member.htm
+   space_mtag_tagname.htm
+   space_notice.htm
+   space_pic.htm
+   space_pm.htm
+   space_poll_list.htm
+   space_poll_view.htm
+   space_post_li.htm
+   space_privacy.htm
+   space_rss.htm
+   space_share_li.htm
+   space_share_list.htm
+   space_share_view.htm
+   space_status.htm
+   space_tag_list.htm
+   space_tag_view.htm
+   space_thread_list.htm
+   space_thread_view.htm
+   space_top.htm
+   space_topic_inc.htm
+   space_topic_list.htm
+   space_topic_view.htm
+   space_videophoto.htm
+   space_wall.htm
+   userapp.htm
+   image=image {
+   }
+  }
+  green=green {
+   image=image {
+   }
+  }
+ }
+ theme=theme {
+  t10=t10 {
+   images=images {
+   }
+  }
+  t11=t11 {
+   images=images {
+   }
+  }
+  t12=t12 {
+   images=images {
+   }
+  }
+  t13=t13 {
+   images=images {
+   }
+  }
+  t14=t14 {
+   images=images {
+   }
+  }
+  t3=t3 {
+   images=images {
+   }
+  }
+  t4=t4 {
+   images=images {
+   }
+  }
+  t5=t5 {
+   images=images {
+   }
+  }
+ }
+ uc_client=uc_client {
+  client.php
+  index.htm
+  control=control {
+   app.php
+   cache.php
+   domain.php
+   feed.php
+   friend.php
+   mail.php
+   pm.php
+   tag.php
+   user.php
+   index.htm
+  }
+  data=data {
+   index.htm
+   cache=cache {
+    apps.php
+    badwords.php
+    settings.php
+    index.htm
+   }
+  }
+  lib=lib {
+   db.class.php
+   sendmail.inc.php
+   uccode.class.php
+   xml.class.php
+   index.htm
+  }
+  model=model {
+   app.php
+   base.php
+   cache.php
+   domain.php
+   friend.php
+   mail.php
+   misc.php
+   note.php
+   pm.php
+   tag.php
+   user.php
+   index.htm
+  }
+ }
+}
+NewUC=/home/airowner/Downloads/SNS0508 CD=. filter="*.html *.js *.css" {
+ cjqz.html
+  index.html
+  login-zc.html
+  login-zc2.html
+  login-zc3.html
+  ts.html
+  zhmm.html
+  zhmm2.html
+  zhmm3.html
+  SNS=SNS {
+   ckxx.html
+    fbxq.html
+    fx.html
+    fxnr.html
+    fxtcc.html
+    glxc.html
+    hy.html
+    lw.html
+    lwx.html
+    ptsc.html
+    qz.html
+    qzxz.html
+    rw.html
+    rz.html
+    sctcc.html
+    snsindex.html
+    tp.html
+    wdfx.html
+    wdtp.html
+    wdzh.html
+    xc.html
+    xrz.html
+    xtp.html
+    xxx.html
+    images=images {
+    }
+   js=js {
+    fxtab.js
+     gtabs.js
+     rwtabs.js
+     rztabs.js
+     sctabs.js
+     ss.js
+     tabs.js
+     txtab.js
+     xxtab.js
+     zhtabs.js
+   }
+   style=style {
+    ckhd.css
+     ckxx.css
+     fx.css
+     fxnr.css
+     glxc.css
+     hy.css
+     lw.css
+     ptsc.css
+     qz.css
+     rw.css
+     rz.css
+     sns.css
+     spbulic.css
+     tp.css
+     wdfx.css
+     wdtp.css
+     wdzh.css
+     xc.css
+     xrz.css
+     xtp.css
+     xx.css
+     xxx.css
+   }
+  }
+ gc=gc {
+  gc.html
+   images=images {
+   }
+  js=js {
+   xqxt.js
+  }
+  style=style {
+   gc.css
+  }
+ }
+ hd=hd {
+  hd.html
+   tk.html
+   images=images {
+   }
+  js=js {
+   demo1.js
+    kissy.js
+    tab.js
+    waterfall.js
+  }
+  style=style {
+   hd.css
+    tk.css
+  }
+ }
+ images=images {
+ }
+ js=js {
+  jQueryTimer.js
+   jquery-min.js
+   png.js
+   xsph.js
+ }
+ qz=qz {
+  qs.html
+   qz.html
+   qzej-cylb.html
+   qzej-ddjr.html
+   qzej-qzsz.html
+   qzej.html
+   qzsj.html
+   qzss.html
+   xwxq.html
+   yjqz.html
+   images=images {
+   }
+  js=js {
+  }
+  style=style {
+   qs.css
+    qz.css
+    qzej.css
+    qzsj.css
+    qzss.css
+    xwxq.css
+    yjqz.css
+  }
+ }
+ style=style {
+  index.css
+   login.css
+   public.css
+ }
+}
+gopo_html=/home/airowner/gopo CD=. filter="*.html *.js *.css" {
+ index.html
+ login.html
+ SNS=SNS {
+  ckhd.html
+  fx.html
+  glxc.html
+  lw.html
+  lwx.html
+  ptsc.html
+  rz.html
+  snsindex.html
+  tp.html
+  wdtp.html
+  xc.html
+  xrz.html
+  xx.html
+  images=images {
+  }
+  js=js {
+   fxtab.js
+   sctabs.js
+   tabs.js
+   txtab.js
+   xxtab.js
+  }
+  style=style {
+   ckhd.css
+   fx.css
+   glxc.css
+   lw.css
+   ptsc.css
+   rz.css
+   sns.css
+   spbulic.css
+   tp.css
+   wdtp.css
+   xc.css
+   xrz.css
+   xx.css
+  }
+ }
+ gc=gc {
+  gc.html
+  images=images {
+  }
+  js=js {
+   xqxt.js
+  }
+  style=style {
+   gc.css
+  }
+ }
+ hd=hd {
+  hd.html
+  tk.html
+  images=images {
+  }
+  js=js {
+   demo1.js
+   kissy.js
+   tab.js
+   waterfall.js
+  }
+  style=style {
+   hd.css
+   tk.css
+  }
+ }
+ images=images {
+ }
+ js=js {
+  jQueryTimer.js
+  jquery-min.js
+  png.js
+  xsph.js
+ }
+ qz=qz {
+  qs.html
+  qz.html
+  qzej.html
+  qzsj.html
+  qzss.html
+  xwxq.html
+  yjqz.html
+  images=images {
+  }
+  js=js {
+  }
+  style=style {
+   qs.css
+   qz.css
+   qzej.css
+   qzsj.css
+   qzss.css
+   xwxq.css
+   yjqz.css
+  }
+ }
+ style=style {
+  index.css
+  login.css
+  public.css
+ }
+}

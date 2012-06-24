@@ -1,0 +1,43 @@
+<!--{template header}-->
+<!--{if empty($_SGLOBAL['inajax'])}-->
+<div class="heder">
+	<div class="henr">
+		<div class="logo"><a href="<!--{eval echo usr_url('index')}-->"><img alt="狗咆" src="<?=$_USER_SC['domain']?>images/logo.png" /></a></div>
+        <div class="menu">
+            <ul>
+                <!--{if $_SERVER['REQUEST_URI'] == '/home/' . usr_url('index')}-->
+                <li><a href="<!--{eval echo usr_url('index')}-->"><img alt="首页" src="<?=$_USER_SC['domain']?>images/home.gif" /></a></li>
+                <!--{else}-->
+                <li><a href="<!--{eval echo usr_url('index')}-->"><img alt="首页" src="<?=$_USER_SC['domain']?>images/sy.png" /></a></li>
+                <!--{/if}-->
+                <!--{if $_SERVER['REQUEST_URI'] == '/home/' . usr_url('network')}-->
+                <li><a href="<!--{eval echo usr_url('network')}-->"><img alt="广场" src="<?=$_USER_SC['domain']?>images/gc.gif" /></a></li>
+                <!--{else}-->
+                <li><a href="<!--{eval echo usr_url('network')}-->"><img alt="广场" src="<?=$_USER_SC['domain']?>images/gc.png" /></a></li>
+                <!--{/if}-->
+                <!--{if $_SERVER['REQUEST_URI'] == '/home/' . usr_url('space', array('do'=>'mtag'))}-->
+                <li><a href="<!--{eval echo usr_url('space', array('do'=>'mtag'))}-->"><img alt="圈子" src="<?=$_USER_SC['domain']?>images/qz.gif" /></a></li>
+                <!--{else}-->
+                <li><a href="<!--{eval echo usr_url('space', array('do'=>'mtag'))}-->"><img alt="圈子" src="<?=$_USER_SC['domain']?>images/qz_index.png" /></a></li>
+                <!--{/if}-->
+                <!--{if $_SERVER['REQUEST_URI'] == '/home/' . usr_url('space', array('do'=>'event'))}-->
+                <li><a href="<!--{eval echo usr_url('space', array('do'=>'event'))}-->"><img alt="活动" src="<?=$_USER_SC['domain']?>images/hd.gif" /></a></li>
+                <!--{else}-->
+                <li><a href="<!--{eval echo usr_url('space', array('do'=>'event'))}-->"><img alt="活动" src="<?=$_USER_SC['domain']?>images/hd.png" /></a></li>
+                <!--{/if}-->
+            </ul>
+        </div>
+        <div class="mime">
+        	<ul>
+                <li><a href="<!--{eval echo usr_url('space', array('do'=>'blog'))}-->">日志</a></li>
+                <li><a href="<!--{eval echo usr_url('space')}-->">空间</a></li>
+                <li><a href="<!--{eval echo usr_url('space', array('do'=>'album'))}-->">相册</a></li>
+                <li><a href="<!--{eval echo usr_url('space', array('do'=>'mtag'))}-->">部落</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+<!--{if $_SGLOBAL['ad']['contenttop']}--><div id="ad_contenttop"><!--{ad/contenttop}--></div><!--{/if}-->
+<!--{/if}-->

@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+/*右侧内容*/
+.ricz{ width:781px; float:right;}
+.ricz{ width:781px; float:right;}
+.ss{ margin-bottom:5px;}
+.hdd{ width:200px; float:left; line-height:14px; font-weight:bold; background:url(http://s.gopo.com/images/rz.png) no-repeat 0 0; height:32px; padding-left:70px;}
+.ss form{ width:250px; float:right; text-align:right;}
+.txt{ width:171px; height:23px; border:1px solid #a0a0a0; background-color:#e9e9e9; padding-left:5px; line-height:23px;}
+.btn{ background:url(http://s.gopo.com/images/ssrz.png) no-repeat 0 0; width:58px; height:24px; border:none; cursor:pointer;}
+.dgrz{ overflow:hidden; zoom:1;}
+.hdfl{ height:24px; width:781px; position:relative;}
+a.fqhd{ position:absolute; right:0; top:0;}
+.hdfl ul li{ float:left;}
+.hidden{ display:none;}
+.sdd01 a.o,.sdd02 a.o,.sdd01 a.f,.sdd02 a.f,.sdd01 a.t,.sdd02 a.t,.sdd01 a.s,.sdd02 a.s{text-indent:-9999px; display:block; float:left;}
+.sdd01 a.o{ background:url(http://s.gopo.com/images/r01.png) no-repeat 0 0; width:141px; height:24px;}
+.sdd02 a.o{ background:url(http://s.gopo.com/images/r08.png) no-repeat 0 0; width:141px; height:24px;}
+.sdd01 a.t{ background:url(http://s.gopo.com/images/r03.png) no-repeat 0 0; width:140px; height:24px;}
+.sdd02 a.t{ background:url(http://s.gopo.com/images/r02.png) no-repeat 0 0; width:140px; height:24px;}
+.sdd01 a.f{ background:url(http://s.gopo.com/images/r05.png) no-repeat 0 0; width:139px; height:24px;}
+.sdd02 a.f{ background:url(http://s.gopo.com/images/r04.png) no-repeat 0 0; width:139px; height:24px;}
+.sdd01 a.s{ background:url(http://s.gopo.com/images/r07.png) no-repeat 0 0; width:141px; height:24px;}
+.sdd02 a.s{ background:url(http://s.gopo.com/images/r06.png) no-repeat 0 0; width:141px; height:24px;}
+.hdnr{border:1px solid #ababab; background-color:#FFF; padding:10px; font-family:Arial;}
+.rztp{ width:54px; float:left;}
+.rzjj{ width:690px; float:right;line-height:20px; position:relative; border-bottom:1px dotted #CCC; padding-bottom:5px; margin-bottom:10px;}
+.rztp span{ background:url(http://s.gopo.com/images/rbg.gif) no-repeat 0 0; width:35px; height:20px; display:block; padding-left:19px; text-align:center; line-height:20px; margin-top:5px; color:#d8961c;}
+p.bt{ font-weight:bold; } 
+.djfx{ position:absolute; bottom:5px; right:0;}
+.bt span{ color:#db4946; margin-left:30px;}
+
+.page{ height:24px; text-align:center; font-family:Arial; padding-top:30px;}
+.page a,.page span{ margin-right:10px;}
+span.dqa{ font-weight:bold; color:#df4a47;}
+
+#to04,#to03,#to02{ font-weight:normal;}

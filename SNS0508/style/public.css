@@ -1,0 +1,21 @@
+span,td,th,table,fieldset,form,pre,blockquote,p,dl,dt,dd,li,ul,h1,h2,h3,h4,h5,h6,div,body,html,img,input{ margin:0; padding:0;}
+body,html{ overflow-x:hidden;}
+a{ text-decoration:none;}
+a:hover{ text-decoration:underline;}
+ul,li{ list-style:none;}
+img{ border:none;}
+body{ font-family:"宋体","Arial Narrow";font-size:12px;color:#333;font-size:12px; line-height:24px;}
+.top{ background:url(../images/tops.png) repeat-x 0 0;height:37px; position:absolute; top:0; left:0; width:100%; z-index:999;}
+.topnav{ width:950px; margin:0 auto; line-height:34px; position:relative; font-family:"微软雅黑","宋体";}
+.top p a{ color:#FFF; margin-left:15px;}
+.top p{ color:#FFF;}
+.top p.rini a{ margin-left:10px;}
+.top p.rini{ position:absolute; right:0; top:0;}
+
+/*.foot{ background:url(../images/db.png) no-repeat 0 0;position:absolute; left:50%; margin-left:-725px;height:214px; width:1450px;}*/
+.foot{ background:url(../images/db.png) no-repeat 0 0;height:214px; width:1450px; margin:0 auto;}
+.ftnr{ width:950px; margin:0 auto; text-align:center; color:#ef504c;font-family:"微软雅黑","宋体"; font-weight:bold; padding-top:25px;}
+.ftnr p.minav{ margin-bottom:5px;}
+.ftnr span{ margin:0 10px;}
+.ftnr a{color:#ef504c;}
+

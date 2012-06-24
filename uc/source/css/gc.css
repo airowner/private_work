@@ -1,0 +1,146 @@
+@charset "utf-8";
+/* CSS Document */
+
+.jmtj,.wwnr ul li,.nro,.shtt,.cont,.conf,.nftt,.one,.rio,.ph dt,.ph dd,.rido,.ph li,.cono,dl,.dhjm{ overflow:hidden; zoom:1;}
+
+.heder{ height:154px; width:100%; background:url(http://s.gopo.com/images/hebg.gif) repeat-x 0 0;}
+.henr{ width:950px; margin:0 auto; position:relative;}
+.logo{ position:absolute; left:0; top:45px;}
+a{ color:#000;}
+.menu{ background:url(http://s.gopo.com/images/imenu.png) no-repeat 0 0; width:491px; height:30px; position:absolute; left:460px; top:60px; padding-top:5px; padding-left:15px;}
+.menu ul li{ width:93px; height:28px; float:left; margin-left:18px;}
+.mime{ background:url(http://s.gopo.com/images/mimen.png) no-repeat 0 0; width:344px; height:26px; position:absolute; left:550px; top:95px;}
+.mime ul li{ font-size:12px;font-family:"微软雅黑","宋体"; float:left; margin-left:50px; display:inline;}
+.mime ul li a{ color:#FFF;}
+
+.main{ background:url(http://s.gopo.com/images/mainbg.gif) no-repeat 0 0; width:1450px;position:absolute; left:50%; margin-left:-725px; height:1565px;}
+.cono{ width:950px; margin:0 auto; padding-top:10px;}
+.lero{ width:241px; float:left;}
+.lero h3{ background:url(http://s.gopo.com/images/jm.gif) no-repeat 0 0; width:241px; height:24px; text-indent:-999px;}
+
+.lenr{ width:713px; float:left;}
+.ronr{ border:1px solid #9d9d9d; width:239px; height:218px; background-color:#FFF; padding-top:15px; overflow:hidden;}
+.jrlm{ background:url(http://s.gopo.com/images/jrlm.gif) no-repeat 0 0; width:220px; height:54px; margin:0 auto;}
+
+.jmtj{width:220px; margin:0 auto; border-bottom:2px solid #e24b48; padding:8px 0;}
+.tjtx{ width:69px; height:69px; float:left;}
+.tjxx{ padding-top:20px;}
+.tjxx a{ font-size:14px; font-weight:bold;}
+.jmtx{ width:235px; margin:30px auto 0;}
+.riro{ width:463px; float:right;}
+.riro h3{ background:url(http://s.gopo.com/images/jmww.png) no-repeat 0 0; width:463px; height:24px; text-indent:-999px;}
+.wwnr{ border:1px solid #9d9d9d; width:441px; height:233px; background-color:#373536;overflow:hidden; padding:0 10px; color:#636363;}
+.wwnr ul{ padding-top:4px;}
+.wwnr ul li{ border-bottom:1px solid #3d3d3d; line-height:26px;}
+.wwnr ul li span{ width:12px; height:12px; display:block; float:left; margin-top:6px;}
+.wwnr ul li span img{ border:1px solid #000;}
+.wwnr ul li b{ color:#FFF; margin-right:5px;}
+.wwnr ul li p{ width:421px; float:right;}
+.wwnr a{ color:#979898;}
+.wwnr ul li.nbm{ border-bottom:none;}
+.ssqy{ background:url(http://s.gopo.com/images/zpybg.gif) no-repeat 0 0; width:711px; height:70px; border:1px solid #979797; margin-top:8px;font-family:"黑体","宋体";font-size:14px; color:#FFF; padding-top:15px;}
+
+.one{ background-color:#ef504c; width:213px; height:62px; padding-left:5px; padding-right:10px;font-family:Arial,"宋体";}
+.leo{ width:60px; float:left; background:url(http://s.gopo.com/images/one.gif) no-repeat 0 20px;padding-top:10px; text-indent:-9999px; height:50px;}
+.rio{ width:150px; float:right; padding-top:10px;}
+.leimd{ width:42px; height:42px; float:right;}
+.ritxd a{ color:#FFF; font-weight:bold;}
+
+.ph{font-family:Arial,"宋体";}
+.ph li{ width:228px;  margin:0; display:inline;}
+.ph dt{ height:22px; line-height:22px; width:213px; font-size:18px; font-weight:bold; padding-left:5px; padding-right:10px; cursor:pointer; overflow:hidden;margin:0;}
+.ph dt b{ width:50px; float:left;}
+.ph dt span{ width:100px; float:right; font-size:14px; font-weight:normal; text-align:right;}
+.ph dd{  height:53px;width:213px; background-color:#898989;padding-left:5px; padding-right:10px; padding-top:12px; overflow:hidden;}
+.lido{ width:60px; float:left; font-size:30px; color:#FFF; font-weight:bold; padding-top:20px;}
+.rido{ width:150px; float:right;}
+.rile,.ritxd{ width:100px; float:left; text-align:right; color:#FFF; line-height:18px; padding-top:10px;}
+.rile a{ font-weight:bold; color:#FFF;}
+.riimd{ width:42px; float:right;}
+
+.lidldt dt{ display:block;}
+.lidldt dd,.lidldd dt{display:none;}
+.hbj{ background-color:#d5d5d5;}
+
+.xxa{padding-left:200px; margin-bottom:5px;}
+.xxa span{ margin-right:30px;}
+.nc,.xb{ width:281px; height:23px; border:1px solid #a0a0a0; background-color:#e9e9e9; line-height:23px; padding-left:5px;}
+.xb{width:49px; }
+
+.ssnr{ margin-bottom:8px;}
+.ssk{ padding-left:140px;}
+.ssk span{ margin-left:20px;}
+.sebtn{ background:url(http://s.gopo.com/images/sebtn.gif) no-repeat 0 0; width:87px; height:26px; border:none; cursor:pointer; margin-left:10px;}
+
+.gjc{ width:691px; height:55px; background-color:#e9e9e9; border:1px solid #a0a0a0; border-top:none; overflow:hidden;color:#898989; padding:5px 10px 0;}
+.gjc a{ color:#898989;}
+.gjc span{ margin:0 5px;}
+
+.rinr{ width:230px; float:right;}
+.cjkj{ margin-bottom:5px;}
+.jmph h3{ background:url(http://s.gopo.com/images/jmph.png) no-repeat 0 0; width:230px; height:24px; text-indent:-9999px;}
+.phnr{ width:228px; height:522px; background-color:#e9e9e9; border:1px solid #a0a0a0;}
+.ggnr{ width:950px; margin:6px auto 5px;}
+
+.cont,.conf{ width:950px; margin:0 auto;}
+.clsh{ width:352px; float:left;}
+.clsh h3{ background:url(http://s.gopo.com/images/clsh.png) no-repeat 0 0; width:352px; height:24px; text-indent:-999px;}
+.shnr{ width:320px; height:254px; border:1px solid #a0a0a0; background-color:#FFF; padding:15px;}
+.leim{ width:64px; height:64px; float:left;}
+.ritx{ width:245px; float:right;}
+.ritx p{ line-height:18px;}
+.ritx p a{ font-size:18px;font-family:"微软雅黑","宋体"; font-weight:bold;}
+.ritx p.tm,.ritx p.jj{ line-height:14px;}
+.shtt{ border-bottom:1px solid #CCC; padding-bottom:15px;}
+
+
+
+.shnr ul{ padding-top:10px;}
+.shnr ul li{ background:url(http://s.gopo.com/images/ssli.gif) no-repeat 0 9px; padding-left:10px; position:relative; height:24px;}
+.wl{ margin-left:5px;}
+.shnr ul li span,.zxjm ul li span{ position:absolute; right:0; top:0px;}
+.wl h3{ background:url(http://s.gopo.com/images/wl.png) no-repeat 0 0;}
+
+.zxjm{ width:236px; float:right;}
+.zxjm h3{ background:url(http://s.gopo.com/images/zxjm.png) no-repeat 0 0; width:236px; height:24px; text-indent:-9999px;}
+
+
+.zxjm ul{ width:214px; height:264px;border:1px solid #a0a0a0; background-color:#FFF; padding:10px;}
+.zxjm ul li{ height:24px; position:relative;}
+.cont{ height:310px; margin-bottom:5px;}
+.jmtl{ width:681px; height:205px; background-color:#333; margin:0 auto; padding-left:8px; padding-top:8px;}
+
+.lenf{ width:689px; height:243px; border:1px solid #a0a0a0; background-color:#FFF; padding:8px; float:left;}
+.nftt{ margin-bottom:5px;}
+.nftt h3{ font-family:16px;font-family:"微软雅黑","宋体"; width:100px; float:left;}
+.nftt form{ width:490px; float:right;font-family:"黑体","宋体";}
+.nftt form span{ margin-right:15px;}
+.jmtl a{ margin-right:4px;}
+
+.rinf{ width:236px; float:right;}
+.rinf h3{ background:url(http://s.gopo.com/images/tjbk.png) no-repeat 0 0; height:23px;width:236px; text-indent:-9999px;}
+.bknr{ width:234px; height:228px; border:1px solid #c0c0c0; background-color:#FFF; padding-top:8px;}
+
+.bknr ul li{ width:206px; margin:0 auto; border-bottom:1px solid #CCC; padding-bottom:10px; margin-top:5px;}
+.bknr dt{ width:60px; height:60px; float:left;}
+.bknr dd{ width:134px; float:right; line-height:20px;}
+.bknr dd a{ font-size:14px; font-weight:bold;}
+.dhjm{ height:48px; margin-bottom:2px;}
+
+/*兴趣相投*/
+.xqxt h3{ background:url(http://s.gopo.com/images/xqxt.png) no-repeat 0 0; width:702px; height:24px; text-align:right; font-weight:normal; font-size:12px; line-height:24px; padding-right:10px;}
+.xqxt h3 a{ color:#FFF;}
+.xqxt h3 a.dq{ color:#F00;}
+.xqxt h3 a.dq:hover{ text-decoration:none;}
+.xqxt h3 span{ color:#FFF; margin:0 3px;}
+#m_interest .managebox{ background:#fff; padding:3px; height:163px;}
+
+#m_interest .peoplebox td{ width:42px; height:60px;overflow:hidden; padding-bottom:5px;}
+#m_interest .peoplebox td span{ display:block; width:42px; height:14px;text-align:center; line-height:14px; overflow:hidden; }
+#m_interest .peoplebox td img{ display:block; margin:0px auto 3px auto;}
+#m_interest .peoplebox a, #m_interest .peoplebox a:visited{ color:#444;}
+#m_interest .peoplebox a:hover, #m_interest h4 a:hover, #m_interest h4 .on{ color:#e34320;}
+
+.member_drag{ border-bottom:#c2c2c2 1px solid; margin:159px 10px 7px 10px; position:relative;}
+.pointer{ background:url(http://s.gopo.com/images/hyq.png) no-repeat 0 0; width:11px; height:11px; position:absolute; top:-5px; left:0px; cursor:pointer;}
+td{ width:48px;}

@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.qxq,.qjj,.qztp,.qzcy ul,.tyxh ul li,.tznr,.fx,.tz{ overflow:hidden; zoom:1;}
+.main{ background:url(../images/sjbg.gif) no-repeat 0 0px; width:1450px;position:absolute; left:50%; margin-left:-725px; height:1950px; padding-top:40px;}
+.content{ width:955px; margin:0 auto; position:relative;}
+.dtx{ position:absolute; border:1px solid #a6a6a6;  top:50px; right:60px;}
+.topd{ background:url(../images/qzejh.png) no-repeat 0 0; width:940px; height:90px; padding:20px 0 0 15px;}
+.tx{ width:70px; float:left; margin-right:20px;}
+.topd img{ border:1px solid #a6a6a6;}
+h1{ width:600px; float:left; color:#FFF; font-size:36px; line-height:36px; padding-top:30px;}
+a{ color:#000;}
+/*群详情*/
+.qxq{ background-color:#FFF;border:1px solid #a6a6a6; padding:7px; margin-top:8px;}
+.lexq{ width:680px; float:left;font-family:Arial; }
+.tz{ padding:8px 0 0 8px;}
+.tznr{ margin-bottom:50px;}
+.zzxx{ width:61px; float:left;}
+.zzxx p{ line-height:20px; color:#0068b7;}
+.nrxx{ width:580px; float:right;}
+h2{ font-size:14px; margin-bottom:25px;}
+.nrxx p a{ color:#0068b7;}
+.zz{ margin-bottom:25px;}
+p.hf{ color:#898989; text-align:right;}
+p.hf a{ color:#898989;}
+p.hf span{ margin:0 5px;}
+.fx{ height:24px; position:relative;}
+.fx a{ display:block; float:left; color:#0068b7; margin-right:20px;}  
+.fx .hf{ position:absolute; right:0px; top:0; margin:0;}
+.hfd{ width:600px; float:right;}
+.hfxq{ width:520px; float:right;}
+.hfxq p{padding-left:8px;}
+.hfxq p.zz{ background-color:#f0efec;  position:relative; height:24px; margin-bottom:5px;}
+.hfxq p.zz span{ position:absolute; right:8px; top:0;}
+.hfxq p.zz b{ margin-right:5px;}
+.hfd{ margin-bottom:20px;}
+.hfk{ padding-left:8px; padding-right:20px;}
+textarea{ width:640px; border:1px solid #ccc; height:120px; padding:5px;}
+.ru{ text-align:right;}
+.hfbtn{ background:url(../images/hf.gif) no-repeat 0 0; width:34px; height:24px; border:none; margin-top:10px; margin-bottom:10px;}
+.page{ height:24px; padding-left:50px; position:relative;}
+.page a,.page span{ margin-right:10px;}
+.dq{ font-weight:bold; color:#0068b7;}
+.page b{ right:0; top:0; position:absolute; font-weight:normal;}
+.mg{ padding-left:8px; margin-bottom:20px;}
+
+form{ margin:15px 0 5px 0;}
+.txt{ width:284px; height:23px; background-color:#e9e9e9; border:1px solid #a0a0a0; margin-right:20px;}
+.btn{ background:url(../images/ss.gif) no-repeat 0 0; width:87px; height:26px; border:none; cursor:pointer;}
+
+
+.rixq{ width:230px;float:right; margin-right:2px;}
+.ycjj{ padding-top:125px; line-height:20px; width:184px; height:90px;}
+.rixq h4{ font-size:14px; font-weight:normal; text-align:right; padding-right:13px; background:url(../images/qzcy.gif) no-repeat 0 0; width:199px;  height:24px; font-family:"宋体";}
+.rixq h4 a{ color:#FFF;}
+.qznr{ border:1px solid  #a0a0a0; padding-left:12px; width:198px; padding-bottom:15px; margin-bottom:5px;}
+.qznr p.rs{ font-size:14px; margin:7px 0;}
+.qzcy ul li{ width:48px; height:48px; float:left; margin:0 18px 18px 0;}
+.qzcy ul li.nmg{ margin-right:0;}
+.tyxh ul{padding-top:10px;}
+.tyxh ul li{ margin-bottom:20px;}
+.tyxh ul li dt{ width:100px; float:left; margin-right:8px;}
+.tyxh ul li dd{ position:relative; float:left; width:80px; height:100px;}
+.tyxh ul li p{ position:absolute; bottom:0; left:0;}
+.tyxh ul li p a{ font-size:14px;}
+.tyxh ul li p span{ color:#6f6f6f;}
+.rixq h4.cyxh{ background:url(../images/cyyxh.gif) no-repeat 0 0;}
+
+
+.xgg{ margin-bottom:8px;}

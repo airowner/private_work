@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+
+.grxx,.content,.zrxq,.jdjs,.dtfl ul,.hffld ul,.ss,.hdfl ul,.rzbj,.tpnr ul li,.fxfl ul,.fxxq,.xcfl ul,.xc,.ggqy,.xcd,.lwfl ul,.lwnr ul,.lwxq,.dgrz,.xcnr{ overflow:hidden; zoom:1;}
+.main{ background:url(../../qz/images/qzbg.gif) no-repeat 0 30px; width:1450px;position:absolute; left:50%; margin-left:-725px; padding-top:96px;}
+a{ color:#000;}
+
+.nleni ul li{ float:left;margin-right:15px;}
+.nleni ul li a{ color:#FFF; }
+.jdjs{ padding:10px 5px; height:64px;}
+.menud{ position:relative; font-family:"宋体";}
+.menu-bd-panel{ width:170px; height:168px; border:1px solid #a0a0a0; display:none; background-color:#fff; position:absolute; left:0px; top:28px;} 
+.menud:hover .menu-bd-panel{ display:block;}
+.imjs{ width:61px; height:61px; float:left;}
+.txjsd{ width:85px; float:right;}
+.txjsd p{ color:#000; line-height:18px;}
+.txjsd p.tmz{ font-size:14px; font-weight:bold; margin-bottom:8px;}
+.menud{background:url(../images/xlq.png) no-repeat right 0; height:34px; padding-right:20px; display:block; float:left; padding-left:10px;}
+a.menu-hd{ color:#FFF;}
+.menud:hover{background:url(../images/xlbg.png) no-repeat right 0;}
+.nleni a{ font-family:"微软雅黑","宋体";}
+p.qtdj{ background:url(../images/xdbg.gif) no-repeat 0 0; width:170px; height:21px; line-height:21px; text-align:center; font-size:14px; font-weight:bold;}
+.nleni ul li p.qtdj a{ color:#000; font-family:"宋体";}
+.menu-bd-pane2{ width:118px; height:133px;border:1px solid #a0a0a0; background-color:#fff; position:absolute; left:0px; top:28px; padding:5px 0 0 10px; display:none;}
+.menu-bd-pane2 p{ background:url(../images/xli.gif) no-repeat 0 6px; padding-left:15px;}
+
+.top a.mz,.top p a.rz{ background:url(../images/xlq.png) no-repeat right 0; height:34px; padding-right:20px; display:block; float:left; padding-left:10px; margin-left:5px;}
+.top a.mz{ margin-left:0px;}
+.top a.mz:hover,.top p a.rz:hover{ background:url(../images/xlbg.png) no-repeat right 0;}
+.menu-bd-pane2 p.ts a{margin:0; line-height:22px; height:22px; font-family:"宋体"; color:#000;}
+.menud:hover .menu-bd-pane2{ display:block;}
+/*个人信息*/
+.head{ background:url(../images/topbg.png) no-repeat 0 0; width:950px; height:57px; margin:0 auto;position:absolute; left:50%; margin-left:-475px; top:34px;}
+.legr{ width:200px; float:left; padding:7px 0 0 10px;}
+.grtx{ width:41px; height:41px; float:left;}
+.grjj{ width:144px; float:right; line-height:14px; padding-top:8px;}
+.grjj p.mz{ margin-bottom:5px;}
+.rigr{ width:400px; text-align:right; float:right; margin-right:1px;}
+.zbkj{ padding-left:316px;}
+.zbkj a{ background:url(../images/zbkj.png) no-repeat 0 0; width:84px; height:23px; line-height:23px; color:#FFF; display:block; text-align:center;}
+.qtcz{ padding-right:5px; margin-top:10px;}
+.qtcz a{ margin-left:10px;}
+.content{ width:950px; margin:0 auto;}
+
+/*左侧菜单*/
+.lecd{ width:164px; float:left;}
+.lecd h3{ background:url(../images/grzybt.png) no-repeat 0 0; width:164px; height:24px; text-indent:-9999px;}
+.cdnr{ border:1px solid #ababab; background-color:#FFF; padding:10px;}
+.cdnr p{padding-left:26px; position:relative;height:24px; }
+.cdnr p span{ position:absolute; top:0px; right:0; line-height:24px; }
+.cdnr p span a{color:#909090;}
+.cdnr p.sy{background:url(../images/sy.gif) no-repeat 0 2px; }
+.cdnr p.xq{background:url(../images/xq.gif) no-repeat 0 5px; }
+.cdnr p.fx{background:url(../images/fx.gif) no-repeat 1px 5px; }
+.cdnr p.rz{background:url(../images/rz.gif) no-repeat 2px 4px; }
+.cdnr p.xc{background:url(../images/xc.gif) no-repeat 2px 4px; }
+.cdnr p.zx{background:url(../images/zx.gif) no-repeat 1px 4px; }
+.cdnr p.lw{background:url(../images/lw.gif) no-repeat 1px 2px; }
+.cdnr p.tp{background:url(../images/tp.gif) no-repeat 2px 5px; }
+.cdnr p.hd{background:url(../images/hd.gif) no-repeat 0 5px; }
+.cdnr p.hy{background:url(../images/hy.gif) no-repeat 2px 5px; }
+.cdnr p.qz{background:url(../images/qz.gif) no-repeat 0 5px; }
+.cdnr p.dq a{ color:#db4946;}
+.cdnr p.dq a:hover{ text-decoration:none;}
+.xni{ padding-left:20px;}
+.xni li{ background:url(../images/xli.gif) no-repeat 0 6px; padding-left:12px;}

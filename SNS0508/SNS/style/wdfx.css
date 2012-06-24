@@ -1,0 +1,87 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+/*右侧内容*/
+.ricz{ width:781px; float:right;}
+.tp{ background:url(../images/fx.png) no-repeat 0 0; padding-left:120px;  line-height:32px;margin-bottom:5px; height:32px;}
+
+.fxfl ul li{ float:left;}
+.sdd01 a.o,.sdd02 a.o,.sdd01 a.f,.sdd02 a.f,.sdd01 a.t,.sdd02 a.t{text-indent:-9999px; display:block; float:left;}
+.sdd01 a.o{ background:url(../images/hyfx.png) no-repeat 0 0; width:141px; height:24px;}
+.sdd02 a.o{ background:url(../images/hydfxh.png) no-repeat 0 0; width:141px; height:24px;}
+.sdd01 a.t{ background:url(../images/djfxh.png) no-repeat 0 0; width:139px; height:24px;}
+.sdd02 a.t{ background:url(../images/djdfx.png) no-repeat 0 0; width:139px; height:24px;}
+.sdd01 a.f{ background:url(../images/wdfxh.png) no-repeat 0 0; width:141px; height:24px;}
+.sdd02 a.f{ background:url(../images/wdfx.png) no-repeat 0 0; width:141px; height:24px;}
+
+.fxxq,.fxxq,.fxzz,.fxdg,.tznr{ overflow:hidden; zoom:1;}
+.hidden{ display:none;}
+
+.fxnr{border:1px solid #ababab; background-color:#FFF; padding:10px;}
+p.fxlx{ border-bottom:1px dotted #CCC; padding-bottom:5px; margin-bottom:8px;}
+p.fxlx a.dqd{ font-weight:bold;}
+p.fxlx a{ margin-right:10px;}
+.lexq{ width:570px; float:left;}
+.rixq{ width:180px; float:right;}
+.rixq h3{ background:url(../images/fx1.gif) no-repeat 0 0; width:180px; height:24px; text-indent:-9999px;}
+.wznr{ border:1px solid #a0a0a0; padding:5px; margin-bottom:8px;}
+.txt{ border:1px solid #e0dedf; height:22px; width:160px; padding-left:5px; line-height:22px;}
+textarea{border:1px solid #e0dedf; height:60px; width:155px; padding:5px;}
+.fxd{ background:url(../images/fxan.gif) no-repeat 0 0; width:180px; height:24px; border:none; cursor:pointer; margin-top:5px; }
+h3.rh{ background:url(../images/fxwy.gif) no-repeat 0 0;}
+.rhnr{ padding:8px;border:1px solid #e0dedf; border-bottom:none;}
+h3.rhs{ background:url(../images/fxso.gif) repeat 0 0;}
+.spnr{ padding:8px;border:1px solid #e0dedf; }
+
+.lexq{font-family:Arial;}
+.wzfx{ margin-bottom:10px;}
+.fxbt{ background-color:#e8e8e8; padding-left:10px; height:26px; line-height:26px; margin-bottom:5px; position:relative;}
+.fxbt a.sc{ position:absolute; right:10px; top:0; text-decoration:none;}
+.fxbt a.sc:hover{ text-decoration:underline;}
+.fxbt a{ text-decoration:underline;}
+.fxbt span{ color:#a0a0a0; margin-left:20px;}
+.gray{ color:#a0a0a0;}
+.sp{ border:1px solid #dadada; padding:3px; width:100px;}
+
+.page{ height:24px; text-align:center; font-family:Arial; padding-top:30px;}
+.page a,.page span{ margin-right:10px;}
+span.dqa{ font-weight:bold; color:#df4a47;}
+
+.lezz{ width:61px; height:61px; float:left;}
+.rizt{ width:300px; float:left; line-height:16px; margin-left:10px;}
+p.fs{ font-size:14px; margin-bottom:30px;}
+.rizt p a{ color:#a0a0a0; margin-right:20px;}
+
+.fxbt{ background-color:#e8e8e8; height:26px; line-height:26px; margin-top:10px; padding-left:10px; position:relative;}
+.fxbt span{ margin-left:20px; color:#a0a0a0;}
+.fxbt span.red{ color:#db4946;}
+.fxbt a{ position:absolute; right:10px; top:0;}
+h1{ font-size:12px; margin:10px 0 5px 0;}
+.gray{ color:#a0a0a0;}
+.lefx{ width:660px; float:left;}
+.rifx{ width:62px; height:31px; float:right;}
+.fxdg{ border-bottom:1px dashed #b3b3b3;}
+
+.tznr{ margin:15px 0;}
+.zzxx{ width:61px; float:left;}
+.zzxx p{ line-height:20px; color:#0068b7;}
+.nrxx{ width:670px; float:right;}
+h2{ font-size:14px; margin-bottom:25px;}
+.nrxx p a{ color:#0068b7;}
+.zz{ margin-bottom:25px; height:26px; line-height:26px; background-color:#f0efec; padding-left:10px; position:relative;}
+p.hf{ color:#898989; text-align:right;}
+p.hf a{ color:#898989;}
+.zz b{ margin-right:10px;}
+.zz span{ position:absolute; right:10px; top:0;} 
+p.hf span{ margin:0 5px;}
+
+.hfk{ padding-left:8px; padding-right:20px;}
+textarea{ width:740px; border:1px solid #ccc; height:120px; padding:5px;}
+.ru{ text-align:right;}
+.hfbtn{ background:url(../images/hf.gif) no-repeat 0 0; width:34px; height:24px; border:none; margin-top:10px; margin-bottom:10px;}
+
+.page{ height:24px; text-align:center; font-family:Arial; padding-top:30px;}
+.page a,.page span{ margin-right:10px;}
+span.dqa{ font-weight:bold; color:#df4a47;}

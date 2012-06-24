@@ -1,0 +1,920 @@
+<!--{eval $_TPL['titles'] = array('群组');}-->
+<!--{template common_header}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/qz.css"/>
+<script type="text/javascript" src="<?=$_USER_SC['domain']?>js/jQueryTimer.js"></script>
+<script type="text/javascript" src="<?=$_USER_SC['domain']?>js/xsph.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	
+	$("div[id*='listbox']").hover(
+		function(){$(this).animate({"margin-top":"-5px"},200)},
+		function(){$(this).animate({"margin-top":"0px"},200);}
+	);
+	var tmp=$("div[id*='listbox']").eq(0).children("img").attr("src");
+	//鼠标点击过程
+	$("div[id*='listbox']").click(function(){
+		  if(parseInt($(this).css("z-index"))<=3){
+			  var curZindex = parseInt($(this).css("z-index"));
+			  //通过z-index差计算该层需要经过几次轮换效果置顶，
+			  var  fntimes = 4-curZindex;
+			  //对于当前处于第一位的图片点击无效果.
+			  $(document).everyTime(300,function(){
+				  $("div[id*='listbox']").each(function(){
+					  if(parseInt($(this).css("z-index"))==4){$(this).css("z-index","1");}
+					  else{$(this).css("z-index",""+(parseInt($(this).css("z-index"))+1)+"");}
+					  $(this).css("margin-top","0px");
+					  $(this).animate({"margin-left":((4-parseInt($(this).css("z-index")))*29)+"px"},300);
+				  });
+			  },fntimes);
+		  }
+	  });
+	
+
+
+setInterval(function(){
+	$("div[id*='listbox']").each(function(){
+				if(parseInt($(this).css("z-index"))==4){$(this).css("z-index","1");}
+				else{$(this).css("z-index",""+(parseInt($(this).css("z-index"))+1)+"");}
+				$(this).animate({"margin-left":((4-parseInt($(this).css("z-index")))*29)+"px"},300);
+			});
+},3000);
+
+})
+
+</script>
+<div class="content">
+    <div class="cono">
+        <div class="leno">
+            <!--焦点图-->
+            <div class="showbox">
+                <div id="listbox0"><img src="<?=$_USER_SC['domain']?>images/QQad0.png" height="200" width="630" border="0" /></div>
+                <div id="listbox1"><img src="<?=$_USER_SC['domain']?>images/QQad1.png" height="200" width="630" border="0" /></div>
+                <div id="listbox2"><img src="<?=$_USER_SC['domain']?>images/QQad2.png" height="200" width="630" border="0" /></div>
+                <div id="listbox3"><img src="<?=$_USER_SC['domain']?>images/QQad3.png" height="200" width="630" border="0" /></div>
+            </div>
+            <!--焦点图结束-->
+            <div class="fobg">
+                <form>
+                    <input class="txt" type="text" /><input class="ser" type="button" /><input class="sbg" type="button" />
+                </form>
+            </div>
+            <!--圈子分类-->
+            <div class="qzfl">
+                <h3>圈子分类</h3>
+                <div class="qznr">
+                    <div class="dgqz">
+                        <h6>运动明星</h6>
+                        <div class="dgnr">
+                            <a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">更多</a>
+                        </div>
+                    </div>
+                    <div class="dgqz">
+                        <h6>运动明星</h6>
+                        <div class="dgnr">
+                            <a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">更多</a>
+                        </div>
+                    </div>
+                    <div class="dgqz">
+                        <h6>运动明星</h6>
+                        <div class="dgnr">
+                            <a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">更多</a>
+                        </div>
+                    </div>
+                    <div class="dgqz">
+                        <h6>运动明星</h6>
+                        <div class="dgnr">
+                            <a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">更多</a>
+                        </div>
+                    </div>
+                    <div class="dgqz zhg">
+                        <h6>运动明星</h6>
+                        <div class="dgnr">
+                            <a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">更多</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--圈子分类结束-->
+        </div>
+        <div class="rino">
+            <div class="cjqz"><a href="#"><img src="<?=$_USER_SC['domain']?>images/cjkj.png" /></a></div>
+            <div class="gg">
+                <h3>公告</h3>
+                <div class="ggnr"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!--您可能感兴趣的-->
+    <div class="nkngxq">
+        <h3><a href="#">换一批</a></h3>
+        <div class="xqnr">
+            <ul>
+                <li><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
+                <li><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
+                <li><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
+                <li><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
+                <li><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
+                <li class="nm"><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--您可能感兴趣的结束-->
+    <div class="cotw">
+        <div class="letw">
+            <!--推荐圈子-->
+            <div class="tjqz">
+                <h3>推荐圈子</h3>
+                <div class="tjnr">
+                    <p class="fl"><b>精选</b><span>|</span><a href="#">电影</a><span>|</span><a href="#">时尚</a><span>|</span><a href="#">设计</a><span>|</span><a href="#">摄影</a><span>|</span><a href="#">其他</a></p>
+                    <ul>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li class="nm">
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li class="nm">
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li class="nm">
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--推荐圈子结束-->
+        </div>
+        <!--精选圈子-->
+        <div class="ritw">
+            <h3>精选圈子排行榜</h3>
+            <div class="phnr">
+                <div class="one">
+                    <div class="leo">ONE</div>
+                    <div class="rio">
+                        <div class="ritxd"><a href="#">zyd1984123</a><br />积分 1234</div>
+                        <div class="leimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                    </div>
+                </div>
+                <ul class="ph">
+                    <li class="lidldd">
+                        <dl><dt><b>02</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">02</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt class="hbj"><b>03</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">03</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>04</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">04</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt class="hbj"><b>05</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">05</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>06</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">06</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt class="hbj"><b>07</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">07</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>08</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">08</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt class="hbj"><b>09</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">09</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>10</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">10</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    </ul>
+                    </div>
+        </div>
+        <!--精选圈子结束-->
+    </div>
+    
+    <div class="coth">
+        <!--同城圈子-->
+        <div class="leth">
+            <h3>同城圈子</h3>
+            <div class="tcnr">
+                <div class="qhcs">
+                    <div class="csqh"><a href="#">切换城市</a></div>
+                    <p><a href="#">没有你的城市？去这里找找吧</a></p>
+                </div>
+                <div class="lecs">
+                    <a class="cst" href="#"><img src="<?=$_USER_SC['domain']?>images/bjt.png" /></a><span>北京北京-更换新Logo</span><br />成员：10293人<br /><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a>
+                </div>
+                <ul class="bd">
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dd>
+                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                    <a class="more" href="#" target="_blank">查看更多»</a>
+            </div>
+        </div>
+        <!--同城圈子结束-->
+        <!--北京圈子-->
+        <div class="rith">
+            <h3>北京圈子排行榜</h3>
+            <div class="phnr">
+                <div class="one">
+                    <div class="leo">ONE</div>
+                    <div class="rio">
+                        <div class="ritxd"><a href="#">zyd1984123</a><br />积分 1234</div>
+                        <div class="leimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                    </div>
+                </div>
+                <ul class="ph">
+                    <li class="lidldd">
+                        <dl><dt><b>02</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">02</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt class="hbj"><b>03</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">03</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>04</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">04</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt class="hbj"><b>05</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">05</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>06</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">06</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt class="hbj"><b>07</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">07</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>08</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">08</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt class="hbj"><b>09</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">09</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>10</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">10</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    </ul>
+                    </div>
+        </div>
+        <!--北京圈子结束-->
+    </div>
+    
+    <div class="cofo">
+        <!--人气群主-->
+        <div class="rqqz">
+            <h3>人气群主</h3>
+            <div class="phnr rqph">
+                <div class="one">
+                    <div class="leo">ONE</div>
+                    <div class="rio">
+                        <div class="ritxd"><a href="#">zyd1984123</a><br />积分 1234</div>
+                        <div class="leimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                    </div>
+                </div>
+                <ul class="ph">
+                    <li class="lidldd">
+                        <dl><dt><b>02</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">02</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>03</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">03</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>04</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">04</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>05</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">05</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>06</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">06</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>07</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">07</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>08</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">08</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>09</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">09</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>10</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">10</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    </ul>
+                    </div>
+        </div>
+        <!--人气群主结束-->
+        <!--人气群成员-->
+        <div class="rqqz rqqcy">
+            <h3>人气群成员</h3>
+            <div class="phnr rqph">
+                <div class="one">
+                    <div class="leo">ONE</div>
+                    <div class="rio">
+                        <div class="ritxd"><a href="#">zyd1984123</a><br />积分 1234</div>
+                        <div class="leimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                    </div>
+                </div>
+                <ul class="ph">
+                    <li class="lidldd">
+                        <dl><dt><b>02</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">02</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>03</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">03</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>04</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">04</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>05</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">05</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>06</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">06</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>07</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">07</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>08</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">08</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>09</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">09</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="lidldt">
+                        <dl><dt><b>10</b><span>zyd1984123</span></dt>
+                            <dd>
+                                <div class="lido">10</div>
+                                <div class="rido">
+                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
+                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    </ul>
+                    </div>
+        </div>
+        <!--人气群成员结束-->
+        <div class="ggd">
+            <p><a href="#"><img src="<?=$_USER_SC['domain']?>images/bx.png" /></a></p>
+            <p class="mgnd"><a href="#"><img src="<?=$_USER_SC['domain']?>images/bx.png" /></a></p>
+            <p><a href="#"><img src="<?=$_USER_SC['domain']?>images/bx.png" /></a></p>
+        </div>
+    </div>
+</div>
+    
+<!--{if 0}-->
+<div class="searchbar floatright">
+<form method="get" action="space.php">
+	<input name="searchkey" value="" size="15" class="t_input" type="text">
+	<input name="searchsubmit" value="搜索群组" class="submit" type="submit">
+	<input type="hidden" name="searchmode" value="1" />
+	<input type="hidden" name="do" value="mtag" />
+	<input type="hidden" name="view" value="hot" />
+</form>
+</div>
+<h2 class="title"><img src="<?=$_USER_SC['domain']?>image/app/mtag.gif">群组</h2>
+<div class="tabs_header">
+	<ul class="tabs">
+		<li><a href="space.php?uid=$space[uid]&do=thread"><span>群组话题</span></a></li>
+		<li$actives[me]><a href="space.php?do=mtag&view=me"><span>我参与的群组</span></a></li>
+		<li$actives[manage]><a href="space.php?do=mtag&view=manage"><span>我管理的群组</span></a></li>
+		<li$actives[hot]><a href="space.php?do=mtag&view=hot"><span>热门群组</span></a></li>
+		<li$actives[recommend]><a href="space.php?do=mtag&view=recommend"><span>推荐群组</span></a></li>
+		<li class="null"><a href="cp.php?ac=thread">发起新话题</a></li>
+		<li class="null"><a href="cp.php?ac=mtag">创建群组</a></li>
+	</ul>
+</div>
+
+<div class="h_status">
+	排序方式：
+	<a href="space.php?do=mtag&view=$_GET[view]&fieldid=$_GET[fieldid]&orderby=threadnum"$orderbyarr[threadnum]>话题数排行</a><span class="pipe">|</span>
+	<a href="space.php?do=mtag&view=$_GET[view]&fieldid=$_GET[fieldid]&orderby=postnum"$orderbyarr[postnum]>回帖数排行</a><span class="pipe">|</span>
+	<a href="space.php?do=mtag&view=$_GET[view]&fieldid=$_GET[fieldid]&orderby=membernum"$orderbyarr[membernum]>成员数排行</a>
+</div>
+
+<!--{if $searchkey}-->
+<div class="h_status">以下是搜索群组 <span style="color:red;font-weight:bold;">$searchkey</span> 结果列表</div>
+<!--{/if}-->
+	
+<div id="content">
+
+<!--{if $rlist}-->
+	<div>
+		<h3 class="l_status">
+			<div class="r_option"><a href="space.php?do=mtag&view=recommend">更多推荐</a></div>
+			群组推荐
+		</h3>
+		<table cellspacing="5" cellpadding="5"><tr>
+		<!--{loop $rlist $key $value}-->
+			<td width="80">
+				<div class="threadimg60"><a href="space.php?do=mtag&tagid=$value[tagid]"><img src="$value[pic]" style="width:60px;"></a></div>
+			</td>
+			<td width="200">
+				<a href="space.php?do=mtag&tagid=$value[tagid]" style="font-weight:bold;">$value[tagname]</a>
+				<div class="gray">$value[title]</div>
+				已有 <span class="num">$value[membernum]</span> 人加入
+				<div class="gray">
+					话题: $value[threadnum], 回帖: $value[postnum]
+				</div>
+			</td>
+		<!--{if $key%2==1}--></tr><tr><!--{/if}-->
+		<!--{/loop}-->
+		</tr></table>
+	</div>
+<!--{/if}-->
+
+<!--{if $list}-->
+
+	<div>
+		<!--{if $rlist}-->
+		<h3 class="l_status">
+			我的群组
+		</h3>
+		<!--{/if}-->
+		<table cellspacing="5" cellpadding="5"><tr>
+		<!--{loop $list $key $value}-->
+			<td width="80">
+				<div class="threadimg60"><a href="space.php?do=mtag&tagid=$value[tagid]"><img src="$value[pic]" style="width:60px;"></a></div>
+			</td>
+			<td width="200">
+				<a href="space.php?do=mtag&tagid=$value[tagid]" style="font-weight:bold;">$value[tagname]</a>
+				<div class="gray">$value[title]</div>
+				已有 <span class="num">$value[membernum]</span> 人加入
+				<div class="gray">
+					话题: $value[threadnum], 回帖: $value[postnum]
+				</div>
+			</td>
+		<!--{if $key%2==1}--></tr><tr><!--{/if}-->
+		<!--{/loop}-->
+		</tr></table>
+	</div>
+	
+	<div class="page">$multi</div>
+
+<!--{else}-->
+	<div class="c_form">还没有群组。</div>
+<!--{/if}-->
+
+</div>
+
+<div id="sidebar">
+
+	<div class="sidebox">
+	<h2 class="title">群组分类</h2>
+	<ul class="post_list line_list">
+		<li$pro_actives[all]><a href="space.php?do=mtag&view=$_GET[view]&orderby=$_GET[orderby]">全部</a>
+		<!--{loop $_SGLOBAL['profield'] $value}-->
+		<li{$pro_actives[$value[fieldid]]}><a href="space.php?do=mtag&view=$_GET[view]&fieldid=$value[fieldid]&orderby=$_GET[orderby]">$value[title]</a></li>
+		<!--{/loop}-->
+	</ul>
+	</div>
+	
+	
+	<!--{if $threadlist}-->
+	<div class="sidebox">
+	<h2 class="title">这些群组的话题更新</h2>
+	<ul class="line_list">
+		<!--{loop $threadlist $key $value}-->
+			<li>
+				<a href="space.php?uid=$value[uid]&do=thread&id=$value[tid]" <!--{if $value[magiccolor]}--> class="magiccolor$value[magiccolor]"<!--{/if}-->>$value[subject]</a>
+				<!--{if $value[hot]}-->
+				<br><span class="gray">$value[hot] 人推荐</span>
+				<!--{/if}-->
+			</li>
+		<!--{/loop}-->
+	</ul>
+	</div>
+	<!--{/if}-->
+
+</div>
+
+<!--/sidebar-->
+<!--{/if}-->
+<!--{template footer}-->
