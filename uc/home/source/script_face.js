@@ -1,6 +1,6 @@
 //显示表情菜单
 function showFace(showid, target) {
-	var div = $('uchome_face_bg');
+	var div = _$('uchome_face_bg');
 	if(div) {
 		div.parentNode.removeChild(div);
 	}
@@ -16,13 +16,13 @@ function showFace(showid, target) {
 	div.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=0,finishOpacity=100,style=0)';
 	div.style.opacity = 0;
 	div.onclick = function() {
-		$(showid+'_menu').style.display = 'none';
-		$('uchome_face_bg').style.display = 'none';
+		_$(showid+'_menu').style.display = 'none';
+		_$('uchome_face_bg').style.display = 'none';
 	}
-	$('append_parent').appendChild(div);
+	_$('append_parent').appendChild(div);
 	
-	if($(showid + '_menu') != null) {
-		$(showid+'_menu').style.display = '';
+	if(_$(showid + '_menu') != null) {
+		_$(showid+'_menu').style.display = '';
 	} else {
 		var faceDiv = document.createElement("div");
 		faceDiv.id = showid+'_menu';
@@ -35,7 +35,7 @@ function showFace(showid, target) {
 			faceul.appendChild(faceli);
 		}
 		faceDiv.appendChild(faceul);
-		$('append_parent').appendChild(faceDiv)
+		_$('append_parent').appendChild(faceDiv)
 	}
 	//定位菜单
 	setMenuPosition(showid, 0);
@@ -44,16 +44,16 @@ function showFace(showid, target) {
 //插入表情
 function insertFace(showid, id, target) {
 	var faceText = '[em:'+id+':]';
-	if($(target) != null) {
+	if(_$(target) != null) {
 		insertContent(target, faceText);
 	}
-	$(showid+'_menu').style.display = 'none';
-	$('uchome_face_bg').style.display = 'none';
+	_$(showid+'_menu').style.display = 'none';
+	_$('uchome_face_bg').style.display = 'none';
 }
 
 function textCounter(obj, showid, maxlimit) {
 	var len = strLen(obj.value);
-	var showobj = $(showid);
+	var showobj = _$(showid);
 	if(len > maxlimit) {
 		obj.value = getStrbylen(obj.value, maxlimit);
 		showobj.innerHTML = '0';

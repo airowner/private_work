@@ -18,7 +18,7 @@ function Ajax(recvType, waitId) {
 
 	aj.loading = 'Loading...';//public
 	aj.recvType = recvType ? recvType : 'XML';//public
-	aj.waitId = waitId ? $(waitId) : null;//public
+	aj.waitId = waitId ? _$(waitId) : null;//public
 
 	aj.resultHandle = null;//private
 	aj.sendString = '';//private
@@ -35,7 +35,7 @@ function Ajax(recvType, waitId) {
 	}
 
 	aj.setWaitId = function(waitid) {
-		aj.waitId = typeof waitid == 'object' ? waitid : $(waitid);
+		aj.waitId = typeof waitid == 'object' ? waitid : _$(waitid);
 	}
 
 	aj.createXMLHttpRequest = function() {
@@ -182,8 +182,8 @@ function evalscript(s) {
 function appendscript(src, text, reload, charset) {
 	var id = hash(src + text);
 	if(!reload && in_array(id, evalscripts)) return;
-	if(reload && $(id)) {
-		$(id).parentNode.removeChild($(id));
+	if(reload && _$(id)) {
+		_$(id).parentNode.removeChild(_$(id));
 	}
 
 	evalscripts.push(id);
@@ -197,7 +197,7 @@ function appendscript(src, text, reload, charset) {
 		} else if(text){
 			scriptNode.text = text;
 		}
-		$('append_parent').appendChild(scriptNode);
+		_$('append_parent').appendChild(scriptNode);
 	} catch(e) {}
 }
 
@@ -235,7 +235,7 @@ function ajaxget(url, showid, waitid) {
 	x.setLoading();
 	x.setWaitId(waitid);
 	x.display = '';
-	x.showId = $(showid);
+	x.showId = _$(showid);
 	if(x.showId) x.showId.orgdisplay = typeof x.showId.orgdisplay === 'undefined' ? x.showId.style.display : x.showId.orgdisplay;
 
 	if(url.substr(strlen(url) - 1) == '#') {
@@ -271,7 +271,7 @@ function ajaxpost(formid, func, timeout) {
 		return false;
 	}
 	var ajaxframeid = 'ajaxframe';
-	var ajaxframe = $(ajaxframeid);
+	var ajaxframe = _$(ajaxframeid);
 	if(ajaxframe == null) {
 		if (is_ie && !is_opera) {
 			ajaxframe = document.createElement("<iframe name='" + ajaxframeid + "' id='" + ajaxframeid + "'></iframe>");
@@ -281,10 +281,10 @@ function ajaxpost(formid, func, timeout) {
 			ajaxframe.id = ajaxframeid;
 		}
 		ajaxframe.style.display = 'none';
-		$('append_parent').appendChild(ajaxframe);
+		_$('append_parent').appendChild(ajaxframe);
 	}
-	$(formid).target = ajaxframeid;
-	$(formid).action = $(formid).action + '&inajax=1';
+	_$(formid).target = ajaxframeid;
+	_$(formid).action = _$(formid).action + '&inajax=1';
 	
 	ajaxpostHandle = [formid, func, timeout];
 	
@@ -295,7 +295,7 @@ function ajaxpost(formid, func, timeout) {
 		document.removeEventListener('load', ajaxpost_load, true);
 		ajaxframe.addEventListener('load', ajaxpost_load, false);
 	}
-	$(formid).submit();
+	_$(formid).submit();
 	return false;
 }
 
@@ -310,9 +310,9 @@ function ajaxpost_load() {
 	showloading('none');
 	
 	if(is_ie) {
-		var s = $('ajaxframe').contentWindow.document.XMLDocument.text;
+		var s = _$('ajaxframe').contentWindow.document.XMLDocument.text;
 	} else {
-		var s = $('ajaxframe').contentWindow.document.documentElement.firstChild.nodeValue;
+		var s = _$('ajaxframe').contentWindow.document.documentElement.firstChild.nodeValue;
 	}
 	evaled = false;
 	if(s.indexOf('ajaxerror') != -1) {
@@ -328,9 +328,9 @@ function ajaxpost_load() {
 	if(func) {
 		setTimeout(func + '(\'' + formid + '\',' + ajaxpostresult + ')', 10);
 	}
-	if(!evaled && $(formstatus)) {
-		$(formstatus).style.display = '';		
-		ajaxinnerhtml($(formstatus), s);
+	if(!evaled && _$(formstatus)) {
+		_$(formstatus).style.display = '';		
+		ajaxinnerhtml(_$(formstatus), s);
 		evalscript(s);
 	}
 
@@ -366,18 +366,18 @@ function ajaxmenu(e, ctrlid, isbox, timeout, func) {
 		divclass = 'popupmenu_popup';
 	}
 	
-	var div = $(ctrlid + '_menu');
+	var div = _$(ctrlid + '_menu');
 	if(!div) {
 		div = document.createElement('div');
 		div.ctrlid = ctrlid;
 		div.id = ctrlid + '_menu';
 		div.style.display = 'none';
 		div.className = divclass;
-		$('append_parent').appendChild(div);
+		_$('append_parent').appendChild(div);
 	}
 
 	var x = new Ajax();
-	var href = !isUndefined($(ctrlid).href) ? $(ctrlid).href : $(ctrlid).attributes['href'].value;
+	var href = !isUndefined(_$(ctrlid).href) ? _$(ctrlid).href : _$(ctrlid).attributes['href'].value;
 	x.div = div;
 	x.etype = e.type;
 
@@ -434,8 +434,8 @@ function stringxor(s1, s2) {
 function showloading(display, wating) {
 	var display = display ? display : 'block';
 	var wating = wating ? wating : 'Loading...';
-	$('ajaxwaitid').innerHTML = wating;
-	$('ajaxwaitid').style.display = display;
+	_$('ajaxwaitid').innerHTML = wating;
+	_$('ajaxwaitid').style.display = display;
 }
 
 function ajaxinnerhtml(showid, s) {
@@ -448,7 +448,7 @@ function ajaxinnerhtml(showid, s) {
 		var div1 = document.createElement('DIV');
 		div1.id = showid.id+'_div';
 		div1.innerHTML = '<table><tbody id="'+showid.id+'_tbody">'+s+'</tbody></table>';
-		$('append_parent').appendChild(div1);
+		_$('append_parent').appendChild(div1);
 		var trs = div1.getElementsByTagName('TR');
 		var l = trs.length;
 		for(var i=0; i<l; i++) {

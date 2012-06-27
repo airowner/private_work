@@ -46,9 +46,9 @@
 			<script type="text/javascript" src="source/script_autocomplete.js"></script>
 			<input type="text" id="username" name="username" value="" style="width: 396px;" class="t_input" tabindex="1" <!--{if $friends}--> onclick="auc.handleEvent(this.value ,event);" onkeyup="auc.handleEvent(this.value ,event);" onkeydown="closeOpt(username,event);inputKeyDown(event);" autocomplete="off" <!--{/if}--> />
 			<!--{if $friends}-->
-			<div id="username_menu" class="ajax_selector" onclick="$('username_menu').style.display='none';" style="display:none">
+			<div id="username_menu" class="ajax_selector" onclick="_$('username_menu').style.display='none';" style="display:none">
 				<div class="ajax_selector_option" style="width: 396px; height: 100px;">
-					<a href="javascript:;" onclick="$('username_menu').style.display='none';" class="float_del" style="margin-right: 5px;">a</a>
+					<a href="javascript:;" onclick="_$('username_menu').style.display='none';" class="float_del" style="margin-right: 5px;">a</a>
 					<ul id="friendlist" class="blocklink">
 						<!--{loop $friends $key $value}-->
 							<!--{eval $fs[] = $value['username'];}-->
@@ -64,7 +64,7 @@
 				auc.addItem('$friendstr');
 				function closeOpt(key,evt) {
 					if(evt.keyCode==9) {
-						$('username_menu').style.display='none';
+						_$('username_menu').style.display='none';
 					}
 				}
 				function inputKeyDown(event) {

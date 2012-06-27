@@ -22,15 +22,15 @@ var successState = false;
 var ieVersion = userAgent.substr(userAgent.indexOf('msie') + 5, 3);
 
 function delAttach(id) {
-	$('attachbody').removeChild($('attach_' + id).parentNode.parentNode.parentNode);
-	if($('attachbody').innerHTML == '') {
+	_$('attachbody').removeChild(_$('attach_' + id).parentNode.parentNode.parentNode);
+	if(_$('attachbody').innerHTML == '') {
 		addAttach();
 	}
-	$('localimgpreview_' + id + '_menu') ? document.body.removeChild($('localimgpreview_' + id + '_menu')) : null;
+	_$('localimgpreview_' + id + '_menu') ? document.body.removeChild(_$('localimgpreview_' + id + '_menu')) : null;
 }
 
 function addAttach() {
-	newnode = $('attachbodyhidden').rows[0].cloneNode(true);
+	newnode = _$('attachbodyhidden').rows[0].cloneNode(true);
 	var id = aid;
 	var tags;
 	tags = newnode.getElementsByTagName('form');
@@ -62,17 +62,17 @@ function addAttach() {
 	}
 	aid++;
 
-	$('attachbody').appendChild(newnode);
+	_$('attachbody').appendChild(newnode);
 }
 
 addAttach();
 
 function insertAttach(id) {
 	var localimgpreview = '';
-	var path = $('attach_' + id).value;
+	var path = _$('attach_' + id).value;
 	var ext = getExt(path);
 	var re = new RegExp("(^|\\s|,)" + ext + "($|\\s|,)", "ig");
-	var localfile = $('attach_' + id).value.substr($('attach_' + id).value.replace(/\\/g, '/').lastIndexOf('/') + 1);
+	var localfile = _$('attach_' + id).value.substr(_$('attach_' + id).value.replace(/\\/g, '/').lastIndexOf('/') + 1);
 
 	if(path == '') {
 		return;
@@ -85,7 +85,7 @@ function insertAttach(id) {
 
 	var inhtml = '<div class="borderbox"><table cellspacing="0" cellpadding="0" border="0"><tr>';
 	if(is_ie || userAgent.indexOf('firefox') >= 1) {
-		var picPath = getPath($('attach_' + id));
+		var picPath = getPath(_$('attach_' + id));
 		var imgCache = new Image();
 		imgCache.src = picPath;
 		inhtml += '<td><img src="' + picPath +'" width="60" height="80">&nbsp;</td>';
@@ -98,8 +98,8 @@ function insertAttach(id) {
 	inhtml += '图片描述:<br/><textarea name="pic_title" cols="40" rows="2"></textarea>';
 	inhtml += '</td></tr></table></div>';
 	
-	$('localfile_' + id).innerHTML = inhtml;
-	$('attach_' + id).style.display = 'none';
+	_$('localfile_' + id).innerHTML = inhtml;
+	_$('attach_' + id).style.display = 'none';
 
 	addAttach();
 }
@@ -136,7 +136,7 @@ function insertAttachimgTag(id) {
 	if(insertType == 0) {
 		insertImage(id);
 	} else if(is_ie) {
-		var picPath = getPath($('attach_' + id));
+		var picPath = getPath(_$('attach_' + id));
 		var imgCache = new Image();
 		imgCache.src = picPath;
 		edit_insert('<img id="_uchome_localimg_' + id + '" src="' + picPath + '">');
@@ -148,16 +148,16 @@ function insertAttachimgTag(id) {
 function uploadSubmit(obj) {
 	obj.disabled = true;
 	mainForm = obj.form;
-	forms = $('attachbody').getElementsByTagName("FORM");
-	albumid = $('uploadalbum').value;
+	forms = _$('attachbody').getElementsByTagName("FORM");
+	albumid = _$('uploadalbum').value;
 	upload();
 }
 
 //上传页面
 function start_upload() {
-	$('btnupload').disabled = true;
-	mainForm = $('albumresultform');
-	forms = $('attachbody').getElementsByTagName("FORM");
+	_$('btnupload').disabled = true;
+	mainForm = _$('albumresultform');
+	forms = _$('attachbody').getElementsByTagName("FORM");
 	upload();
 }
 
@@ -166,7 +166,7 @@ function upload() {
 	var nid = forms[nowUid].id.split('_');
 	nid = nid[1];
 	if(nowUid>0) {
-		var upobj = $('showmsg'+aid);
+		var upobj = _$('showmsg'+aid);
 		if(uploadStat==1) {
 			upobj.innerHTML = '上传成功';
 			successState = true;
@@ -190,16 +190,16 @@ function upload() {
 			upobj.innerHTML = '上传失败 '+uploadStat;
 		}
 	}
-	if($('showmsg'+nid) != null) {
-		$('showmsg'+nid).innerHTML = '上传中，请等待(<a href="javascript:;" onclick="forms[nowUid].submit();">重试</a>)';
-		$('albumid_'+nid).value = albumid;
-		if($('topicid_'+nid)) $('topicid_'+nid).value = topicid;
+	if(_$('showmsg'+nid) != null) {
+		_$('showmsg'+nid).innerHTML = '上传中，请等待(<a href="javascript:;" onclick="forms[nowUid].submit();">重试</a>)';
+		_$('albumid_'+nid).value = albumid;
+		if(_$('topicid_'+nid)) _$('topicid_'+nid).value = topicid;
 		forms[nowUid].submit();
 	} else if(nowUid+1 == forms.length) {
 		if(typeof (no_insert) != 'undefined') {
 			var albumidcheck = parseInt(parent.albumid);
-			$('opalbumid').value = isNaN(albumidcheck)? 0 : albumid;
-			$('optopicid').value = topicid;
+			_$('opalbumid').value = isNaN(albumidcheck)? 0 : albumid;
+			_$('optopicid').value = topicid;
 			if(!successState) return false;
 		}
 		mainForm.submit();

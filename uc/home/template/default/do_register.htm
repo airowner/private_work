@@ -4,7 +4,7 @@
 <script>
 	function register(id, result) {
 		if(result) {
-			$('registersubmit').disabled = true;
+			_$('registersubmit').disabled = true;
 			window.location.href = "$jumpurl";
 		} else {
 			updateseccode();
@@ -90,7 +90,7 @@
 		<input type="checkbox" name="accede" id="accede" value="1">我已阅读，并同意以上服务条款
 		<script type="text/javascript">
 			function checkClause() {
-				if($('accede').checked) {
+				if(_$('accede').checked) {
 					return true;
 				} else {
 					alert("您必须同意服务条款后才能注册");
@@ -114,16 +114,16 @@
 
 <script type="text/javascript">
 <!--
-	$('username').focus();
+	_$('username').focus();
 	var lastUserName = lastPassword = lastEmail = lastSecCode = '';
 	function checkUserName() {
-		var userName = $('username').value;
+		var userName = _$('username').value;
 		if(userName == lastUserName) {
 			return;
 		} else {
 			lastUserName = userName;
 		}
-		var cu = $('checkusername');
+		var cu = _$('checkusername');
 		var unLen = userName.replace(/[^\x00-\xff]/g, "**").length;
 
 		if(unLen < 3 || unLen > 15) {
@@ -133,13 +133,13 @@
 		ajaxresponse('checkusername', 'op=checkusername&username=' + (is_ie && document.charset == 'utf-8' ? encodeURIComponent(userName) : userName));
 	}
 	function checkPassword(confirm) {
-		var password = $('password').value;
+		var password = _$('password').value;
 		if(!confirm && password == lastPassword) {
 			return;
 		} else {
 			lastPassword = password;
 		}
-		var cp = $('checkpassword');
+		var cp = _$('checkpassword');
 		if(password == '' || /[\'\"\\]/.test(password)) {
 			warning(cp, '密码空或包含非法字符');
 			return false;
@@ -153,9 +153,9 @@
 		}
 	}
 	function checkPassword2(confirm) {
-		var password = $('password').value;
-		var password2 = $('password2').value;
-		var cp2 = $('checkpassword2');
+		var password = _$('password').value;
+		var password2 = _$('password2').value;
+		var cp2 = _$('checkpassword2');
 		if(password2 != '') {
 			checkPassword(true);
 		}
@@ -171,7 +171,7 @@
 		}
 	}
 	function checkSeccode() {
-		var seccodeVerify = $('seccode').value;
+		var seccodeVerify = _$('seccode').value;
 		if(seccodeVerify == lastSecCode) {
 			return;
 		} else {
@@ -182,7 +182,7 @@
 	function ajaxresponse(objname, data) {
 		var x = new Ajax('XML', objname);
 		x.get('do.php?ac=$_SCONFIG[register_action]&' + data, function(s){
-			var obj = $(objname);
+			var obj = _$(objname);
 			s = trim(s);
 			if(s.indexOf('succeed') > -1) {
 				obj.style.display = '';
@@ -195,7 +195,7 @@
 	}
 	function warning(obj, msg) {
 		if((ton = obj.id.substr(5, obj.id.length)) != 'password2') {
-			$(ton).select();
+			_$(ton).select();
 		}
 		obj.style.display = '';
 		obj.innerHTML = '<img src="<?=$_USER_SC['domain']?>image/check_error.gif" width="13" height="13"> &nbsp; ' + msg;
@@ -205,28 +205,28 @@
 	function checkPwd(pwd){
 
 		if (pwd == "") {
-			$("chkpswd").className = "psdiv0";
-			$("chkpswdcnt").innerHTML = "";
+			_$("chkpswd").className = "psdiv0";
+			_$("chkpswdcnt").innerHTML = "";
 		} else if (pwd.length < 3) {
-			$("chkpswd").className = "psdiv1";
-			$("chkpswdcnt").innerHTML = "太短";
+			_$("chkpswd").className = "psdiv1";
+			_$("chkpswdcnt").innerHTML = "太短";
 		} else if(!isPassword(pwd) || !/^[^%&]*$/.test(pwd)) {
-			$("chkpswd").className = "psdiv0";
-			$("chkpswdcnt").innerHTML = "";
+			_$("chkpswd").className = "psdiv0";
+			_$("chkpswdcnt").innerHTML = "";
 		} else {
 			var csint = checkStrong(pwd);
 			switch(csint) {
 				case 1:
-					$("chkpswdcnt").innerHTML = "很弱";
-					$( "chkpswd" ).className = "psdiv"+(csint + 1);
+					_$("chkpswdcnt").innerHTML = "很弱";
+					_$( "chkpswd" ).className = "psdiv"+(csint + 1);
 					break;
 				case 2:
-					$("chkpswdcnt").innerHTML = "一般";
-					$( "chkpswd" ).className = "psdiv"+(csint + 1);
+					_$("chkpswdcnt").innerHTML = "一般";
+					_$( "chkpswd" ).className = "psdiv"+(csint + 1);
 					break;
 				case 3:		
-					$("chkpswdcnt").innerHTML = "很强";
-					$("chkpswd").className = "psdiv"+(csint + 1);
+					_$("chkpswdcnt").innerHTML = "很强";
+					_$("chkpswd").className = "psdiv"+(csint + 1);
 					break;
 			}
 		}

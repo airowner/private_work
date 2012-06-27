@@ -168,7 +168,7 @@
 		var timer;
 		var length = 0;
 		for(i = 0; i < optionNum; i++) {
-			maxLength[i] = $("bar_" + i).getAttribute('len');
+			maxLength[i] = _$("bar_" + i).getAttribute('len');
 		}
 		timer = setInterval(function(){
 			setLength();
@@ -176,9 +176,9 @@
 		function setLength(){
 			for (i = 0; i < optionNum; i++) {
 				if (length - 1 >= maxLength[i]) {
-					$('bar_' + i).style.width = maxLength[i] + "px";
+					_$('bar_' + i).style.width = maxLength[i] + "px";
 				} else {
-					$('bar_' + i).style.width = length + "px";
+					_$('bar_' + i).style.width = length + "px";
 				}
 				length = length + 1;
 				if (length > 300) {
@@ -187,9 +187,9 @@
 			}
 		}
 		function showVoter(filtrate) {
-			$('newvoter').className = '';
-			$('wevoter').className = '';
-			$(filtrate+'voter').className = 'active';
+			_$('newvoter').className = '';
+			_$('wevoter').className = '';
+			_$(filtrate+'voter').className = 'active';
 			ajaxget('cp.php?ac=poll&op=get&pid=$poll[pid]&filtrate='+filtrate, 'showvoter');
 		}
 		showVoter('new')

@@ -175,23 +175,23 @@
 	}
 	function derivativeNum() {
 		num++;
-		$('displayNum').innerHTML = '[' + (interval/1000 - num) + ']';
+		_$('displayNum').innerHTML = '[' + (interval/1000 - num) + ']';
 	}
 	function playNextPic(stat) {
 		if(stat || replay) {
 			derId = window.setInterval('derivativeNum();', 1000);
-			$('displayNum').innerHTML = '[' + (interval/1000 - num) + ']';
-			$('playid').innerHTML = '停止播放';
+			_$('displayNum').innerHTML = '[' + (interval/1000 - num) + ']';
+			_$('playid').innerHTML = '停止播放';
 			timerId = window.setInterval('forward();', interval);
 		} else {
 			replay = true;
 			num = 0;
 			if(endPlay) {
-				$('playid').innerHTML = '重新播放';
+				_$('playid').innerHTML = '重新播放';
 			} else {
-				$('playid').innerHTML = '幻灯播放';
+				_$('playid').innerHTML = '幻灯播放';
 			}
-			$('displayNum').innerHTML = '';
+			_$('displayNum').innerHTML = '';
 			window.clearInterval(timerId);
 			window.clearInterval(derId);
 		}
@@ -210,7 +210,7 @@
 	<!--{/if}-->
 
 	function update_title() {
-		$('title_form').style.display='';
+		_$('title_form').style.display='';
 	}
 	
 	//彩虹炫

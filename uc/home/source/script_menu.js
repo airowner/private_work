@@ -87,7 +87,7 @@ function menudrag(menuobj, e, op) {
 }
 
 function showMenu(ctrlid, click, offset, duration, timeout, layer, showid, maxh, drag) {
-	var ctrlobj = $(ctrlid);
+	var ctrlobj = _$(ctrlid);
 	if(!ctrlobj) return;
 	if(isUndefined(click)) click = false;
 	if(isUndefined(offset)) offset = 0;
@@ -95,8 +95,8 @@ function showMenu(ctrlid, click, offset, duration, timeout, layer, showid, maxh,
 	if(isUndefined(timeout)) timeout = 250;
 	if(isUndefined(layer)) layer = 0;
 	if(isUndefined(showid)) showid = ctrlid;
-	var showobj = $(showid);
-	var menuobj = $(showid + '_menu');
+	var showobj = _$(showid);
+	var menuobj = _$(showid + '_menu');
 	if(!showobj|| !menuobj) return;
 	if(isUndefined(maxh)) maxh = 1000;
 	if(isUndefined(drag)) drag = false;
@@ -144,8 +144,8 @@ function showMenu(ctrlid, click, offset, duration, timeout, layer, showid, maxh,
 }
 
 function setMenuPosition(showid, offset) {
-	var showobj = $(showid);
-	var menuobj = $(showid + '_menu');
+	var showobj = _$(showid);
+	var menuobj = _$(showid + '_menu');
 	if(isUndefined(offset)) offset = 0;
 	if(showobj) {
 		showobj.pos = fetchOffset(showobj);
@@ -175,7 +175,7 @@ function hideMenu(layer) {
 	if(isUndefined(layer)) layer = 0;
 	if(jsmenu['active'][layer]) {
 		try {
-			$(jsmenu['active'][layer].ctrlkey).className = ctrlobjclassName;
+			_$(jsmenu['active'][layer].ctrlkey).className = ctrlobjclassName;
 		} catch(e) {}
 		clearTimeout(jsmenu['timer'][jsmenu['active'][layer].ctrlkey]);
 		jsmenu['active'][layer].style.display = 'none';

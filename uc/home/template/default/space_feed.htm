@@ -251,28 +251,28 @@
 		next = next + $perpage;
         x.get(<!--{eval echo usr_url('cp', array('ac'=>'feed', 'op'=>'get', 'view'=>$_GET['view'], 'appid'=>$_GET['appid'], 'icon'=>$_GET['icon'], 'filter'=>$_GET['filter'], 'day'=>$_GET['day']), array('start'=>'next'))}-->, function(s){
 			html = '<h4 class="feedtime">以下是新读取的动态</h4>' + s;
-			$('feed_div').innerHTML += html;
+			_$('feed_div').innerHTML += html;
 		});
 	}
 
 	function filter_more(id) {
-		if($('feed_filter_div_'+id).style.display == '') {
-			$('feed_filter_div_'+id).style.display = 'none';
-			$('feed_filter_notice_'+id).style.display = '';
+		if(_$('feed_filter_div_'+id).style.display == '') {
+			_$('feed_filter_div_'+id).style.display = 'none';
+			_$('feed_filter_notice_'+id).style.display = '';
 		} else {
-			$('feed_filter_div_'+id).style.display = '';
-			$('feed_filter_notice_'+id).style.display = 'none';
+			_$('feed_filter_div_'+id).style.display = '';
+			_$('feed_filter_notice_'+id).style.display = 'none';
 		}
 	}
 
 	function close_feedbox() {
 		var x = new Ajax();
         x.get("<!--{eval echo usr_url('cp', array('ac'=>'common', 'op'=>'close_feedbox'))}-->", function(s){
-			$('feed_box').style.display = 'none';
+			_$('feed_box').style.display = 'none';
 		});
 	}
 	
-	var elems = selector('li[class~=magicthunder]', $('feed_div')); 
+	var elems = selector('li[class~=magicthunder]', _$('feed_div')); 
 	for(var i=0; i<elems.length; i++){		
 		magicColor(elems[i]); 
 	}
@@ -633,28 +633,28 @@
 		next = next + $perpage;
 		x.get('cp.php?ac=feed&op=get&start='+next+'&view=$_GET[view]&appid=$_GET[appid]&icon=$_GET[icon]&filter=$_GET[filter]&day=$_GET[day]', function(s){
 			html = '<h4 class="feedtime">以下是新读取的动态</h4>' + s;
-			$('feed_div').innerHTML += html;
+			_$('feed_div').innerHTML += html;
 		});
 	}
 
 	function filter_more(id) {
-		if($('feed_filter_div_'+id).style.display == '') {
-			$('feed_filter_div_'+id).style.display = 'none';
-			$('feed_filter_notice_'+id).style.display = '';
+		if(_$('feed_filter_div_'+id).style.display == '') {
+			_$('feed_filter_div_'+id).style.display = 'none';
+			_$('feed_filter_notice_'+id).style.display = '';
 		} else {
-			$('feed_filter_div_'+id).style.display = '';
-			$('feed_filter_notice_'+id).style.display = 'none';
+			_$('feed_filter_div_'+id).style.display = '';
+			_$('feed_filter_notice_'+id).style.display = 'none';
 		}
 	}
 
 	function close_feedbox() {
 		var x = new Ajax();
 		x.get('cp.php?ac=common&op=closefeedbox', function(s){
-			$('feed_box').style.display = 'none';
+			_$('feed_box').style.display = 'none';
 		});
 	}
 	
-	var elems = selector('li[class~=magicthunder]', $('feed_div')); 
+	var elems = selector('li[class~=magicthunder]', _$('feed_div')); 
 	for(var i=0; i<elems.length; i++){		
 		magicColor(elems[i]); 
 	}

@@ -426,6 +426,11 @@ if($_GET['op'] == 'delete') {
 				$arr['body_data']['flashaddr'] = $link;
 				$type = 'flash';
 			}
+			if(preg_match("/\.(jpg|jpeg|png|gif|bmp)$/i", $link)) {
+				$arr['title_template'] = '分享了一张图片';
+				$arr['image'] = $link;
+				$type = 'pic';
+			}
 		}
 		
 		$arr['body_general'] = getstr($_POST['general'], 150, 1, 1, 1, 1);

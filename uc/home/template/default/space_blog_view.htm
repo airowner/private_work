@@ -236,24 +236,24 @@
 <script type="text/javascript">
 <!--
 function closeSide2(oo) {
-	if($('sidebar').style.display == 'none'){
-		$('content').style.cssText = '';
-		$('sidebar').style.display = 'block';
+	if(_$('sidebar').style.display == 'none'){
+		_$('content').style.cssText = '';
+		_$('sidebar').style.display = 'block';
 		oo.innerHTML = '&raquo; 关闭侧边栏';
 	}
 	else{
-		$('content').style.cssText = 'margin: 0pt; width: 810px;';
-		$('sidebar').style.display = 'none';
+		_$('content').style.cssText = 'margin: 0pt; width: 810px;';
+		_$('sidebar').style.display = 'none';
 		oo.innerHTML = '&laquo; 打开侧边栏';
 	}
 }
 function addFriendCall(){
-	var el = $('friendinput');
+	var el = _$('friendinput');
 	if(!el || el.value == "")	return;
 	var s = '<input type="checkbox" name="fusername[]" value="'+el.value+'" id="'+el.value+'" checked>';
 	s += '<label for="'+el.value+'">'+el.value+'</label>';
 	s += '<br />';
-	$('friends').innerHTML += s;
+	_$('friends').innerHTML += s;
 	el.value = '';
 }
 resizeImg('blog_article','700');

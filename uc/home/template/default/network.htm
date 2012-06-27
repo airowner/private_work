@@ -561,8 +561,8 @@ function setintro(type) {
 		intro = '马上注册，与好友分享日志、照片，一起玩转游戏';
 		bPosition = '0';
 	}
-	$('guest_intro').innerHTML = intro + '......';
-	$('guest_intro').style.backgroundPosition = bPosition + ' 100%'
+	_$('guest_intro').innerHTML = intro + '......';
+	_$('guest_intro').style.backgroundPosition = bPosition + ' 100%'
 }
 function scrollPic(e, LN, Width, Price, Speed) {
 	id = e.id;
@@ -585,52 +585,52 @@ function scrollPic(e, LN, Width, Price, Speed) {
 	function scrollShow() {
 		if(scrollStart > scrollEnd) {
 			if(parseInt(e.style.marginLeft, 10) > scrollEnd) {
-				$(id + '_last').onclick = function(){ return false; };
-				$(id + '_next').onclick = function(){ return false; };
+				_$(id + '_last').onclick = function(){ return false; };
+				_$(id + '_next').onclick = function(){ return false; };
 				e.style.marginLeft = parseInt(e.style.marginLeft, 10) - Speed + 'px';
 			} else {
 				clearInterval(scrollShowPic);
-				$(id + '_last').onclick = function(){ scrollPic(e, 'Last', Width, Price, Speed);return false; };
-				$(id + '_next').onclick = function(){ scrollPic(e, 'Next', Width, Price, Speed);return false; };
+				_$(id + '_last').onclick = function(){ scrollPic(e, 'Last', Width, Price, Speed);return false; };
+				_$(id + '_next').onclick = function(){ scrollPic(e, 'Next', Width, Price, Speed);return false; };
 			}
 		} else {
 			if(parseInt(e.style.marginLeft, 10) < scrollEnd) {
-				$(id + '_last').onclick = function(){ return false; };
-				$(id + '_next').onclick = function(){ return false; };
+				_$(id + '_last').onclick = function(){ return false; };
+				_$(id + '_next').onclick = function(){ return false; };
 				e.style.marginLeft = parseInt(e.style.marginLeft, 10) + Speed + 'px';
 			} else {
 				clearInterval(scrollShowPic);
-				$(id + '_last').onclick = function(){ scrollPic(e, 'Last', Width, Price, Speed);return false; };
-				$(id + '_next').onclick = function(){ scrollPic(e, 'Next', Width, Price, Speed);return false; };
+				_$(id + '_last').onclick = function(){ scrollPic(e, 'Last', Width, Price, Speed);return false; };
+				_$(id + '_next').onclick = function(){ scrollPic(e, 'Next', Width, Price, Speed);return false; };
 			}					
 		}
 	}
 }
 function scrollShowNav(e, Width, Price, Speed) {
 	id = e.id;
-	$(id + '_last').onclick = function(){ scrollPic(e, 'Last', Width, Price, Speed);return false; };
-	$(id + '_next').onclick = function(){ scrollPic(e, 'Next', Width, Price, Speed);return false; };
+	_$(id + '_last').onclick = function(){ scrollPic(e, 'Last', Width, Price, Speed);return false; };
+	_$(id + '_next').onclick = function(){ scrollPic(e, 'Next', Width, Price, Speed);return false; };
 	
 }
 function getUserTip(obj) {
-	var tipBox = $('usertip_box');
+	var tipBox = _$('usertip_box');
 	tipBox.childNodes[0].innerHTML = '<strong>' + obj.rel + ':<\/strong> ' + obj.rev + '...';
 	
 	var showLeft;
 	if(obj.parentNode.offsetLeft > 730) {
-		showLeft = $('showuser').offsetLeft + obj.parentNode.offsetLeft - 148;
+		showLeft = _$('showuser').offsetLeft + obj.parentNode.offsetLeft - 148;
 		tipBox.childNodes[0].style.right = 0;
 	} else {
 		tipBox.childNodes[0].style.right = 'auto';
-		showLeft = $('showuser').offsetLeft + obj.parentNode.offsetLeft;
+		showLeft = _$('showuser').offsetLeft + obj.parentNode.offsetLeft;
 	}
 	tipBox.style.left = showLeft + 'px';
 	
 	var showTop; 
 	if(obj.className == 'uonline') {
-		showTop = $('showuser').offsetTop + obj.parentNode.offsetTop - tipBox.childNodes[0].clientHeight;
+		showTop = _$('showuser').offsetTop + obj.parentNode.offsetTop - tipBox.childNodes[0].clientHeight;
 	} else {
-		showTop = $('showuser').offsetTop + obj.parentNode.offsetTop + 48;
+		showTop = _$('showuser').offsetTop + obj.parentNode.offsetTop + 48;
 	}
 	tipBox.style.top = showTop + 'px';
 	
@@ -733,7 +733,7 @@ function getUserTip(obj) {
 	</div>
 </div>
 <script type="text/javascript">
-scrollShowNav($('spics'), 903, 7, 43);
+scrollShowNav(_$('spics'), 903, 7, 43);
 </script>
 
 <div id="searchbar" class="nbox s_clear">
@@ -785,7 +785,7 @@ scrollShowNav($('spics'), 903, 7, 43);
 		</div>
 		<!--{/loop}-->
 	</div>
-	<div id="user_wall" onmouseout="javascript:$('usertip_box').style.visibility = 'hidden';">
+	<div id="user_wall" onmouseout="javascript:_$('usertip_box').style.visibility = 'hidden';">
 		<div id="user_pay" class="s_clear">
 			<h2><a href="space.php?do=top">竞价排名</a></h2>
 			<ul>

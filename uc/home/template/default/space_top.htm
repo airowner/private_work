@@ -28,7 +28,7 @@
 <script type="text/javascript">
 	function checkCredit(id) {
 		var maxCredit = parseInt($space[credit]);
-		var idval = parseInt($(id).value);
+		var idval = parseInt(_$(id).value);
 		if(idval > maxCredit) {
 			alert("您的当前积分为:"+maxCredit+",请填写一个小于该值的数字");
 			return false;

@@ -1,11 +1,12 @@
 <!--{eval $_TPL['titles'] = array('分享');}-->
-<!--{template header}-->
+<!--{template sns_header}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>/css/fx.css"/>
 
 
 <!--{if !empty($_SGLOBAL[inajax])}-->
 	<div id="space_share">
 		<h3 class="feed_header">
-			<a href="space.php?do=share&view=me" class="r_option" target="_blank">添加分享</a>
+			<a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'me'))}-->" class="r_option" target="_blank">添加分享</a>
 			分享(共 $count 个)</h3>
 		
 		<!--{if $list}-->
@@ -22,6 +23,97 @@
 	</div><br>
 <!--{else}-->
 
+<div class="ricz">
+    <div class="tp"></div>
+    <div class="fxfl">
+        <ul>
+<!--{if $space[self]}-->
+    <!--{if $space[friendnum]}--><li<!--{if $actives[we]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs01"><a class="o" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'we', 'uid'=>$space['uid']))}-->"><span>好友的分享</span></a></li><!--{/if}-->
+        <li<!--{if $actives[me]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs02"><a class="t" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'all', 'uid'=>$space['uid']))}-->"><span>大家的分享</span></a></li>
+        <li<!--{if $actives[all]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs03"><a class="f" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'me', 'uid'=>$space['uid']))}-->"><span>我的分享</span></a></li>
+<!--{else}-->
+<!--{eval
+    $url = usr_url('space', array('do'=>'share', 'view'=>'me', 'uid'=>$space['uid']));
+	$_TPL['spacetitle'] = "分享";
+	$_TPL['spacemenus'][] = "<a href=\"$url\">TA的所有分享</a>";
+}-->
+<!--{template space_menu}-->
+<!--{/if}-->
+        </ul>
+    </div>
+    <div class="fxnr">
+        <div id="to01">
+            <p class="fxlx">按分享类型查看：
+            <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid']))}-->"<!--{if $sub_actives[type_all]}--> class="dqd"<!--{/if}-->>全部</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'link'))}-->"<!--{if $sub_actives[type_link]}--> class="dqd"<!--{/if}-->>网址</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'video'))}-->"<!--{if $sub_actives[type_video]}--> class="dqd"<!--{/if}-->>视频</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'music'))}-->"<!--{if $sub_actives[type_music]}--> class="dqd"<!--{/if}-->>音乐</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'flash'))}-->"<!--{if $sub_actives[type_flash]}--> class="dqd"<!--{/if}-->>Flash</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'blog'))}-->"<!--{if $sub_actives[type_blog]}--> class="dqd"<!--{/if}-->>日志</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'album'))}-->"<!--{if $sub_actives[type_album]}--> class="dqd"<!--{/if}-->>相册</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'pic'))}-->"<!--{if $sub_actives[type_pic]}--> class="dqd"<!--{/if}-->>图片</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'mtag'))}-->"<!--{if $sub_actives[type_mtag]}--> class="dqd"<!--{/if}-->>群组</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'thread'))}-->"<!--{if $sub_actives[type_thread]}--> class="dqd"<!--{/if}-->>话题</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'poll'))}-->"<!--{if $sub_actives[type_poll]}--> class="dqd"<!--{/if}-->>投票</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'event'))}-->"<!--{if $sub_actives[type_event]}--> class="dqd"<!--{/if}-->>活动</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'space'))}-->"<!--{if $sub_actives[type_space]}--> class="dqd"<!--{/if}-->>用户</a>
+                <a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>'tag'))}-->"<!--{if $sub_actives[type_tag]}--> class="dqd"<!--{/if}-->>TAG</a>
+            </p>
+            <div class="fxxq">
+                <div class="lexq" id="share_ul">
+                    <!--{if $list}-->
+                        <!--{loop $list $value}-->
+                            <!--{template space_share_li}-->
+                        <!--{/loop}-->
+                    <!--{else}-->
+                        <div class="c_form">现在还没有分享</div>
+                    <!--{/if}-->
+                </div>
+                <div class="rixq">
+                    <h3>分享网址、视频、音乐、Flash:</h3>
+                    <div class="wznr">
+                    <form id="shareform" name="shareform" action="<!--{eval echo usr_url('cp', array('ac'=>'share', 'type'=>'link'))}-->" method="post">
+                        <input class="txt" type="text" name="link" onfocus="javascript:if('http://'==this.value)this.value='';" onblur="javascript:if(''==this.value)this.value='http://'" id="share_link" style="width:98%;" value="http://" />
+                        <p><b>描述</b></p>
+                        <textarea id="share_general" name="general" rows="3" onkeydown="ctrlEnter(event, 'sharesubmit_btn')"></textarea>
+                        <!--{if checkperm('seccode')}-->
+                            <!--{if $_SCONFIG['questionmode']}-->
+                            <p><b>请正确回答下面问题</b></p>
+                            <p><!--{eval question();}--></p>
+                            <!--{else}-->
+                            <p><script>seccode();</script></p>
+                            <p>请输入上面的4位字母或数字，看不清可<a href="javascript:updateseccode()">更换一张</a></p>
+                            <!--{/if}-->
+                            <input type="text" id="seccode" name="seccode" value="" size="15" class="t_input">
+                        <!--{/if}-->
+                        <input type="hidden" name="refer" value="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'me', 'uid'=>$space['uid']))}-->" />
+                        <input type="hidden" name="sharesubmit" value="true" />
+                        <input class="fxd" type="button" id="sharesubmit_btn" name="sharesubmit_btn" value="分享" onclick="ajaxpost('shareform', 'share_add')" />
+                        <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+                    </form>
+                    <div id="__shareform"></div>
+                    </div>
+                    <h3 class="rh">如何分享网页？</h3>
+                    <div class="rhnr">直接填写网址。</div>
+                    <h3 class="rhs">如何分享视频？</h3>
+                    <div class="spnr">
+                        填写视频所在网页的网址。(不需要填写视频的真实地址)<br/>
+                        我们支持的视频网站有：<br>Youtube、优酷、酷6、Mofile、偶偶视频、UUME、我秀、爆米花、第九频道、百度贴吧视频、新浪视频、搜狐视频。
+                    </div>
+                </div>
+                
+            </div>
+            <!--{if $list}-->
+            <p class="page">$multi</p>
+            <!--{/if}-->
+        </div>
+    </div>
+</div>
+<!--{template footer}-->
+
+
+
+<!--{if 0}-->
 <!--{if $space[self]}-->
 <h2 class="title"><img src="<?=$_USER_SC['domain']?>image/app/share.gif" />分享</h2>
 <div class="tabs_header">
@@ -125,3 +217,4 @@
 <!--{/if}-->
 
 <!--{template footer}-->
+<!--{/if}-->

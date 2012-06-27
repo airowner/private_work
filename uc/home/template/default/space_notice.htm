@@ -19,9 +19,9 @@
 	<script type="text/javascript">
 		function manyou_add_userapp(hash, url) {
 			if(isUndefined(url)) {
-				$(hash).innerHTML = "<tr><td colspan=\"2\">成功忽略了该条应用消息</td></tr>";
+				_$(hash).innerHTML = "<tr><td colspan=\"2\">成功忽略了该条应用消息</td></tr>";
 			} else {
-				$(hash).innerHTML = "<tr><td colspan=\"2\">正在引导您进入...</td></tr>";
+				_$(hash).innerHTML = "<tr><td colspan=\"2\">正在引导您进入...</td></tr>";
 			}
 			var x = new Ajax();
 			x.get('do.php?ac=ajax&op=deluserapp&hash='+hash, function(s){

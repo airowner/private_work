@@ -96,14 +96,14 @@
 
 <script type="text/javascript">
 	function do_share() {
-		$('divshare').style.display = 'block';
+		_$('divshare').style.display = 'block';
 	}
 	function hideShare() {
-		$('divshare').style.display = 'none';
+		_$('divshare').style.display = 'none';
 	}
 	function frame_share_add(sid, result) {
 		if(result) {
-			$('divshare').innerHTML = '<br><br>分享完成了 [<a href="javascript:hideShare()">关闭</a>]<br><br><br>';
+			_$('divshare').innerHTML = '<br><br>分享完成了 [<a href="javascript:hideShare()">关闭</a>]<br><br><br>';
 			setTimeout("hideShare();", 1000);
 		}
 	}

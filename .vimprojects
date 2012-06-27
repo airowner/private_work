@@ -1,4 +1,4 @@
-UCHome=/srv/http/uc/home CD=. filter="*.php *.htm *.js" {
+UCHome=/srv/http/private_work/uc/home CD=. filter="*.php *.htm *.js" {
  admincp.php
  app.php
  common.php
@@ -654,7 +654,7 @@ UCHome=/srv/http/uc/home CD=. filter="*.php *.htm *.js" {
   }
  }
 }
-NewUC=/home/airowner/Downloads/SNS0508 CD=. filter="*.html *.js *.css" {
+NewUC=/srv/http/private_work/SNS0508 CD=. filter="*.html *.js *.css" {
  cjqz.html
   index.html
   login-zc.html

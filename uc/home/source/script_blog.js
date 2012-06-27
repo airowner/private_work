@@ -4,7 +4,7 @@
 */
 
 function validate_ajax(obj) {
-    var subject = $('subject');
+    var subject = _$('subject');
     if (subject) {
     	var slen = strlen(subject.value);
         if (slen < 1 || slen > 80) {
@@ -14,14 +14,14 @@ function validate_ajax(obj) {
         }
     }
     
-    if($('seccode')) {
-		var code = $('seccode').value;
+    if(_$('seccode')) {
+		var code = _$('seccode').value;
 		var x = new Ajax();
 		x.get('cp.php?ac=common&op=seccode&code=' + code, function(s){
 			s = trim(s);
 			if(s.indexOf('succeed') == -1) {
 				alert(s);
-				$('seccode').focus();
+				_$('seccode').focus();
            		return false;
 			} else {
 				edit_save();
@@ -37,7 +37,7 @@ function validate_ajax(obj) {
 }
 
 function validate(obj) {
-    var subject = $('subject');
+    var subject = _$('subject');
     if (subject) {
     	var slen = strlen(subject.value);
         if (slen < 1 || slen > 80) {
@@ -47,7 +47,7 @@ function validate(obj) {
         }
     }
     
-    var makefeed = $('makefeed');
+    var makefeed = _$('makefeed');
     if(makefeed) {
     	if(makefeed.checked == false) {
     		if(!confirm("友情提醒：您确定此次发布不产生动态吗？\n有了动态，好友才能及时看到你的更新。")) {
@@ -56,14 +56,14 @@ function validate(obj) {
     	}
     }
 
-    if($('seccode')) {
-		var code = $('seccode').value;
+    if(_$('seccode')) {
+		var code = _$('seccode').value;
 		var x = new Ajax();
 		x.get('cp.php?ac=common&op=seccode&code=' + code, function(s){
 			s = trim(s);
 			if(s.indexOf('succeed') == -1) {
 				alert(s);
-				$('seccode').focus();
+				_$('seccode').focus();
            		return false;
 			} else {
 				uploadEdit(obj);
@@ -77,12 +77,12 @@ function validate(obj) {
 }
 
 function edit_album_show(id) {
-	var obj = $('uchome-edit-'+id);
+	var obj = _$('uchome-edit-'+id);
 	if(id == 'album') {
-		$('uchome-edit-pic').style.display = 'none';
+		_$('uchome-edit-pic').style.display = 'none';
 	}
 	if(id == 'pic') {
-		$('uchome-edit-album').style.display = 'none';
+		_$('uchome-edit-album').style.display = 'none';
 	}
 	if(obj.style.display == '') {
 		obj.style.display = 'none';

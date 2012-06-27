@@ -1,7 +1,7 @@
 var ns = (navigator.appName.indexOf("Netscape") != -1);
 var d = document;
 function lsfloatdiv(id, sx, sy, floatid, bottom) {
-	var adobj = $(id);
+	var adobj = _$(id);
 	if(!Cookie.get("closead")) {
 		adobj.style.display = "";
 	}
@@ -11,8 +11,8 @@ function lsfloatdiv(id, sx, sy, floatid, bottom) {
 	adobj.style.top = (typeof(sy) == 'string'? eval(sy) : sy) + 'px';
 	
 	//设置两个紧贴主体两测
-	//$('couplet_left').style.left = ($('wrap').offsetLeft - 0) + 'px';
-	//$('couplet_rigth').style.left = ($('wrap').offsetLeft + $('wrap').offsetWidth+2) + 'px';
+	//_$('couplet_left').style.left = (_$('wrap').offsetLeft - 0) + 'px';
+	//_$('couplet_rigth').style.left = (_$('wrap').offsetLeft + _$('wrap').offsetWidth+2) + 'px';
 	
 	if(floatid != "" && bottom != 0) {
 		document.getElementById(floatid).style.bottom = bottom + 'px';
@@ -68,8 +68,8 @@ function getWindowSize() {
 }
 
 function closeBanner(id) {
-	if(typeof($(id)) == 'object') {
-		$(id).style.display = 'none';
+	if(typeof(_$(id)) == 'object') {
+		_$(id).style.display = 'none';
 		Cookie.set("closead", 1);
 	}
 }

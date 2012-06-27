@@ -46,7 +46,7 @@ if($id) {
 	}
 	
 	//分页
-	$multi = multi($count, $perpage, $page, "space.php?uid=$share[uid]&do=share&id=$id", '', 'comment_ul');
+	$multi = multi($count, $perpage, $page, usr_url('space', array('do'=>'share', 'id'=>$id, 'uid'=>$share['uid'])), '', 'comment_ul');
 	
 	//相关热点
 	$topic = topic_get($share['topicid']);
@@ -62,8 +62,10 @@ if($id) {
 	if(empty($_GET['view']) && ($space['friendnum']<$_SCONFIG['showallfriendnum'])) {
 		$_GET['view'] = 'all';//默认显示
 	}
+    $view = $_GET['view'];
+    $type = $_GET['type'];
 	
-	$perpage = 20;
+	$perpage = 10;
 	
 	//检查开始数
 	$start = ($page-1)*$perpage;
@@ -120,7 +122,7 @@ if($id) {
 	}
 	
 	//分页
-	$multi = multi($count, $perpage, $page, $theurl."&type=$_GET[type]");
+	$multi = multi($count, $perpage, $page, usr_url('space', array('do'=>'share', 'view'=>$view, 'uid'=>$share['uid'], 'type'=>$type)));
 	
 	realname_get();
 	

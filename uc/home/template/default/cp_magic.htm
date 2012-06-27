@@ -323,18 +323,18 @@
 	function magicBought(id, result) {
 		var ids = explode('_', id);
 		var mid = ids[1];
-		if($('a_buy_'+mid)) {
-			$('a_buy_'+mid).innerHTML = '继续购买';
+		if(_$('a_buy_'+mid)) {
+			_$('a_buy_'+mid).innerHTML = '继续购买';
 		}
 	}
 	function magicPresent(id, result) {
 		var ids = explode('_', id);
 		var mid = ids[1];
-		if($('a_present_'+mid)) {
-			$('a_present_'+mid).innerHTML = '继续赠送';
+		if(_$('a_present_'+mid)) {
+			_$('a_present_'+mid).innerHTML = '继续赠送';
 		}
-		if($('magiccount_'+mid)) {
-			$('magiccount_'+mid).innerHTML = parseInt($('magiccount_'+mid).innerHTML) - 1;
+		if(_$('magiccount_'+mid)) {
+			_$('magiccount_'+mid).innerHTML = parseInt(_$('magiccount_'+mid).innerHTML) - 1;
 		}
 	}
 	-->

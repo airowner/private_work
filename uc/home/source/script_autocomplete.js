@@ -1,8 +1,8 @@
 function sAutoComplete(objName, showID, ulID, valID, series, func) {
 	this.items = [];
-	this.showObj = $(showID);
-	this.ulObj = $(ulID);
-	this.valObj = $(valID);
+	this.showObj = _$(showID);
+	this.ulObj = _$(ulID);
+	this.valObj = _$(valID);
 	if (!this.showObj) return;
 	this.obj = objName;
 	this.values = false;

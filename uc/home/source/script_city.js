@@ -729,7 +729,7 @@ function showprovince(provinceid, cityid, province, boxid) {
 	selObj.onchange = function() {
 		setcity(provinceid, cityid);
 	};
-	$(boxid).appendChild(selObj);
+	_$(boxid).appendChild(selObj);
 	
 	selObj.options[0] = new Option("选择省份", "");
 	var j = 0;
@@ -748,7 +748,7 @@ function showcity(cityid, city, provinceid, boxid) {
 	var selObj = document.createElement("select");
 	selObj.name = cityid;
 	selObj.id = cityid;
-	$(boxid).appendChild(selObj);
+	_$(boxid).appendChild(selObj);
 	if(city == "") {
 		selObj.options[0] = new Option("选择城市", "");
 	} else {

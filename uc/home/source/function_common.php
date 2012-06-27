@@ -768,7 +768,7 @@ function multi($num, $perpage, $curpage, $mpurl, $ajaxdiv='', $todiv='') {
 		}
 		for($i = $from; $i <= $to; $i++) {
 			if($i == $curpage) {
-				$multipage .= '<strong>'.$i.'</strong>';
+				$multipage .= '<span class="dqa">'.$i.'</span>';
 			} else {
 				$multipage .= "<a ";
 				if($_SGLOBAL['inajax']) {
@@ -798,7 +798,7 @@ function multi($num, $perpage, $curpage, $mpurl, $ajaxdiv='', $todiv='') {
 			$multipage .= " class=\"last\">... $realpages</a>";
 		}
 		if($multipage) {
-			$multipage = '<em>&nbsp;'.$num.'&nbsp;</em>'.$multipage;
+			$multipage = '<em><span>&nbsp;共'.$num.'条&nbsp;</span></em>'.$multipage;
 		}
 	}
 	return $multipage;

@@ -320,7 +320,7 @@ function init_drag2(){
 	}
 	if(Drags[0]){
 		// Create our helper object that will show the item while dragging
-		var cObj = $('content');
+		var cObj = _$('content');
 		dragHelper = document.createElement('div');
 		dragHelper.style.cssText = 'position:absolute;display:none;';
 		cObj.parentNode.insertBefore(dragHelper, cObj);

@@ -15,7 +15,7 @@
 			<textarea id="reason" name="reason" cols="72" rows="3" onkeydown="ctrlEnter(event, 'reportsubmit_btn')"></textarea>
 			<!--{if $reason}-->
 			<br />
-			<select name="reportinfo" onchange="$('reason').value=this.value">
+			<select name="reportinfo" onchange="_$('reason').value=this.value">
 				<option value="" selected>举报理由</option>
 				<!--{loop $reason $key $val}-->
 				<option value="$val">$val</option>

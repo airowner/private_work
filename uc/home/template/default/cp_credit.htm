@@ -139,15 +139,15 @@
 	</form>
 	<script type="text/javascript">
 		function calcredit() {
-			tocredit = $('tocredits')[$('tocredits').selectedIndex];
-			$('descreditunit').innerHTML = tocredit.getAttribute('unit');
-			$('descredittitle').innerHTML = tocredit.getAttribute('title');
-			$('descreditamount').innerHTML = Math.round(1/tocredit.getAttribute('ratio') * 100) / 100;
-			$('amount').value = $('amount').value.toInt();
-			if($('amount').value != 0) {
-				$('desamount').value = Math.floor(1/tocredit.getAttribute('ratio') * $('amount').value);
+			tocredit = _$('tocredits')[_$('tocredits').selectedIndex];
+			_$('descreditunit').innerHTML = tocredit.getAttribute('unit');
+			_$('descredittitle').innerHTML = tocredit.getAttribute('title');
+			_$('descreditamount').innerHTML = Math.round(1/tocredit.getAttribute('ratio') * 100) / 100;
+			_$('amount').value = _$('amount').value.toInt();
+			if(_$('amount').value != 0) {
+				_$('desamount').value = Math.floor(1/tocredit.getAttribute('ratio') * _$('amount').value);
 			} else {
-				$('desamount').value = $('amount').value;
+				_$('desamount').value = _$('amount').value;
 			}
 		}
 		String.prototype.toInt = function() {

@@ -395,36 +395,36 @@
 	</form>
 	<script type="text/javascript" charset="$_SC[charset]">
 		function initIntro() {
-			var introObj = $('intropoll');
-			var tipObj = $('addtip');
+			var introObj = _$('intropoll');
+			var tipObj = _$('addtip');
 			if(introObj.style.display == 'none') {
 				introObj.style.display = '';
 				
 				tipObj.innerHTML = "隐藏投票详细说明";
 			} else {
-				if (($('message').value.length == 0) || (confirm("详细说明将被清空，你确定要隐藏吗？"))) {
+				if ((_$('message').value.length == 0) || (confirm("详细说明将被清空，你确定要隐藏吗？"))) {
 					introObj.style.display = 'none';
-					$('message').value = '';
+					_$('message').value = '';
 					tipObj.innerHTML = "添加投票详细说明";
 				}
 			}
 		}
 		function initReward(status) {
-			var rewardObj = $('rewardlist');
+			var rewardObj = _$('rewardlist');
 			if(status == 1) {
 				rewardObj.style.display = '';
 			} else {
 				rewardObj.style.display = 'none';
-				$("credit").value = '';
-				$("percredit").value = '';
+				_$("credit").value = '';
+				_$("percredit").value = '';
 			}
 		}
 		function showMoreOption() {
-			$("moreoption").style.display = '';
-			$("moretip").style.display = 'none';
+			_$("moreoption").style.display = '';
+			_$("moretip").style.display = 'none';
 		}
 		function validate(obj) {
-		    var subject = $('subject');
+		    var subject = _$('subject');
 		    if (subject) {
 		    	var slen = strlen(subject.value);
 		        if (slen < 1 || slen > 80) {
@@ -434,7 +434,7 @@
 		        }
 		    }
 		    
-		    var makefeed = $('makefeed');
+		    var makefeed = _$('makefeed');
 		    if(makefeed) {
 		    	if(makefeed.checked == false) {
 		    		if(!confirm("友情提醒：您确定此次发布不产生动态吗？\n有了动态，好友才能及时看到你的更新。")) {
@@ -457,8 +457,8 @@
 			var maxCredit = $space[credit];
 			var maxPercredit = $_SCONFIG[maxreward];
 			//验证悬赏投票设置
-			var credit = parseInt($('credit').value.Trim());
-			var percredit = parseInt($('percredit').value.Trim());
+			var credit = parseInt(_$('credit').value.Trim());
+			var percredit = parseInt(_$('percredit').value.Trim());
 			if(credit || percredit) {
 				if(!credit) {
 					alert("请正确填写悬赏总额");
@@ -480,21 +480,21 @@
 			var nowDate = parsedate("<!--{date('Y-m-d',$_SGLOBAL[timestamp])}-->");
 			
 			
-			if($('expiration').value.Trim() != "") {
-				var expiration = parsedate($('expiration').value.Trim());
+			if(_$('expiration').value.Trim() != "") {
+				var expiration = parsedate(_$('expiration').value.Trim());
 				if(expiration < nowDate) {
 					alert("过期时间不能小于当前时间");
 					return false;
 				}
 			}
-		    if($('seccode')) {
-				var code = $('seccode').value;
+		    if(_$('seccode')) {
+				var code = _$('seccode').value;
 				var x = new Ajax();
 				x.get('cp.php?ac=common&op=seccode&code=' + code, function(s){
 					s = trim(s);
 					if(s.indexOf('succeed') == -1) {
 						alert(s);
-						$('seccode').focus();
+						_$('seccode').focus();
 		           		return false;
 					}
 				});

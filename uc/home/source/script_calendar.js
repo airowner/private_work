@@ -47,12 +47,12 @@ function loadcalendar() {
 	s += '<div id="calendar_year" onclick="doane(event)" style="display: none;z-index:100001;"><div class="col">';
 	for(var k = 2020; k >= 1931; k--) {
 		s += k != 2020 && k % 10 == 0 ? '</div><div class="col">' : '';
-		s += '<a href="###" onclick="refreshcalendar(' + k + ', mm);$(\'calendar_year\').style.display=\'none\'"><span' + (today.getFullYear() == k ? ' class="calendar_today"' : '') + ' id="calendar_year_' + k + '">' + k + '</span></a><br />';
+		s += '<a href="###" onclick="refreshcalendar(' + k + ', mm);_$(\'calendar_year\').style.display=\'none\'"><span' + (today.getFullYear() == k ? ' class="calendar_today"' : '') + ' id="calendar_year_' + k + '">' + k + '</span></a><br />';
 	}
 	s += '</div></div>';
 	s += '<div id="calendar_month" onclick="doane(event)" style="display: none;z-index:100001;">';
 	for(var k = 1; k <= 12; k++) {
-		s += '<a href="###" onclick="refreshcalendar(yy, ' + (k - 1) + ');$(\'calendar_month\').style.display=\'none\'"><span' + (today.getMonth()+1 == k ? ' class="calendar_today"' : '') + ' id="calendar_month_' + k + '">' + k + ( k < 10 ? '&nbsp;' : '') + ' 月</span></a><br />';
+		s += '<a href="###" onclick="refreshcalendar(yy, ' + (k - 1) + ');_$(\'calendar_month\').style.display=\'none\'"><span' + (today.getMonth()+1 == k ? ' class="calendar_today"' : '') + ' id="calendar_month_' + k + '">' + k + ( k < 10 ? '&nbsp;' : '') + ' 月</span></a><br />';
 	}
 	s += '</div>';
 	if(is_ie && is_ie < 7) {
@@ -63,24 +63,24 @@ function loadcalendar() {
 
 	var div = document.createElement('div');
 	div.innerHTML = s;
-	$('append_parent').appendChild(div);
+	_$('append_parent').appendChild(div);
 	document.onclick = function(event) {
-		$('calendar').style.display = 'none';
-		$('calendar_year').style.display = 'none';
-		$('calendar_month').style.display = 'none';
+		_$('calendar').style.display = 'none';
+		_$('calendar_year').style.display = 'none';
+		_$('calendar_month').style.display = 'none';
 		if(is_ie && is_ie < 7) {
-			$('calendariframe').style.display = 'none';
-			$('calendariframe_year').style.display = 'none';
-			$('calendariframe_month').style.display = 'none';
+			_$('calendariframe').style.display = 'none';
+			_$('calendariframe_year').style.display = 'none';
+			_$('calendariframe_month').style.display = 'none';
 		}
 	}
-	$('calendar').onclick = function(event) {
+	_$('calendar').onclick = function(event) {
 		doane(event);
-		$('calendar_year').style.display = 'none';
-		$('calendar_month').style.display = 'none';
+		_$('calendar_year').style.display = 'none';
+		_$('calendar_month').style.display = 'none';
 		if(is_ie && is_ie < 7) {
-			$('calendariframe_year').style.display = 'none';
-			$('calendariframe_month').style.display = 'none';
+			_$('calendariframe_year').style.display = 'none';
+			_$('calendariframe_month').style.display = 'none';
 		}
 	}
 
@@ -98,12 +98,12 @@ function parsedate(s) {
 }
 
 function settime(d) {
-	$('calendar').style.display = 'none';
-	$('calendar_month').style.display = 'none';
+	_$('calendar').style.display = 'none';
+	_$('calendar_month').style.display = 'none';
 	if(is_ie && is_ie < 7) {
-		$('calendariframe').style.display = 'none';
+		_$('calendariframe').style.display = 'none';
 	}
-	controlid.value = yy + "-" + zerofill(mm + 1) + "-" + zerofill(d) + (addtime ? ' ' + zerofill($('hour').value) + ':' + zerofill($('minute').value) : '');
+	controlid.value = yy + "-" + zerofill(mm + 1) + "-" + zerofill(d) + (addtime ? ' ' + zerofill(_$('hour').value) + ':' + zerofill(_$('minute').value) : '');
 }
 
 function showcalendar(event, controlid1, addtime1, startdate1, enddate1) {
@@ -115,30 +115,30 @@ function showcalendar(event, controlid1, addtime1, startdate1, enddate1) {
 	hh = currday.getHours();
 	ii = currday.getMinutes();
 	var p = getposition(controlid);
-	$('calendar').style.display = 'block';
-	$('calendar').style.left = p['x']+'px';
-	$('calendar').style.top	= (p['y'] + 20)+'px';
+	_$('calendar').style.display = 'block';
+	_$('calendar').style.left = p['x']+'px';
+	_$('calendar').style.top	= (p['y'] + 20)+'px';
 	doane(event);
 	refreshcalendar(currday.getFullYear(), currday.getMonth());
 	if(lastcheckedyear != false) {
-		$('calendar_year_' + lastcheckedyear).className = 'calendar_default';
-		$('calendar_year_' + today.getFullYear()).className = 'calendar_today';
+		_$('calendar_year_' + lastcheckedyear).className = 'calendar_default';
+		_$('calendar_year_' + today.getFullYear()).className = 'calendar_today';
 	}
 	if(lastcheckedmonth != false) {
-		$('calendar_month_' + lastcheckedmonth).className = 'calendar_default';
-		$('calendar_month_' + (today.getMonth() + 1)).className = 'calendar_today';
+		_$('calendar_month_' + lastcheckedmonth).className = 'calendar_default';
+		_$('calendar_month_' + (today.getMonth() + 1)).className = 'calendar_today';
 	}
-	$('calendar_year_' + currday.getFullYear()).className = 'calendar_checked';
-	$('calendar_month_' + (currday.getMonth() + 1)).className = 'calendar_checked';
-	$('hourminute').style.display = addtime ? '' : 'none';
+	_$('calendar_year_' + currday.getFullYear()).className = 'calendar_checked';
+	_$('calendar_month_' + (currday.getMonth() + 1)).className = 'calendar_checked';
+	_$('hourminute').style.display = addtime ? '' : 'none';
 	lastcheckedyear = currday.getFullYear();
 	lastcheckedmonth = currday.getMonth() + 1;
 	if(is_ie && is_ie < 7) {
-		$('calendariframe').style.top = $('calendar').style.top;
-		$('calendariframe').style.left = $('calendar').style.left;
-		$('calendariframe').style.width = $('calendar').offsetWidth;
-		$('calendariframe').style.height = $('calendar').offsetHeight;
-		$('calendariframe').style.display = 'block';
+		_$('calendariframe').style.top = _$('calendar').style.top;
+		_$('calendariframe').style.left = _$('calendar').style.left;
+		_$('calendariframe').style.width = _$('calendar').offsetWidth;
+		_$('calendariframe').style.height = _$('calendar').offsetHeight;
+		_$('calendariframe').style.display = 'block';
 	}
 }
 
@@ -149,17 +149,17 @@ function refreshcalendar(y, m) {
 	var dd = null;
 	yy = x.getFullYear();
 	mm = x.getMonth();
-	$("year").innerHTML = yy;
-	$("month").innerHTML = mm + 1 > 9  ? (mm + 1) : '0' + (mm + 1);
+	_$("year").innerHTML = yy;
+	_$("month").innerHTML = mm + 1 > 9  ? (mm + 1) : '0' + (mm + 1);
 
 	for(var i = 1; i <= mv; i++) {
-		dd = $("d" + i);
+		dd = _$("d" + i);
 		dd.innerHTML = "&nbsp;";
 		dd.className = "";
 	}
 
 	while(x.getMonth() == mm) {
-		dd = $("d" + (d + mv));
+		dd = _$("d" + (d + mv));
 		dd.innerHTML = '<a href="###" onclick="settime(' + d + ');return false">' + d + '</a>';
 		if((enddate && x.getTime() > enddate.getTime()) || (startdate && x.getTime() < startdate.getTime())) {
 			dd.className = 'calendar_expire';
@@ -177,28 +177,28 @@ function refreshcalendar(y, m) {
 	}
 
 	while(d + mv <= 42) {
-		dd = $("d" + (d + mv));
+		dd = _$("d" + (d + mv));
 		dd.innerHTML = "&nbsp;";
 		d++;
 	}
 
 	if(addtime) {
-		$('hour').value = zerofill(hh);
-		$('minute').value = zerofill(ii);
+		_$('hour').value = zerofill(hh);
+		_$('minute').value = zerofill(ii);
 	}
 }
 
 function showdiv(id) {
-	var p = getposition($(id));
-	$('calendar_' + id).style.left = p['x']+'px';
-	$('calendar_' + id).style.top = (p['y'] + 16)+'px';
-	$('calendar_' + id).style.display = 'block';
+	var p = getposition(_$(id));
+	_$('calendar_' + id).style.left = p['x']+'px';
+	_$('calendar_' + id).style.top = (p['y'] + 16)+'px';
+	_$('calendar_' + id).style.display = 'block';
 	if(is_ie && is_ie < 7) {
-		$('calendariframe_' + id).style.top = $('calendar_' + id).style.top;
-		$('calendariframe_' + id).style.left = $('calendar_' + id).style.left;
-		$('calendariframe_' + id).style.width = $('calendar_' + id).offsetWidth;
-		$('calendariframe_' + id ).style.height = $('calendar_' + id).offsetHeight;
-		$('calendariframe_' + id).style.display = 'block';
+		_$('calendariframe_' + id).style.top = _$('calendar_' + id).style.top;
+		_$('calendariframe_' + id).style.left = _$('calendar_' + id).style.left;
+		_$('calendariframe_' + id).style.width = _$('calendar_' + id).offsetWidth;
+		_$('calendariframe_' + id ).style.height = _$('calendar_' + id).offsetHeight;
+		_$('calendariframe_' + id).style.display = 'block';
 	}
 }
 

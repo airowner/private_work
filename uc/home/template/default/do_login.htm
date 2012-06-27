@@ -67,7 +67,7 @@
 <script type="text/javascript">
 	var lastSecCode = '';
 	function checkSeccode() {
-		var seccodeVerify = $('seccode').value;
+		var seccodeVerify = _$('seccode').value;
 		if(seccodeVerify == lastSecCode) {
 			return;
 		} else {
@@ -78,7 +78,7 @@
 	function ajaxresponse(objname, data) {
 		var x = new Ajax('XML', objname);
         x.get('<!--{eval echo usr_url('do', array('ac'=>$_SCONFIG[register_action]))}-->' + data, function(s){
-			var obj = $(objname);
+			var obj = _$(objname);
 			s = trim(s);
 			if(s.indexOf('succeed') > -1) {
 				obj.style.display = '';
@@ -91,7 +91,7 @@
 	}
 	function warning(obj, msg) {
 		if((ton = obj.id.substr(5, obj.id.length)) != 'password2') {
-			$(ton).select();
+			_$(ton).select();
 		}
 		obj.style.display = '';
 		obj.innerHTML = '<img src="<?=$_USER_SC['domain']?>image/check_error.gif" width="13" height="13"> &nbsp; ' + msg;
@@ -102,8 +102,8 @@
 
 <!--{if $_SGLOBAL['input_seccode']}-->
 <script>
-$('seccode').style.background = '#FFFFCC';
-$('seccode').focus();
+_$('seccode').style.background = '#FFFFCC';
+_$('seccode').focus();
 </script>
 <!--{/if}-->
 

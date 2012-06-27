@@ -306,13 +306,13 @@
 	<div>
 		<!--{if $_GET[city]}-->
 			您现在浏览的是 <b>$_GET[province] - $_GET[city]</b> 的活动。
-			<a href="#" onclick="$('viewcityevents').style.display=''; this.blur(); return false;">浏览其他城市</a>
+			<a href="#" onclick="_$('viewcityevents').style.display=''; this.blur(); return false;">浏览其他城市</a>
 		<!--{elseif $_GET[province]}-->
 			您现在浏览的是 $_GET[province] 的活动。
 			<!--{if $space[province] == $_GET[province] && $space[city]}-->
 			您还可以只浏览 <a href="space.php?do=event&view=city&province=$space[province]&city=$space[city]">$space[city]</a> 的活动。
 			<!--{/if}-->
-			<a href="#" onclick="$('viewcityevents').style.display=''; this.blur(); return false;">浏览其他城市</a>
+			<a href="#" onclick="_$('viewcityevents').style.display=''; this.blur(); return false;">浏览其他城市</a>
 		<!--{/if}-->
 		<script type="text/javascript" src="source/script_city.js"></script>
 		<form id="viewcityevents" action="space.php" method="GET" style="display:none;">
