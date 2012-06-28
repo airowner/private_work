@@ -202,9 +202,7 @@ UCHome=/srv/http/private_work/uc/home CD=. filter="*.php *.htm *.js" {
    index.htm
   }
   tpl_cache=tpl_cache {
-   template_default_index.php
-   template_default_showmessage.php
-   template_default_space_feed.php
+   template_default_do_ajax.php
    template_default_space_index.php
    index.htm
   }
@@ -436,6 +434,7 @@ UCHome=/srv/http/private_work/uc/home CD=. filter="*.php *.htm *.js" {
    }
   }
   default=default {
+   common_header.htm
    cp_advance.htm
    cp_album.htm
    cp_avatar.htm
@@ -482,12 +481,10 @@ UCHome=/srv/http/private_work/uc/home CD=. filter="*.php *.htm *.js" {
    do_swfupload.htm
    footer.htm
    header.htm
-   common_header.htm
-   sns_header.htm
-   sns_footer.htm
    help.htm
    iframe.htm
    index.htm
+   index_header.htm
    invite.htm
    magic_anonymous.htm
    magic_attachsize.htm
@@ -515,6 +512,8 @@ UCHome=/srv/http/private_work/uc/home CD=. filter="*.php *.htm *.js" {
    network.htm
    sendmail.htm
    showmessage.htm
+   sns_footer.htm
+   sns_header.htm
    space_album_list.htm
    space_album_pic.htm
    space_album_view.htm
@@ -656,76 +655,76 @@ UCHome=/srv/http/private_work/uc/home CD=. filter="*.php *.htm *.js" {
 }
 NewUC=/srv/http/private_work/SNS0508 CD=. filter="*.html *.js *.css" {
  cjqz.html
-  index.html
-  login-zc.html
-  login-zc2.html
-  login-zc3.html
-  ts.html
-  zhmm.html
-  zhmm2.html
-  zhmm3.html
+ index.html
+ login-zc.html
+ login-zc2.html
+ login-zc3.html
+ ts.html
+ zhmm.html
+ zhmm2.html
+ zhmm3.html
   SNS=SNS {
-   ckxx.html
-    fbxq.html
-    fx.html
-    fxnr.html
-    fxtcc.html
-    glxc.html
-    hy.html
-    lw.html
-    lwx.html
-    ptsc.html
-    qz.html
-    qzxz.html
-    rw.html
-    rz.html
-    sctcc.html
-    snsindex.html
-    tp.html
-    wdfx.html
-    wdtp.html
-    wdzh.html
-    xc.html
-    xrz.html
-    xtp.html
-    xxx.html
+  ckxx.html
+  fbxq.html
+  fx.html
+  fxnr.html
+  fxtcc.html
+  glxc.html
+  hy.html
+  lw.html
+  lwx.html
+  ptsc.html
+  qz.html
+  qzxz.html
+  rw.html
+  rz.html
+  sctcc.html
+  snsindex.html
+  tp.html
+  wdfx.html
+  wdtp.html
+  wdzh.html
+  xc.html
+  xrz.html
+  xtp.html
+  xxx.html
     images=images {
     }
    js=js {
-    fxtab.js
-     gtabs.js
-     rwtabs.js
-     rztabs.js
-     sctabs.js
-     ss.js
-     tabs.js
-     txtab.js
-     xxtab.js
-     zhtabs.js
+   fxtab.js
+   gtabs.js
+   rwtabs.js
+   rztabs.js
+   sctabs.js
+   ss.js
+   tabs.js
+   txtab.js
+   xxtab.js
+   zhtabs.js
    }
    style=style {
-    ckhd.css
-     ckxx.css
-     fx.css
-     fxnr.css
-     glxc.css
-     hy.css
-     lw.css
-     ptsc.css
-     qz.css
-     rw.css
-     rz.css
-     sns.css
-     spbulic.css
-     tp.css
-     wdfx.css
-     wdtp.css
-     wdzh.css
-     xc.css
-     xrz.css
-     xtp.css
-     xx.css
-     xxx.css
+   ckhd.css
+   ckxx.css
+   fx.css
+   fxnr.css
+   glxc.css
+   hy.css
+   lw.css
+   ptsc.css
+   qz.css
+   rw.css
+   rz.css
+   sns.css
+   spbulic.css
+   tp.css
+   wdfx.css
+   wdtp.css
+   wdzh.css
+   xc.css
+   xrz.css
+   xtp.css
+   xx.css
+   xxx.css
    }
   }
  gc=gc {
@@ -741,57 +740,57 @@ NewUC=/srv/http/private_work/SNS0508 CD=. filter="*.html *.js *.css" {
  }
  hd=hd {
   hd.html
-   tk.html
+  tk.html
    images=images {
    }
   js=js {
    demo1.js
-    kissy.js
-    tab.js
-    waterfall.js
+   kissy.js
+   tab.js
+   waterfall.js
   }
   style=style {
    hd.css
-    tk.css
+   tk.css
   }
  }
  images=images {
  }
  js=js {
   jQueryTimer.js
-   jquery-min.js
-   png.js
-   xsph.js
+  jquery-min.js
+  png.js
+  xsph.js
  }
  qz=qz {
   qs.html
-   qz.html
-   qzej-cylb.html
-   qzej-ddjr.html
-   qzej-qzsz.html
-   qzej.html
-   qzsj.html
-   qzss.html
-   xwxq.html
-   yjqz.html
+  qz.html
+  qzej-cylb.html
+  qzej-ddjr.html
+  qzej-qzsz.html
+  qzej.html
+  qzsj.html
+  qzss.html
+  xwxq.html
+  yjqz.html
    images=images {
    }
   js=js {
   }
   style=style {
    qs.css
-    qz.css
-    qzej.css
-    qzsj.css
-    qzss.css
-    xwxq.css
-    yjqz.css
+   qz.css
+   qzej.css
+   qzsj.css
+   qzss.css
+   xwxq.css
+   yjqz.css
   }
  }
  style=style {
   index.css
-   login.css
-   public.css
+  login.css
+  public.css
  }
 }
 gopo_html=/home/airowner/gopo CD=. filter="*.html *.js *.css" {

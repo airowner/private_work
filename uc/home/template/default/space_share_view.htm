@@ -1,4 +1,109 @@
 <!--{eval $_TPL['titles'] = array($tpl_title, '分享');}-->
+<!--{template sns_header}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/fxnr.css"/>
+<div class="ricz">
+    <div class="tp"></div>
+    <div class="fxnr">
+        <!--{if $space[self]}-->
+        <div class="fxzz">
+        <ul>
+            <!--{if $space[friendnum]}--><li<!--{if $actives[we]}--> class="sdd02"<!--{else}--> class="sdd01"<!--{/if}--> id="zs01"><a class="o" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'we', 'uid'=>$space['uid']))}-->"><span>好友的分享</span></a></li><!--{/if}-->
+                <li<!--{if $actives[me]}--> class="sdd02"<!--{else}--> class="sdd01"<!--{/if}--> id="zs02"><a class="t" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'all', 'uid'=>$space['uid']))}-->"><span>大家的分享</span></a></li>
+                <li<!--{if $actives[all]}--> class="sdd02"<!--{else}--> class="sdd01"<!--{/if}--> id="zs03"><a class="f" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'me', 'uid'=>$space['uid']))}-->"><span>我的分享</span></a></li>
+        </ul>
+        </div>
+        <!--{else}-->
+        <!--{eval
+            $url = usr_url('space', array('do'=>'share', 'view'=>'me', 'uid'=>$space['uid']));
+            $_TPL['spacetitle'] = "分享";
+            $_TPL['spacemenus'][] = "<a href=\"$url\">TA的所有分享</a>";
+        }-->
+        <!--{template space_menu}-->
+        <!--{/if}-->
+        <div class="fxbt">
+            $share[title_template]<span><!--{date('Y-m-d H:i',$share[dateline],1)}--></span>
+            <!--{if $share[hot]}--><span class="red">热度：$share[hot]</span><!--{/if}-->
+			<!--{if $_SGLOBAL[supe_uid] == $share[uid] || checkperm('manageshare')}-->
+			<a href="cp.php?ac=topic&op=join&id=$share[sid]&idtype=sid" id="a_topicjoin_$share[sid]" onclick="ajaxmenu(event, this.id)">凑热闹</a>
+			<a href="cp.php?ac=share&sid=$share[sid]&op=delete&type=view" id="share_delete_$share[sid]" onclick="ajaxmenu(event, this.id)">删除</a>
+			<!--{/if}-->
+			<!--{if checkperm('manageshare')}-->
+			<a href="cp.php?ac=share&sid=$share[sid]&op=edithot" id="a_hot_$share[sid]" onclick="ajaxmenu(event, this.id)">热度</a>
+			<!--{/if}-->
+			<a href="cp.php?ac=common&op=report&idtype=sid&id=$share[sid]" id="a_report" onclick="ajaxmenu(event, this.id, 1)">举报</a>
+        </div>
+
+        <h1>$share[body_general]</h1>
+        <!--{if $topic}-->
+        <p><strong>凑个热闹</strong>：<a href="space.php?do=topic&topicid=$topic[topicid]">$topic[subject]</a></p>
+        <!--{/if}-->
+        <!--{if $share['image']}-->
+        <p><a href="$share[image_link]"><img src="$share[image]" alt="" /></a></p>
+        <!--{/if}-->
+        <!--{if 'video' == $share['type']}-->
+        <p id="flash_div_$share[sid]">
+            <script>showFlash('{$share['body_data']['host']}', '{$share['body_data']['flashvar']}', '', '{$share['sid']}');</script>
+        </p>
+        <!--{elseif 'music' == $share['type']}-->
+        <p id="flash_div_$share[sid]">
+            <script>showFlash('music', '{$share['body_data']['musicvar']}', '', '{$share['sid']}');</script>
+        </p>
+        <!--{elseif 'flash' == $share['type']}-->
+        <p id="flash_div_$share[sid]">
+            <script>showFlash('flash', '{$share['body_data']['flashaddr']}', '', '{$share['sid']}');</script>
+        </p>
+        <!--{/if}-->
+        <div class="fxdg">
+            <div class="lefx">
+                <p>{$share[body_template]}</p>
+            </div>
+            <div class="rifx"><a href="#"><img src="images/fxand.gif" /></a></div>
+        </div>
+
+
+        <div class="tznr">
+            <!--{if $cid}-->
+            <div class="notice">
+                当前只显示与你操作相关的单个评论，<a href="space.php?uid=$share[uid]&do=share&id=$share[sid]">点击此处查看全部评论</a>
+            </div>
+            <!--{/if}-->
+                <!--{loop $list $value}-->
+                    <!--{template space_comment_li}-->
+                <!--{/loop}-->
+                    <div class="zzxx">
+                        <a href="#"><img src="images/hftx.gif" /></a>
+                        <p>骨头: 0  <br />威望: 20<br />大连<br />2级</p>
+                    </div>
+                    <div class="nrxx">
+                        <p class="zz"><b>沙发</b><a href="#">Betty小猫</a><span>2011-10-01 20:27:45</span></p>
+                        <p>5部2011年最期待看的电影！！ <br />小狼人的《绑架》，暮光之城，《大侦探福尔摩斯2》哈哈都是我爆期待的啊！<br /> Top15榜单：http://t.cn/Sv7snx （含预告视频)</p>
+                        <p class="hf"><a href="#">快速回复</a><span>|</span><a href="#">引用</a><span>|</span><a href="#">举报</a></p>
+                    </div>
+                </div>
+                
+                <div class="tznr">
+                    <div class="zzxx">
+                        <a href="#"><img src="images/hftx.gif" /></a>
+                        <p>骨头: 0  <br />威望: 20<br />大连<br />2级</p>
+                    </div>
+                    <div class="nrxx">
+                        <p class="zz"><b>沙发</b><a href="#">Betty小猫</a><span>2011-10-01 20:27:45</span></p>
+                        <p>5部2011年最期待看的电影！！ <br />小狼人的《绑架》，暮光之城，《大侦探福尔摩斯2》哈哈都是我爆期待的啊！<br /> Top15榜单：http://t.cn/Sv7snx （含预告视频)</p>
+                        <p class="hf"><a href="#">快速回复</a><span>|</span><a href="#">引用</a><span>|</span><a href="#">举报</a></p>
+                    </div>
+                </div>
+                <div class="hfk">
+                <span style="color:#0068b7;">你的回应……</span>
+                <textarea></textarea>
+                <p class="ru"><input class="hfbtn" type="button" /></p>
+                <p class="page"><a href="#"><前页</a><span class="dqa">1</span><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a><span>...</span><a href="#">18</a><a href="#">后页></a></p>
+            </div>
+    </div>
+</div>
+
+
+<!--{template sns_footer}-->
+<!--{if 0}-->
 <!--{template header}-->
 
 <!--{if $space[self]}-->
@@ -140,3 +245,4 @@ for(var i=0; i<elems.length; i++){
 
 
 <!--{template footer}-->
+<!--{/if}-->

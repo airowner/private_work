@@ -1,6 +1,5 @@
 <!--{eval $_TPL['titles'] = array('分享');}-->
 <!--{template sns_header}-->
-<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>/css/fx.css"/>
 
 
 <!--{if !empty($_SGLOBAL[inajax])}-->
@@ -23,14 +22,15 @@
 	</div><br>
 <!--{else}-->
 
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>/css/fx.css"/>
 <div class="ricz">
     <div class="tp"></div>
     <div class="fxfl">
         <ul>
 <!--{if $space[self]}-->
-    <!--{if $space[friendnum]}--><li<!--{if $actives[we]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs01"><a class="o" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'we', 'uid'=>$space['uid']))}-->"><span>好友的分享</span></a></li><!--{/if}-->
-        <li<!--{if $actives[me]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs02"><a class="t" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'all', 'uid'=>$space['uid']))}-->"><span>大家的分享</span></a></li>
-        <li<!--{if $actives[all]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs03"><a class="f" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'me', 'uid'=>$space['uid']))}-->"><span>我的分享</span></a></li>
+    <!--{if $space[friendnum]}--><li<!--{if $actives[we]}--> class="sdd02"<!--{else}--> class="sdd01"<!--{/if}--> id="zs01"><a class="o" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'we', 'uid'=>$space['uid']))}-->"><span>好友的分享</span></a></li><!--{/if}-->
+        <li<!--{if $actives[me]}--> class="sdd02"<!--{else}--> class="sdd01"<!--{/if}--> id="zs02"><a class="t" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'all', 'uid'=>$space['uid']))}-->"><span>大家的分享</span></a></li>
+        <li<!--{if $actives[all]}--> class="sdd02"<!--{else}--> class="sdd01"<!--{/if}--> id="zs03"><a class="f" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'me', 'uid'=>$space['uid']))}-->"><span>我的分享</span></a></li>
 <!--{else}-->
 <!--{eval
     $url = usr_url('space', array('do'=>'share', 'view'=>'me', 'uid'=>$space['uid']));
