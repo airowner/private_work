@@ -4,6 +4,7 @@
 	$Id: cp_credit.php 12930 2009-07-28 09:05:09Z liguode $
 */
 
+
 if(!defined('IN_UCHOME')) {
 	exit('Access Denied');
 }
@@ -18,16 +19,16 @@ ckstart($start, $perpage);
 if(empty($_GET['op'])) {
 
 	//空间大小
-	$maxattachsize = checkperm('maxattachsize');
-	if(empty($maxattachsize)) {
-		$percent = 0;
-		$maxattachsize = '-';
-	} else {
-		$maxattachsize = $maxattachsize + $space['addsize'];//额外空间
-		$percent = intval($space['attachsize']/$maxattachsize*100);
-		$maxattachsize = formatsize($maxattachsize);
-	}
-	$space['attachsize'] = formatsize($space['attachsize']);
+	//$maxattachsize = checkperm('maxattachsize');
+	//if(empty($maxattachsize)) {
+	//	$percent = 0;
+	//	$maxattachsize = '-';
+	//} else {
+	//	$maxattachsize = $maxattachsize + $space['addsize'];//额外空间
+	//	$percent = intval($space['attachsize']/$maxattachsize*100);
+	//	$maxattachsize = formatsize($maxattachsize);
+	//}
+	//$space['attachsize'] = formatsize($space['attachsize']);
 	
 	//用户组
 	$space['grouptitle'] = checkperm('grouptitle');
@@ -42,6 +43,8 @@ if(empty($_GET['op'])) {
 		}
 		$multi = multi($count, $perpage, $page, $theurl);
 	}
+
+    $toplist = getTop10Expirence();
 
 } elseif ($_GET['op'] == 'exchange') {
 	
@@ -142,4 +145,52 @@ $cat_actives = empty($_GET['op'])?array('base' => ' class="active"'):array($_GET
 
 include_once template("cp_credit");
 
+function getTop10Expirence()
+{
+    $cache_file = '';
+    $cache_time = $_SCONFIG['topcachetime'];
+    if($cache_time<5) $cache_time = 5;
+    $fuids = array();
+    $count = 100;
+    $cache_file = S_ROOT.'./data/cache_top_experience.txt';
+    $sql = "SELECT main.*, field.* FROM ".tname('space')." main
+        LEFT JOIN ".tname('spacefield')." field ON field.uid=main.uid
+        ORDER BY main.experience DESC";
+    $list = array();
+    if($cache_file && file_exists($cache_file) && $_SGLOBAL['timestamp'] - @filemtime($cache_file) < $cache_time*60) {
+        $list_cache = sreadfile($cache_file);
+        $list = unserialize($list_cache);
+    }
+    if($count && empty($list)) {
+        $query = $_SGLOBAL['db']->query("$sql LIMIT $start,$perpage");
+        while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+            $list[$value['uid']] = $value;
+        }
+        if($cache_mode && $cache_file) {
+            swritefile($cache_file, serialize($list));
+        }
+    }
+
+    foreach($list as $key => $value) {
+        $value['isfriend'] = ($value['uid']==$space['uid'] || ($space['friends'] && in_array($value['uid'], $space['friends'])))?1:0;
+        realname_set($value['uid'], $value['username'], $value['name'], $value['namestatus']);
+        $fuids[] = $value['uid'];
+        $list[$key] = $value;
+    }
+
+    //在线状态
+    //$ols = array();
+    //if($fuids) {
+    //	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('session')." WHERE uid IN (".simplode($fuids).")");
+    //	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+    //		if(!$value['magichidden']) {
+    //			$ols[$value['uid']] = $value['lastactivity'];
+    //		} elseif ($_GET['view'] == 'online' && $list[$value['uid']]) {
+    //			unset($list[$value['uid']]);
+    //		}
+    //	}
+    //}
+
+    return array_splice($list, 0, 10);
+}
 ?>

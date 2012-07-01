@@ -1,6 +1,164 @@
 <!--{template header}-->
+<!--{template sns_header}-->
 <!--{template cp_header}-->
 
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/wdzh.css"/>
+<script type="text/javascript">
+	function updateavatar() {
+		window.location.reload();
+	}
+</script>
+<div class="ricz">
+    <div class="ss">
+        <div class="hd"><img src="<?=$_USER_SC['domain']?>images/wdzh.png" /></div>
+    </div>
+    <div class="hdfl">
+        <ul>
+            <li class="sdd01" id="zs01"><a class="o" href="<!--{eval echo usr_url('cp', array('ac'=>'profile'))}-->">个人设置</a></li>
+            <li class="sdd02" id="zs02"><a class="t" href="#">Ta的资料</a></li>
+            <li class="sdd02" id="zs03"><a class="f" href="<!--{eval echo usr_url('cp', array('ac'=>'credit'))}-->">我的积分</a></li>
+            <li class="sdd02" id="zs04"><a class="s" href="<!--{eval echo usr_url('cp', array('ac'=>'password'))}-->">修改密码</a></li>
+        </ul>
+    </div>
+    <div class="hdnr">
+<!--{eval $farr = array(0=>'全用户','1'=>'仅好友','3'=>'仅自己');}-->
+<form method="post" action="$theurl&ref" class="c_form">
+<!--{if $_GET['op'] == 'base'}-->
+        <div id="to01">
+            <div class="txqy">
+                <div class="letx">
+                    <p class="bod">当前照片</p>
+                    <div class="txxq">
+                    <!--{if avatar($space[uid],big)}-->
+                        <!--{avatar($space[uid],'150x150')}-->
+                    <!--{else}-->
+                        <img src="<?=$_USER_SC['domain']?>images/mrtx.gif" />
+                    <!--{/if}-->
+                    </div>
+                </div>
+                <div class="rixz">
+                    <p class="bod">设置头像照片</p>
+                    <p>请选择新的照片文件，文件需小于2MB</p>
+                    <p class="cj"><b>裁切头像照片</b>您可以拖动照片以裁剪满意的头像</p>
+                    <p>$uc_avatarflash</p>
+                </div>
+            </div>
+            <ul class="zl">
+                <li><b>您的资料完善度：</b><div class="rixq"><div class="jdt"></div>30%</div></li>
+                <li><b>登录用户名：</b><div class="rixq"><!--{eval echo stripslashes($space['username']);}--> ( <a href="cp.php?ac=password">修改登录密码</a>)</div></li>
+                <li><b>真实姓名：</b><div class="rixq">
+                <!--{if !$_SCONFIG['realname']}-->
+                    <input type="text" id="name" name="name" value="<!--{eval echo stripslashes($space['name']);}-->" class="nc" /> (请输入2～5个汉字)
+                <!--{else}-->
+                    <!--{if $space[name] && empty($_GET['namechange'])}-->
+                    <span style="font-weight:bold;"><!--{eval echo stripslashes($space['name']);}--></span>
+                    <!--{if $_SCONFIG['namechange']}-->[<a href="$theurl&namechange=1">修改</a>]<!--{/if}-->
+                    <!--{if $space[namestatus]}-->[<font color="red">认证通过</font>]<!--{else}--><br>等待验证中，您目前将只能使用用户名，并且一些操作可能会受到限制<!--{/if}-->
+                    <input type="hidden" name="name" value="<!--{eval echo stripslashes($space['name']);}-->" />
+                    <!--{else}-->
+                    <input type="text" id="name" name="name" value="<!--{eval echo stripslashes($space['name']);}-->" class="nc" /> (请输入2～5个汉字)<br/>
+                    <!--{if $rncredit && $_GET['namechange']}--><img src="<?=$_USER_SC['domain']?>image/credit.gif" align="absmiddle"> 本操作需要支付积分 $rncredit 个，您现在的积分 $space[credit] 个。<br><!--{/if}-->
+                    <!--{if empty($_SCONFIG['namechange'])}-->您的真实姓名一经确认，将不再允许再次修改，请真实填写。<!--{/if}-->
+                    <!--{if $_SCONFIG['namecheck']}-->您填写/修改真实姓名后，需要等待我们认证后才能有效，在认证通过之前，您将只能使用用户名，并且一些操作可能会受到限制。<!--{/if}-->
+                    <!--{/if}-->
+                <!--{/if}-->
+                </div></li>
+                <li><b>性别：</b><div class="rixq">
+                <!--{if empty($space[sex])}-->
+                    <input id="sexm" type="radio" value="1" name="sex"$sexarr[1] />男&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input id="sexw" type="radio" value="2" name="sex"$sexarr[2] />女
+                    <span style="font-weight:bold;color:red;">(性别选择确定后，将不能再次修改)</span>
+                <!--{else}-->
+                    <!--{if $space[sex]==1}-->男<!--{else}-->女<!--{/if}-->
+                <!--{/if}-->
+                </div></li>
+                <li><b>常住地址：</b><div class="rixq">
+                    <select><option>北京</option></select><select><option>北京</option></select><select><option>北京</option></select>
+                </div></li>
+                <li><b>生日：</b><div class="rixq">
+                    <select id="birthyear" name="birthyear" onchange="showbirthday();">
+                        <option value="0">&nbsp;</option>
+                        $birthyeayhtml
+                    </select> 年 
+                    <select id="birthmonth" name="birthmonth" onchange="showbirthday();">
+                        <option value="0">&nbsp;</option>
+                        $birthmonthhtml
+                    </select> 月 
+                    <select id="birthday" name="birthday">
+                        <option value="0">&nbsp;</option>
+                        $birthdayhtml
+                    </select> 日
+                    <select name="friend[birth]">
+                        <option value="0"{$friendarr[birth][0]}>全用户可见</option>
+                        <option value="1"{$friendarr[birth][1]}>仅好友可见</option>
+                        <option value="3"{$friendarr[birth][3]}>仅自己可见</option>
+                    </select>
+                </div></li>
+                <li><b>职业：</b><div class="rixq"><select><option>高新技术</option></select></div></li>
+                <li><b>手机：</b><div class="rixq"><input type="text" class="sj" name="mobile" value="$space[mobile]" />
+                    <select name="friend[mobile]">
+                        <option value="3"{$friendarr[mobile][3]}<!--{if !$space[mobile]}--> selected<!--{/if}-->>仅自己可见</option>
+                        <option value="0"{$friendarr[mobile][0]}>全用户可见</option>
+                        <option value="1"{$friendarr[mobile][1]}>仅好友可见</option>
+                    </select>
+                <p><input type="checkbox" />有优惠活动时可以通知我</p></div></li>
+                <li><b>喜欢的犬种：</b><div class="rixq"><input class="qzd" type="text" /><a href="#">点击添加</a>最多可以添加5个</div></li>
+                <li><b>兴趣爱好：</b><div class="rixq"><input class="qzd" type="text" />多个词请用“,”或"空格"隔开<p>例：<span>睡觉&nbsp;&nbsp;旅游</span></p></div></li>
+            </ul>
+            <p><input class="tj" type="button" /></p>
+        </div>
+<!--{/if}-->
+        <div class="hidden" id="to02">
+        <div class="txqy">
+                <div class="letx">
+                    <p class="bod">当前照片</p>
+                    <div class="txxq">
+                        <img src="images/mrtx.gif" />
+                    </div>
+                </div>
+                <div class="rixz">
+                    <p class="bod">设置头像照片</p>
+                    <p>请选择新的照片文件，文件需小于2MB</p>
+                    <p class="fi"><input type="file" /></p>
+                    <p class="cj"><b>裁切头像照片</b>您可以拖动照片以裁剪满意的头像</p>
+                    <p><img src="images/cj.gif" /></p>
+                    <p><input type="button" class="bctx" /></p>
+                </div>
+            </div>
+            <ul class="zl">
+                <li><b>您的资料完善度：</b><div class="rixq"><div class="jdt"></div>30%</div></li>
+                <li><b>品种：</b><div class="rixq"><input class="nc" type="text" /></div></li>
+                <li><b>昵称：</b><div class="rixq"><input class="nc" type="text" /></div></li>
+                <li><b>性别：</b><div class="rixq"><input type="radio" />公&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" />母</div></li>
+                <li><b>常住地址：</b><div class="rixq"><select><option>北京</option></select><select><option>北京</option></select><select><option>北京</option></select></div></li>
+                <li><b>生日：</b><div class="rixq"><select><option>年</option></select><select><option>月</option></select><select><option>日</option></select>
+                                                    <p>您的年龄不会公开</p></div></li>
+                <li><b>兴趣爱好：</b><div class="rixq"><input class="qzd" type="text" />多个词请用“,”或"空格"隔开<p>例：<span>睡觉&nbsp;&nbsp;旅游</span></p></div></li>
+                <li><b>喜欢的食物：</b><div class="rixq"><input class="qzd" type="text" />多个词请用“,”或"空格"隔开<p>例：<span>睡觉&nbsp;&nbsp;旅游</span></p></div></li>
+                <li><b>喜欢的玩具：</b><div class="rixq"><input class="qzd" type="text" />多个词请用“,”或"空格"隔开<p>例：<span>睡觉&nbsp;&nbsp;旅游</span></p></div></li>
+                <li><b>喜欢做的事：</b><div class="rixq"><input class="qzd" type="text" />多个词请用“,”或"空格"隔开<p>例：<span>睡觉&nbsp;&nbsp;旅游</span></p></div></li>
+            </ul>
+            <p><input class="tj" type="button" /></p>
+        
+        </div>
+        <input type="submit" name="profilesubmit" value="保存" class="submit" />
+        <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+        </form>
+    </div>
+</div>
+
+<script>
+function add_tbody() {
+	for(i=0; i<_$("oldtbody").rows.length; i++) {
+		newnode = _$("oldtbody").rows[i].cloneNode(true);
+		_$("newtbody").appendChild(newnode);
+	}
+}
+</script>
+
+<!--{template sns_footer}-->
+
+<!--{if 0}-->
 <div class="l_status c_form">
 	<a href="cp.php?ac=profile&op=base"$cat_actives[base]>基本资料</a><span class="pipe">|</span>
 	<a href="cp.php?ac=profile&op=contact"$cat_actives[contact]>联系方式</a><span class="pipe">|</span>
@@ -535,5 +693,6 @@ function add_tbody() {
 	}
 }
 </script>
+<!--{/if}-->
 
-<!--{template footer}-->
+<!--{template sns_footer}-->

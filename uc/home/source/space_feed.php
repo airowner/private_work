@@ -8,6 +8,11 @@ if(!defined('IN_UCHOME')) {
 	exit('Access Denied');
 }
 
+if(!$space['uid']){
+    header('Location: /home');
+    exit();
+}
+
 //显示全站动态的好友数
 if(empty($_SCONFIG['showallfriendnum']) || $_SCONFIG['showallfriendnum']<1) $_SCONFIG['showallfriendnum'] = 10;
 //默认热点天数
@@ -166,16 +171,6 @@ if($space['self'] && empty($start)) {
 		$space['namestatusnum'] = $_SGLOBAL['db']->result($_SGLOBAL['db']->query("SELECT COUNT(*) FROM ".tname('space')." WHERE namestatus='0' AND name!=''"), 0);
 	}
 	
-	//欢迎新成员
-	if($_SCONFIG['newspacenum']>0) {
-		$newspacelist = unserialize(data_get('newspacelist'));
-		if(!is_array($newspacelist)) $newspacelist = array();
-		foreach ($newspacelist as $value) {
-			$oluids[] = $value['uid'];
-			realname_set($value['uid'], $value['username'], $value['name'], $value['namestatus']);
-		}
-	}
-
 	//最近访客列表
 	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('visitor')." WHERE uid='$space[uid]' ORDER BY dateline DESC LIMIT 0,12");
 	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
@@ -306,6 +301,16 @@ if($space['self'] && empty($start)) {
 		$space['allnum'] = $space['allnum'] + $space[$value];
 	}
 }
+	//欢迎新成员
+	if($_SCONFIG['newspacenum']>0) {
+		$newspacelist = unserialize(data_get('newspacelist'));
+		if(!is_array($newspacelist)) $newspacelist = array();
+		foreach ($newspacelist as $value) {
+			$oluids[] = $value['uid'];
+			realname_set($value['uid'], $value['username'], $value['name'], $value['namestatus']);
+		}
+	}
+
 
 //实名处理
 realname_get();

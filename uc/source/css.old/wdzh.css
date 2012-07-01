@@ -71,6 +71,7 @@ p.cj b{ margin-right:10px;}
 .blue{ color:#2f6031;}
 .lejf{ width:400px; float:left;}
 .rijf{ width:230px; float:right;}
+.jfls { clear:both }
 .jfls h4{ border-bottom:1px solid #CCC; font-size:14px; padding-bottom:10px;}
 .jfls table tr td{ text-align:center; border-bottom:1px  dashed #eee; font-family:Arial; line-height:28px;}
 .jfls table tr.fl td{ font-weight:bold; color:#616161; border-bottom:1px solid #CCC;}

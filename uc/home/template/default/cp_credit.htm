@@ -1,3 +1,122 @@
+<!--{template sns_header}-->
+
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/wdzh.css"/>
+<script src="<?=$_USER_SC['domain']?>js/xsph.js"></script>
+<div class="ricz">
+    <div class="ss">
+        <div class="hd"><img src="<?=$_USER_SC['domain']?>images/wdzh.png" /></div>
+    </div>
+    <div class="hdfl">
+        <ul>
+            <li class="sdd02" id="zs01"><a class="o" href="<!--{eval echo usr_url('cp', array('ac'=>'profile'))}-->">个人设置</a></li>
+            <li class="sdd02" id="zs02"><a class="t" href="#">Ta的资料</a></li>
+            <li class="sdd01" id="zs03"><a class="f" href="<!--{eval echo usr_url('cp', array('ac'=>'credit'))}-->">我的积分</a></li>
+            <li class="sdd02" id="zs04"><a class="s" href="<!--{eval echo usr_url('cp', array('ac'=>'password'))}-->">修改密码</a></li>
+        </ul>
+    </div>
+    <div class="hdnr">
+        <div id="to03">
+            <div class="jfxx">
+                <div class="lejf">
+                    <ul class="jflb">
+                        <li><b>声望值：</b><div class="risw"><span class="blue">$space[experience]</span><!--{eval echo getstar($space[experience]);}-->
+                                        <p>经验每满<i>$_SCONFIG[starcredit]</i>个，就会增加一个图标<img src="<?=$_USER_SC['domain']?>images/tb1.gif" /></p>
+                                        <p>每满<i>$_SCONFIG[starlevelnum]</i>个当前图标就升级为<i>1</i>个高一等级图标</p>
+                                        <p>图标等级由低到高为：<!--{eval for($i=1;$i<11;$i++){}--><img src="<?=$_USER_SC['domain']?>image/star_level{$i}.gif"><!--{eval }}--></p>
+                        </div></li>
+                        <li><b>用户组：</b><div class="risw"<!--{eval g_color($space[groupid]);}-->>$space[grouptitle]&nbsp;<!--{eval g_icon($space[groupid]);}--></div></li>
+                        <li><b>积分数：</b><div class="risw"><img src="<?=$_USER_SC['domain']?>images/jft.gif" />$space[credit]</div></li>
+                        <li><b>访问量：</b><div class="risw">$space[viewnum]</div></li>
+                        <li><b>创建时间：</b><div class="risw"><!--{date('Y-m-d',$space[dateline],1)}--></div></li>
+                        <li><b>上次更新：</b><div class="risw"><!--{date('Y-m-d',$space[lastlogin],1)}--></div></li>
+                        <li><b>最后登录：</b><div class="risw"><!--{date('Y-m-d',$space[updatetime],1)}--></div></li>
+                    </ul>
+                    <p><a href="#"><img src="<?=$_USER_SC['domain']?>images/jfgz.gif" /></a></p>
+                </div>
+                <div class="rijf">
+                    <div class="ritw">
+                        <h3>声望排行榜</h3>
+                        <div class="phnr">
+                        <!--{if $toplist}-->
+                            <!--{loop $toplist $key $value}-->
+                            <!--{if $key == 0}-->
+                            <div class="one">
+                                <div class="leo">ONE</div>
+                                <div class="rio">
+                                    <div class="ritxd"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a><br />声望 $value[experience]</div>
+                                    <div class="leimd"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'42x42')}--></a></div>
+                                </div>
+                            </div>
+                            <!--{else}-->
+                                <!--{if $key == 1}-->
+                                <ul class="ph">
+                                <!--{/if}-->
+                                <!--{if $key == 1}-->
+                                    <li class="lidldd">
+                                <!--{else}-->
+                                    <li class="lidldt">
+                                <!--{/if}-->
+                                        <dl><dt><b><!--{eval printf('%02d', $key+1)}--></b><span><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></span></dt>
+                                            <dd>
+                                                <div class="lido"><!--{eval printf('%02d', $key+1)}--></div>
+                                                <div class="rido">
+                                                    <div class="rile"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a><br />声望 $value[experience]</div>
+                                                    <div class="riimd"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'42x42')}--></a></div>
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                <!--{if $key == count($toplist)-1}-->
+                                </ul>
+                                <!--{/if}-->
+                            <!--{/if}-->
+                            <!--{/loop}-->
+                        <!--{/if}-->
+                    </div>
+                </div>
+            </div>
+            <div class="jfls">
+                <h4>获得积分历史</h4>
+                <p>显示你获得积分的动作列表，奖励积分值与经验值只记录最后一次获得的奖励</p>
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tbody>
+                        <tr class="fl">
+                            <td>动作记录</td><td>总次数</td><td>周期次数</td><td>单次积分</td><td>单次经验值</td><td>最后奖励时间</td>
+                        </tr>
+                        <!--{if $list}-->
+                        <!--{$key}-->
+                        <!--{loop $list $key $value}-->
+                        <tr<!--{if $key%2 == 0}--> class="boc"<!--{/if}-->>
+                            <td><a href="cp.php?ac=credit&op=rule&rid=$value[rid]">$value[rulename]</a></td>
+                            <td>$value[total]</td>
+                            <td>$value[cyclenum]</td>
+                            <td>$value[credit]</td>
+                            <td>$value[experience]</td>
+                            <td><!--{date('m-d H:i',$value[dateline])}--></td>
+                        </tr>
+                        <!--{/loop}-->
+                        <!--{else}-->
+                        <tr>
+                            <td colspan="6">暂时没有获务任何积分</td>
+                        </tr>
+                        <!--{/if}-->
+                        <!--{if $multi}-->
+                        <tr>
+                            <td colspan="6"><div class="page">$multi</div></td>
+                        </tr>
+                        <!--{/if}-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{template sns_footer}-->
+
+
+
+<!--{if 0}-->
 <!--{template header}-->
 <!--{template cp_header}-->
 
@@ -243,3 +362,4 @@
 </div>
 
 <!--{template footer}-->
+<!--{/if}-->

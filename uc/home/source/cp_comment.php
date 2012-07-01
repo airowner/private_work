@@ -19,7 +19,7 @@ if(submitcheck('commentsubmit')) {
 	
 	if(!checkperm('allowcomment')) {
 		ckspacelog();
-		showmessage('no_privilege');
+		showmessage('no_privilege')
 	}
 
 	//实名认证
@@ -261,7 +261,7 @@ if(submitcheck('commentsubmit')) {
 			//事件
 			$fs['icon'] = 'wall';
 			$fs['title_template'] = cplang('feed_comment_space');
-			$fs['title_data'] = array('touser'=>"<a href=\"space.php?uid=$tospace[uid]\">".$_SN[$tospace['uid']]."</a>");
+			$fs['title_data'] = array('touser'=>"<a href=\"". usr_url("space", array('uid'=>$tospace[uid])) . "\">".$_SN[$tospace['uid']]."</a>");
 			$fs['body_template'] = '';
 			$fs['body_data'] = array();
 			$fs['body_general'] = '';
@@ -271,12 +271,12 @@ if(submitcheck('commentsubmit')) {
 		case 'picid':
 			//事件
 			$fs['title_template'] = cplang('feed_comment_image');
-			$fs['title_data'] = array('touser'=>"<a href=\"space.php?uid=$tospace[uid]\">".$_SN[$tospace['uid']]."</a>");
+			$fs['title_data'] = array('touser'=>"<a href=\"". usr_url("space", array('uid'=>$tospace[uid])) . "\">".$_SN[$tospace['uid']]."</a>");
 			$fs['body_template'] = '{pic_title}';
 			$fs['body_data'] = array('pic_title'=>$pic['title']);
 			$fs['body_general'] = $summay;
 			$fs['images'] = array(pic_get($pic['filepath'], $pic['thumb'], $pic['remote']));
-			$fs['image_links'] = array("space.php?uid=$tospace[uid]&do=album&picid=$pic[picid]");
+			$fs['image_links'] = array(usr_url("space", array('uid'=>$tospace[uid], 'do'=>'album', 'picid'=$pic['picid'])));
 			$fs['target_ids'] = $album['target_ids'];
 			$fs['friend'] = $album['friend'];
 			break;
@@ -285,7 +285,7 @@ if(submitcheck('commentsubmit')) {
 			$_SGLOBAL['db']->query("UPDATE ".tname('blog')." SET replynum=replynum+1 WHERE blogid='$id'");
 			//事件
 			$fs['title_template'] = cplang('feed_comment_blog');
-			$fs['title_data'] = array('touser'=>"<a href=\"space.php?uid=$tospace[uid]\">".$_SN[$tospace['uid']]."</a>", 'blog'=>"<a href=\"space.php?uid=$tospace[uid]&do=blog&id=$id\">$blog[subject]</a>");
+            $fs['title_data'] = array('touser'=>"<a href=\"". usr_url("space", array('uid'=>$tospace[uid])) . "\">".$_SN[$tospace['uid']]."</a>", 'blog'=>"<a href=\"". usr_url("space", array('uid'=>$tospace[uid], 'do'='blog', 'id'=>$id)) . "\">$blog[subject]</a>");
 			$fs['body_template'] = '';
 			$fs['body_data'] = array();
 			$fs['body_general'] = '';
@@ -295,7 +295,7 @@ if(submitcheck('commentsubmit')) {
 		case 'sid':
 			//事件
 			$fs['title_template'] = cplang('feed_comment_share');
-			$fs['title_data'] = array('touser'=>"<a href=\"space.php?uid=$tospace[uid]\">".$_SN[$tospace['uid']]."</a>", 'share'=>"<a href=\"space.php?uid=$tospace[uid]&do=share&id=$id\">".str_replace(cplang('share_action'), '', $share['title_template'])."</a>");
+			$fs['title_data'] = array('touser'=>"<a href=\"". usr_url("space", array('uid'=>$tospace[uid])) . "\">".$_SN[$tospace['uid']]."</a>", 'share'=>"<a href=\"". usr_url("space", array('uid'=>$tospace[uid], 'do'=>'share', 'id'=>$id)) . "\">".str_replace(cplang('share_action'), '', $share['title_template'])."</a>");
 			$fs['body_template'] = '';
 			$fs['body_data'] = array();
 			$fs['body_general'] = '';
@@ -303,7 +303,7 @@ if(submitcheck('commentsubmit')) {
 		case 'eventid':
 		    // 活动
 		    $fs['title_template'] = cplang('feed_comment_event');
-			$fs['title_data'] = array('touser'=>"<a href=\"space.php?uid=$tospace[uid]\">".$_SN[$tospace['uid']]."</a>", 'event'=>'<a href="space.php?do=event&id='.$event['eventid'].'">'.$event['title'].'</a>');
+			$fs['title_data'] = array('touser'=>"<a href=\"". usr_url("space", array('uid'=>$tospace[uid])) . "\">".$_SN[$tospace['uid']]."</a>", 'event'=>'<a href="'. usr_url("space", array('do'=>'event', 'id'=>$event['eventid'])) . '">'.$event['title'].'</a>');
 			$fs['body_template'] = '';
 			$fs['body_data'] = array();
 			$fs['body_general'] = '';
@@ -313,7 +313,7 @@ if(submitcheck('commentsubmit')) {
 			//更新评论统计
 			$_SGLOBAL['db']->query("UPDATE ".tname('poll')." SET replynum=replynum+1 WHERE pid='$id'");
 			$fs['title_template'] = cplang('feed_comment_poll');
-			$fs['title_data'] = array('touser'=>"<a href=\"space.php?uid=$tospace[uid]\">".$_SN[$tospace['uid']]."</a>", 'poll'=>"<a href=\"space.php?uid=$tospace[uid]&do=poll&pid=$id\">$poll[subject]</a>");
+            $fs['title_data'] = array('touser'=>"<a href=\"". usr_url("space", array('uid'=>$tospace[uid])) . "\">".$_SN[$tospace['uid']]."</a>", 'poll'=>"<a href=\"". usr_url("space", array('uid'=>$tospace[uid], 'do'=>'poll', 'pid'=>$id)) . "\">$poll[subject]</a>");
 			$fs['body_template'] = '';
 			$fs['body_data'] = array();
 			$fs['body_general'] = '';
@@ -337,7 +337,7 @@ if(submitcheck('commentsubmit')) {
 	$becomment = 'getcomment';
 	switch ($_POST['idtype']) {
 		case 'uid':
-			$n_url = "space.php?uid=$tospace[uid]&do=wall&cid=$cid";
+			$n_url = usr_url("space", array('uid'=>$tospace[uid], 'do'='wall', 'cid'=>$cid));
 			$note_type = 'wall';
 			$note = cplang('note_wall', array($n_url));
 			$q_note = cplang('note_wall_reply', array($n_url));
@@ -355,7 +355,7 @@ if(submitcheck('commentsubmit')) {
 			$action = 'guestbook';
 			break;
 		case 'picid':
-			$n_url = "space.php?uid=$tospace[uid]&do=album&picid=$id&cid=$cid";
+			$n_url = usr_url("space", array('uid'=>$tospace[uid], 'do'='album', 'picid'=>$id, 'cid'=>$cid));
 			$note_type = 'piccomment';
 			$note = cplang('note_pic_comment', array($n_url));
 			$q_note = cplang('note_pic_comment_reply', array($n_url));
@@ -366,7 +366,7 @@ if(submitcheck('commentsubmit')) {
 			break;
 		case 'blogid':
 			//通知
-			$n_url = "space.php?uid=$tospace[uid]&do=blog&id=$id&cid=$cid";
+			$n_url = usr_url("space", array('uid'=>$tospace[uid], 'do'='blog', 'id'=>$id, 'cid'=>$cid));
 			$note_type = 'blogcomment';
 			$note = cplang('note_blog_comment', array($n_url, $blog['subject']));
 			$q_note = cplang('note_blog_comment_reply', array($n_url));
@@ -377,7 +377,7 @@ if(submitcheck('commentsubmit')) {
 			break;
 		case 'sid':
 			//分享
-			$n_url = "space.php?uid=$tospace[uid]&do=share&id=$id&cid=$cid";
+			$n_url = usr_url("space", array('uid'=>$tospace[uid], 'do'='share', 'id'=>$id, 'cid'=>$cid));
 			$note_type = 'sharecomment';
 			$note = cplang('note_share_comment', array($n_url));
 			$q_note = cplang('note_share_comment_reply', array($n_url));
@@ -387,7 +387,7 @@ if(submitcheck('commentsubmit')) {
 			$q_msgtype = 'share_comment_reply';
 			break;
 		case 'pid':
-			$n_url = "space.php?uid=$tospace[uid]&do=poll&pid=$id&cid=$cid";
+			$n_url = usr_url("space", array('uid'=>$tospace[uid], 'do'='poll', 'pid'=>$id, 'cid'=>$cid));
 			$note_type = 'pollcomment';
 			$note = cplang('note_poll_comment', array($n_url, $poll['subject']));
 			$q_note = cplang('note_poll_comment_reply', array($n_url));
@@ -398,7 +398,7 @@ if(submitcheck('commentsubmit')) {
 			break;
 		case 'eventid':
 		    // 活动
-		    $n_url = "space.php?do=event&id=$id&view=comment&cid=$cid";
+			$n_url = usr_url("space", array('do'='event', 'id'=>$id, 'cid'=>$cid, 'view'=>'comment'));
 		    $note_type = 'eventcomment';
 		    $note = cplang('note_event_comment', array($n_url));
 		    $q_note = cplang('note_event_comment_reply', array($n_url));

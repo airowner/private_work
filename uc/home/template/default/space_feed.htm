@@ -27,7 +27,7 @@
         <!--{/if}-->
         <span>|</span><a href="<!--{eval echo usr_url('cp', array('ac'=>'privacy'))}-->">隐私筛选</a>
         <!--{if checkperm('admin')}-->
-            <span>|</span><a href="<!--{eval echo usr_url('admincp')}-->">站点管理</a>
+        <span>|</span><a href="<!--{eval echo usr_url('admincp')}-->">站点管理</a>
         <!--{/if}-->
         <!--{if 0 && checkperm('allowstat')}-->
         <span>|</span><a href="<!--{eval echo usr_url('do', array('ac'=>'stat'))}-->">趋势统计</a>
@@ -35,38 +35,12 @@
         </p>
         </div>
     </div>
-    <!--{elseif $space['uid']}-->
-    <div class="zrxq">
-        <div class="zrtx"><!--{avatar($space[uid],'100x100')}--></div>
-        <div class="zrjj">
-            <p class="mzd">
-                <!--{if $_TPL['spacetitle']}-->
-                    <span style="font-size:14px">{$_SN[$space[uid]]}的$_TPL['spacetitle']</span>
-                <!--{/if}-->
-                <!--{if $_SGLOBAL[refer]}-->
-                    <a class="r_option" href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
-                <!--{/if}-->
-                <span><a href="<!--{eval echo usr_url('space', array('uid'=>$space[uid]))}-->" class="spacelink">{$_SN[$space[uid]]}的主页</a><span>
-            </p>
-            <p>
-            <!--{if $_TPL['spacemenus']}-->
-                <!--{loop $_TPL['spacemenus'] $value}--> <span class="pipe">&raquo;</span> $value<!--{/loop}-->
-            <!--{/if}-->
-            </p>
-        <p class="qtlj">
-            <!--{if !$space['isfriend']}-->
-            <a href="<!--{eval echo usr_url('cp', array('ac'=>'friend', 'op'=>'add', 'uid'=>$space[uid]))}-->">加为好友</a><span>|</span>
-            <!--{/if}-->
-            <a href="#comment">给我留言</a><span>|</span>
-            <a href="<!--{eval echo usr_url('cp', array('ac'=>'poke', 'op'=>'send', 'uid'=>$space[uid]))}-->" id="a_poke" onclick="ajaxmenu(event, this.id, 1)">打个招呼</a><span>|</span>
-            <a href="<!--{eval echo usr_url('cp', array('ac'=>'pm', 'uid'=>$space[uid]))}-->" id="a_pm" onclick="ajaxmenu(event, this.id, 1)">发送消息</a><span>|</span>
-            <!--{if $space['isfriend']}-->
-            <a href="<!--{eval echo usr_url('cp', array('ac'=>'friend', 'op'=>'ignore', 'uid'=>$space[uid]))}-->" id="a_ignore" onclick="ajaxmenu(event, this.id)">解除好友</a><span>|</span>
-            <!--{/if}-->
-            <a href="<!--{eval echo usr_url('cp', array('ac'=>'common', 'op'=>'report', 'idtype'=>'uid', 'uid'=>$space[uid]))}-->" id="a_report" onclick="ajaxmenu(event, this.id, 1)">违规举报</a>
-            </p>
-        </div>
-    </div>
+    <!--{elseif $space[uid]}-->
+    <!--{eval
+        $_TPL['spacetitle'] = "动态";
+        $_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=feed&view=me\">TA的近期动态</a>";
+    }-->
+            <!--{template space_menu}-->
     <!--{/if}-->
     <!--主人详情结束-->
 
@@ -75,12 +49,33 @@
     <!--{/if}-->
 
     <!--{if $space['uid'] && $space[self]}-->
+    <!--{if $isnewer && $task}-->
     <div class="yd">
-        <img src="$task[image]" alt="" class="icon" />
-        <h3><a href="<!--{eval echo usr_url('cp', array('ac'=>'task', 'op'=>'do', 'taskid'=>$task[$taskid]))}-->">$task[name]</a></h3>
-        <p>可获得 <span class="num">$task[credit]</span> 积分</p>
+        <div class="task_notice">
+            <div class="task_notice_body">
+                <div class="notice">您好，{$_SN[$space[uid]]}，欢迎加入我们。有新任务等着您，挺简单的，赶快来参加吧</div>
+                <img src="$task[image]" alt="" class="icon" />
+                <h3><a href="cp.php?ac=task&op=do&taskid=$task[taskid]">$task[name]</a></h3>
+                <p>可获得 <span class="num">$task[credit]</span> 积分</p>
+            </div>
+        </div>
     </div>
+    <!--{/if}-->
+    <!--{/if}-->
+
+	<!--{if empty($_SCOOKIE['closefeedbox']) && $_SGLOBAL['ad']['feedbox']}-->
+	<div class="yd">
+		<div class="task_notice">
+			<a title="忽略" class="float_cancel" href="javascript:;" onclick="close_feedbox();">忽略</a>
+			<div class="task_notice_body">
+			<!--{ad/feedbox}-->
+			</div>
+		</div>
+	</div>
+	<!--{/if}-->
+
     <!--好友动态-->
+    <!--{if $space['uid'] && $space[self]}-->
     <div class="hydt">
         <div class="dtfl">
             <ul>
@@ -90,6 +85,8 @@
                 <li<!--{if $actives[hot]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs04"><a class="s" href="<!--{eval echo usr_url('space', array('do'=>'home', 'view'=>'hot'))}-->">精选图片</a></li>
             </ul>
         </div>
+    </div>
+    <!--{/if}-->
 
         <div class="hydnr">
             <!--{if $hotlist}-->
@@ -105,67 +102,59 @@
             </div>
             <!--{/if}-->
 
-            <div>
             <!--{if $list}-->
-            <!--{loop $list $day $values}-->
-                <!--{if $_GET['view']!='hot'}-->
-                <h4 class="feedtime">
-                    <!--{if $day=='yesterday'}-->昨天
-                    <!--{elseif $day=='today'}-->今天
-                    <!--{elseif $day=='app'}-->看看大家都在玩什么
-                    <!--{else}-->$day
+            <div id="space_feed" class="feed">
+                <div id="feed_div" class="enter-content">
+                <!--{loop $list $day $values}-->
+                    <!--{if $_GET['view']!='hot'}-->
+                    <h4 class="feedtime">
+                        <!--{if $day=='yesterday'}-->昨天
+                        <!--{elseif $day=='today'}-->今天
+                        <!--{elseif $day=='app'}-->看看大家都在玩什么
+                        <!--{else}-->$day
+                        <!--{/if}-->
+                    </h4>
                     <!--{/if}-->
-                </h4>
+                    <ul>
+                    <!--{loop $values $value}-->
+                        <!--{template space_feed_li}-->
+                    <!--{/loop}-->
+                    </ul>
+                <!--{/loop}-->
+                <!--{else}-->
+                    <ul>
+                        <li>没有相关动态</li>
+                    </ul>
                 <!--{/if}-->
-                <ul>
-                <!--{loop $values $value}-->
+                </div>
+
+                <!--{if $filtercount}-->
+                <div class="notice" id="feed_filter_notice_{$start}">
+                    根据您的<a href="cp.php?ac=privacy&op=view">筛选设置</a>，有 $filtercount 条动态被屏蔽 (<a href="javascript:;" onclick="filter_more($start);" id="a_feed_privacy_more">点击查看</a>)
+                </div>
+                <div id="feed_filter_div_{$start}" class="enter-content" style="display:none;">
+                    <h4 class="feedtime">以下是被屏蔽的动态</h4>
+                    <ul>
+                    <!--{loop $filter_list $value}-->
+                    <!--{eval $value = mkfeed($value);}-->
                     <!--{template space_feed_li}-->
-                <!--{/loop}-->
-                </ul>
-            <!--{/loop}-->
-            <!--{else}-->
-                <ul>
-                    <li>没有相关动态</li>
-                </ul>
-            <!--{/if}-->
-            </div>
+                    <!--{/loop}-->
+                    <li><a href="javascript:;" onclick="filter_more($start);">&laquo; 收起</a></li>
+                    </ul>
+                </div>
+                <!--{/if}-->
 
-            <!--{if $filtercount}-->
-            <div class="notice" id="feed_filter_notice_{$start}">
-                根据您的<a href="cp.php?ac=privacy&op=view">筛选设置</a>，有 $filtercount 条动态被屏蔽 (<a href="javascript:;" onclick="filter_more($start);" id="a_feed_privacy_more">点击查看</a>)
-            </div>
-            <div id="feed_filter_div_{$start}" class="enter-content" style="display:none;">
-                <h4 class="feedtime">以下是被屏蔽的动态</h4>
-                <ul>
-                <!--{loop $filter_list $value}-->
-                <!--{eval $value = mkfeed($value);}-->
-                <!--{template space_feed_li}-->
-                <!--{/loop}-->
-                <li><a href="javascript:;" onclick="filter_more($start);">&laquo; 收起</a></li>
-                </ul>
-            </div>
+            <!--{if empty($_TPL['getmore'])}-->	
+                <!--{if $count==$perpage}-->
+                <div class="page" style="padding-top:20px;">
+                    <a href="javascript:;" onclick="feed_more();" id="a_feed_more">查看更多动态</a>
+                </div>
+                <!--{/if}-->
             <!--{/if}-->
 
-        <!--{if empty($_TPL['getmore'])}-->	
-            <!--{if $count==$perpage}-->
-            <div class="page" style="padding-top:20px;">
-                <a href="javascript:;" onclick="feed_more();" id="a_feed_more">查看更多动态</a>
+                <div id="ajax_wait"></div>
             </div>
-            <!--{/if}-->
-
-            <div id="ajax_wait"></div>
-        <!--{/if}-->
         </div>
-    </div>
-<!--{elseif $space[uid]}-->
-<!--{eval
-	$_TPL['spacetitle'] = "动态";
-	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=feed&view=me\">TA的近期动态</a>";
-}-->
-    <div class="hydnr">
-        <!--{template space_menu}-->
-    </div>
-<!--{/if}-->
     <!--好友动态结束-->
 </div>
 <!--中间内容结束-->
@@ -179,9 +168,9 @@
             <ul>
 				<!--{loop $visitorlist $key $value}-->
 					<!--{if $value[vusername] == ''}-->
-                <li<!--{if $key % 3 == 0}--> class="nm"<!--{/if}-->><img src="<?=$_USER_SC['domain']?>image/magic/hidden.gif" alt="匿名" /><br />匿名</a><br /><!--{date('n月j日',$value[dateline],1)}--></li>
+                <li<!--{if $key % 3 == 2}--> class="nm"<!--{/if}-->><img src="<?=$_USER_SC['domain']?>image/magic/hidden.gif" alt="匿名" /><br />匿名</a><br /><!--{date('n月j日',$value[dateline],1)}--></li>
 					<!--{else}-->
-                <li<!--{if $key % 3 == 0}--> class="nm"<!--{/if}-->><a href="<!--{eval echo usr_url('space', array('uid'=>$value[vuid]))}-->"><!--{avatar($value[vuid],small)}--><br />{$_SN[$value[vuid]]}</a><br /><!--{date('n月j日',$value[dateline],1)}--></li>
+                <li<!--{if $key % 3 == 2}--> class="nm"<!--{/if}-->><a href="<!--{eval echo usr_url('space', array('uid'=>$value[vuid]))}-->"><!--{avatar($value[vuid],small)}--><br />{$_SN[$value[vuid]]}</a><br /><!--{date('n月j日',$value[dateline],1)}--></li>
                     <!--{/if}-->
 				<!--{/loop}-->
             </ul>
@@ -195,8 +184,8 @@
         <div class="cynr">
             <ul>
 			<!--{loop $newspacelist $key $value}-->
-            <li class="<!--{if $ols[$value[uid]]}-->
-            online_icon_p<!--{if $key % 3 == 0}--> nm<!--{/if}-->
+            <li class="<!--{if $key % 3 == 2}-->nm <!--{/if}--><!--{if $ols[$value[uid]]}-->
+            online_icon_p
             <!--{/if}-->" title="在线"><a href="<!--{eval echo usr_url('space', array('uid'=>$value[uid]))}-->"><!--{avatar($value[uid],small)}--><br />{$_SN[$value[uid]]}</a><br /><!--{date('n月j日',$value[dateline],1)}--></li>
 			<!--{/loop}-->
             </ul>
@@ -222,8 +211,8 @@
         <div class="cynr">
             <ul>
 			<!--{loop $olfriendlist $key $value}-->
-            <li class="<!--{if $ols[$value[uid]]}-->
-            online_icon_p<!--{if $key % 3 == 0}--> nm<!--{/if}-->
+            <li class="<!--{if $key % 3 == 2}-->nm <!--{/if}--><!--{if $ols[$value[uid]]}-->
+            online_icon_p
             <!--{/if}-->" title="在线"><a href="<!--{eval echo usr_url('space', array('uid'=>$value[uid]))}-->"><!--{avatar($value[uid],small)}--><br />{$_SN[$value[uid]]}</a><br /><!--{if $value[lastactivity]}--><!--{date('H:i',$value[lastactivity],1)}--><!--{else}-->热度($value[num])<!--{/if}--></li>
 			<!--{/loop}-->
             </ul>
@@ -281,6 +270,7 @@
 <!--{eval my_checkupdate();}-->
 <!--{eval my_showgift();}-->
 <!--{template sns_footer}-->
+<!--{/if}-->	
 
 <!--{if 0}-->
 <!--{template header}-->

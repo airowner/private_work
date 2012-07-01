@@ -12,7 +12,7 @@
 			<br>请填写举报理由(最多150个字符):
 			<img src="<?=$_USER_SC['domain']?>image/zoomin.gif" onmouseover="this.style.cursor='pointer'" onclick="zoomTextarea('reason', 1)">
 			<img src="<?=$_USER_SC['domain']?>image/zoomout.gif" onmouseover="this.style.cursor='pointer'" onclick="zoomTextarea('reason', 0)"><br />
-			<textarea id="reason" name="reason" cols="72" rows="3" onkeydown="ctrlEnter(event, 'reportsubmit_btn')"></textarea>
+			<textarea id="reason" name="reason" cols="72" rows="3" onkeydown="ctrlEnter(event, 'reportsubmit_btn')" style="width:510px"></textarea>
 			<!--{if $reason}-->
 			<br />
 			<select name="reportinfo" onchange="_$('reason').value=this.value">

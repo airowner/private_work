@@ -6,6 +6,7 @@ UCHome=/srv/http/private_work/uc/home CD=. filter="*.php *.htm *.js" {
  cp.php
  do.php
  editor.php
+ gift.php
  help.php
  index.php
  invite.php
@@ -206,6 +207,21 @@ UCHome=/srv/http/private_work/uc/home CD=. filter="*.php *.htm *.js" {
    template_default_space_index.php
    index.htm
   }
+ }
+ gift=gift{
+  source=source{
+   common.php
+   index.htm
+  }
+  view=view{
+   index.htm
+   view.htm
+  }
+  gift_index.php
+  gift_list.php
+  gift_send.php
+  gift_view.php
+  index.htm
  }
  image=image {
   app=app {

@@ -6,7 +6,7 @@
 <h1>编辑</h1>
 <a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 <div class="popupmenu_inner" id="__editcommentform_{$cid}">
-<form id="editcommentform_{$cid}" name="editcommentform_{$cid}" method="post" action="cp.php?ac=comment&op=edit&cid=$cid">
+<form id="editcommentform_{$cid}" name="editcommentform_{$cid}" method="post" action="<!--{eval echo usr_url('cp', array('ac'=>'comment', 'op'=>'edit', 'cid'=>$cid))}-->">
 <table>
 <tr>
 	<td>
@@ -15,7 +15,7 @@
 		<img src="<?=$_USER_SC['domain']?>image/zoomin.gif" onmouseover="this.style.cursor='pointer'" onclick="zoomTextarea('message_{$cid}', 1)">
 		<img src="<?=$_USER_SC['domain']?>image/zoomout.gif" onmouseover="this.style.cursor='pointer'" onclick="zoomTextarea('message_{$cid}', 0)">
 		<br />
-		<textarea id="message_{$cid}" name="message" cols="70" onkeydown="ctrlEnter(event, 'editsubmit_btn');" rows="8">$comment[message]</textarea>
+		<textarea id="message_{$cid}" style="width:510px" name="message" cols="70" onkeydown="ctrlEnter(event, 'editsubmit_btn');" rows="8">$comment[message]</textarea>
 			
 	</td>
 </tr>
@@ -40,7 +40,7 @@
 <h1>删除回复</h1>
 <a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 <div class="popupmenu_inner" id="__deletecommentform_{$cid}">
-<form id="deletecommentform_{$cid}" name="deletecommentform_{$cid}" method="post" action="cp.php?ac=comment&op=delete&cid=$cid">
+    <form id="deletecommentform_{$cid}" name="deletecommentform_{$cid}" method="post" action="<!--{eval echo usr_url('cp', array('ac'=>'comment', 'op'=>'delete', 'cid'=>$cid))}-->">
 	<p>确定删除指定的回复吗？</p>
 	<p class="btn_line">
 		<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
@@ -61,7 +61,7 @@
 <h1>回复</h1>
 <a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 <div class="popupmenu_inner" id="__replycommentform_{$comment[cid]}">
-<form id="replycommentform_{$comment[cid]}" name="replycommentform_{$comment[cid]}" method="post" action="cp.php?ac=comment">
+<form id="replycommentform_{$comment[cid]}" name="replycommentform_{$comment[cid]}" method="post" action="<!--{eval echo usr_url('cp', array('ac'=>'comment'))}-->">
 	<table>
 		<tbody id="reply_msg_{$comment[cid]}">
 			<tr>

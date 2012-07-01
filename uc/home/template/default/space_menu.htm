@@ -1,28 +1,32 @@
-<div class="fxzz">
-    <div class="lezz"><a href="space.php?uid=$space[uid]"><!--{avatar($space[uid],'61x61')}--></a></div>
-    <div class="rizt"><p class="fs">{$_SN[$space[uid]]}的$_TPL['spacetitle']</p>
-        <p>
-        <a href="space.php?uid=$space[uid]">{$_SN[$space[uid]]}的主页</a>
-	<!--{if $_TPL['spacemenus']}-->
-		<!--{loop $_TPL['spacemenus'] $value}--> $value <!--{/loop}-->
-	<!--{/if}-->
+<div class="zrxq">
+    <div class="zrtx"><!--{avatar($space[uid],'100x100')}--></div>
+    <div class="zrjj">
+        <p class="mzd">
+            <!--{if $_TPL['spacetitle']}-->
+                <span style="font-size:14px">{$_SN[$space[uid]]}的$_TPL['spacetitle']</span>
+            <!--{/if}-->
+            <!--{if $_SGLOBAL[refer]}-->
+                <a class="r_option" href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
+            <!--{/if}-->
+            <span><a href="<!--{eval echo usr_url('space', array('uid'=>$space[uid]))}-->" class="spacelink">{$_SN[$space[uid]]}的主页</a><span>
+        </p>
+    <p class="qtlj">
+        <!--{if !$space['isfriend']}-->
+        <a href="<!--{eval echo usr_url('cp', array('ac'=>'friend', 'op'=>'add', 'uid'=>$space[uid]))}-->">加为好友</a><span>|</span>
+        <!--{/if}-->
+        <a href="#comment">给我留言</a><span>|</span>
+        <a href="<!--{eval echo usr_url('cp', array('ac'=>'poke', 'op'=>'send', 'uid'=>$space[uid]))}-->" id="a_poke" onclick="ajaxmenu(event, this.id, 1)">打个招呼</a><span>|</span>
+        <a href="<!--{eval echo usr_url('cp', array('ac'=>'pm', 'uid'=>$space[uid]))}-->" id="a_pm" onclick="ajaxmenu(event, this.id, 1)">发送消息</a><span>|</span>
+        <!--{if $space['isfriend']}-->
+        <a href="<!--{eval echo usr_url('cp', array('ac'=>'friend', 'op'=>'ignore', 'uid'=>$space[uid]))}-->" id="a_ignore" onclick="ajaxmenu(event, this.id)">解除好友</a><span>|</span>
+        <!--{/if}-->
+        <a href="<!--{eval echo usr_url('cp', array('ac'=>'common', 'op'=>'report', 'idtype'=>'uid', 'uid'=>$space[uid]))}-->" id="a_report" onclick="ajaxmenu(event, this.id, 1)">违规举报</a>
         </p>
     </div>
 </div>
-
-
-
-
-<!--{if 0}-->
-<div class="c_header a_header">
-	<div class="avatar48"><a href="space.php?uid=$space[uid]"><!--{avatar($space[uid],small)}--></a></div>
-	<!--{if $_SGLOBAL[refer]}-->
-		<a class="r_option" href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
-	<!--{/if}-->
-	<p style="font-size:14px">{$_SN[$space[uid]]}的$_TPL['spacetitle']</p>
-	<a href="space.php?uid=$space[uid]" class="spacelink">{$_SN[$space[uid]]}的主页</a>
-	<!--{if $_TPL['spacemenus']}-->
-		<!--{loop $_TPL['spacemenus'] $value}--> <span class="pipe">&raquo;</span> $value<!--{/loop}-->
-	<!--{/if}-->
-</div>
+<div class="other_menu">
+<!--{if $_TPL['spacemenus']}-->
+    <!--{loop $_TPL['spacemenus'] $value}--> <span class="pipe">&raquo;</span> $value<!--{/loop}-->
 <!--{/if}-->
+</div>
+

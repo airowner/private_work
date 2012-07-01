@@ -9,7 +9,7 @@ if(!defined('IN_UCHOME')) {
 }
 
 if(submitcheck('avatarsubmit')) {
-	showmessage('do_success', 'cp.php?ac=avatar', 0);
+	showmessage('do_success', 'cp.php?ac=profile&op=base', 0);
 }
 
 //头像
@@ -47,6 +47,6 @@ if($setarr) {
 	}
 }
 
-include template("cp_avatar");
+include template("cp_profile");
 
 ?>

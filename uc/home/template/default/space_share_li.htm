@@ -5,10 +5,10 @@
     </div>
     <p>
 		<!--{if $value[sid] && ($_SGLOBAL[supe_uid] == $value[uid] || checkperm('manageshare'))}-->
-		<a href="cp.php?ac=topic&op=join&id=$value[sid]&idtype=sid" id="a_topicjoin_$value[sid]" onclick="ajaxmenu(event, this.id)">凑热闹</a><span class="pipe">|</span>
+        <a href="<!--{eval echo usr_url('cp', array('ac'=>'topic', 'op'=>'join', 'id'=>$value['sid'], 'idtype'=>'sid'))}-->" id="a_topicjoin_$value[sid]" onclick="ajaxmenu(event, this.id)">凑热闹</a><span class="pipe">|</span>
 		<!--{/if}-->
 		<!--{if $value[sid]}--><a href="space.php?uid=$value[uid]&do=share&id=$value[sid]">评论</a>&nbsp;<!--{/if}-->
-		<!--{if $value[uid]==$_SGLOBAL[supe_uid]}--><!--{if $value['type']=='link' || 'video' == $value['type'] || 'music' == $value['type']}--><span class="pipe">|</span><!--{/if}--><a href="cp.php?ac=share&op=delete&sid=$value[sid]" id="s_$value[sid]_delete" onclick="ajaxmenu(event, this.id)">删除</a><!--{/if}-->
+		<!--{if $value[uid]==$_SGLOBAL[supe_uid]}--><!--{if $value['type']=='link' || 'video' == $value['type'] || 'music' == $value['type']}--><span class="pipe">|</span><!--{/if}--><a href="<!--{eval echo usr_url('cp', array('ac'=>'share', 'op'=>'delete', 'sid'=>$value['sid']))}-->" id="s_$value[sid]_delete" onclick="ajaxmenu(event, this.id)">删除</a><!--{/if}-->
     </p>
     <p><b id="quote">$value[body_general]</b></p>
 	<!--{if $value['image']}-->

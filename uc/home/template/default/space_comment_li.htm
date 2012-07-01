@@ -1,15 +1,16 @@
 <!--{if empty($ajax_edit)}--><li id="comment_$value[cid]_li"><!--{/if}-->
+<div class="tznr">
 <div class="zzxx">
 	<!--{if $value[author]}-->
 	<a href="space.php?uid=$value[authorid]"><!--{avatar($value[authorid],'60x60')}--></a>
 	<!--{else}-->
 	<img src="<?=$_USER_SC['domain']?>image/magic/hidden.gif" class="avatar" width="60" height="60" />
 	<!--{/if}-->
-    <p>骨头: 0  <br />威望: 20<br />大连<br />2级</p>
+    <p>骨头: 0  <br />威望: 20<br />所在地: <!--{$_SGLOBAL['space_'.$value[authorid].'_uid']['residecity']}--><br />经验值: <!--{$_SGLOBAL['space_'.$value[authorid].'_uid']['experience']}--></p>
 </div>
 <div class="nrxx">
     <p class="zz">
-        <b>沙发</b>
+        <b><!--{eval echo ($page-1)*$perpage + $__indx + 1}-->楼</b>
         <!--{if $value[author]}-->
         <a href="space.php?uid=$value[authorid]" id="author_$value[cid]">{$_SN[$value[authorid]]}</a> 
         <!--{else}-->
@@ -24,7 +25,7 @@
 				<!--{if $_SGLOBAL[magic][anonymous]}-->
 				<img src="<?=$_USER_SC['domain']?>image/magic/anonymous.small.gif" class="magicicon">
 				<a id="a_magic_anonymous_{$value[cid]}" href="magic.php?mid=anonymous&idtype=cid&id=$value[cid]" onclick="ajaxmenu(event,this.id, 1)">{$_SGLOBAL[magic][anonymous]}</a>
-				<span class="pipe">|</span>
+				<span>|</span>
 				<!--{/if}-->
 				<!--{if $_SGLOBAL[magic][flicker]}-->
 				<img src="<?=$_USER_SC['domain']?>image/magic/flicker.small.gif" class="magicicon">
@@ -33,10 +34,11 @@
 					<!--{else}-->
 				<a id="a_magic_flicker_{$value[cid]}" href="magic.php?mid=flicker&idtype=cid&id=$value[cid]" onclick="ajaxmenu(event,this.id, 1)">{$_SGLOBAL[magic][flicker]}</a>
 					<!--{/if}-->
-				<span class="pipe">|</span>
+				<span>|</span>
 				<!--{/if}-->
 				
 				<a href="cp.php?ac=comment&op=edit&cid=$value[cid]" id="c_$value[cid]_edit" onclick="ajaxmenu(event, this.id, 1)">编辑</a>
+				<span>|</span>
 			<!--{/if}-->
 
 		<!--{if $value['authorid'] != $_SGLOBAL['supe_uid'] && $value['author'] == "" && $_SGLOBAL[magic][reveal]}-->
@@ -51,6 +53,7 @@
         <!--{/if}-->
         <a href="cp.php?ac=common&op=report&idtype=comment&id=$value[cid]" id="a_report_$value[cid]" onclick="ajaxmenu(event, this.id, 1)">举报</a>
     </p>
+</div>
 </div>
 <!--{if empty($ajax_edit)}--></li><!--{/if}-->
 

@@ -1,0 +1,61 @@
+<!--{eval $_TPL['titles'] = array('礼物');}-->
+<!--{template header}-->
+<style type="text/css">
+@import url(/gift/css/ask_main.css);
+</style>
+<div class="c_header a_header">
+	<div class="avatar48"><a href="/space/uid/$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a></div>
+	<h1>给朋友礼物</h1>
+	<span class="spacelink">礼物</span>
+</div>
+<div class="tabs_header">
+	<ul class="tabs">
+		<li<!--{$actives[index]}-->><a href="/gift"><span>礼物赠送</span></a></li>
+		<li<!--{$actives[view]}-->><a href="/gift/do/view"><span>收到礼物</span></a></li>
+	</ul>
+</div>
+<div>
+	<ul>
+		<!--{if $list}-->
+		<!--{loop $list $val}-->
+		<li style="float:left; margin: 3px 8px;">
+			<table width="180">
+			<tr>
+			<td>
+				<table border="0">
+				  <tr>
+					<td height="25" colspan="2"><!--{if $val['uid'] == 0}-->某人悄悄的<!--{else}--><a href="/space/uid/{$val['uid']}">$val['username']</a>&nbsp;&nbsp;<!--{/if}--> 送给您礼物:<br></td>
+				  </tr>
+				  <tr>
+					<td width="90" rowspan="2">
+					<img src="/gift/gift_model/image/{$val['gift']}" onmouseover="promptdiv(this);" onmouseout="hiddenprompt(this);" onmousemove="moveel(event);" >
+					<input type="hidden" value="{$glist[$val['gift']]['name']}" name="name" /><input type="hidden" value="{$glist[$val['gift']]['summary']}" name="summary" />					</td>
+				  </tr>
+				  <tr>
+					<td width="90" valign="top">
+					<!--{if $val['uid'] != 0}--><!--{/if}-->
+					{$val['message']}<br></td>
+				  </tr>
+				  <tr>
+				    <td height="25" colspan="2" align="center"><a href="/gift/uid/{$val['uid']}">回赠礼物</a>　<a href="/cp/ac/pm/uid/$val['uid']" id="a_pm" onclick="ajaxmenu(event, this.id, 99999, '', -1)">发送消息</a></td>
+			      </tr>
+			  </table>			
+			<!--{if $val['message'] != ''}-->
+			<!--{else}-->
+			<!--{/if}-->
+			</table>
+	  </li>
+		<!--{/loop}-->
+		<!--{else}-->
+		您暂时没有收到礼物。
+		<!--{/if}-->
+	</ul>
+	<div style="clear:both;"></div>
+	<div class="page">$multi</div>
+</div>
+
+<div class="f_status f_status_w s_clear">
+
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

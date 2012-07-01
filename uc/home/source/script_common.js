@@ -117,6 +117,7 @@ function updateseccode() {
 
 //缩小图片并添加链接
 function resizeImg(id,size) {
+    if(!_$(id))  return;
 	var theImages = _$(id).getElementsByTagName('img');
 	for (i=0; i<theImages.length; i++) {
 		theImages[i].onload = function() {

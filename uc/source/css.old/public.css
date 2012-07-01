@@ -11,6 +11,7 @@ body{ font-family:"宋体","Arial Narrow";font-size:12px;color:#333;font-size:12
 .top p{ color:#FFF;}
 .top p.rini a{ margin-left:10px;}
 .top p.rini{ position:absolute; right:0; top:0;}
+form input[type="submit"] {color:transparent}
 
 /*.foot{ background:url(../images/db.png) no-repeat 0 0;position:absolute; left:50%; margin-left:-725px;height:214px; width:1450px;}*/
 .foot{ background:url(../images/db.png) no-repeat 0 0;height:214px; width:1450px; margin:0 auto;}
@@ -39,3 +40,45 @@ a.menu-hd{ color:#FFF;}
 .menu-bd-pane2 p.ts a{margin:0; line-height:22px; height:22px; font-family:"宋体"; color:#000;}
 .menud:hover .menu-bd-panel,.menud:hover .menu-bd-pane2{ display:block;}
 .menud:hover{background:url(../images/xlbg.png) no-repeat right 0;}
+
+.popupmenu_popup { padding: 1em; border: 3px solid #FF8E00; background: #FCF9E6; line-height: 1.4em; text-align: left; overflow: hidden; }
+.popupmenu_popup h1 { font-size: 1.17em; padding: 0 0 10px 0; }
+.popupmenu_popup td { padding-bottom: 0.4em; }
+.popupmenu_popup .float_del{ background-image: url(../image/delete2.gif); }
+.popupmenu_centerbox { border: 8px solid #FFAE4A; background: #FCF9E6; text-align: left; min-width:250px; max-width:550px; }
+.popupmenu_centerbox h1 { padding: 0 10px; color: #FF9919; font-size: 14px; line-height: 26px; cursor: move; }
+.popupmenu_centerbox .popupmenu_inner { padding: 10px; color: #444; }
+.popupmenu_centerbox .popupmenu_inner td{ line-height: 200%; }
+.popupmenu_centerbox .popupmenu_inner .t_input, .popupmenu_centerbox .popupmenu_inner textarea{ margin: 5px 0; border-color: #EBE6C9; }
+.popupmenu_centerbox .float_del{ background-image: url(../image/delete2.gif); }
+.popupmenu_centerbox .box { width: 400px; }
+.popupmenu_layer{ padding: 3px 6px 6px 1px; width: 220px; height: 80px; background: url(../image/ilayer.gif) no-repeat; text-align: center; }
+.popupmenu_layer p{ line-height: 20px; color: #333; }
+.popupmenu_layer p.btn_line{ font-size:     14px; color: #F30; padding:2px 0; }
+.popupmenu_layer strong{ font-weightht: normal; font-size: 18px; color: #FFF; }
+
+.float_del, .float_edit { position: absolute; width: 13px; height: 14px; background: url(../image/delete.gif) no-repeat 0 0; top: 0.5em; right: 5px; text-indent: -999em; overflow: hidden; display: block; }
+.float_edit { background-image: url(../image/edit.gif); right: 13px; }
+.float_del:hover { background-position: 0 -14px; }
+
+.magic_list{ width: 740px; overflow: hidden; }
+.magic_list li{ float: left; margin: 0 50px 20px 0; width: 320px; }
+.magic_img{ float: left; margin: 0 14px 0 0; padding: 10px; width: 76px; height: 76px; background: url(../image/magic_image_bg.gif) 0 0; overflow: hidden; }
+.magic_info{ float: left; width: 200px; }
+.magic_info h3{ margin: 0 0 5px; font-size: 12px; }
+.magic_info p{ margin: 0 0 5px; color: #333; line-height: 24px; }
+.magic_info p.gray{ height: 40px; color: #999; line-height: 20px; overflow: hidden; }
+.magic_info .m_button{ float: right; display: block; width: 62px; height: 26px; background: url(../image/m_button.gif); line-height: 27px; text-align: center; color: #FFF; overflow: hidden; }
+.magic_info .m_off{ background-position: 0 100%; }
+.magic_info span{ font-weight: bold; font-size: 14px; color: #F90; vertical-align: middle; }
+.magic_info .r_option{ margin: 0 10px; }
+.toolly{ padding: 10px; overflow: hidden; }
+.toolly .magic_img{ background-position: 0 100%; }
+.toolly p{ margin: 0 0 10px; color: #333; line-height: 26px; }
+.toolly .magic_info p{ margin: 0 0 2px; color: #333; }
+.toolly .magic_info p.gray{ height: auto; color: #999; line-height: 20px; overflow: hidden; }
+.toolly .magic_info{ width: 290px; }
+
+.facebox { padding: 8px; width: 250px; border: 1px solid #CCC; background: #FFF; z-index: 100000;}
+.facebox ul li { float: left; width: 25px; height: 25px; overflow: hidden; }
+

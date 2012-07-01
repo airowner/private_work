@@ -10,24 +10,20 @@ scrollDoor.prototype = {
 		}				
 		for(var i = 0 ; i < menus.length ; i++)
 		{	
-			_this.$(menus[i]).value = i;				
-			_this.$(menus[i]).onclick = function(){
+            if(!_$(menus[i])) continue;
+			_$(menus[i]).value = i;				
+			_$(menus[i]).onclick = function(){
 					
 				for(var j = 0 ; j < menus.length ; j++)
 				{						
-					_this.$(menus[j]).className = closeClass;
-					_this.$(divs[j]).style.display = "none";
+					_$(menus[j]).className = closeClass;
+					_$(divs[j]).style.display = "none";
 				}
-				_this.$(menus[this.value]).className = openClass;	
-				_this.$(divs[this.value]).style.display = "block";				
+				_$(menus[this.value]).className = openClass;	
+				_$(divs[this.value]).style.display = "block";				
 			}
 		}
-		},
-	$ : function(oid){
-		if(typeof(oid) == "string")
-		return document.getElementById(oid);
-		return oid;
-	}
+    }
 }
 window.onload = function(){
 	var SDmodel = new scrollDoor();

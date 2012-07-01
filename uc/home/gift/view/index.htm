@@ -1,0 +1,329 @@
+<!--{eval $_TPL['titles'] = array('礼物');}-->
+
+<!--{if !$_GET[inajax]}-->
+<!--{template sns_header}-->
+
+<style type="text/css">
+@import url(/gift/css/ask_main.css);
+</style>
+<script type="text/javascript">
+function closeNameDiv()
+{
+	$('username_menu').style.display='none';
+	//var pos=getElementPos($('username_menu'));
+	removeEvent(document, 'click', E);
+	E = null;
+
+}
+function getEvent(){
+	var obj1, obj = getEvent.caller;
+	while(obj1 = obj){
+		if(typeof obj1.caller.arguments[0]=="object"){
+			return obj1.caller.arguments[0];
+		}
+		obj = obj1.caller;
+	}
+}
+var E = null;
+function isPos1(){
+	if(E == null) return;
+	if($('username_menu').style.display == "none") return;
+	var ev = window.event ? window.event : getEvent();
+	ev = mousePosition(ev);
+	var obj = getElementPos($('username_menu'));
+	var l=obj.x, t=obj.y-20, r=obj.x+150, b=obj.y+100;
+	if(ev.x<=l || ev.x>=r || ev.y<=t || ev.y>=b)
+	{
+		closeNameDiv();
+	}
+
+}
+</script>
+<div class="c_header a_header">
+	<div class="avatar48"><a href="/space/uid/$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a></div>
+	<h1>给朋友礼物</h1>
+	<span class="spacelink">礼物</span>
+</div>
+<div class="tabs_header">
+	<ul class="tabs">
+		<li<!--{$actives[index]}-->><a href="/gift"><span>礼物赠送</span></a></li>
+		<li<!--{$actives[view]}-->><a href="/gift/do/view"><span>收到礼物</span></a></li>
+	</ul>
+</div>
+
+<form id="giftform" method="POST" action="/gift/do/send">
+	<div style="float:left;">
+	<ul style="line-height:26px;" id="type_ul">
+	<!--{loop $giftlist[category] $key $val}-->
+	<li style="padding:5px;float:left;" id="type_{$key}" ><a href="#" onclick="showList( {$key} , 0 )" >{$val}</a></li>
+	<!--{/loop}-->
+	<li style="padding:5px;float:left;" id="type_all" ><a href="#" onclick="showList( -1 , 0 )" >全部</a></li>
+	</ul>
+	</div>
+	<div style="float:right;padding-top:10px;">您当前剩余<font style="color:red; font-weight:bold;">$space[credit]</font>个积分</div>
+	<div style="clear:both;"></div>
+	<div style="border:1px solid #cccccc;height:100%;">
+	<ul style="padding:20px" id="gift_list"></ul>
+	<div style="clear:both;"></div>
+	<div id="gift_page" style="padding:10px 30px;text-align:right;"></div>
+	</div>
+	<div>
+	<script type="text/javascript" src="/js/script_autocomplete.js"></script>
+	    <table cellspacing="0" cellpadding="0">
+		<tr>
+			<td>
+				<label style="font-size:14px;line-height:28px"><strong>我要送给：</strong></label>
+				<br><input type="text" id="username_gift" name="username_gift" value="{$fusername}" style="width: 150px;" class="t_input" tabindex="1" <!--{if $friends}--> onclick="auc.handleEvent(this.value ,event);E=function(){return isPos1();};addEvent(document, 'click', E)" onkeyup="auc.handleEvent(this.value ,event);" onkeydown="closeOpt(username_gift,event);inputKeyDown(event);" autocomplete="off" <!--{/if}--> />
+				<div id="username_menu" class="ajax_selector" onclick="closeNameDiv();" style="display:none">
+					<div class="ajax_selector_option" style="width: 150px; height: 100px;">
+						<p align='right'><a href="javascript:;" onclick="closeNameDiv();" style="margin-right: 5px;">关闭</a></p>
+						<ul id="friendlist" class="blocklink">
+							<!--{loop $friends $key $value}-->
+								<!--{eval $fs[] = $value['username'];}-->
+								<li>$value[username]</li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td><h2 style="font-size:14px;line-height:28px">附加消息:</h2>
+			<p>还可输入 <span id="maxlimit">140</span> 字节</p></td>
+		</tr>
+		<tr>
+			<td>
+			<table width="439" height="120" cellpadding="0" cellspacing="0">
+	          <tbody>
+	            <tr>
+	              <td width="437" valign="middle"><textarea name="message" cols="70" rows="5" class="ft12z" onkeyup="textCounter(this, 'maxlimit', 140)" id="comment_message"></textarea></td>
+	            </tr>
+	          </tbody>
+	        </table>
+	        </td>
+		</tr>
+		<tr>
+			<td>
+			<table cellpadding="0" cellspacing="0">
+	          <tr>
+	          	<td><h2 style="font-size:14px;line-height:28px">选择赠送的方式:</h2></td>
+	          </tr>
+	          <tr>
+	          	<td><input type="radio" name="gifttype" value="0" checked><strong>公开赠送</strong> <span class="time">其他人可以看见你送的礼物。</span></td>
+	          </tr>
+	          <tr>
+	          	<td><input type="radio" name="gifttype" value="1"><strong>私下赠送</strong> <span class="time">只有接收礼物的人能看见你的名字和消息。</span></td>
+	          </tr>
+	          <tr>
+	          	<td><input type="radio" name="gifttype" value="2"><strong>匿名赠送</strong> <span class="time">只有接收礼物的人能看见你的消息，但不显示你的名字。</span></td>
+	          </tr>
+	        </table>
+	        </td>
+		</tr>
+		<tr>
+			<td style="padding-top:10px"><input id="giftsubmit" type="hidden" value="true" name="giftsubmit" /><input id="giftsubmit_btn" type="submit" value="赠送" name="giftsubmit_btn" class="submit" /></td>
+		</tr>
+	    </table>
+</div>
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</form>
+<script language="javascript" type="text/javascript" src="/js/jquery.js"></script>
+<script language="javascript" type="text/javascript">var J = jQuery.noConflict();</script>
+<script type="text/javascript">
+J(document).ready(function(){
+	showList( 0 , 0 );
+});
+var auc = new sAutoComplete("auc", "username_menu", "friendlist", "username_gift", 0, '');
+auc.addItem('$friendstr');
+</script>
+
+<!--{template sns_footer}-->
+<!--{else}-->
+
+<h1>赠送礼品</h1>
+<a href="javascript:hideMenu();" title="关闭" class="float_del">关闭</a>
+<div id="$uid" class="popupmenu_inner" style="width:690px;">
+<form id="giftform" method="POST" action="/gift/do/send">
+<input type="hidden" id="username_gift" name="username_gift" value="{$friend}"/>
+<div style="padding: 1em 2em;">
+	<div style="float:left;">
+	<ul style="line-height:26px;" id="type_ul">
+	<!--{loop $giftlist[category] $key $val}-->
+	<li style="padding:5px;float:left;" id="type_{$key}" ><a href="javascript:void(0);" onclick="showList( {$key} , 0 )" id="type_a_{$key}" >{$val}</a></li>
+	<!--{/loop}-->
+	<li style="padding:5px;float:left;" id="type_all" ><a href="javascript:void(0);" onclick="showList( -1 , 0 )" >全部</a></li>
+	</ul>
+	</div>
+	<div style="float:right;padding-top:10px;">您当前剩余<font style="color:red; font-weight:bold;">$space[credit]</font>个积分</div>
+	<div style="clear:both;"></div>
+	<div style="border:1px solid #cccccc;height:100%;">
+	<ul style="padding:20px" id="gift_list"></ul>
+	<div style="clear:both;"></div>
+	<div id="gift_page" style="padding:10px 30px;text-align:right;"></div>
+	</div>
+</div>
+<div style="padding: 1em 2em;">
+	<div>	
+		<table cellspacing="0" cellpadding="0">
+		<tr>
+			<td><h2 style="font-size:14px;line-height:28px">附加消息:</h2>
+			<p>还可输入 <span id="maxlimit">140</span> 字节</p></td>
+		</tr>
+		<tr>
+			<td>
+			<table width="439" height="120" cellpadding="0" cellspacing="0">
+	          <tbody>
+	            <tr>
+	              <td width="437" valign="middle"><textarea style="background-color:#fff;" name="message" cols="70" rows="5" class="ft12z" onkeyup="textCounter(this, 'maxlimit', 140)" id="comment_message"></textarea></td>
+	            </tr>
+	          </tbody>
+	        </table>
+	        </td>
+		</tr>
+		<tr>
+			<td>
+			<table cellpadding="0" cellspacing="0">
+	          <tr>
+	          	<td><h2 style="font-size:14px;line-height:28px">选择赠送的方式:</h2></td>
+	          </tr>
+	          <tr>
+	          	<td><input type="radio" name="gifttype" value="0" checked><strong>公开赠送</strong> <span class="time">其他人可以看见你送的礼物。</span></td>
+	          </tr>
+	          <tr>
+	          	<td><input type="radio" name="gifttype" value="1"><strong>私下赠送</strong> <span class="time">只有接收礼物的人能看见你的名字和消息。</span></td>
+	          </tr>
+	          <tr>
+	          	<td><input type="radio" name="gifttype" value="2"><strong>匿名赠送</strong> <span class="time">只有接收礼物的人能看见你的消息，但不显示你的名字。</span></td>
+	          </tr>
+	        </table>
+	        </td>
+		</tr>
+		<tr>
+			<td style="padding-top:10px"><input id="giftsubmit" type="hidden" value="true" name="giftsubmit" /><input id="giftsubmit_btn" type="button" value="赠送" name="giftsubmit_btn" class="submit" onclick="ajaxpost('giftform', '$uid')" /></td>
+		</tr>
+	    </table>
+</div>
+</div>
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</form>
+</div>
+
+<script language="javascript" type="text/javascript">J = jQuery.noConflict();</script>
+<!--{/if}-->
+<script type="text/javascript">
+
+var close = true;
+function closeOpt(key,evt) {
+	if(evt.keyCode==9) {
+		$('username_menu').style.display='none';
+	}
+}
+function inputKeyDown(event) {
+	if(event.keyCode == 13){
+		doane(event);
+	}
+}
+function textCounter(obj, showid, maxlimit) {
+	var len = strLen(obj.value);
+	var showobj = document.getElementById(showid);
+	if(len > maxlimit) {
+		obj.value = getStrbylen(obj.value, maxlimit);
+		showobj.innerHTML = '0';
+	} else {
+		showobj.innerHTML = maxlimit - len;
+	}
+	if(maxlimit - len > 0) {
+		showobj.parentNode.style.color = "";
+	} else {
+		showobj.parentNode.style.color = "red";
+	}
+}
+function getStrbylen(str, len) {
+	var num = 0;
+	var strlen = 0;
+	var newstr = "";
+	var obj_value_arr = str.split("");
+	for(var i = 0; i < obj_value_arr.length; i ++) {
+		if(i < len && num + byteLength(obj_value_arr[i]) <= len) {
+			num += byteLength(obj_value_arr[i]);
+			strlen = i + 1;
+		}
+	}
+	if(str.length > strlen) {
+		newstr = str.substr(0, strlen);
+	} else {
+		newstr = str;
+	}
+	return newstr;
+}
+function byteLength (sStr) {
+	aMatch = sStr.match(/[^\x00-\x80]/g);
+	return (sStr.length + (! aMatch ? 0 : aMatch.length));
+}
+function strLen(str) {
+	var charset = document.charset; 
+	var len = 0;
+	for(var i = 0; i < str.length; i++) {
+		len += str.charCodeAt(i) < 0 || str.charCodeAt(i) > 255 ? (charset == "utf-8" ? 3 : 2) : 1;
+	}
+	return len;
+}
+
+var selnum = -1;
+function showList(tid,st){
+	J('#gift_list').html("<p><img src=\"/gift/js/loading.gif\" align=\"absmiddle\">正在获取数据，请稍候...</p>");
+	J.ajax({
+	   type: "POST",
+	   url: "/gift/do/list/num/"+Math.round(Math.random()*10000),
+	   data: "t="+tid+"&s="+st,
+	   success: function(msg){
+	   		J('#gift_list').html("");
+	   		J('#gift_page').html("");
+	   		if(msg == "err_null_rs"){
+	   			alert("通信错误");
+	   		}else{
+				eval("var list = "+unescape(msg));
+				//var list = eval('('+unescape(msg)+')');
+				var num = list.gift.length;
+				var maxtype = <!--{eval echo count($giftlist[category])}-->;
+				
+				for(var i=0;i<maxtype;i++){
+					J('#type_'+i).css("font-weight","normal");
+					J('#type_all').css("font-weight","normal");
+				}
+				J('#type_'+list.type).css("font-weight","bold");
+				
+				for(i=0;i<num;i++){
+					var newli = "<li style=\"width:100px;height:80px;float:left;\"><div id=\"gift_"+i+"\" style=\"width:68px; height:68px;\"><img style=\"margin:2px;\" src=\"/gift/gift_model/image/"+list.gift[i].src+"\" width=\"64\" height=\"64\" onmouseover=\"promptdiv(this);\" onmouseout=\"hiddenprompt(this);\" onmousemove=\"moveel(event);\" onclick=\"select_gift('"+i+"');\" ><input type=\"hidden\" value=\""+list.gift[i].name+"\" name=\"name\" /><input type=\"hidden\" value=\""+list.gift[i].summary+"\" name=\"summary\" /><input type=\"hidden\" value=\"花费："+list.gift[i].cost+"分\" name=\"pay\" /><p style=\"display:none;\"><input type=\"radio\" id=\"gift_radio_"+i+"\" name=\"giftitem\" align=\"middle\" value=\""+list.gift[i].gid+"\"></p></div></li>";
+					J('#gift_list').append(newli);
+				}
+				if(list.pages > 1){
+					var page = '';
+					for(i=0;i<(list.pages);i++){
+						if(list.curp == i){
+							page = page + "<a href='javascript:void(0);' style=\"margin: 0 2px; padding: 1px 5px; line-height: 26px;\" onclick=\"showList( "+tid+" , "+(list.perpage*i)+" )\"><strong>"+(i+1)+"</strong></a>";
+						}else{
+							page = page + "<a href='javascript:void(0);' style=\"margin: 0 2px; padding: 1px 5px; border: 1px solid #DDD;line-height: 26px;\" onclick=\"showList( "+tid+" , "+(list.perpage*i)+" )\">"+(i+1)+"</a>";
+						}
+					}
+					J('#gift_page').html(page);
+				}
+	   		}
+	   }
+	 });
+}
+function select_gift(id) {
+	if(selnum != -1 || id == selnum) {
+		$("gift_"+selnum).style.backgroundColor = "#fff";
+		$("gift_radio_"+selnum).checked = false;
+		if(id == selnum) {
+			selnum = -1;
+			return false;
+		}
+	}
+	$("gift_"+id).style.backgroundColor = "#000";
+	$("gift_radio_"+id).checked = true;
+	selnum = id;
+}
+//showList( 0 , 0 );
+</script>
