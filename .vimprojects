@@ -209,6 +209,11 @@ UCHome=/srv/http/private_work/uc/home CD=. filter="*.php *.htm *.js" {
   }
  }
  gift=gift{
+  gift_index.php
+  gift_list.php
+  gift_send.php
+  gift_view.php
+  index.htm
   source=source{
    common.php
    index.htm
@@ -217,11 +222,6 @@ UCHome=/srv/http/private_work/uc/home CD=. filter="*.php *.htm *.js" {
    index.htm
    view.htm
   }
-  gift_index.php
-  gift_list.php
-  gift_send.php
-  gift_view.php
-  index.htm
  }
  image=image {
   app=app {

@@ -1,4 +1,54 @@
 <!--{eval $_TPL['titles'] = array('礼物');}-->
+<!--{template sns_header}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/lw.css"/>
+        <div class="ricz">
+        	<div class="tp">
+                <p class="xlj">当前积分：$space[credit]<b>积分</b></p>
+                <p>小贴士：你收到的礼物在你的礼物箱里，可以再次实用。</p>
+            </div>
+            <div class="lwfl">
+            	<ul>
+                    <li<!--{if $op=="me"}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs02"><a class="t" href="<?=usr_url('gift', array('do'=>'view', 'op'=>'me'))?>">我的礼物记录</a></li>
+                    <li<!--{if $op=="friend"}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> class="sdd02" id="zs03"><a class="f" href="<?=usr_url('gift', array('do'=>'view', 'op'=>'friend'))?>">朋友的礼物纪录</a></li>
+                    <li class="sdd02" id="zs04"><a class="s" href="<?=usr_url('gift')?>">送礼物</a></li>
+                </ul>
+            </div>
+            <div class="lwnr">
+            	<div id="to01">
+					<div class="lwxq">
+                <!--{if $list}-->
+                    <!--{loop $list $val}-->
+                        <div class="lwtp">
+                            <img src="<?=$_USER_SC['domain']?>images/gift{$val['gift']}" onmouseover="promptdiv(this);" onmouseout="hiddenprompt(this);" onmousemove="moveel(event);" />
+                            <input type="hidden" value="{$glist[$val['gift']]['name']}" name="name" />
+                            <input type="hidden" value="{$glist[$val['gift']]['summary']}" name="summary" />
+                        </div>
+                        <div class="lwtx">
+                            <p><!--{if $val['uid'] == 0}-->某人悄悄的<!--{else}--><a href="<!--{eval echo usr_url('space', array('uid'=>$val['uid']))}-->">$val['username']</a>&nbsp;&nbsp;<!--{/if}-->在<span><!--{date('m-d H:i',$val[dateline],0)}--></span> 送给您的 <span>{$glist[$val['gift']]['name']}</span></p>
+							<p>他对您说：</p>
+                            <!--{if $val['message'] != ''}-->
+                            <p>{$val['message']}</p>
+                            <!--{else}-->
+                            <p>都在礼物里啦！啥都甭说了……来而不往非礼也！这事你看着办吧！</p>
+                            <!--{/if}-->
+                            <p>
+                            <!--{if $val['uid'] != 0}--><a href="<!--{eval echo usr_url('space', array('uid'=>$val['uid']))}-->">回赠礼物</a><!--{/if}-->　
+                            <a href="<!--{eval echo usr_url('cp', array('ac'=>'pm', 'uid'=>$val['uid']))}-->" id="a_pm" onclick="ajaxmenu(event, this.id, 99999, '', -1)">发送消息</a>
+                            </p>
+                        </div>
+                    <!--{/loop}-->
+                <!--{else}-->
+                    您暂时没有收到礼物。
+                <!--{/if}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--{template sns_footer}-->
+
+
+<!--{if 0}-->
+<!--{eval $_TPL['titles'] = array('礼物');}-->
 <!--{template header}-->
 <div class="c_header a_header">
 	<div class="avatar48"><a href="/space/uid/$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a></div>
@@ -43,3 +93,4 @@
 	<div class="page">$multi</div>
 </div>
 <!--{template footer}-->
+<!--{/if}-->

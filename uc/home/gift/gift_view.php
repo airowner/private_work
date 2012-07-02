@@ -5,7 +5,8 @@ if(!defined('IN_UCHOME')) {
 
 //分页
 $start = empty($_GET['start'])?0:intval($_GET['start']);
-$theurl = "/gift/do/view";
+$op = empty($_GET['op'])?'me':in_array($_GET['op'], array('me', 'friend')) ? $_GET['op'] : 'me';
+$theurl = usr_url('gift', array('do'=>'view', 'op'=>$op));
 //检查开始数
 $_VPERPAGE=$_VPERPAGE-1;
 ckstart($start, $_VPERPAGE);
@@ -18,12 +19,17 @@ for($i=0;$i<count($gift['category']);$i++){
 		$glist[$g['src']] = array("name"=>$g['name'], "summary"=>$g['summary']);
 	}
 }
-$sql = "SELECT * FROM ".tname("app_tw_gift")." WHERE touid = {$_SGLOBAL['supe_uid']} ORDER BY dateline DESC limit {$start},{$_VPERPAGE}";
+if($op == 'me'){
+    $sql = "SELECT * FROM ".tname("app_tw_gift")." WHERE touid = {$_SGLOBAL['supe_uid']} ORDER BY dateline DESC limit {$start},{$_VPERPAGE}";
+}else{
+    $sql = "SELECT * FROM ".tname("app_tw_gift")." WHERE uid = {$_SGLOBAL['supe_uid']} ORDER BY dateline DESC limit {$start},{$_VPERPAGE}";
+}
+$list = array();
 $query = $_SGLOBAL['db']->query($sql);
 if($_SGLOBAL['db']->num_rows($query) > 0){
 	while ($value = $_SGLOBAL['db']->fetch_array($query)){
 		//$value['message'] = mb_substr($value['message'], 0, 8);
-		$value['message'] = $value['message'];
+		//$value['message'] = $value['message'];
 		$list[] = $value;
 	}
 	$count = count($list);

@@ -52,16 +52,14 @@ if(!submitcheck("giftsubmit")){
 		$data['uid'] = '0';
 		$data['username'] = '0';
 	}
-	
-	inserttable('app_tw_gift', $data);
-	$_SGLOBAL['db']->query("UPDATE ".tname('space')." SET credit=credit-".$myGift['cost']." WHERE uid='$_SGLOBAL[supe_uid]'");
+	inserttable('app_tw_gift', $data); $_SGLOBAL['db']->query("UPDATE ".tname('space')." SET credit=credit-".$myGift['cost']." WHERE uid='$_SGLOBAL[supe_uid]'");
 	//$_SGLOBAL['db']->query("UPDATE ".tname('session')." SET credit=credit-".$myGift['cost']." WHERE uid='$_SGLOBAL[supe_uid]'");
 	include_once(S_ROOT.'./source/function_cp.php');
 	//feed
 	if($type == "0"){
 		$fs = array();
 		$fs['icon'] = 'share';
-		$fs['title_template'] = "{actor} 送给 <a href=\"/space/uid/{$toInfo['uid']}\">".$toInfo['username']."</a> 一份<a href=\"/gift\">礼物</a><br><a href=\"/space/uid/{$toInfo['uid']}/do/gift\"><img src=\"/gift/gift_model/image/{$myGift['src']}\" onmouseover=\"promptdiv(this);\" onmouseout=\"hiddenprompt(this);\" onmousemove=\"moveel(event);\" ><input type=\"hidden\" value=\"{$myGift['name']}\" name=\"name\" /><input type=\"hidden\" value=\"{$myGift['summary']}\" name=\"summary\" /></a>";
+		$fs['title_template'] = "{actor} 送给 <a href=\"" . usr_url('space', array('uid'=>$toInfo['uid'])) . "\">".$toInfo['username']."</a> 一份<a href=\"/gift\">礼物</a><br><a href=\"" . usr_url('space', array('do'=>'gift', 'uid'=>$toInfo['uid'])) . "\"><img src=\"{$_USER_SC['domain']}/images/gift/{$myGift['src']}\" onmouseover=\"promptdiv(this);\" onmouseout=\"hiddenprompt(this);\" onmousemove=\"moveel(event);\" ><input type=\"hidden\" value=\"{$myGift['name']}\" name=\"name\" /><input type=\"hidden\" value=\"{$myGift['summary']}\" name=\"summary\" /></a>";
 		$fs['title_data'] = array();
 		$fs['body_template'] = '';
 		$fs['body_data'] = array();
@@ -69,13 +67,13 @@ if(!submitcheck("giftsubmit")){
 	}
 	//通知
 	if($type == "2"){
-		$message = "某人悄悄的送给您<a href=\"/gift/do/view\">礼物</a><br><img src=\"/gift/gift_model/image/{$myGift['src']}\" onmouseover=\"promptdiv(this);\" onmouseout=\"hiddenprompt(this);\" onmousemove=\"moveel(event);\" ><input type=\"hidden\" value=\"{$myGift['name']}\" name=\"name\" /><input type=\"hidden\" value=\"{$myGift['summary']}\" name=\"summary\" />";
+		$message = "某人悄悄的送给您<a href=\"" . usr_url('gift', array('do'=>'view')) . "\">礼物</a><br><img src=\"{$_USER_SC['domain']}/images/gift/{$myGift['src']}\" onmouseover=\"promptdiv(this);\" onmouseout=\"hiddenprompt(this);\" onmousemove=\"moveel(event);\" ><input type=\"hidden\" value=\"{$myGift['name']}\" name=\"name\" /><input type=\"hidden\" value=\"{$myGift['summary']}\" name=\"summary\" />";
 	}else{
-		$message = "送给您<a href=\"/gift/do/view\">礼物</a><br><img src=\"/gift/gift_model/image/{$myGift['src']}\" onmouseover=\"promptdiv(this);\" onmouseout=\"hiddenprompt(this);\" onmousemove=\"moveel(event);\" ><input type=\"hidden\" value=\"{$myGift['name']}\" name=\"name\" /><input type=\"hidden\" value=\"{$myGift['summary']}\" name=\"summary\" />";
+		$message = "送给您<a href=\"" . usr_url('gift', array('do'=>'view')) . "\">礼物</a><br><img src=\"{$_USER_SC['domain']}/images/gift/{$myGift['src']}\" onmouseover=\"promptdiv(this);\" onmouseout=\"hiddenprompt(this);\" onmousemove=\"moveel(event);\" ><input type=\"hidden\" value=\"{$myGift['name']}\" name=\"name\" /><input type=\"hidden\" value=\"{$myGift['summary']}\" name=\"summary\" />";
 	}
 	if($data['message']){$message .="<br>附言 : ".$data['message'];}
 	if($type != "2"){
-		$message .= "<br><a href=\"/gift/uid/{$_SGLOBAL['supe_uid']}\">回赠礼物</a>";
+		$message .= "<br><a href=\"" . usr_url('gift', array('uid'=>$_SGLOBAL['supe_uid'])) . "\">回赠礼物</a>";
 		notification_add($toInfo['uid'], "app", $message );
 	}else{
 		$sql = "INSERT INTO ".tname("notification")." (uid,type,new,authorid,author,note,dateline) VALUES('{$toInfo['uid']}','app','1','','','{$message}','{$data['dateline']}')";

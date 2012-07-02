@@ -38,47 +38,25 @@ function isPos1(){
 <div class="ricz">
     <div class="tp">
         <p class="xlj">当前积分：$space[credit]<b>积分</b></p>
-        <p>小贴士：你收到的礼物在你的礼物箱里，可以再次实用。</p>
+        <p>小贴士：你收到的礼物在你的礼物箱里，可以再次使用。</p>
     </div>
     <div class="lwfl">
         <ul>
-            <li class="sdd01" id="zs01"><a class="o" href="#">我的礼物想</a></li>
-            <li class="sdd02" id="zs02"><a class="t" href="#">我的礼物记录</a></li>
-            <li class="sdd02" id="zs03"><a class="f" href="#">朋友的礼物纪录</a></li>
-            <li class="sdd02" id="zs04"><a class="s" href="#">送礼物</a></li>
+            <li class="sdd02" id="zs02"><a class="t" href="<?=usr_url('gift', array('do'=>'view', 'op'=>'me'))?>">我的礼物记录</a></li>
+            <li class="sdd02" id="zs03"><a class="f" href="<?=usr_url('gift', array('do'=>'view', 'op'=>'friend'))?>">朋友的礼物纪录</a></li>
+            <li class="sdd01" id="zs04"><a class="s" href="<?=usr_url('gift')?>">送礼物</a></li>
         </ul>
     </div>
     <div class="lwnr">
         <div id="to01">
-        <form id="giftform" method="POST" action="/gift/do/send">
+        <form id="giftform" method="POST" action="<?=usr_url('gift', array('do'=>'send'))?>">
             <p class="wpfl">
-            <a id="type_all" href="#" onclick="showList( -1 , 0 )" >全部</a>
+            <a id="type_all" href="javascript:void(0)" onclick="showList( -1 , 0 )" >全部</a>
             <!--{loop $giftlist[category] $key $val}-->
-            <span>|</span><a class="dqd" id="type_{$key}" href="#" onclick="showList( {$key} , 0 )" >{$val}</a>
+            <span>|</span><a class="dqd" id="type_{$key}" href="javascript:void(0)" onclick="showList( {$key} , 0 )" >{$val}</a>
             <!--{/loop}-->
             </p>
             <ul id="gift_list">
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li class="nm"><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>	
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li class="nm"><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>	
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
-                <li class="nm"><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
             </ul>
             <div class="zsnr">
                 <p class="fs">我要送给</p>

@@ -4,19 +4,8 @@
  */
 
 //此语句仅为统计本插件使用数量，并无其他用途。为了使插件功能更加完善，请不要改动本文件代码。
-$url = "http://home.techweb.com.cn/appinfo.php?app=gift&uri=".urlencode($_SERVER['HTTP_HOST']."/".$_SERVER['PHP_SELF'])."&scpit=".urlencode($_SERVER['SCRIPT_URI']);
-@file_get_contents($url);
 
-if ($_GET['install'] != 'yes') {
-	echo '<meta http-equiv="Content-Type" content="text/html; charset=gbk" />';
-	echo "您还没有安装 礼物插件。 <a href='gift.php?do=install&install=yes'>点击这里自动安装</a>。<br /><br />";
-	echo "如果您已经安装，请删除gift/文件夹下gift_install.php文件 <br /><br />";
-	echo "(以下是手动安装说明)<br /><br /><hr />";
-	echo "<pre>";
-	include("gift/readme.txt");
-	echo "</pre>";
-	exit();
-}
+require '../common.php';
 
 if ( $_SGLOBAL['db']->version()>'4.1') {
 	$sqlfile = "gift/gift.sql";
@@ -39,9 +28,9 @@ foreach ($sqls as $sql) {
 echo "<br /><br />sql语句执行成功。";
 
 
-unlink("gift/gift.sql");
-unlink("gift/gift.4.1.sql");
-unlink("gift/gift_install.php");
+//unlink("gift/gift.sql");
+//unlink("gift/gift.4.1.sql");
+//unlink("gift/gift_install.php");
 
 echo "<h4> 安装完成 </h4>";
 echo "<a href='gift.php'>点击这里预览</a>";
