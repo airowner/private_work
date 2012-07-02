@@ -21,6 +21,15 @@ function _$(id) {
 	return document.getElementById(id);
 }
 
+function addEvent (o, e, f) {
+	if (window.addEventListener) o.addEventListener(e, f, false);
+	else if (window.attachEvent) r = o.attachEvent('on' + e, f);
+}
+function removeEvent (o, e, f) {
+	if (window.removeEventListener) o.removeEventListener(e, f, false);
+	else if (window.detachEvent) r = o.detachEvent('on' + e, f);
+}
+
 function addSort(obj) {
 	if (obj.value == 'addoption') {
  	var newOptDiv = document.createElement('div')
@@ -219,6 +228,57 @@ function getEvent() {
 		func=func.caller;
 	}
 	return null;
+ }
+ 
+function taskScroll(direction) {
+	var task = _$('task');
+	var offset;
+	task.className ? offset = parseInt(task.className) : offset = 0;
+	var taskWidth = 0;
+	var taskNum = task.getElementsByTagName('li');
+	for ( i=0; i<taskNum.length; i++ ) {
+		taskWidth += taskNum[i].clientWidth;
+	}
+	var taskbarWidth = _$('taskbar').clientWidth;
+	var startWidth = _$('start').clientWidth;
+	var quicklaunchWidth = _$('quicklaunch') ? _$('quicklaunch').clientWidth : 0;
+	var taskScrollWidth = _$('taskbar').clientWidth - startWidth - quicklaunchWidth - 70;
+	var stop = false;
+	_$('scrollright').onmouseout = function(){stop = true;};
+	_$('scrollleft').onmouseout = function(){stop = true;};
+	function scrollRight() {
+		if(!stop && taskWidth > taskScrollWidth) {
+			if ( direction == 'right') {
+				_$('scrollright').className = '';
+				is_ie ? offset += 10 : offset += 3;
+				if ( offset > 0 ) { offset = 0; _$('scrollleft').className = 'unuse'; }
+			} else {
+				_$('scrollleft').className = '';
+				is_ie ? offset -= 10 : offset -= 3;
+				if ( offset < - (taskWidth - taskScrollWidth) ) { offset = -(taskWidth - taskScrollWidth); _$('scrollright').className = 'unuse'; }
+			}
+			task.style.left = offset + 'px';
+			task.className = offset;
+		}
+		setTimeout(scrollRight, 5);
+	}
+	setTimeout(scrollRight, 80);
+}
+
+function getTaskWidth() {
+	var taskbarWidth = _$('taskbar').clientWidth;
+	var startWidth = _$('start').clientWidth;
+	var quicklaunchWidth = _$('quicklaunch') ? _$('quicklaunch').clientWidth : 0;
+	if ( is_safari ) {
+		_$('taskbody').style.width = taskbarWidth - 308  + 'px';
+		_$('taskscroll').style.width = taskbarWidth - 350  + 'px';
+	} else if (is_ie) {
+		_$('taskbody').style.width = taskbarWidth - startWidth - quicklaunchWidth - 2 + 'px';
+		_$('taskscroll').style.width = taskbarWidth - startWidth - quicklaunchWidth - 45 + 'px';
+	} else  {
+		_$('taskbody').style.width = taskbarWidth - startWidth - quicklaunchWidth - 25  + 'px';
+		_$('taskscroll').style.width = taskbarWidth - startWidth - quicklaunchWidth - 67  + 'px';
+	}
 }
  
 function copyRow(tbody) {
@@ -298,6 +358,39 @@ function checkImage(url) {
 	return url.match(re);
 }
 
+//菜单自动出现
+var menuTimer = 0;
+function calculagraph() {
+	menuTimer = window.setTimeout("execOpen();", 1000);
+}
+function execOpen() {
+	openSub(_$('startmenu'), 'app', 0);
+}
+function stopCalculagraph() {
+	window.clearTimeout(menuTimer);
+}
+
+//快捷面板
+function quick_op(type) {
+	_$('quick_tab_doing').className = '';
+	_$('quick_tab_blog').className = '';
+	_$('quick_tab_upload').className = '';
+	_$('quick_tab_thread').className = '';
+	_$('quick_tab_share').className = '';
+	_$('quick_tab_'+type).className = 'active';
+	_$('quick_a_'+type).blur();
+	
+	var x = new Ajax();
+	x.get('do/ac/ajax/op/quick/type/'+type, function(s){
+		_$('quick_box').style.display = 'block';
+		_$('quick_box').innerHTML = s;
+	});
+}
+
+function quick_op_close() {
+	_$('quick_box').style.display = 'none';
+}
+
 function quick_validate(obj) {
     if(_$('seccode')) {
 		var code = _$('seccode').value;
@@ -320,6 +413,7 @@ function quick_validate(obj) {
 }
 
 function trim(str) { 
+	return str.replace(/^\s*|\s*$/, '');
 	var re = /\s*(\S[^\0]*\S)\s*/; 
 	re.exec(str); 
 	return RegExp.$1; 
@@ -494,6 +588,156 @@ function readfeed(obj, id) {
 	obj.className = 'feedread';
 }
 
+
+
+
+
+//获取页面元素位置
+function getElementPos(elementId){
+    var ua = navigator.userAgent.toLowerCase(); 
+    var isOpera = (ua.indexOf('opera') != -1), isIE = (ua.indexOf('msie') != -1 && !isOpera), isChrome = (ua.indexOf("chrome") != -1), isFF2 = (ua.indexOf('firefox/2') != -1), isFF3 = (ua.indexOf('firefox/3') != -1);
+    var el = _$(elementId);
+    if(el == null) el = elementId;
+    if(el.parentNode === null || el.style.display == 'none') return false;
+ 
+    var parent = null, pos = [], box; 
+ 
+    if(isIE)//IE 
+    { 
+        box = el.getBoundingClientRect(); 
+        var scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop); 
+        var scrollLeft = Math.max(document.documentElement.scrollLeft, document.body.scrollLeft); 
+ 
+        return {x:box.left + scrollLeft, y:box.top + scrollTop}; 
+    } 
+    else if(isFF3 || isOpera)// gecko 
+    { 
+        box = el.getBoundingClientRect(); 
+	//alert(document.documentElement.scrollTop);
+        var borderLeft = (el.style.borderLeftWidth)?parseInt(el.style.borderLeftWidth):0; 
+        var borderTop = (el.style.borderTopWidth)?parseInt(el.style.borderTopWidth):0; 
+        return {x:box.left - borderLeft + document.documentElement.scrollLeft, y:box.top - borderTop + document.documentElement.scrollTop}; 
+    }
+    else if(isFF2)// gecko 
+    { 
+	box = document.getBoxObjectFor(el);
+	var borderLeft = (el.style.borderLeftWidth)?parseInt(el.style.borderLeftWidth):0; 
+	var borderTop = (el.style.borderTopWidth)?parseInt(el.style.borderTopWidth):0; 
+	pos = [box.x - borderLeft , box.y - borderTop ];
+    }
+    else// safari & opera 
+    { 
+        pos = [el.offsetLeft, el.offsetTop]; 
+        parent = el.offsetParent; 
+        if (parent != el) { 
+            while (parent) { 
+                pos[0] += parent.offsetLeft; 
+                pos[1] += parent.offsetTop; 
+                parent = parent.offsetParent; 
+            } 
+        } 
+        if (ua.indexOf('opera') != -1  
+            || ( ua.indexOf('safari') != -1 && el.style.position == 'absolute' ))  
+        { 
+                pos[0] -= document.body.offsetLeft; 
+                pos[1] -= document.body.offsetTop; 
+        }  
+    } 
+         
+    if (el.parentNode) { parent = el.parentNode; } 
+    else { parent = null; } 
+   
+    while (parent && parent.tagName != 'BODY' && parent.tagName != 'HTML')  
+    { // account for any scrolled ancestors 
+        pos[0] -= parent.scrollLeft; 
+        pos[1] -= parent.scrollTop; 
+   
+        if (parent.parentNode) { parent = parent.parentNode; }  
+        else { parent = null; } 
+    } 
+    return {x:pos[0], y:pos[1]}; 
+}
+function _getel(el){
+	while(el.nodeName == "#text"){
+		el = el.nextSibling;
+	}
+	return el;
+}
+function promptdiv(el){
+	el.style.cursor = "pointer";
+	var posit = getElementPos(el);
+	var nameel = _getel(el.nextSibling);
+	var name = nameel.value;
+	var summary = _getel(nameel.nextSibling).value;
+	var pay = _getel(_getel(nameel.nextSibling).nextSibling);
+	var pay_value = "";
+	if(pay && pay.tagName == "INPUT")
+		pay_value = pay.value;
+	creatediv();
+	var d=_$('showprompt');
+	d.style.width  = "150px";
+	var str = "<font color='#f80c3a'><b>"+name+"</b></font><br /><font color='#666'>"+summary+"</font>";
+	if(pay && pay.tagName == "INPUT") {
+		d.style.width  = "200px";
+		str += "<br /><font color='#f80c3a'>"+pay_value+"</font>";
+	}
+	str += "<br style=\"clear:both\">";
+	d.innerHTML = str;
+	//d.innerHTML = "<font color='#FFFFFF'><b>"+name+"</b></font><br /><font color='#FF9900'>"+summary+"</font><br style=\"clear:both\">";
+	d.style.display= "";
+}
+function disdiv(el){
+	var pos = getElementPos(el);
+	//alert(pos.x + " "+pos.y);return;
+	el.style.cursor = "pointer";
+	var name = el.getAttribute("at");
+	var des = el.getAttribute("des");
+	creatediv();
+	var d=_$('showprompt');
+	d.style.top = pos.y+20+"px";
+	d.style.left = pos.x+20+"px";
+	var str = "<font style='color:#f80c3a;font-size:12px;'><b>"+name+"</b></font><br /><font color='#333'>"+des+"</font><br /><span style='color:#333;border-top:1px dashed #eaac59;padding-top:2px;'>点击图标进入成就详细页面</span>";
+	d.innerHTML = str;
+	d.style.display= "";
+}
+function creatediv(){
+	var d;
+	if(_$('showprompt')==null){
+		d = document.createElement("DIV");
+		d.style.opacity='0.8';
+		d.style.background='#e1ebff';
+		d.style.padding = '6px';
+		d.style.border = '1px solid #81b2d3';
+		d.id="showprompt";
+		document.body.appendChild(d);
+
+		d.style.filter = 'alpha(opacity=80)';
+	}else{
+		d = _$('showprompt');
+	}
+	d.style.display = "none";
+	d.style.position='absolute';
+	d.style.zIndex = '99999999';
+}
+function moveel(evnt){
+	var ev = evnt ? evnt : window.event;
+	ev = mousePosition(ev);
+	if(typeof _$('showprompt')=="undefined" || _$('showprompt').style.display == "none") return;
+	var el = _$('showprompt');
+	el.style.cursor = "pointer";
+	el.style.left = ev.x+10+"px";
+	el.style.top = ev.y+10+"px";
+}
+function mousePosition(ev){
+	if(ev.pageX || ev.pageY){
+		return {x:ev.pageX, y:ev.pageY};
+	}
+	return {
+	  x:ev.clientX + document.documentElement.scrollLeft - document.documentElement.clientLeft,
+	  y:ev.clientY + document.documentElement.scrollTop - document.documentElement.clientTop
+	};
+}
+
 function showreward() {
 	if(Cookie.get('reward_notice_disable')) {
 		return false;
@@ -619,5 +863,194 @@ function selector(pattern, context) {
 		return elements;
 	} else {
 		return list;
+	}
+}
+
+function hiddenprompt(el){
+	el.style.cursor = "default";
+	var d = _$('showprompt');
+	d.style.display= "none";
+}
+function setfromflash(el, w, h){
+	var obj = el.getElementsByTagName("OBJECT")[0];
+	if(typeof obj == "undefined"){
+		obj = el.getElementsByTagName("embed")[0];
+	}else{
+		for(var i=0;i<obj.childNodes.length;i++){
+			if(obj.childNodes[i].nodeType == 1){
+				if(obj.childNodes[i].getAttribute("width") != null)
+					obj.childNodes[i].width = w;
+				if(obj.childNodes[i].getAttribute("height") != null)
+					obj.childNodes[i].height = h;
+				if(obj.childNodes[i].getAttribute("src") != null){
+					obj.childNodes[i].src = obj.childNodes[i].src + "?" + Math.random();
+				}
+			}
+		}
+	}
+	obj.width = w;
+	obj.height = h;
+	return obj;
+}
+function setflashtext(obj, dw, dh){
+	var sp = document.createElement("DIV");
+	sp.innerHTML = "<a href='javascript:void(0);' onclick='zoomflash(_$(\"flashdiv\"), "+dw+", "+dh+")' style='font-size:14px;font-weight:bold;color:#FFFFFF'>刷新</a><a href='javascript:void(0);' onclick='$(\"flashdiv\").style.visibility=\"visible\";hiddenprompt(this);' style='font-size:14px;margin-left:10px;font-weight:bold;color:#FFFFFF'>关闭</a>";
+	obj.appendChild(sp);
+	sp.style.position = "absolute";
+	sp.style.right = "30px";
+	sp.style.top = "20px";
+
+}
+function setzoomsize(dw, dh){
+	var client_h = document.documentElement.clientHeight;
+	var h = client_h - 100;
+	if(h<dh){
+		h = dh;
+	}
+	var w = Math.round(parseFloat(dw/dh.toFixed(2)) * h);
+	var client_w = w + 100;
+	return {'h':h, 'w':w, 'client_w':client_w, 'client_h':client_h};
+}
+function zoomflash(els, dw, dh){
+	els.style.visibility = "hidden";
+	var s = setzoomsize(dw, dh);
+	var client_h = s.client_h;
+	var h = s.h;
+	var w = s.w;
+	var client_w = s.client_w;
+	creatediv();
+	var d=_$('showprompt');
+	d.style.width = w  + "px";
+	d.style.height = h  + "px";
+	d.style.position = "absolute";
+	d.style.top = 0;
+	d.style.left = (document.documentElement.clientWidth-client_w)/2+"px";
+	d.style.padding = "50px";
+
+	d.innerHTML = "";
+	var el = els.cloneNode(true);
+	var obj = setfromflash(el, w, h);
+	d.appendChild(obj);
+	setflashtext(d, dw, dh);
+
+	d.style.display = "";
+}
+function _div(w,h,parentid){
+	this.nodragTag = ["A", "INPUT", "SELECT"];
+	this.parentid = typeof parentid!="undefined" ? parentid : null;
+	this.w=w;
+	this.h=h;
+	this.cx=this.cy=0;
+	this.prox=this.proy=this.Evet=this.Edrag=this.Efollow=this.Edrop=null;
+	this.div=$("fd");
+	this.showboth=this.bigest=this.allowdrag=false;
+};
+_div.prototype = {
+	chstatus : function(){
+		if(this.prox==null&&this.proy==null){
+			if(this.bigest==false){
+				this.bigest=true;
+				var self=this;
+				if(this.allowdrag==true) addEvent(this.div, "mousedown", this.Edrag=function(){self.dragdiv()});
+				this.div.style.height = "";
+			}else{
+				this.bigest=false;
+				this.cx=this.cy=0;
+				this.div.style.display="none";
+				if(this.Edrag!=null&&this.allowdrag==true){removeEvent(this.div, "mousedown", this.Edrag);this.Edrag=null}
+				if(this.Edrop!=null&&this.allowdrag==true){removeEvent(this.div, "mouseup", this.Edrop);this.Edrop=null}
+			}
+		}
+	},
+	_x :function(){
+		this.cx = parseInt(this.div.style.width);
+		if(!this.bigest && this.cx<this.w) this.div.style.width = (this.cx + Math.ceil((this.w-this.cx)/5)) +"px";
+		else if(this.bigest && this.cx>0) this.div.style.width = (this.cx - Math.ceil(this.cx/5)) + "px";
+		else{
+			clearInterval(this.prox);
+			this.prox = null;
+		}
+		if(this.prox==null && this.showboth==false && !this.bigest){
+			var self=this;
+			this.proy = setInterval(function(){self._y()},10);
+		}
+		this.chstatus();
+	},
+	_y :function(){
+		this.cy = parseInt(this.div.style.height);
+		if(!this.bigest && this.cy<this.h) this.div.style.height = (this.cy + Math.ceil((this.h-this.cy)/5)) +"px";
+		else if(this.bigest && this.cy>0) this.div.style.height = (this.cy - Math.ceil(this.cy/5)) + "px";
+		else{
+			clearInterval(this.proy);
+			this.proy = null;
+			
+		}
+		if(this.proy==null && this.showboth==false && this.bigest){
+			var self=this;
+			this.prox = setInterval(function(){self._x()},10);
+		}
+		this.chstatus();
+	},
+	clear : function(){
+		clearInterval(this.prox);
+		clearInterval(this.proy);
+		clearInterval(this.proxc);
+		clearInterval(this.proyc);
+		if(this.bigest==false){
+			var pos = getElementPos(this.parentid);
+			this.div.style.left = pos.x + "px";
+			this.div.style.top = pos.y + "px";
+		}
+	},
+	showdiv : function(){
+		if(this.bigest==true) return;
+		this.clear();
+		this.div.style.display = "block";
+		this.div.style.width = this.div.style.height = "1px";
+		var self = this;
+		this.prox = setInterval(function(){self._x()}, 10);
+		if(this.showboth == true){
+			this.proy = setInterval(function(){self._y()}, 10);
+		}
+	},
+	closediv : function(){
+		this.clear();
+		this.div.style.height = this.h + "px";
+		var self = this;
+		this.proy = setInterval(function(){self._y()}, 10);
+		if(this.showboth == true){
+			this.prox = setInterval(function(){self._x()}, 10);
+		}
+	},
+	dragdiv : function(){
+		if(!this.bigest) return;
+		this.Evet = window.event ? window.event : this.dragdiv.caller.arguments[0];
+		var obj = this.Evet.target ? this.Evet.target : this.Evet.srcElement;
+		for (var i in this.nodragTag){
+			if(obj.tagName==this.nodragTag[i]) return;
+		}
+		this.div.style.filter="alpha(opacity=70)";
+		this.div.style.opacity = 0.7;
+		this._ex=this.Evet.clientX;
+		this._ey=this.Evet.clientY;
+		if(this.allowdrag==true){
+			var self=this;
+			addEvent(this.div, "mousemove", this.Efollow=function(){self.follow()});
+			addEvent(this.div, "mouseup", this.Edrop=function(){self.drop()});
+		}
+	},
+	follow : function(ev){
+		this.Evet = window.event ? window.event : this.follow.caller.arguments[0];
+		var mx = this.Evet.clientX-this._ex;
+		var my = this.Evet.clientY-this._ey;
+		this.div.style.left = parseInt(this.div.style.left) + mx + "px";
+		this.div.style.top = parseInt(this.div.style.top) + my + "px";
+		this._ex=this.Evet.clientX;
+		this._ey=this.Evet.clientY;
+	},
+	drop : function(){
+		this.div.style.filter="alpha(opacity=100)";
+		this.div.style.opacity = 1;
+		if(this.Efollow!=null&&this.allowdrag==true){removeEvent(this.div, "mousemove", this.Efollow);this.Efollow=null}
 	}
 }

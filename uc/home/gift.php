@@ -59,7 +59,7 @@ if(empty($isinvite) && empty($_SCONFIG['networkpublic'])) {
 //获取空间
 if(empty($_SGLOBAL['supe_uid'])) {
 	ssetcookie('_refer', rawurlencode($_SERVER['REQUEST_URI']));
-	showmessage('to_login', '/do/ac/login', 0);
+	showmessage('to_login', usr_url('do', array('ac'=>'login')), 0);
 } else {
 	$space = getspace($_SGLOBAL['supe_uid']);
 }

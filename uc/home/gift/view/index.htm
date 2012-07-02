@@ -1,7 +1,126 @@
 <!--{eval $_TPL['titles'] = array('礼物');}-->
-
 <!--{if !$_GET[inajax]}-->
 <!--{template sns_header}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/lw.css"/>
+<script type="text/javascript">
+function closeNameDiv()
+{
+	_$('username_menu').style.display='none';
+	//var pos=getElementPos($('username_menu'));
+	removeEvent(document, 'click', E);
+	E = null;
+
+}
+function getEvent(){
+	var obj1, obj = getEvent.caller;
+	while(obj1 = obj){
+		if(typeof obj1.caller.arguments[0]=="object"){
+			return obj1.caller.arguments[0];
+		}
+		obj = obj1.caller;
+	}
+}
+var E = null;
+function isPos1(){
+	if(E == null) return;
+	if(_$('username_menu').style.display == "none") return;
+	var ev = window.event ? window.event : getEvent();
+	ev = mousePosition(ev);
+	var obj = getElementPos(_$('username_menu'));
+	var l=obj.x, t=obj.y-20, r=obj.x+150, b=obj.y+100;
+	if(ev.x<=l || ev.x>=r || ev.y<=t || ev.y>=b)
+	{
+		closeNameDiv();
+	}
+
+}
+</script>
+<div class="ricz">
+    <div class="tp">
+        <p class="xlj">当前积分：$space[credit]<b>积分</b></p>
+        <p>小贴士：你收到的礼物在你的礼物箱里，可以再次实用。</p>
+    </div>
+    <div class="lwfl">
+        <ul>
+            <li class="sdd01" id="zs01"><a class="o" href="#">我的礼物想</a></li>
+            <li class="sdd02" id="zs02"><a class="t" href="#">我的礼物记录</a></li>
+            <li class="sdd02" id="zs03"><a class="f" href="#">朋友的礼物纪录</a></li>
+            <li class="sdd02" id="zs04"><a class="s" href="#">送礼物</a></li>
+        </ul>
+    </div>
+    <div class="lwnr">
+        <div id="to01">
+        <form id="giftform" method="POST" action="/gift/do/send">
+            <p class="wpfl">
+            <a id="type_all" href="#" onclick="showList( -1 , 0 )" >全部</a>
+            <!--{loop $giftlist[category] $key $val}-->
+            <span>|</span><a class="dqd" id="type_{$key}" href="#" onclick="showList( {$key} , 0 )" >{$val}</a>
+            <!--{/loop}-->
+            </p>
+            <ul id="gift_list">
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li class="nm"><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>	
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li class="nm"><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>	
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+                <li class="nm"><a href="#"><img src="images/tpd.png" /></a><input type="radio" />0声望</li>
+            </ul>
+            <div class="zsnr">
+                <p class="fs">我要送给</p>
+                <input type="text" id="username_gift" name="username_gift" value="{$fusername}" class="txt" tabindex="1" <!--{if $friends}--> onclick="auc.handleEvent(this.value ,event);E=function(){return isPos1();};addEvent(document, 'click', E)" onkeyup="auc.handleEvent(this.value ,event);" onkeydown="closeOpt(username_gift,event);inputKeyDown(event);" autocomplete="off" <!--{/if}--> />
+				<div id="username_menu" class="ajax_selector" onclick="closeNameDiv();" style="display:none">
+					<div class="ajax_selector_option" style="width: 150px; height: 100px;">
+						<p align='right'><a href="javascript:;" onclick="closeNameDiv();" style="margin-right: 5px;">关闭</a></p>
+						<ul id="friendlist" class="blocklink">
+							<!--{loop $friends $key $value}-->
+								<!--{eval $fs[] = $value['username'];}-->
+								<li>$value[username]</li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+				</div>
+                <p class="fs">附加消息</p>
+                <p>还可输入 <span id="maxlimit">140</span> 字节</p>
+                <textarea name="message" cols="70" rows="5" class="ft12z" onkeyup="textCounter(this, 'maxlimit', 140)" id="comment_message"></textarea>
+                <p class="fs">选择赠送的方式：</p>
+                <p><input type="radio" name="gifttype" value="0" checked /><b>公开赠送</b>其他人可以看见你送的礼物。</p>
+                <p><input type="radio" name="gifttype" value="1" /><b>私下赠送</b>只有接收礼物的人能看见你的名字和消息。</p>
+                <p><input type="radio" name="gifttype" value="2" /><b>匿名赠送</b>只有接收礼物的人能看见你的名字和消息，但看不见你的名字。</p>
+                <p><input id="giftsubmit" type="hidden" value="true" name="giftsubmit" /><input id="giftsubmit_btn" type="submit" value="赠送" name="giftsubmit_btn" class="submit" /></p>
+                <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	showList( 0 , 0 );
+});
+var auc = new sAutoComplete("auc", "username_menu", "friendlist", "username_gift", 0, '');
+auc.addItem('$friendstr');
+</script>
+<!--{template sns_footer}-->
+<!--{/if}-->
+
+<!--{if 0}-->
+<!--{if !$_GET[inajax]}-->
+<!--{template header}-->
 
 <style type="text/css">
 @import url(/gift/css/ask_main.css);
@@ -137,7 +256,7 @@ var auc = new sAutoComplete("auc", "username_menu", "friendlist", "username_gift
 auc.addItem('$friendstr');
 </script>
 
-<!--{template sns_footer}-->
+<!--{template footer}-->
 <!--{else}-->
 
 <h1>赠送礼品</h1>
@@ -210,6 +329,7 @@ auc.addItem('$friendstr');
 
 <script language="javascript" type="text/javascript">J = jQuery.noConflict();</script>
 <!--{/if}-->
+<!--{/if}-->
 <script type="text/javascript">
 
 var close = true;
@@ -271,14 +391,15 @@ function strLen(str) {
 
 var selnum = -1;
 function showList(tid,st){
-	J('#gift_list').html("<p><img src=\"/gift/js/loading.gif\" align=\"absmiddle\">正在获取数据，请稍候...</p>");
-	J.ajax({
+    $('#gift_list').html("<p><img src=\"<?=$_USER_SC['domain']?>images/loading.gif\" align=\"absmiddle\">正在获取数据，请稍候...</p>");
+	$.ajax({
 	   type: "POST",
-	   url: "/gift/do/list/num/"+Math.round(Math.random()*10000),
+       url: <?=usr_url('gift', array('do'=>'list'), array('num'=>'Math.round(Math.random()*10000)'))?>,
+	   //url: "/gift.php?do=list&num="+Math.round(Math.random()*10000),
 	   data: "t="+tid+"&s="+st,
 	   success: function(msg){
-	   		J('#gift_list').html("");
-	   		J('#gift_page').html("");
+	   		$('#gift_list').html("");
+	   		$('#gift_page').html("");
 	   		if(msg == "err_null_rs"){
 	   			alert("通信错误");
 	   		}else{
@@ -288,14 +409,17 @@ function showList(tid,st){
 				var maxtype = <!--{eval echo count($giftlist[category])}-->;
 				
 				for(var i=0;i<maxtype;i++){
-					J('#type_'+i).css("font-weight","normal");
-					J('#type_all').css("font-weight","normal");
+					$('#type_'+i).removeClass();
+					$('#type_all').removeClass();
 				}
-				J('#type_'+list.type).css("font-weight","bold");
+				$('#type_'+list.type).addClass("dqd");
 				
+                var _cls = '';
 				for(i=0;i<num;i++){
-					var newli = "<li style=\"width:100px;height:80px;float:left;\"><div id=\"gift_"+i+"\" style=\"width:68px; height:68px;\"><img style=\"margin:2px;\" src=\"/gift/gift_model/image/"+list.gift[i].src+"\" width=\"64\" height=\"64\" onmouseover=\"promptdiv(this);\" onmouseout=\"hiddenprompt(this);\" onmousemove=\"moveel(event);\" onclick=\"select_gift('"+i+"');\" ><input type=\"hidden\" value=\""+list.gift[i].name+"\" name=\"name\" /><input type=\"hidden\" value=\""+list.gift[i].summary+"\" name=\"summary\" /><input type=\"hidden\" value=\"花费："+list.gift[i].cost+"分\" name=\"pay\" /><p style=\"display:none;\"><input type=\"radio\" id=\"gift_radio_"+i+"\" name=\"giftitem\" align=\"middle\" value=\""+list.gift[i].gid+"\"></p></div></li>";
-					J('#gift_list').append(newli);
+                    if(i%7==6) _cls = " class=\"nm\"";
+                    else _cls = "";
+					var newli = "<li" + _cls + "><div id=\"gift_"+i+"\" style=\"width:68px; height:68px;\"><img style=\"margin:2px;\" src=\"<?=$_USER_SC['domain']?>images/gift/"+list.gift[i].src+"\" width=\"64\" height=\"64\" onmouseover=\"promptdiv(this);\" onmouseout=\"hiddenprompt(this);\" onmousemove=\"moveel(event);\" onclick=\"select_gift('"+i+"');\" ><input type=\"hidden\" value=\""+list.gift[i].name+"\" name=\"name\" /><input type=\"hidden\" value=\""+list.gift[i].summary+"\" name=\"summary\" /><input type=\"hidden\" value=\"花费："+list.gift[i].cost+"分\" name=\"pay\" /><p style=\"display:none;\"><input type=\"radio\" id=\"gift_radio_"+i+"\" name=\"giftitem\" align=\"middle\" value=\""+list.gift[i].gid+"\"></p></div></li>";
+					$('#gift_list').append(newli);
 				}
 				if(list.pages > 1){
 					var page = '';
@@ -306,7 +430,7 @@ function showList(tid,st){
 							page = page + "<a href='javascript:void(0);' style=\"margin: 0 2px; padding: 1px 5px; border: 1px solid #DDD;line-height: 26px;\" onclick=\"showList( "+tid+" , "+(list.perpage*i)+" )\">"+(i+1)+"</a>";
 						}
 					}
-					J('#gift_page').html(page);
+					$('#gift_page').html(page);
 				}
 	   		}
 	   }
@@ -314,15 +438,15 @@ function showList(tid,st){
 }
 function select_gift(id) {
 	if(selnum != -1 || id == selnum) {
-		$("gift_"+selnum).style.backgroundColor = "#fff";
-		$("gift_radio_"+selnum).checked = false;
+		_$("gift_"+selnum).style.backgroundColor = "#fff";
+		_$("gift_radio_"+selnum).checked = false;
 		if(id == selnum) {
 			selnum = -1;
 			return false;
 		}
 	}
-	$("gift_"+id).style.backgroundColor = "#000";
-	$("gift_radio_"+id).checked = true;
+	_$("gift_"+id).style.backgroundColor = "#000";
+	_$("gift_radio_"+id).checked = true;
 	selnum = id;
 }
 //showList( 0 , 0 );

@@ -1,9 +1,9 @@
 <?php
 function usr_url($ac, $params=array(), $jsparam=array()){
     if($jsparam){
-        return "\"{$ac}.php" . usr_param($params, $jsparam);
+        return "\"/home/{$ac}.php" . usr_param($params, $jsparam);
     }else{
-        return "{$ac}.php" . usr_param($params);
+        return "/home/{$ac}.php" . usr_param($params);
     }
 }
 
@@ -34,7 +34,7 @@ function usr_param($params='', $jsparams=array()){
     }
     $i=0;
     foreach($jsparams as $k => $v){
-        $_p = urlencode("$k") . "=\"+". urlencode("$v");
+        $_p = urlencode("$k") . "=\"+". $v;
         if(count($jsparams) != $i+1) $_p .= "+\"";
         $p[] = $_p;
         $i++;
