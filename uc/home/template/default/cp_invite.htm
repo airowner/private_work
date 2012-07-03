@@ -1,3 +1,137 @@
+<!--{template sns_header}-->
+<!--{if $_GET['op'] == 'resend'}-->
+
+<h1>重发邮件</h1>
+<a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
+<div class="popupmenu_inner" id="__resendform_{$id}">
+<form method="post" id="resendform_{$id}" name="resendform_{$id}" action="cp.php?ac=invite&op=resend&id=$id">
+	<p>确定重新发送邀请邮件吗？</p>
+	<p class="btn_line">
+		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
+		<!--{if $_SGLOBAL[inajax]}-->
+		<input type="hidden" name="resendsubmit" value="true" />
+		<button name="resendsubmit_btn" type="button" class="submit" value="true" onclick="ajaxpost('resendform_{$id}', 'resend_mail', 2000)">重发</button>
+		<!--{else}-->
+		<button name="resendsubmit" type="submit" class="submit" value="true">确定</button>
+		<!--{/if}-->
+	</p>
+	
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</form>
+</div>
+
+<!--{elseif $_GET['op'] == 'delete'}-->
+
+<h1>删除记录</h1>
+<a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
+<div class="popupmenu_inner" id="__deleteform_{$id}">
+<form method="post" id="deleteform_{$id}" name="deleteform_{$id}" action="cp.php?ac=invite&op=delete&id=$id">
+	<p>确定要删除该邀请记录吗？</p>
+	<p>删除该邀请记录后,您的好友将不能通过<br/>原邀请记录链接注册成为您的好友!</p>
+	<p class="btn_line">
+		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
+		<!--{if $_SGLOBAL[inajax]}-->
+		<input type="hidden" name="deletesubmit" value="true" />
+		<button name="deletesubmit_btn" type="button" class="submit" value="true" onclick="ajaxpost('deleteform_{$id}', 'resend_mail', 2000)">删除</button>
+		<!--{else}-->
+		<button name="deletesubmit" type="submit" class="submit" value="true">删除</button>
+		<!--{/if}-->
+	</p>
+	
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</form>
+</div>
+
+<!--{else}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/hy.css"/>
+<div class="ricz">
+    <div class="ss">
+        <div class="hdd"><img src="<?=$_USER_SC['domain']?>images/hy.png" />&nbsp;&nbsp;<a href="#">找到组织</a></div>
+        <form method="post" action="cp.php?ac=friend&op=search&type=base">
+            <input class="txt" type="text" name="username" />
+            <input class="btn" type="submit" name="searchsubmit" />
+        </form>
+    </div>
+    <div class="hdfl">
+        <ul>
+            <li class="sdd02" id="zs01"><a class="o" href="space.php?uid=$space[uid]&do=friend">好友列表</a></li>
+            <li class="sdd02" id="zs02"><a class="t" href="cp.php?ac=friend&op=search">查找好友</a></li>
+            <li class="sdd02" id="zs03"><a class="f" href="cp.php?ac=friend&op=find">可能认识的人</a></li>
+            <li class="sdd01" id="zs04"><a class="s" href="cp.php?ac=invite">邀请好友</a></li>
+            <li class="sdd02" id="zs05"><a class="e" href="cp.php?ac=friend&op=request">好友请求</a></li>
+        </ul>
+    </div>
+    <div class="hdnr">
+        <div>
+            <div class="yqhy">
+                <!--{if $get_invite}-->
+                <p>每邀请成功一个好友，就可获得 <strong>$get_invite</strong> 个奖励积分。赶快行动吧！</p>
+                <!--{/if}-->
+                <h4>我的好友邀请链接</h4>
+                <p>您可以通过QQ、MSN等IM工具，或者发送邮件，把下面的链接告诉你的好友，邀请他们加入进来。</p>
+                <!--{if $reward['credit']}-->
+                <form method="post" action="cp.php?ac=invite&appid=$appid&ref">
+                    <!--{if $list_str}-->
+                    <p>一行一个邀请链接，一个链接只能使用一次。<br/><textarea name="invite_urls" rows="4" style="width:98%;">$list_str</textarea></p>
+                    <!--{else}-->
+                    <p>还没有邀请码。</p>
+                    <!--{/if}-->
+                    <p><img src="<?=$_USER_SC['domain']?>image/credit.gif" align="absmiddle"> 每一个邀请码需要<strong>扣减积分 $reward[credit] 个/每条</strong>，您现在拥有积分 <a href="cp.php?ac=credit">$space[credit]</a> 个。</p>
+                    <p>获取邀请码(还可获取 $maxinvitenum 个)：<input type="text" name="invitenum" value="1" size="5" class="t_input" /> <input type="submit" name="invitesubmit" value="获取" class="submit" /></p>
+                <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+                <input type="submit" name="emailinvite" value="邀请" class="qd" />
+                </form>
+                <!--{else}-->
+                <p class="mgn"><a onclick="javascript:setCopy('$mailvar[4]');return false;" href="$mailvar[4]">$mailvar[4]</a>&nbsp;<a onclick="javascript:setCopy('$mailvar[4]');return false;" href="$mailvar[4]">复制</a></p>
+                <!--{/if}-->
+            <script type="text/javascript" src="<?=$_USER_SC['domain']?>js/ab.js" charset="utf-8"></script>
+            <form method="post" action="cp.php?ac=invite&type=mail&appid=$appid&ref">
+                <h4>给好友发送Email。<!--{if $appid}-->邀请好友一起玩$appinfo[appname]<!--{/if}--></h4>
+				<p>通过Email发送邮件的方式，邀请你的好友。<br>多个Email使用","分割。</p>
+				<!--{if $pay[invite]}-->
+				<p>
+					<img src="<?=$_USER_SC['domain']?>image/credit.gif" align="absmiddle"> 发送一个邮件需要<strong>扣减积分 $pay[invite] 个/每条</strong>，您现在拥有积分 <a href="cp.php?ac=credit">$space[credit]</a> 个。
+				</p>
+				<!--{/if}-->
+                <div class="hydz">好友Email地址<a href="javascript:void(0)"  onclick="MYABC.showChooser('email', '{$uri}api/getmaillist.htm', null, false, false, null); return false"><img src="<?=$_USER_SC['domain']?>images/cdzjr.gif" /></a></div>
+                <textarea name="email" id="email" rows="5" style="width:99%;"></textarea>
+                <p>想对好友说的话</p>
+                <input type="text" name="saymsg" id="saymsg" onkeyup="showPreview(this.value, 'sayPreview')" class="hyh" style="width:98%;" />
+                <input type="submit" name="emailinvite" value="邀请" class="qd" />
+                <p>预览邀请函</p>
+                <div class="yqhnr">
+                    <div class="leyq">$mailvar[0]</div>
+                    <div class="riyq">
+						<!--{if $appid}-->
+                        <p><b>Hi，我是{$mailvar[1]}，在{$mailvar[2]}上玩{$appinfo[appname]}，邀请您也加入一起玩。</b></p>
+						<!--{else}-->
+                        <p><b>Hi，我是{$mailvar[1]}，在{$mailvar[2]}上建立了个人主页，邀请你也加入并成为我的好友。</b></p>
+						<p>请加入到我的好友中，你就可以通过我的个人主页了解我的近况，分享我的照片，随时与我保持联系。</p>
+						<!--{/if}-->
+						<p>
+						邀请附言：<br>
+						<span id="sayPreview">{$mailvar[3]}</span>
+						<br>
+						<strong>请你点击以下链接，接受好友邀请<!--{if $appid}-->一起玩$appinfo[appname]<!--{/if}-->：</strong>
+						{$mailvar[4]}<br>
+						<br>
+						<strong>如果你拥有{$mailvar[2]}上面的账号，请点击以下链接查看我的个人主页：</strong>
+						{$mailvar[5]}<br>
+                        </p>
+                    </div>
+                </div>
+            <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+            </form>
+            </div> </div>
+    </div>
+</div>
+<!--{/if}-->
+<!--{template sns_footer}-->
+
+
+
+
+<!--{if 0}-->
 <!--{template header}-->
 <!--{if $_GET['op'] == 'resend'}-->
 
@@ -207,3 +341,4 @@
 
 <!--{/if}-->
 <!--{template footer}-->
+<!--{/if}-->

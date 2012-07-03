@@ -23,7 +23,7 @@ if(empty($reward['credit']) || $appid) {
 $siteurl = getsiteurl();
 $spaceurl = $siteurl.'space.php?uid='.$_SGLOBAL['supe_uid'];
 $mailvar = array(
-	"<a href=\"$spaceurl\">".avatar($space['uid'], 'middle')."</a><br>".$_SN[$space['uid']],
+	"<a href=\"$spaceurl\">".avatar($space['uid'], '90x90')."</a><br>".$_SN[$space['uid']],
 	$_SN[$space['uid']],
 	$_SCONFIG['sitename'],
 	'',

@@ -1,4 +1,114 @@
 <!--{eval $_TPL['titles'] = array('好友');}-->
+<!--{template sns_header}-->
+
+<!--{if empty($_SGLOBAL[inajax])}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/hy.css"/>
+<div class="ricz">
+<!--{if $space[self]}-->
+    <div class="ss">
+        <div class="hdd"><img src="<?=$_USER_SC['domain']?>images/hy.png" />&nbsp;&nbsp;<a href="#">找到组织</a></div>
+        <!--{if $_GET[view]=='me'}-->
+        <form method="get" action="space.php">
+            <input type="hidden" name="do" value="friend">
+            <input name="searchkey" value="" class="txt" type="text">
+            <input name="searchsubmit" value="找好友" class="btn" type="submit">
+            <input type="hidden" name="searchmode" value="1" />
+        </form>
+        <!--{else}-->
+        <form method="post" action="cp.php">
+            <input type="hidden" name="ac" value="friend" />
+            <input type="hidden" name="op" value="search" />
+            <input class="txt" type="text" name="searchkey" />
+            <input class="btn" type="submit" name="searchsubmit" />
+            <input type="hidden" name="searchmode" value="1" />
+        </form>
+        <!--{/if}-->
+    </div>
+    <div class="hdfl">
+        <ul>
+            <li class="sdd01" id="zs01"><a class="o" href="space.php?uid=$space[uid]&do=friend">好友列表</a></li>
+            <li class="sdd02" id="zs02"><a class="t" href="cp.php?ac=friend&op=search">查找好友</a></li>
+            <li class="sdd02" id="zs03"><a class="f" href="cp.php?ac=friend&op=find">可能认识的人</a></li>
+		<!--{if empty($_SCONFIG['closeinvite'])}-->
+            <li class="sdd02" id="zs04"><a class="s" href="cp.php?ac=invite">邀请好友</a></li>
+		<!--{/if}-->
+            <li class="sdd02" id="zs05"><a class="e" href="cp.php?ac=friend&op=request">好友请求</a></li>
+        </ul>
+    </div>
+    <div class="hdnr">
+        <div id="to01">
+		<!--{if $list}-->
+            <div class="cylb">
+			<!--{loop $list $key $value}-->
+                <!--{if $key == 0}-->
+                <ul>
+                <!--{elseif $key == 5 || $key == 10}-->
+                <ul class="brd">
+                <!--{/if}-->
+                    <li id="friend_{$value[uid]}_li">
+                        <!--{if $value[username] == ''}-->
+                        <div class="txim"><img src="<?=$_USER_SC['domain']?>image/magic/hidden.gif" alt="匿名" /></div>
+                        <div class="cytx"><p class="ygz">匿名</p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                        <!--{else}-->
+                        <div class="txim"><a<!--{if $ols[$value[uid]]}--> class="online_icon_p"<!--{/if}--> href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'59x59')}--></div>
+                        <div class="cytx">
+                            <p class="ygz"><a href="space.php?uid=$value[uid]"<!--{eval g_color($value[groupid]);}-->>{$_SN[$value[uid]]}</a></p>
+                            <p><!--{if $value[note]}-->$value[note]<!--{/if}--></p>
+                            <p>
+                                <a href="#"><img src="images/ygz.gif" /></a>
+                            <!--{if $_GET['view']=='blacklist'}-->
+                                <a href="cp.php?ac=friend&op=blacklist&subop=delete&uid=$value[uid]&start=$_GET[start]">黑名单除名</a>
+                            <!--{elseif $_GET['view']=='visitor' || $_GET['view'] == 'trace'}-->
+                                <!--{date('n月j号',$value[dateline],1)}-->
+                            <!--{elseif $_GET['view']=='online'}-->
+                                <!--{date('H:i',$ols[$value[uid]],1)}-->
+                            <!--{else}-->
+                                <!--{if $ols[$value[uid]]}--><!--{date('H:i',$ols[$value[uid]],1)}--><!--{/if}-->
+                                <!--{if $value['num']}--><a href="cp.php?ac=friend&op=changenum&uid=$value[uid]" id="friendnum_$value[uid]" onclick="ajaxmenu(event, this.id)">热度(<span id="spannum_$value[uid]">$value[num]</span>)</a><span class="pipe">|</span><!--{/if}-->
+                                <!--{if !$value['isfriend']}-->
+                                <a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a>
+                                <!--{else}-->
+                                <a href="cp.php?ac=friend&op=changegroup&uid=$value[uid]" id="friend_group_$value[uid]" onclick="ajaxmenu(event, this.id)">分组</a><span class="pipe">|</span>
+                                <a href="cp.php?ac=friend&op=ignore&uid=$value[uid]" id="a_ignore_$key" onclick="ajaxmenu(event, this.id)">删除</a>
+                                <!--{/if}-->
+                            <!--{/if}-->
+                            </p>
+                        </div>
+                        <!--{/if}-->
+                        </div>
+                    </li>
+                <!--{if $key == 4 || $key = 9 || $key == 14}-->
+                </ul>
+                <!--{/if}-->
+			<!--{/loop}-->
+            </div>
+            <p class="page">$multi</p>
+		<!--{else}-->
+            <div class="cylb">
+                没有相关用户列表。
+            </div>
+		<!--{/if}-->
+        </div>
+    </div>
+<!--{else}-->
+<!--{eval
+	$_TPL['spacetitle'] = "好友";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=friend&view=me\">TA的好友列表</a>";
+}-->
+	<!--{template space_menu}-->
+	<div class="h_status">共有 $space[friendnum] 个好友</div>
+	<!--{template space_list}-->
+<!--{/if}-->
+</div>
+<!--{else}-->
+sss
+<!--{/if}-->
+<!--{template sns_footer}-->
+
+
+
+
+<!--{if 0}-->
 <!--{template header}-->
 
 <!--{if !empty($_SGLOBAL[inajax])}-->
@@ -42,7 +152,7 @@
 			没有相关用户列表。
 		</div>
 		<!--{/if}-->
-	</div><br />
+	</div>
 
 <!--{else}-->
 
@@ -268,3 +378,4 @@
 <!--{/if}-->
 
 <!--{template footer}-->
+<!--{/if}-->

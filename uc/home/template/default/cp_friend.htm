@@ -1,3 +1,167 @@
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/hy.css"/>
+<div class="ricz">
+    <div class="ss">
+        <div class="hdd"><img src="<?=$_USER_SC['domain']?>images/hy.png" />&nbsp;&nbsp;<a href="#">找到组织</a></div>
+        <form method="post" action="cp.php?ac=friend&op=search&type=base">
+            <input class="txt" type="text" name="username" />
+            <input class="btn" type="submit" name="searchsubmit" />
+        </form>
+    </div>
+    <div class="hdfl">
+        <ul>
+            <li class="sdd01" id="zs01"><a class="o" href="space.php?uid=$space[uid]&do=friend">好友列表</a></li>
+            <li class="sdd02" id="zs02"><a class="t" href="cp.php?ac=friend&op=search">查找好友</a></li>
+            <li class="sdd02" id="zs03"><a class="f" href="cp.php?ac=friend&op=find">可能认识的人</a></li>
+            <li class="sdd02" id="zs04"><a class="s" href="cp.php?ac=invite">邀请好友</a></li>
+            <li class="sdd02" id="zs05"><a class="e" href="cp.php?ac=friend&op=request">好友请求</a></li>
+        </ul>
+    </div>
+    <div class="hdnr">
+        <div id="to01">
+            <div class="cylb">
+                <ul>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="wgz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/hxgz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                </ul>
+                <ul class="brd">
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="wgz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/hxgz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                </ul>
+            </div>
+            <p class="page"><a href="#"><前页</a><span class="dqa">1</span><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a><span>...</span><a href="#">18</a><a href="#">后页></a><b></p>
+        </div>
+        <div class="hidden" id="to02">
+            <div class="dgcz">
+                <p class="czlb">查找男女朋友</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">查找同城的人</p>
+                <div class="czxq">
+                    <ul>
+                        <li><b>居住地：</b><div class="rili"><select><option>选择省份</option></select><select><option>选择城市</option></select></div></li>
+                        <li><b>姓名：</b><div class="rili"><input class="txtd" type="text" /></div></li>
+                        <li><b>用户名：</b><div class="rili"><input class="txtd" type="text" /></div></li>
+                    </ul>
+                    <p class="cz"><input class="czd" type="button" /></p>
+                </div>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">查找老乡</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">查找同年同月同日生的人</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">查找你的同学</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">查找你的同事</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">精确查找</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">高级方式查找</p>
+            </div>
+        </div>
+        <div class="hidden" id="to03">
+            <div class="dgcz">
+                <p class="czlb">查找男女朋友</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">查找同城的人</p>
+                <div class="czxq">
+                    <ul>
+                        <li><b>居住地：</b><div class="rili"><select><option>选择省份</option></select><select><option>选择城市</option></select></div></li>
+                        <li><b>姓名：</b><div class="rili"><input class="txtd" type="text" /></div></li>
+                        <li><b>用户名：</b><div class="rili"><input class="txtd" type="text" /></div></li>
+                    </ul>
+                    <p class="cz"><input class="czd" type="button" /></p>
+                </div>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">查找老乡</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">查找同年同月同日生的人</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">查找你的同学</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">查找你的同事</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">精确查找</p>
+            </div>
+            <div class="dgcz">
+                <p class="czlb">高级方式查找</p>
+            </div>
+        </div>
+        <div class="hidden" id="to05">
+        <p class="db">亲们向你发起了请求，赶快关注他们成为好友吧！</p>
+        <div class="cylb chjg">
+                <ul>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li class="mgnd"><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="wgz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/hxgz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li class="mgnd"><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                    <li><div class="txim"><a href="#"><img src="images/tximd.gif" /></a></div>
+                        <div class="cytx"><p class="ygz"><a href="#">成员名字</a></p><p>心情</p><p><a href="#"><img src="images/ygz.gif" /></a></p></div>
+                    </li>
+                </ul>
+                </div>
+                <p class="page"><a href="#"><前页</a><span class="dqa">1</span><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a><span>...</span><a href="#">18</a><a href="#">后页></a><b></p>
+        </div>
+    </div>
+</div>
+
+
+
+<!--{if 0}-->
 <!--{template header}-->
 
 <!--{if $op == 'syn' || $op == 'find' || $op == 'search' || $op == 'group' || $op == 'request'}-->
@@ -819,3 +983,4 @@ function showtbody(id) {
 
 <!--{/if}-->
 <!--{template footer}-->
+<!--{/if}-->
