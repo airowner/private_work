@@ -1,3 +1,152 @@
+<!--{template sns_header}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/rw.css"/>
+<div class="ricz">
+    <div class="ss">
+        <div class="hdd"></div>
+    </div>
+    <div class="hdfl">
+        <ul>
+            <li<!--{if $actives[task]}--> class="sdd011"<!--{else}--> class="sdd021"<!--{/if}--> id="zs011"><a class="o" href="cp.php?ac=task">待参与任务</a></li>
+            <li<!--{if $actives[done]}--> class="sdd011"<!--{else}--> class="sdd021"<!--{/if}--> id="zs021"><a class="t" href="cp.php?ac=task&view=done">已参与任务</a></li>
+		<!--{if $task}-->
+            <li<!--{if $actives[do]}--> class="sdd011"<!--{else}--> class="sdd021"<!--{/if}--> id="zs031"><a class="f" href="cp.php?ac=task&taskid=$task[taskid]">查看任务</a></li>
+		<!--{/if}-->
+        </ul>
+    </div>
+    <div class="hdnr">
+    <!--{if $task}-->
+
+    <!--{if $_GET['view']=='member'}-->
+
+        <div class="h_status">
+            完成该任务的用户列表
+        </div>
+        <!--{template space_list}-->
+
+    <!--{else}-->
+        <!--{if $task['done']}-->
+            <div id="to021">
+                <div class="dgrw">
+                    <div class="letp"><img src="$task[image]" /></div>
+                    <div class="ritx">
+            <!--{if $task['ignore']}-->
+                        <h6>任务被放弃</h6>
+                        <p>您已经放弃参与该任务，没有获得任何奖励。</p>
+                        <p class="cyrw"><a href="cp.php?ac=task&taskid=$task[taskid]&op=redo" class="submit">重新参与</a></p>
+            <!--{elseif $_SGLOBAL['task_maxnum']}-->
+                        <h6>参与名额已满</h6>
+                        <p>该有奖任务目前已经达到名额上限了。</p>
+                        <p class="cyrw"><a href="cp.php?ac=task" class="submit">看看其他任务</a></p>
+            <!--{elseif $_SGLOBAL['task_available']}-->
+                        <h6>任务失效</h6>
+                        <p>该有奖任务目前已经停止了。</p>
+                        <p class="cyrw"><a href="cp.php?ac=task" class="submit">看看其他任务</a></p>
+            <!--{else}-->
+                        <h6>成功完成任务</h6>
+                        <p>恭喜，您已经领取到任务奖励！</p>
+                    <!--{if $task[credit]}--><p style="color:red;font-size:14px;padding:0 0 5px 0;font-weight:bold;">奖励积分 <b>$task[credit]</b> 个，您现在已经有 <b>$space[credit]</b> 个积分啦！</p><!--{/if}-->
+                        <p>完成时间：<!--{date('m-d H:i',$task[dateline],1)}--></p>
+                        <p>参与人次：<a href="cp.php?ac=task&taskid=$task[taskid]&view=member">$task[num] 人</a></p>
+                <!--{if $task[result]}-->
+                        <p class="cyrw">任务额外奖励：$task[result]</p>
+                <!--{/if}-->
+            <!--{/if}-->
+                    </div>
+                </div>
+            </div>
+        <!--{else}-->
+            <div id="to031">
+                <div class="dgrw">
+                    <div class="letp"><img src="$task[image]" /></div>
+                    <div class="ritx">
+                        <h6>有奖任务：$task[name]</h6>
+                        <!--{if $task[starttime]}--><p>开始时间：<!--{date('Y-m-d H:i',$task[starttime])}--></p><!--{/if}-->
+                        <!--{if $task[endtime]}--><p>结束时间：<!--{date('Y-m-d H:i',$task[endtime])}--></p><!--{/if}-->
+                        <p>$task[note]</p>
+                        <!--{if $task[credit]}--><p>奖励积分：<b>$task[credit]</b></p><!--{/if}-->
+                    </div>
+                </div>
+                <p class="bm">参与任务的步骤说明</p>
+                <p>请仔细阅读步骤说明，按照指示完成任务。</p>
+                <div class="wcbrw">
+                <!--{if $_GET['view']=='result'}--> 
+                    <p class="fs">请按照以下的说明来完成本任务。</p>
+                <!--{/if}-->
+                    $task[guide]
+                </div>
+                <p class="czan"><a href="cp.php?ac=task&taskid=$task[taskid]&view=result"><img src="<?=$_USER_SC['domain']?>images/lqjl.gif" alt="领取奖励" /></a><a href="cp.php?ac=task&taskid=$task[taskid]&op=ignore"><img src="<?=$_USER_SC['domain']?>images/zsfq.gif" alt="暂时放弃" /></a></p>
+            </div>
+        <!--{/if}-->
+    <!--{/if}-->
+    <!--{else}-->
+
+        <div id="to011">
+            <p>按任务优先级排序，参与任务有大奖，开始吧！</p>
+	<!--{if $_GET['view'] != 'done'}-->
+            <div class="jdt">
+                <div class="jdbg" style="width:{$done_per}%"><div class="jdtx">我当前的任务完成度 {$done_per}%</div></div>
+            </div>
+	<!--{/if}-->
+	<!--{if empty($tasklist)}-->
+            <div class="dgrw">已经没有新的任务啦。</div>
+	<!--{else}-->
+		<!--{loop $tasklist $value}-->
+            <div class="dgrw">
+                <div class="letp"><img src="$value[image]" /></div>
+                <div class="ritx">
+                    <h6><a href="cp.php?ac=task&taskid=$value[taskid]">$value[name]</a></h6>
+                    <!--{if $value[num]}-->
+                        <p>
+                            <a href="cp.php?ac=task&taskid=$value[taskid]&view=member">已参与人次： $value[num]</a>
+                            <!--{if $value[maxnum]}-->
+                            / 本任务还可参与 <!--{eval echo $value[maxnum]-$value[num];}--> 人次
+                            <!--{/if}-->
+                        </p>
+                    <!--{/if}-->
+					<!--{if $value[starttime]}--><p>开始时间：<!--{date('Y-m-d H:i',$value[starttime])}--></p><!--{/if}-->
+					<!--{if $value[endtime]}--><p>结束时间：<!--{date('Y-m-d H:i',$value[endtime])}--></p><!--{/if}-->
+					<p>$value[note]</p>
+                    <!--{if $value['done']}-->
+                        <!--{if $value['ignore']}-->
+                            <p>已经放弃该任务</p>
+                            <p class="cyrw">您可以选择<a href="cp.php?ac=task&taskid=$value[taskid]&op=redo">重新完成该任务</a></p>
+                        <!--{else}-->
+                            <!--{if $value[credit]}--><p>获得积分：<strong class="num">$value[credit]</strong></p><!--{/if}-->
+                            <p class="cyrw"><a href="cp.php?ac=task&taskid=$value[taskid]">查看任务</a></p>
+                        <!--{/if}-->
+                    <!--{else}-->
+                        <!--{if $value[credit]}--><p>可获得积分：<strong class="num">$value[credit]</strong></p><!--{/if}-->
+                        <p class="cyrw"><a href="cp.php?ac=task&op=do&taskid=$value[taskid]"><img src="<?=$_USER_SC['domain']?>images/cyrw.gif" alt="立即参与任务" /></a></p>
+                    <!--{/if}-->
+                </div>
+            </div>
+		<!--{/loop}-->
+	<!--{/if}-->
+        </div>
+<!--{/if}-->
+        <div class="ggwc">
+
+<!--{if $task['done']}-->
+            <h3>刚刚完成该任务的朋友</h3>
+<!--{else}-->
+            <h3>刚刚完成任务的朋友</h3>
+			<!--{if 0}--><a href="cp.php?ac=task&taskid=$taskid&view=member" class="r_option">查看全部</a><!--{/if}-->
+<!--{/if}-->
+            <ul>
+			<!--{loop $taskspacelist $key $value}-->
+                <li><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'60x60')}--></a><br /><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}">{$_SN[$value[uid]]}</a></li>
+			<!--{/loop}-->
+            </ul>
+        </div>
+    </div>
+</div>
+<!--{template sns_footer}-->
+
+
+
+
+
+<!--{if 0}-->
 <!--{template header}-->
 
 <h2 class="title"><img src="<?=$_USER_SC['domain']?>image/icon/task.gif">有奖任务</h2>
@@ -228,3 +377,4 @@
 <!--{/if}-->
 
 <!--{template footer}-->
+<!--{/if}-->

@@ -82,3 +82,26 @@ a.menu-hd{ color:#FFF;}
 .facebox { padding: 8px; width: 250px; border: 1px solid #CCC; background: #FFF; z-index: 100000;}
 .facebox ul li { float: left; width: 25px; height: 25px; overflow: hidden; }
 
+.blocklink a { padding-left: 0.5em; line-height: 2em; display: block; }
+.blocklink a:hover { background: #2C629E; color: #FFF; text-decoration: none; }
+.blocklink .active a { color: #333; font-weight: bold; }
+
+.ajax_selector { position: relative; z-index: 999; }
+.ajax_selector_option { position: absolute; margin-top: -3px; padding: 3px 2px; border: 1px solid #CCC; background: #FFF; overflow: auto; overflow-x: hidden; overflow-y: auto; }
+
+.h_status { margin-bottom: 8px; padding: 5px; border-bottom: 1px solid #F5F5F5; color: #999; }
+.h_status .active { font-weight: bold; }
+
+.space_list td { padding: 5px; color: #999; overflow: hidden; }
+.space_list thead td { background: #FCF9E6; color: #333; }
+.space_list .topline { padding: 5px; }
+.space_list tbody tr.alt td { background: #FCF9E6; }
+.space_list .note { padding: 5px; color: #333; }
+
+.line_list li { padding: 5px 10px 5px 10px; border-bottom: 1px solid #ECF1F3; }
+.line_list img { margin: 0 5px 0 0; vertical-align: middle; }
+
+
+
+.avatar48 { padding: 5px 0 0 5px; width: 55px; height: 55px; background: url(../images/48_avatar_bg.gif) no-repeat; }
+.avatar48 img { width: 48px; height: 48px; }

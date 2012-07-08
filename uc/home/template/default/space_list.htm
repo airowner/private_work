@@ -1,7 +1,11 @@
-	<div class="space_list">
+	<div class="space_list zrxq" style="height:auto">
 	<!--{if $list}-->
 	<!--{loop $list $key $value}-->
-	<table cellspacing="0" cellpadding="0" width="100%">
+    <table cellspacing="0" cellpadding="0" width="100%" 
+	<!--{if count($list) > $key+1}-->
+        style="border-bottom: 1px solid #CCC"
+	<!--{/if}-->
+        >
 	<tr>
 		<td width="65"><div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div></td>
 		<td>

@@ -4,7 +4,6 @@
         <div class="ricz">
         	<div class="tp">
                 <p class="xlj">当前积分：$space[credit]<b>积分</b></p>
-                <p>小贴士：你收到的礼物在你的礼物箱里，可以再次实用。</p>
             </div>
             <div class="lwfl">
             	<ul>
@@ -24,21 +23,46 @@
                             <input type="hidden" value="{$glist[$val['gift']]['summary']}" name="summary" />
                         </div>
                         <div class="lwtx">
-                            <p><!--{if $val['uid'] == 0}-->某人悄悄的<!--{else}--><a href="<!--{eval echo usr_url('space', array('uid'=>$val['uid']))}-->">$val['username']</a>&nbsp;&nbsp;<!--{/if}-->在<span><!--{date('m-d H:i',$val[dateline],0)}--></span> 送给您的 <span>{$glist[$val['gift']]['name']}</span></p>
+                            <p><!--{if $val['uid'] == 0}-->某人悄悄的
+                            <!--{else}-->
+                                <!--{if $op=="friend"}-->
+                                我 
+                                <!--{elseif $op="me"}-->
+                            <a href="<!--{eval echo usr_url('space', array('uid'=>$val['uid']))}-->">$val['username']</a>&nbsp;&nbsp;
+                            <!--{/if}-->
+                            在<span><!--{date('m-d H:i',$val[dateline],0)}--></span> 
+                                <!--{if $op=="friend"}-->
+                                送给&nbsp;<a href="<!--{eval echo usr_url('space', array('uid'=>$val['touid']))}-->">$val['tousername']</a>&nbsp;的
+                                <!--{elseif $op="me"}-->
+                                送给您的
+                            <!--{/if}-->
+                            <span>{$glist[$val['gift']]['name']}</span></p>
+                                <!--{if $op=="friend"}-->
+							<p>我对他说：</p>
+                                <!--{elseif $op="me"}-->
 							<p>他对您说：</p>
+                            <!--{/if}-->
                             <!--{if $val['message'] != ''}-->
                             <p>{$val['message']}</p>
                             <!--{else}-->
                             <p>都在礼物里啦！啥都甭说了……来而不往非礼也！这事你看着办吧！</p>
                             <!--{/if}-->
                             <p>
+                            <!--{if $op=="me"}-->
                             <!--{if $val['uid'] != 0}--><a href="<!--{eval echo usr_url('space', array('uid'=>$val['uid']))}-->">回赠礼物</a><!--{/if}-->　
                             <a href="<!--{eval echo usr_url('cp', array('ac'=>'pm', 'uid'=>$val['uid']))}-->" id="a_pm" onclick="ajaxmenu(event, this.id, 99999, '', -1)">发送消息</a>
+                            <!--{else}-->
+                            <a href="<!--{eval echo usr_url('cp', array('ac'=>'pm', 'uid'=>$val['touid']))}-->" id="a_pm" onclick="ajaxmenu(event, this.id, 99999, '', -1)">发送消息</a>
+                            <!--{/if}-->
                             </p>
                         </div>
                     <!--{/loop}-->
                 <!--{else}-->
-                    您暂时没有收到礼物。
+                    <!--{if $op=="friend"}-->
+                        您还未送过礼物。<a href="gift.php">赶快给心仪得TA送礼物吧</a>
+                    <!--{else}-->
+                        您暂时没有收到礼物。
+                    <!--{/if}-->
                 <!--{/if}-->
                     </div>
                 </div>

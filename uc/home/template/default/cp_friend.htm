@@ -1,4 +1,5 @@
 <!--{template sns_header}-->
+<!--{if $op == 'syn' || $op == 'find' || $op == 'search' || $op == 'group' || $op == 'request'}-->
 <link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/hy.css"/>
 <div class="ricz">
     <div class="ss">
@@ -24,6 +25,7 @@
     </div>
     <div class="hdnr">
         <div id="to02">
+<!--{/if}-->
             <!--{if $op =='ignore'}-->
 
             <h1>忽略好友</h1>
@@ -615,9 +617,11 @@
         </div>
 
         <!--{/if}-->
+<!--{if $op == 'syn' || $op == 'find' || $op == 'search' || $op == 'group' || $op == 'request'}-->
 </div>
 </div>
 </div>
+<!--{/if}-->
 
 <!--{template sns_footer}-->
 

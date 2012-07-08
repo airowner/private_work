@@ -81,6 +81,6 @@ if(!submitcheck("giftsubmit")){
 	}
 	
 	
-	showmessage("礼物已经送出","/gift");
+	showmessage("礼物已经送出", usr_url("gift"));
 
 ?>

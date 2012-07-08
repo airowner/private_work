@@ -12,6 +12,8 @@ if(!defined('IN_UCHOME')) {
 $perpage = 24;
 $perpage = mob_perpage($perpage);
 
+$column = ceil($perpage / 3);
+
 $list = $ols = $fuids = array();
 $count = 0;
 $page = empty($_GET['page'])?0:intval($_GET['page']);

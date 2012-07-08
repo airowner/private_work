@@ -39,10 +39,11 @@
         <div id="to01">
 		<!--{if $list}-->
             <div class="cylb">
+			<!--{eval $i = 0;}-->
 			<!--{loop $list $key $value}-->
-                <!--{if $key == 0}-->
+                <!--{if $i == 0}-->
                 <ul>
-                <!--{elseif $key == 5 || $key == 10}-->
+                <!--{elseif $i % $column == 0}-->
                 <ul class="brd">
                 <!--{/if}-->
                     <li id="friend_{$value[uid]}_li">
@@ -53,9 +54,8 @@
                         <div class="txim"><a<!--{if $ols[$value[uid]]}--> class="online_icon_p"<!--{/if}--> href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'59x59')}--></div>
                         <div class="cytx">
                             <p class="ygz"><a href="space.php?uid=$value[uid]"<!--{eval g_color($value[groupid]);}-->>{$_SN[$value[uid]]}</a></p>
-                            <p><!--{if $value[note]}-->$value[note]<!--{/if}--></p>
+                            <p><!--{if $value[note]}-->$value[note]<!--{else}-->未发表心情<!--{/if}--></p>
                             <p>
-                                <a href="#"><img src="images/ygz.gif" /></a>
                             <!--{if $_GET['view']=='blacklist'}-->
                                 <a href="cp.php?ac=friend&op=blacklist&subop=delete&uid=$value[uid]&start=$_GET[start]">黑名单除名</a>
                             <!--{elseif $_GET['view']=='visitor' || $_GET['view'] == 'trace'}-->
@@ -64,11 +64,11 @@
                                 <!--{date('H:i',$ols[$value[uid]],1)}-->
                             <!--{else}-->
                                 <!--{if $ols[$value[uid]]}--><!--{date('H:i',$ols[$value[uid]],1)}--><!--{/if}-->
-                                <!--{if $value['num']}--><a href="cp.php?ac=friend&op=changenum&uid=$value[uid]" id="friendnum_$value[uid]" onclick="ajaxmenu(event, this.id)">热度(<span id="spannum_$value[uid]">$value[num]</span>)</a><span class="pipe">|</span><!--{/if}-->
+                                <!--{if 0 and $value['num']}--><a href="cp.php?ac=friend&op=changenum&uid=$value[uid]" id="friendnum_$value[uid]" onclick="ajaxmenu(event, this.id)">热度(<span id="spannum_$value[uid]">$value[num]</span>)</a><span class="pipe">|</span><!--{/if}-->
                                 <!--{if !$value['isfriend']}-->
-                                <a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a>
+                                <a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a><span class="pipe">|</span>
                                 <!--{else}-->
-                                <a href="cp.php?ac=friend&op=changegroup&uid=$value[uid]" id="friend_group_$value[uid]" onclick="ajaxmenu(event, this.id)">分组</a><span class="pipe">|</span>
+                                <a href="cp.php?ac=friend&op=changegroup&uid=$value[uid]" id="friend_group_$value[uid]" onclick="ajaxmenu(event, this.id)">分组</a>
                                 <a href="cp.php?ac=friend&op=ignore&uid=$value[uid]" id="a_ignore_$key" onclick="ajaxmenu(event, this.id)">删除</a>
                                 <!--{/if}-->
                             <!--{/if}-->
@@ -77,8 +77,9 @@
                         <!--{/if}-->
                         </div>
                     </li>
-                <!--{if $key == 4 || $key = 9 || $key == 14}-->
+                <!--{if $i % $column == $column - 1 || $i+1 == count($list)}-->
                 </ul>
+                <!--{eval $i++;}-->
                 <!--{/if}-->
 			<!--{/loop}-->
             </div>
