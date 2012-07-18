@@ -30,7 +30,8 @@ function delAttach(id) {
 }
 
 function addAttach() {
-	newnode = _$('attachbodyhidden').rows[0].cloneNode(true);
+	newnode = _$('attachbodyhidden').cloneNode(true);
+    newnode.style.display = "";
 	var id = aid;
 	var tags;
 	tags = newnode.getElementsByTagName('form');

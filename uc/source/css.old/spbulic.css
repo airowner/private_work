@@ -1,5 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
+.qznr{ border:1px solid #020202; width:134px; height:80px; padding:10px 8px;}
+.sc,.qx{ background:url(images/qd.gif) no-repeat 0 0; width:58px; height:23px; border:none; cursor:pointer;}
+.qx{ background:url(../images/xqxd.gif) no-repeat 0 0; margin-left:10px;}
+.czan{ text-align:right; margin-top:10px;}
 
 .grxx,.content,.zrxq,.jdjs,.dtfl ul,.hffld ul,.ss,.hdfl ul,.rzbj,.tpnr ul li,.fxfl ul,.fxxq,.xcfl ul,.xc,.ggqy,.xcd,.lwfl ul,.lwnr ul,.lwxq,.dgrz,.xcnr{ overflow:hidden; zoom:1;}
 .main{ background:url(../../qz/images/qzbg.gif) no-repeat 0 30px; width:1450px;position:absolute; left:50%; margin-left:-725px; padding-top:96px;}

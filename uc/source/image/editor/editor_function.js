@@ -1,7 +1,7 @@
 function uploadEdit(obj) {
 	mainForm = obj.form;
-	forms = $('attachbody').getElementsByTagName("FORM");
-	albumid = $('uploadalbum').value;
+	forms = _$('attachbody').getElementsByTagName("FORM");
+	albumid = _$('uploadalbum').value;
 	edit_save();
 	upload();
 }
@@ -12,40 +12,40 @@ function edit_save() {
 	var obj = p.window.frames['HtmlEditor'];
 	var status = p.document.getElementById('uchome-editstatus').value;
 	if(status == 'code') {
-		$('uchome-ttHtmlEditor').value = p.document.getElementById('sourceEditor').value;
+		_$('uchome-ttHtmlEditor').value = p.document.getElementById('sourceEditor').value;
 	} else if(status == 'text') {
 		if(is_ie) {
 			obj.document.body.innerText = p.document.getElementById('dvtext').value;
-			$('uchome-ttHtmlEditor').value = obj.document.body.innerHTML;
+			_$('uchome-ttHtmlEditor').value = obj.document.body.innerHTML;
 		} else {
 			obj.document.body.textContent = p.document.getElementById('dvtext').value;
 			var sOutText = obj.document.body.innerHTML;
-			$('uchome-ttHtmlEditor').value = sOutText.replace(/\r\n|\n/g,"<br>");
+			_$('uchome-ttHtmlEditor').value = sOutText.replace(/\r\n|\n/g,"<br>");
 		}
 	} else {
-		$('uchome-ttHtmlEditor').value = obj.document.body.innerHTML;
+		_$('uchome-ttHtmlEditor').value = obj.document.body.innerHTML;
 	}
-	backupContent($('uchome-ttHtmlEditor').value);
+	backupContent(_$('uchome-ttHtmlEditor').value);
 }
 
 //获取关键字
 function relatekw() {
 	edit_save();
-	var subject = cnCode($('subject').value);
-	var message = cnCode($('uchome-ttHtmlEditor').value);
+	var subject = cnCode(_$('subject').value);
+	var message = cnCode(_$('uchome-ttHtmlEditor').value);
 	if(message) {
 		message = message.substr(0, 500);
 		message = message.replace(/&/ig, '', message);
 	}
 	var x = new Ajax();
 	x.get('cp.php?ac=relatekw&subjectenc=' + subject + '&messageenc=' + message, function(s){
-		$('tag').value = s;
+		_$('tag').value = s;
 	});
 }
 	
 function backupContent(sHTML) {
 	if (sHTML.length > 11) {
-		var oArea = $('uchome-ttHtmlEditor');
+		var oArea = _$('uchome-ttHtmlEditor');
 		try {
 			var xmlDoc = oArea.XMLDocument;
 			var subNode = xmlDoc.createNode(1, 'subject', '');
@@ -55,7 +55,7 @@ function backupContent(sHTML) {
 			var tagNode = xmlDoc.createNode(1, 'tag', '');
 			var tagValueNode = xmlDoc.createNode(4, "tag", "");
 				
-			delmsg = xmlDoc.selectNodes("//subject");
+			delmsg = xmlDoc.selectNodes("//subject")
    			delmsg.removeAll();
    			delmsg = xmlDoc.selectNodes("//message");
    			delmsg.removeAll();
@@ -63,8 +63,8 @@ function backupContent(sHTML) {
    			delmsg.removeAll();
 			
 			msgValueNode.nodeValue = sHTML;
-			subValueNode.nodeValue = $('subject').value;
-			tagValueNode.nodeValue = $('tag').value;
+			subValueNode.nodeValue = _$('subject').value;
+			tagValueNode.nodeValue = _$('tag').value;
 				
 			subNode.appendChild(subValueNode);
 			msgNode.appendChild(msgValueNode);
@@ -80,8 +80,8 @@ function backupContent(sHTML) {
 			if(window.sessionStorage) {
 				try {
 					sessionStorage.setItem('message', sHTML);
-					if($('subject') !=null ) sessionStorage.setItem('subject', $('subject').value);
-					if($('tag') !=null ) sessionStorage.setItem('tag', $('tag').value);
+					if(_$('subject') !=null ) sessionStorage.setItem('subject', _$('subject').value);
+					if(_$('tag') !=null ) sessionStorage.setItem('tag', _$('tag').value);
 				} catch(e) {}
 			}
 				

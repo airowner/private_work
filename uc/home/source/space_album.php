@@ -301,7 +301,7 @@ if($id) {
 	$picmode = 0;
 
 	if(empty($_GET['view']) && ($space['friendnum']<$_SCONFIG['showallfriendnum'])) {
-		$_GET['view'] = 'all';//默认显示
+		$_GET['view'] = 'we';//默认显示
 	}
 	
 	if($_GET['view'] == 'click') {

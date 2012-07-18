@@ -1,3 +1,173 @@
+<!--{template sns_header}-->
+<!--{if $topic}-->
+	<!--{template cp_topic_menu}-->
+<!--{else}-->
+<!--{/if}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/xc.css"/>
+<div class="ricz">
+	<div class="ss">
+		<div class="hdd"></div>
+		<form method="get" action="space.php">
+			<input name="searchkey" value="" size="15" class="txt" type="text">
+			<input name="searchsubmit" value="搜索相册" class="btn" type="submit">
+			<input type="hidden" name="do" value="album" />
+			<input type="hidden" name="view" value="all" />
+			<input type="hidden" name="orderby" value="dateline" />
+		</form>
+	</div>
+	<div class="hdfl">
+		<a class="fqhd" href="#"><img src="images/scxtp.png" /></a>
+		<ul>
+			<li class="sdd021" id="zs011"><a class="o" href="space.php?uid=$space[uid]&do=album&view=me">我的相册</a></li>
+			<!--{if $space[friendnum]}--><li class="sdd021"><a class="t" href="space.php?uid=$space[uid]&do=album&view=we">好友最新相册</a></li><!--{/if}-->
+			<li class="sdd011" id="zs031"><a class="f" href="cp.php?ac=upload">上传新图片</a></li>
+		</ul>
+	</div>
+	<div class="hdnr">
+		<!--{if $haveattachsize}-->
+		<div class="borderbox">
+			您当前图片空间还剩余容量 <strong>$haveattachsize</strong>
+			<!--{if $_SGLOBAL[magic][attachsize]}-->
+			<p>
+				<img src="<?=$_USER_SC['domain']?>image/magic/attachsize.small.gif" class="magicicon"/>
+				<a id="a_magic_attachsize" href="magic.php?mid=attachsize" onclick="ajaxmenu(event, this.id, 1)">我要增加空间</a>
+				(您可以购买道具“{$_SGLOBAL[magic][attachsize]}”来增加附件容量，上传更多的图片)
+			</p>
+			<!--{/if}-->
+		</div><br>
+		<!--{/if}-->
+		<!--{if empty($_GET['op'])}-->
+		<div id="to031">
+			<h3>上传图片</h3>
+			<p>从电脑中选择你要上传的图片</p>
+			<p>提示：选择一张图片后，你可以继续选择下一张图片，这样你就可以一次上传多张图片了。</p>
+			<div class="dgysc" id="attachbodyhidden" style="display:none">
+				<form method="post" id="upload" action="cp.php?ac=upload<!--{if $eventid}-->&eventid=$eventid<!--{/if}-->" enctype="multipart/form-data" target="uploadframe">
+					<input type="file" name="attach" size="25" style="padding:10px;" />
+					<span id="localfile"></span>					
+					<input type="hidden" name="uploadsubmit" id="uploadsubmit" value="true" />
+					<input type="hidden" name="albumid" id="albumid" value="0" />
+					<input type="hidden" name="topicid" id="topicid" value="0" />
+					<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+				</form>
+			</div>
+			<div id="attachbody"></div>
+			
+			<script>
+
+				no_insert = 1;
+				function a_addOption() {
+					var obj = _$('uploadalbum');
+					obj.value = 'addoption';
+					addOption(obj);
+				}
+
+				function album_op(id) {
+					_$('selectalbum').style.display = 'none';
+					_$('creatalbum').style.display = 'none';
+					_$(id).style.display = '';
+				}
+			</script>
+
+			<script src="source/script_upload.js" type="text/javascript"></script>
+			<iframe id="uploadframe" name="uploadframe" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+
+			<form method="post" id="albumform" action="cp.php?ac=upload" target="uploadframe">
+				<!--{if $albums}-->
+				<caption>
+					<h3>
+					<input type="radio" id="albumop_selectalbum" name="albumop" value="selectalbum" checked onclick="album_op(this.value);"> <label for="albumop_selectalbum">添加到现有相册</label> &nbsp;
+					<input type="radio" id="albumop_creatalbum" name="albumop" value="creatalbum" onclick="album_op(this.value);"> <label for="albumop_creatalbum">新建一个相册</label>
+					</h3>
+				</caption>
+				<div id="selectalbum">
+					<h4>选择相册</h4>
+					<p>
+						<select name="albumid" id="uploadalbumid">
+						<!--{loop $albums $value}-->
+							<!--{if $value['albumid'] == $_GET['albumid']}-->
+								<option value="$value[albumid]" selected>$value[albumname]</option>
+							<!--{else}-->
+								<option value="$value[albumid]">$value[albumname]</option>
+							<!--{/if}-->
+						<!--{/loop}-->
+						</select>
+					</p>
+				</div>
+
+				<div id="creatalbum" style="display:none;">
+			<!--{else}-->
+				<h4>新建一个相册</h4>
+				<input type="hidden" name="albumop" value="creatalbum">
+				<div id="creatalbum">
+			<!--{/if}-->
+				<p class="xcm">
+					<span>相册名</span>	
+					<input type="text" class="xcmt" size="20" id="uploadalbumname" name="albumname" value="我的相册">
+				</p>
+				<p class="xcm">
+					<span>隐私设置</span>
+					<select name="friend" id="uploadfriend" onchange="passwordShow(this.value);">
+						<option value="0">全站用户可见</option>
+						<!--{if empty($_GET[topicid])}-->
+						<option value="1">全好友可见</option>
+						<option value="2">仅指定的好友可见</option>
+						<option value="3">仅自己可见</option>
+						<option value="4">凭密码查看</option>
+						<!--{/if}-->
+					</select>
+					<span id="span_password" style="display:none;">密码:<input type="text" id="uploadpassword" name="password" value="" size="10"></span>
+				</p>
+				<p class="xcm" id="tb_selectgroup" style="display:none;">
+					<span>指定好友</span>
+					<select name="selectgroup" onchange="getgroup(this.value);">
+						<option value="">从好友组选择好友</option>
+						<!--{loop $groups $key $value}-->
+						<option value="$key">$value</option>
+						<!--{/loop}-->
+					</select> 多次选择会累加到下面的好友名单
+					<textarea name="target_names" id="target_names" style="width:85%;" rows="3"></textarea>(可以填写多个好友名，请用空格进行分割)
+				</p>
+				</div>
+				<p>
+				<input type="hidden" name="albumsubmit" id="albumsubmit" value="true" />
+				<input type="hidden" name="topicid" value="$_GET[topicid]" />
+				<input type="submit" name="uploadsubmit" id="btnupload" value="开始上传" class="kssc" />
+				<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+				</p>
+			</form>
+			
+			<form method="post" id="albumresultform" action="cp.php?ac=upload<!--{if $eventid}-->&eventid=$eventid<!--{/if}-->" class="c_form">
+				<input type="hidden" name="opalbumid" id="opalbumid" value="0" />
+				<input type="hidden" name="topicid" id="optopicid" value="0" />
+				<input type="hidden" name="viewAlbumid" id="viewAlbumid" value="true" />
+				<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+			</form>
+		</div>
+		<!--{elseif $_GET['op'] == 'cam'}-->
+		<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,45,0" width="100%" height="415">
+			<param name="movie" value="<?=$_USER_SC['domain']?>image/cam.swf?site=$siteurl&albumid=$_GET['albumid']" />
+			<param name="quality" value="high" />
+			<embed src="<?=$_USER_SC['domain']?>image/cam.swf?site=$siteurl&albumid=$_GET['albumid']" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100%" height="415"></embed>
+		</object>
+
+		<!--{else}-->
+
+		<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,45,0" width="100%" height="400">
+		  <param name="movie" value="<?=$_USER_SC['domain']?>image/upload.swf?site=$siteurl&albumid=$_GET[albumid]&topicid=$_GET[topicid]" />
+		  <param name="quality" value="high" />
+		  <embed src="<?=$_USER_SC['domain']?>image/upload.swf?site=$siteurl&albumid=$_GET[albumid]&topicid=$_GET[topicid]" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100%" height="400"></embed>
+		</object>
+		<!--{/if}-->
+	</div>
+</div>
+<!--{template sns_footer}-->
+
+
+
+
+
+<!--{if 0}-->
 <!--{template header}-->
 
 <!--{if $topic}-->
@@ -208,3 +378,5 @@
 </div>
 
 <!--{template footer}-->
+
+<!--{/if}-->

@@ -43,9 +43,9 @@ function fSetEditable(){
  */
 function renewContent() {
 	if(window.confirm('您确定要恢复上次保存?')) {
-		var oArea = parent.$('uchome-ttHtmlEditor');
-		var tagObj = parent.$('tag');
-		var subjectObj = parent.$('subject');
+		var oArea = parent._$('uchome-ttHtmlEditor');
+		var tagObj = parent._$('tag');
+		var subjectObj = parent._$('subject');
 		var f = window.frames["HtmlEditor"];
 		try {
 			oArea.load('UCHome');
@@ -106,7 +106,7 @@ window.onbeforeunload = parent.edit_save;
  * 设置文字颜色
  */
 function fSetColor(){
-	var dvForeColor =$("dvForeColor");
+	var dvForeColor =_$("dvForeColor");
 	if(dvForeColor.getElementsByTagName("TABLE").length == 1){
 		dvForeColor.innerHTML = drawCube() + dvForeColor.innerHTML;
 	}
@@ -119,8 +119,8 @@ function fSetColor(){
 document.onmousemove = function(e){
 	if(gIsIE) var el = event.srcElement;
 	else var el = e.target;
-	var tdView = $("tdView");
-	var tdColorCode = $("tdColorCode");
+	var tdView = _$("tdView");
+	var tdColorCode = _$("tdColorCode");
 
 	if(el.tagName == "IMG"){
 		try{
@@ -151,7 +151,7 @@ function fInObj(el, id){
  * 显示对象
  */
 function fDisplayObj(id){
-	var o = $(id);
+	var o = _$(id);
 	if(o) o.style.display = "";
 }
 /**
@@ -160,8 +160,8 @@ function fDisplayObj(id){
 document.onclick = function(e){
 	if(gIsIE) var el = event.srcElement;
 	else var el = e.target;
-	var dvForeColor =$("dvForeColor");
-	var dvPortrait =$("dvPortrait");
+	var dvForeColor =_$("dvForeColor");
+	var dvPortrait =_$("dvPortrait");
 
 	if(el.tagName == "IMG"){
 		try{
@@ -256,21 +256,21 @@ function format(type, para){
  * 转换编辑模式
  */
 function setMode(bStatus){
-	var sourceEditor = $("sourceEditor");
-	var HtmlEditor = $("HtmlEditor");
-	var divEditor = $("divEditor");
+	var sourceEditor = _$("sourceEditor");
+	var HtmlEditor = _$("HtmlEditor");
+	var divEditor = _$("divEditor");
 	var f = window.frames["HtmlEditor"];
 	var body = f.document.getElementsByTagName("BODY")[0];
 	if(bStatus){
 		sourceEditor.style.display = "";
 		divEditor.style.display = "none";
 		sourceEditor.value = body.innerHTML;
-		$('uchome-editstatus').value = 'code';
+		_$('uchome-editstatus').value = 'code';
 	}else{
 		sourceEditor.style.display = "none";
 		divEditor.style.display = "";
 		body.innerHTML = sourceEditor.value;
-		$('uchome-editstatus').value = 'html';
+		_$('uchome-editstatus').value = 'html';
 	}
 }
 /**
@@ -287,7 +287,7 @@ function faceBox(e) {
 	if(gIsIE){
 		var e = window.event;
 	}
-	var dvFaceBox = $("editFaceBox");
+	var dvFaceBox = _$("editFaceBox");
 	var iX = e.clientX;
 	var iY = e.clientY;
 	dvFaceBox.style.display = "";
@@ -310,7 +310,7 @@ function insertImg(src) {
 
 //打开涂鸦板
 function doodleBox(event, id) {
-	if(parent.$(id) != null) {
+	if(parent._$(id) != null) {
 		parent.ajaxmenu(event, id, 1);
 	} else {
 		alert("找不到涂鸦板初始化数据");
@@ -340,7 +340,7 @@ function fDisplayColorBoard(e){
 		if (arr != null) return arr;
 		return;
 	}
-	var dvForeColor =$("dvForeColor");
+	var dvForeColor =_$("dvForeColor");
 	// fSetColor();
 	var iX = e.clientX;
 	var iY = e.clientY;
@@ -356,20 +356,20 @@ function fDisplayColorBoard(e){
  */
 function createLink(e, show) {
 	if(typeof show == 'undefined') {
-		var urlObj = $('insertUrl');
+		var urlObj = _$('insertUrl');
 		var sURL = urlObj.value;
 		if ((sURL!=null) && (sURL!="http://")){
 			setCaret();
 			format("CreateLink", sURL);
 		}
-		fHide($('createUrl'));
+		fHide(_$('createUrl'));
 		urlObj.value = 'http://';
 	} else {
 		if(gIsIE){
 			var e = window.event;
 		}
 		getCaret();
-		var dvUrlBox = $("createUrl");
+		var dvUrlBox = _$("createUrl");
 		var iX = e.clientX;
 		var iY = e.clientY;
 		dvUrlBox.style.display = "";
@@ -420,20 +420,20 @@ function clearLink() {
  */
 function createImg(e, show) {
 	if(typeof show == 'undefined') {
-		var imgObj = $('imgUrl');
+		var imgObj = _$('imgUrl');
 		var sPhoto = imgObj.value;
 		if ((sPhoto!=null) && (sPhoto!="http://")){
 			setCaret();
 			format("InsertImage", sPhoto);
 		}
-		fHide($('createImg'));
+		fHide(_$('createImg'));
 		imgObj.value = 'http://';
 	} else {
 		if(gIsIE){
 			var e = window.event;
 		}
 		getCaret();
-		var dvImgBox = $("createImg");
+		var dvImgBox = _$("createImg");
 		var iX = e.clientX;
 		var iY = e.clientY;
 		dvImgBox.style.display = "";
@@ -447,11 +447,11 @@ function createImg(e, show) {
 function createFlash(e, show) {
 	if(typeof show == 'undefined') {
 		var flashtag = '';
-		var vObj = $('videoUrl');
+		var vObj = _$('videoUrl');
 		var sFlash = vObj.value;
 		if ((sFlash!=null) && (sFlash!="http://")){
 			setCaret();
-			var sFlashType = $('vtype').value;
+			var sFlashType = _$('vtype').value;
 			if(sFlashType==1) {
 				flashtag = '[flash=media]';
 			} else if(sFlashType==2) {
@@ -461,14 +461,14 @@ function createFlash(e, show) {
 			}
 			format("insertHTML", flashtag + sFlash + '[/flash]');
 		}
-		fHide($('createSwf'));
+		fHide(_$('createSwf'));
 		vObj.value = 'http://';
 	} else {
 		if(gIsIE){
 			var e = window.event;
 		}
 		getCaret();
-		var dvSwfBox = $("createSwf");
+		var dvSwfBox = _$("createSwf");
 		var iX = e.clientX;
 		var iY = e.clientY;
 		dvSwfBox.style.display = "";
@@ -480,7 +480,7 @@ function createFlash(e, show) {
  * 删除字符串两边空格
  */
 String.prototype.trim = function(){
-	return this.replace(/(^\s*)|(\s*$)/g, "");
+	return this.replace(/(^\s*)|(\s*_$)/g, "");
 }
 /**
  * 鼠标移上图标
@@ -516,7 +516,7 @@ function fDisplayElement(element,displayValue) {
 	}
 	fHideMenu();
 	if ( typeof element == "string" )
-		element = $(element);
+		element = _$(element);
 	if (element == null) return;
 	element.style.display = displayValue;
 	if(gIsIE){
@@ -539,7 +539,7 @@ function fDisplayElement(element,displayValue) {
 function fSetModeTip(obj){
 	var x = f_GetX(obj);
 	var y = f_GetY(obj);
-	var dvModeTip = $("dvModeTip");
+	var dvModeTip = _$("dvModeTip");
 	if(!dvModeTip){
 		var dv = document.createElement("DIV");
 		dv.style.position = "absolute";
@@ -562,7 +562,7 @@ function fSetModeTip(obj){
  * 隐藏编辑源码
  */
 function fHideTip(){
-	$("dvModeTip").style.display = "none";
+	_$("dvModeTip").style.display = "none";
 }
 /**
  * 获取对象的x坐标
@@ -593,7 +593,7 @@ function fHideMenu(){
 	try{
 		var arr = ["fontface", "fontsize", "dvForeColor", "dvPortrait", "divAlign", "divList" ,"divInOut", "editFaceBox", "createUrl", "createImg", "createSwf"];
 		for(var i=0;i<arr.length;i++){
-			var obj = $(arr[i]);
+			var obj = _$(arr[i]);
 			if(obj){
 				obj.style.display = "none";
 			}
@@ -607,7 +607,7 @@ function fHideMenu(){
 /**
  * 获取对象
  */
-function $(id){
+function _$(id){
 	return document.getElementById(id);
 }
 /**
@@ -626,14 +626,14 @@ function changeEditType(flag, ev){
 		mod.html = flag;
 	}catch(exp){}
 	try{
-		var dvhtml = $("dvhtml");
-		var dvtext = $("dvtext");
+		var dvhtml = _$("dvhtml");
+		var dvtext = _$("dvtext");
 		var HtmlEditor = window.frames["HtmlEditor"];
-		var ifmHtmlEditor = $("HtmlEditor");
-		var sourceEditor = $("sourceEditor");
-		var switchMode = $("switchMode");
-		var sourceEditor = $("sourceEditor");
-		var dvHtmlLnk = $("dvHtmlLnk");
+		var ifmHtmlEditor = _$("HtmlEditor");
+		var sourceEditor = _$("sourceEditor");
+		var switchMode = _$("switchMode");
+		var sourceEditor = _$("sourceEditor");
+		var dvHtmlLnk = _$("dvHtmlLnk");
 		if(flag){
 			dvhtml.style.display = "";
 			dvtext.style.display = "none";
@@ -641,7 +641,7 @@ function changeEditType(flag, ev){
 			// setMode(false);
 			if(switchMode.checked){
 				sourceEditor.value = dvtext.value;
-				$('uchome-editstatus').value = 'code';
+				_$('uchome-editstatus').value = 'code';
 			}else{
 				//HtmlEditor.document.body.innerHTML = dvtext.value.replace(/\r\n|\n/g,"<br>");
 				if(document.all){
@@ -649,7 +649,7 @@ function changeEditType(flag, ev){
 				} else {
 					HtmlEditor.document.body.innerHTML = dvtext.value.unescapeHTML();
 				}
-				$('uchome-editstatus').value = 'html';
+				_$('uchome-editstatus').value = 'html';
 			}
 		}else{
 			function sub1(){
@@ -669,7 +669,7 @@ function changeEditType(flag, ev){
 			ev = ev || event;
 			if(ev){
 				if(window.confirm("转换为纯文本时将会遗失某些格式。\n您确定要继续吗？")){
-					$('uchome-editstatus').value = 'text';
+					_$('uchome-editstatus').value = 'text';
 					sub1();
 				}else{
 					return;
