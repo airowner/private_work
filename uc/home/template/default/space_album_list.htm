@@ -43,7 +43,7 @@
 	</div>
 	<!--{if $space[self]}-->
 	<div class="hdfl">
-		<a class="fqhd" href="#"><img src="images/scxtp.png" /></a>
+		<a class="fqhd" href="#"><img src="<?=$_USER_SC['domain']?>images/scxtp.png" /></a>
 		<ul>
 			<li<!--{if $actives[me]}--> class="sdd011"<!--{else}--> class="sdd021"<!--{/if}--> id="zs011"><a class="o" href="space.php?uid=$space[uid]&do=$do&view=me">我的相册</a></li>
 			<!--{if $space[friendnum]}--><li<!--{if $actives[we]}--> class="sdd011"<!--{else}--> class="sdd021"<!--{/if}-->><a class="t" href="space.php?uid=$space[uid]&do=$do&view=we">好友最新相册</a></li><!--{/if}-->

@@ -84,20 +84,18 @@ function insertAttach(id) {
 	}
 	attachexts[id] = inArray(ext, ['gif', 'jpg', 'jpeg', 'png']) ? 2 : 1;
 
-	var inhtml = '<div class="borderbox"><table cellspacing="0" cellpadding="0" border="0"><tr>';
+	var inhtml = '<div class="dgysc"><div class="ysc">';
 	if(is_ie || userAgent.indexOf('firefox') >= 1) {
 		var picPath = getPath(_$('attach_' + id));
 		var imgCache = new Image();
 		imgCache.src = picPath;
-		inhtml += '<td><img src="' + picPath +'" width="60" height="80">&nbsp;</td>';
+		inhtml += '<img src="' + picPath +'" width="60" height="80">';
 	}
 	if(is_ie && typeof no_insert=='undefined' || insertType==0) {
 		localfile += '&nbsp;<a href="javascript:;" title="点击这里插入内容中当前光标的位置" onclick="insertAttachimgTag(' + id + ');return false;">[插入]</a>';
 	}
 	localfile += '&nbsp;<span id="showmsg' + id + '"><a href="javascript:;" onclick="delAttach(' + id + ')">[删除]</a></span>';
-	inhtml += '<td>' + localfile +'<br/>';
-	inhtml += '图片描述:<br/><textarea name="pic_title" cols="40" rows="2"></textarea>';
-	inhtml += '</td></tr></table></div>';
+	inhtml += '</div><div class="ystx"><p>' + localfile +'</p><p>图片描述</p><textarea name="pic_title" cols="40" rows="2"></textarea></div></div>';
 	
 	_$('localfile_' + id).innerHTML = inhtml;
 	_$('attach_' + id).style.display = 'none';
@@ -115,7 +113,7 @@ function getPath(obj){
 		} else if(is_moz) {
 				if (obj.files) {
 					// Firefox下取得的是图片的数据
-					return obj.files.item(0).getAsDataURL();
+					return typeof(obj.files.item(0).getAsDataURL)=='function' ? obj.files.item(0).getAsDataURL() : obj.files.item(0).mozFullPath;
 				}
 				return obj.value;
 		}
