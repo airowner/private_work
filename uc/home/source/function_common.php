@@ -1740,7 +1740,7 @@ function getmtag($id) {
 	//成员级别
 	$mtag['ismember'] = 0;
 	$mtag['grade'] = -9;//-9 非成员 -2 申请 -1 禁言 0 普通 1 明星 8 副群主 9 群主
-	$query = $_SGLOBAL['db']->query("SELECT grade FROM ".tname('tagspace')." WHERE tagid='$id' AND uid='$_SGLOBAL[supe_uid]' LIMIT 1");
+	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('tagspace')." WHERE tagid='$id' AND uid='$_SGLOBAL[supe_uid]' LIMIT 1");
 	if($value = $_SGLOBAL['db']->fetch_array($query)) {
 		$mtag['grade'] = $value['grade'];
 		$mtag['ismember'] = 1;

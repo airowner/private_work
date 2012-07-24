@@ -284,11 +284,12 @@ function getTaskWidth() {
 function copyRow(tbody) {
 	var add = false;
 	var newnode;
-	if(_$(tbody).rows.length == 1 && _$(tbody).rows[0].style.display == 'none') {
-		_$(tbody).rows[0].style.display = '';
-		newnode = _$(tbody).rows[0];
+    var s = $('#'+tbody+' span');
+	if(s.length == 1 && s.is('hidden')) {
+        s.show();
+		newnode = s.get(0);
 	} else {
-		newnode = _$(tbody).rows[0].cloneNode(true);
+		newnode = s.get(0).cloneNode(true);
 		add = true;
 	}
 	tags = newnode.getElementsByTagName('input');
@@ -303,17 +304,16 @@ function copyRow(tbody) {
 }
 	
 function delRow(obj, tbody) {
-	if(_$(tbody).rows.length == 1) {
-		var trobj = obj.parentNode.parentNode;
-		tags = trobj.getElementsByTagName('input');
-		for(i in tags) {
-			if(tags[i].name == 'pics[]') {
-				tags[i].value = 'http://';
-			}
-		}
-		trobj.style.display='none';
+    var s = $('#'+tbody+' span');
+	if(s.length == 1) {
+        s.find('input').each(function(){
+            if(this.name == 'pics[]'){
+                this.value = 'http://';
+            }
+        });
+        s.hidden();
 	} else {
-		_$(tbody).removeChild(obj.parentNode.parentNode);
+		_$(tbody).removeChild(obj.parentNode);
 	}
 }
 

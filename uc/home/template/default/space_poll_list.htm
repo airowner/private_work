@@ -1,4 +1,123 @@
 <!--{eval $_TPL['titles'] = array('投票');}-->
+<!--{template sns_header}-->
+<!--{if !empty($_SGLOBAL[inajax])}-->
+	<h3 class="feed_header">
+	<a href="cp.php?ac=poll" class="r_option" target="_blank">发起投票</a>
+	投票(共 $count 个)</h3>
+	<!--{if $list}-->
+		<ul class="line_list">
+		<!--{loop $list $value}-->
+			<li>
+				<span class="gray r_option">{$value[voternum]}人投票</span>
+				<h4><a href="space.php?uid=$space[uid]&do=poll&pid=$value[pid]" target="_blank">$value[subject]</a></h4>
+				<div class="detail">
+				 <!--{loop $value['option'] $val}-->
+					<p><input type="<!--{if $value[multiple]}-->checkbox<!--{else}-->radio<!--{/if}-->" disabled name="poll_$value[pid]"/> $val</p>
+				 <!--{/loop}-->
+				</div>
+			</li>
+		<!--{/loop}-->
+		</ul>
+		<div class="page">$multi</div>
+	<!--{else}-->
+		<div class="c_form">还没有相关的投票。</div>
+	<!--{/if}-->
+	</div><br>
+<!--{else}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/wdtp.css"/>
+<div class="ricz">
+	<div class="ss">
+		<div class="hdd"></div>
+		<form method="get" action="space.php">
+			<input name="searchkey" value="" size="15" class="txt" type="text">
+			<input name="searchsubmit" value="搜索投票" class="btn" type="submit">
+			<input type="hidden" name="searchmode" value="1" />
+			<input type="hidden" name="do" value="poll" />
+			<input type="hidden" name="view" value="new" />
+		</form>
+	</div>
+	<!--{if $space[self]}-->
+	<div class="hdfl">
+		<a class="fqhd" href="cp.php?ac=poll"><img src="<?=$_USER_SC['domain']?>images/fbrz.png" /></a>
+		<ul>
+			<li<!--{if $actives[new]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs01"><a class="o" href="space.php?uid=$space[uid]&do=$do&view=new">最新投票</a></li>
+			<li<!--{if $actives[hot]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs02"><a class="t" href="space.php?uid=$space[uid]&do=$do&view=hot">最热投票</a></li>
+			<li<!--{if $actives[reward]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs03"><a class="f" href="space.php?uid=$space[uid]&do=$do&view=reward">悬赏投票</a></li>
+			<!--{if $space[friendnum]}--><li<!--{if $actives[friend]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs04"><a class="s" href="space.php?uid=$space[uid]&do=$do&view=friend">好友投票</a></li><!--{/if}-->
+			<li<!--{if $actives[me]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs05"><a class="e" href="space.php?uid=$space[uid]&do=$do&view=me">我的投票</a></li>
+		</ul>
+	</div>
+	<!--{else}-->
+	<!--{eval 
+		$_TPL['spacetitle'] = "投票";
+		$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=$do&view=me\">TA的所有投票</a>";
+	}-->
+	<!--{template space_menu}-->
+	<div class="hdfl">按照投票发起时间排序</div>
+	<!--{/if}-->
+	<div class="hdnr">
+	<div id="to05">
+	<!--{if $space[self] && in_array($_GET['view'], array('me', 'hot'))}-->
+		<!--{if $_GET['view'] == 'hot'}-->
+		<p class="lx">范围：
+			<a href="space.php?uid=$space[uid]&do=$do&view=hot&filtrate=all"<!--{if $filtrate[all]}--> class="dqd"<!--{/if}-->>全部</a>
+			<span>|</span><a href="space.php?uid=$space[uid]&do=$do&view=hot&filtrate=week"<!--{if $filtrate[week]}--> class="dqd"<!--{/if}-->>本周最热</a>
+			<span>|</span><a href="space.php?uid=$space[uid]&do=$do&view=hot&filtrate=month"<!--{if $filtrate[month]}--> class="dqd"<!--{/if}-->>本月最热</a>
+		</p>
+		<!--{else}-->
+		<p class="lx">类型：<a href="space.php?uid=$space[uid]&do=$do&view=me"<!--{if $filtrate[me]}--> class="dqd"<!--{/if}-->>我发起的</a>
+			<span>|</span><a href="space.php?uid=$space[uid]&do=$do&view=me&filtrate=join"<!--{if $filtrate[join]}--> class="dqd"<!--{/if}-->>我参与的</a>
+			<span>|</span><a href="space.php?uid=$space[uid]&do=$do&view=me&filtrate=expiration"<!--{if $filtrate[expiration]}--> class="dqd"<!--{/if}-->>已过期的</a>
+		</p>
+		<!--{/if}-->
+	<!--{/if}-->
+
+	<!--{if $searchkey}-->
+	<div class="hdfl">以下是搜索投票 <span style="color:red;font-weight:bold;">$searchkey</span> 结果列表</div>
+	<!--{/if}-->
+	
+	<!--{if $count}-->
+		<!--{loop $list $value}-->	
+		<div class="dgtp">
+			<div class="tptx"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'54x54')}--></a></div>
+			<div class="tpxq">
+				<p class="jf"><!--{if $value[percredit]}-->+$value[percredit]<!--{/if}--><span><a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]">$value[subject]</a></span></p>
+			 <!--{loop $value['option'] $val}-->
+				<p><input type="<!--{if $value[multiple]}-->checkbox<!--{else}-->radio<!--{/if}-->" disabled name="poll_$value[pid]"/> $val</p>
+			 <!--{/loop}-->
+				<p>....</p>
+				<p><!--{date('Y-m-d H:i',$value[dateline],1)}--> <span>|</span>
+				<a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]#comment">评论($value[replynum])</a> 
+				<!--{if $_GET[view]=='me'&&$value[expiration]&&$value[expiration]<$_SGLOBAL[timestamp]}-->
+				<span>|</span> <span class="gray">投票已结束</span><!--{if empty($value[summary])}--><a class="green" href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]">去写写投票总结</a><!--{/if}-->
+				<!--{/if}-->
+				</p>
+			</div>
+			<div class="tprs">
+				<div class="tps"><a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]">$value[voternum]</a></div>
+				<a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]"><img src="<?=$_USER_SC['domain']?>images/qtp.gif" /></a>
+			</div>
+		</div>
+		<!--{/loop}-->
+		<p class="page">$multi</p>
+	<!--{else}-->
+		<div class="dgtp">还没有相关的投票。</div>
+	<!--{/if}-->
+	</div>
+	</div>
+</div>
+<!--{/if}-->
+<!--{template sns_footer}-->
+
+
+
+
+
+
+
+
+<!--{if 0}-->
+<!--{eval $_TPL['titles'] = array('投票');}-->
 <!--{template header}-->
 
 <!--{if !empty($_SGLOBAL[inajax])}-->
@@ -130,3 +249,4 @@
 <!--{/if}-->
 
 <!--{template footer}-->
+<!--{/if}-->

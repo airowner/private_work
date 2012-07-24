@@ -1,46 +1,225 @@
+<!--{eval $_TPL['titles'] = array($mtag['tagname'], $mtag['title'], '成员');$_TPL['mtag'] = 1;}-->
+<!--{template header}-->
+<link rel="stylesheet" type="text/css" href="{$_USER_SC['domain']}css/qzej.css"/>
+<div class="main">
+    <div class="content">
+        <div class="topd">
+            <div class="tx"><a href="#"><img src="$mtag[pic]" width="68" height="68" /></a></div>
+            <h1>$mtag[title] —— $mtag[tagname]</h1>
+        </div>
+        <div class="qxq">
+            <div class="lexq">
+                <div class="qjj">
+                    <div class="jjtx">
+                        <p>创建于<!--{eval $tmp = explode(' ', $mtag['createtime']); echo $tmp[0];}-->     组长： $_SN[$mtag_creator['uid']]</p>
+                        <p>$mtag[tagname] <br /><!--{if $mtag[announcement]}-->$mtag[announcement]<!--{/if}--></p>
+                    </div>
+                    <div class="jjcz">
+                        <!--{if $mtag[grade]>=8}--><a alt="成员批量管理" href="cp.php?ac=mtag&op=manage&tagid=$mtag[tagid]&subop=members"><img src="{$_USER_SC['domain']}images/gltz.gif" /></a><!--{/if}-->
+                        <!--{if empty($mtag['ismember']) && $mtag['joinperm'] < 2}--><a class="mgt" href="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]" id="mtag_join_$mtag[tagid]" onclick="ajaxmenu(event, this.id)"><img src="{$_USER_SC['domain']}images/sqjr.gif" /></a><!--{/if}-->
+                    </div>
+                </div>
+                <div class="qzxq">
+                    <div class="qztp">
+                        <a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/qztp.gif" /></a>
+                    </div>
+                    <p class="tzbt">
+                        <a<!--{if !$_GET['view']}--> class="dq"<!--{/if}--> href="space.php?do=mtag&tagid=$mtag[tagid]">首页</a><span>|</span>
+                        <a<!--{if $_GET['view']=='list'}--> class="dq"<!--{/if}--> href="space.php?do=mtag&tagid=$mtag[tagid]&view=list">讨论区</a><span>|</span>
+                        <a<!--{if $_GET['view']=='digest'}--> class="dq"<!--{/if}--> href="space.php?do=mtag&tagid=$mtag[tagid]&view=digest">精华区</a><span>|</span>
+                        <!--{if $eventnum}-->
+                        <a<!--{if $_GET['view']=='event'}--> class="dq"<!--{/if}--> href="space.php?do=mtag&tagid=$mtag[tagid]&view=event">群组活动</a><span>|</span>
+                        <!--{/if}-->
+                        <a<!--{if $_GET['view']=='member'}--> class="dq"<!--{/if}--> href="space.php?do=mtag&tagid=$mtag[tagid]&view=member">成员列表</a>
+                        <!--{if $mtag['allowpost']}-->
+                        <span>|</span><a href="cp.php?ac=thread&tagid=$tagid">发起新话题</a>
+                        <!--{/if}-->
+                    </p>
+                    <p class="cy">圈子成员</p>
+                    <div class="cylb">
+                        <!--{loop $list $key $value}-->
+                        <ul>
+                            <!--{if $key % 3 == 0}-->
+                            <li>
+                                <div class="txim"<!--{if !$ols[$value[uid]]}--> style="background-image:{$_USER_SC['domain']}images/wgz.gif;"<!--{/if}-->><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'59x59')}--></a></div>
+                                <div class="cytx">
+                                    <p class="ygz"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></p>
+                                    <!--{if $mtag[grade]>=8}-->
+                                    <p><a href="cp.php?ac=mtag&op=manage&subop=member&tagid=$mtag[tagid]&uid=$value[uid]" id="a_mod_$key" onclick="ajaxmenu(event, this.id, 1)">管理该成员</a></p>
+                                    <!--{/if}-->
+                                    <p id="mtag_member_$value[uid]">
+                                    <!--{if $value[grade]==9}-->群主
+                                    <!--{elseif $value[grade]==8}-->副群主
+                                    <!--{elseif $value[grade]==1}-->明星
+                                    <!--{elseif $value[grade]==-1}-->禁言
+                                    <!--{elseif $value[grade]==-2}-->待审核
+                                    <!--{else}-->群成员
+                                    <!--{/if}-->
+                                    </p>
+                                    <p><a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a></p>
+                                    <p><a href="cp.php?ac=poke&op=send&uid=$value[uid]" id="a_poke_$key" onclick="ajaxmenu(event, this.id, 1)">打招呼</a></p>
+                                </div>
+                            </li>
+                            <!--{/if}-->
+                       </ul>  
+                        <ul class="brd">
+                            <!--{if $key % 3 == 1}-->
+                            <li>
+                                <div class="txim"<!--{if !$ols[$value[uid]]}--> style="background-image:{$_USER_SC['domain']}images/wgz.gif;"<!--{/if}-->><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'59x59')}--></a></div>
+                                <div class="cytx">
+                                    <p class="ygz"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></p>
+                                    <!--{if $mtag[grade]>=8}-->
+                                    <p><a href="cp.php?ac=mtag&op=manage&subop=member&tagid=$mtag[tagid]&uid=$value[uid]" id="a_mod_$key" onclick="ajaxmenu(event, this.id, 1)">管理该成员</a></p>
+                                    <!--{/if}-->
+                                    <p id="mtag_member_$value[uid]">
+                                    <!--{if $value[grade]==9}-->群主
+                                    <!--{elseif $value[grade]==8}-->副群主
+                                    <!--{elseif $value[grade]==1}-->明星
+                                    <!--{elseif $value[grade]==-1}-->禁言
+                                    <!--{elseif $value[grade]==-2}-->待审核
+                                    <!--{else}-->群成员
+                                    <!--{/if}-->
+                                    </p>
+                                    <p><a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a></p>
+                                    <p><a href="cp.php?ac=poke&op=send&uid=$value[uid]" id="a_poke_$key" onclick="ajaxmenu(event, this.id, 1)">打招呼</a></p>
+                                </div>
+                            </li>
+                            <!--{/if}-->
+                       </ul> 
+                        <ul class="brd">
+                            <!--{if $key % 3 == 2}-->
+                            <li>
+                                <div class="txim"<!--{if !$ols[$value[uid]]}--> style="background-image:{$_USER_SC['domain']}images/wgz.gif;"<!--{/if}-->><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'59x59')}--></a></div>
+                                <div class="cytx">
+                                    <p class="ygz"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></p>
+                                    <!--{if $mtag[grade]>=8}-->
+                                    <p><a href="cp.php?ac=mtag&op=manage&subop=member&tagid=$mtag[tagid]&uid=$value[uid]" id="a_mod_$key" onclick="ajaxmenu(event, this.id, 1)">管理该成员</a></p>
+                                    <!--{/if}-->
+                                    <p id="mtag_member_$value[uid]">
+                                    <!--{if $value[grade]==9}-->群主
+                                    <!--{elseif $value[grade]==8}-->副群主
+                                    <!--{elseif $value[grade]==1}-->明星
+                                    <!--{elseif $value[grade]==-1}-->禁言
+                                    <!--{elseif $value[grade]==-2}-->待审核
+                                    <!--{else}-->群成员
+                                    <!--{/if}-->
+                                    </p>
+                                    <p><a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a></p>
+                                    <p><a href="cp.php?ac=poke&op=send&uid=$value[uid]" id="a_poke_$key" onclick="ajaxmenu(event, this.id, 1)">打招呼</a></p>
+                                </div>
+                            </li>
+                            <!--{/if}-->
+                       </ul> 
+                        <!--{/loop}-->  
+                    </div>
+                    <p class="paged">$multi</p>
+                    <form name="searchform" id="searchform" method="get" action="space.php?do=mtag&tagid=$mtag[tagid]&view=member">
+                        <input type="text" id="key" name="key" value="搜索成员" onfocus="if(this.value=='搜索成员')this.value='';" class="txt" tabindex="1" />
+                        <input class="btn" type="submit" name="submit" value="搜索"/>
+                        <input type="hidden" name="do" value="mtag">
+                        <input type="hidden" name="tagid" value="$mtag[tagid]">
+                        <input type="hidden" name="view" value="member">
+                        <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+                    </form>
+                </div>
+                
+            </div>
+            <div class="rixq">
+                <div class="ycjj">如果你未来是啊打死的伟大的设计师，那么你现在就是。</div>
+                <div class="qzcy">
+                    <h4>该圈子成员 ({$count})</h4>
+                    <ul>
+                        <!--{loop $list $key $value}-->
+                        <!--{if $key <= 9}-->
+                        <li><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'48x48')}--></a></li>
+                        <!--{/if}-->
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+                <div class="tyxh">
+                    <h4>喜欢该圈子的成员也喜欢</h4>
+                    <ul>
+                        <li>
+                            <dl>
+                                <dt><img src="{$_USER_SC['domain']}images/tyxh.png" /></dt>
+                                <dd>
+                                    <p><a href="#">设计博客圈</a><br /><span>72712人喜欢</span></p>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><img src="{$_USER_SC['domain']}images/tyxh.png" /></dt>
+                                <dd>
+                                    <p><a href="#">gizakka慢生活杂倒萨阿达</a><br /><span>72712人喜欢</span></p>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+                <div class="xgg">
+                    <a href="#"><img src="{$_USER_SC['domain']}images/xgg.png" /></a>
+                </div>
+                <div class="xgg">
+                    <a href="#"><img src="{$_USER_SC['domain']}images/xgg.png" /></a>
+                </div>
+                <div class="xgg">
+                    <a href="#"><img src="{$_USER_SC['domain']}images/xgg.png" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="dtx"><img src="$mtag[pic]" width="178" height="184" /></div>
+    </div>
+<!--{template footer}-->
+
+
+
+
+
+<!--{if 0}-->
 <!--{eval $_TPL['titles'] = array($mtag['tagname'], $mtag['title'], '成员');}-->
 <!--{template header}-->
 
 <h2 class="title">
-	<img src="<?=$_USER_SC['domain']?>image/app/mtag.gif"><a href="space.php?do=mtag&id=$mtag[fieldid]">$mtag[title]</a> -
-	<a href="space.php?do=mtag&tagid=$mtag[tagid]">$mtag[tagname]</a>
+    <img src="<?=$_USER_SC['domain']?>image/app/mtag.gif"><a href="space.php?do=mtag&id=$mtag[fieldid]">$mtag[title]</a> -
+    <a href="space.php?do=mtag&tagid=$mtag[tagid]">$mtag[tagname]</a>
 </h2>
 <div class="tabs_header">
-	<ul class="tabs">
-		<li><a href="space.php?do=mtag&tagid=$mtag[tagid]"><span>首页</span></a></li>
-		<li><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=list"><span>讨论区</span></a></li>
-		<li><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=digest"><span>精华区</span></a></li>
-		<!--{if $eventnum}-->
-		<li><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=event"><span>群组活动</span></a></li>
-		<!--{/if}-->
-		<li class="active"><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=member"><span>成员列表</span></a></li>
-		<!--{if $mtag['allowpost']}--><li class="null"><a href="cp.php?ac=thread&tagid=$tagid">发起新话题</a></li><!--{/if}-->
-	</ul>
+    <ul class="tabs">
+        <li><a href="space.php?do=mtag&tagid=$mtag[tagid]"><span>首页</span></a></li>
+        <li><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=list"><span>讨论区</span></a></li>
+        <li><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=digest"><span>精华区</span></a></li>
+        <!--{if $eventnum}-->
+        <li><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=event"><span>群组活动</span></a></li>
+        <!--{/if}-->
+        <li class="active"><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=member"><span>成员列表</span></a></li>
+        <!--{if $mtag['allowpost']}--><li class="null"><a href="cp.php?ac=thread&tagid=$tagid">发起新话题</a></li><!--{/if}-->
+    </ul>
 </div>
 
 <script>
 function searchFriend() {
-	_$('searchform').submit();
+    _$('searchform').submit();
 }
 </script>
 
 <div class="h_status">
 <form name="searchform" id="searchform" method="get" action="space.php?do=mtag&tagid=$mtag[tagid]&view=member">
 <table cellpadding="0" cellspacing="0" width="100%">
-	<tr>
-		<td>
-			成员列表
-			<!--{if $mtag[grade]>=8}--><span class="pipe">|</span><a href="cp.php?ac=mtag&op=manage&tagid=$mtag[tagid]&subop=members">成员批量管理</a><!--{/if}-->
-			</td>
-		<td align="right">
-			<table cellspacing="0" cellpadding="0">
-				<tr>
-					<td style="padding: 0;"><input type="text" id="key" name="key" value="搜索成员" onfocus="if(this.value=='搜索成员')this.value='';" class="t_input" tabindex="1" style="width: 160px; border-right: none;" /></td>
-					<td style="padding: 0;"><a href="javascript:searchFriend();"><img src="<?=$_USER_SC['domain']?>image/search_btn.gif" alt="搜索" /></a></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
+    <tr>
+        <td>
+            成员列表
+            <!--{if $mtag[grade]>=8}--><span class="pipe">|</span><a href="cp.php?ac=mtag&op=manage&tagid=$mtag[tagid]&subop=members">成员批量管理</a><!--{/if}-->
+            </td>
+        <td align="right">
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="padding: 0;"><input type="text" id="key" name="key" value="搜索成员" onfocus="if(this.value=='搜索成员')this.value='';" class="t_input" tabindex="1" style="width: 160px; border-right: none;" /></td>
+                    <td style="padding: 0;"><a href="javascript:searchFriend();"><img src="<?=$_USER_SC['domain']?>image/search_btn.gif" alt="搜索" /></a></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
 </table>
 <input type="hidden" name="do" value="mtag">
 <input type="hidden" name="tagid" value="$mtag[tagid]">
@@ -49,66 +228,67 @@ function searchFriend() {
 </div>
 
 <div class="thumb_list">
-	<!--{if $list}-->
-	<table cellspacing="6" cellpadding="0">
-	<!--{loop $list $key $value}-->
-		<tr>
-			<td class="thumb <!--{if $ols[$value[uid]]}-->online<!--{/if}-->">
-				<table cellpadding="4" cellspacing="4">
-					<tr>
-						<td class="image">
-						<div class="ar_r_t"><div class="ar_l_t"><div class="ar_r_b"><div class="ar_l_b">
-						<a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],big)}--></a>
-						</div></div></div></div>
-						</td>
-						<td>
-							<h6>
-								<a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a>
-								<!--{if $value['videostatus']}-->
-								<img src="<?=$_USER_SC['domain']?>image/videophoto.gif" align="absmiddle"> <span class="gray">已通过视频认证</span>
-								<!--{/if}-->
-							</h6>
-							<p class="l_status">
-							<!--{if $mtag[grade]>=8}-->
-								<a href="cp.php?ac=mtag&op=manage&subop=member&tagid=$mtag[tagid]&uid=$value[uid]" id="a_mod_$key" onclick="ajaxmenu(event, this.id, 1)" class="r_option" style="padding-left:0.5em;">管理该成员</a>
-							<!--{/if}-->
-								<span class="r_option gray" id="mtag_member_$value[uid]">
-								<!--{if $value[grade]==9}-->群主
-								<!--{elseif $value[grade]==8}-->副群主
-								<!--{elseif $value[grade]==1}-->明星
-								<!--{elseif $value[grade]==-1}-->禁言
-								<!--{elseif $value[grade]==-2}-->待审核<!--{/if}-->
-								</span>
-								<a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a>
-								<span class="pipe">|</span><a href="cp.php?ac=pm&uid=$value[uid]" id="a_pm_$key" onclick="ajaxmenu(event, this.id, 1)">发短消息</a>
-								<span class="pipe">|</span><a href="cp.php?ac=poke&op=send&uid=$value[uid]" id="a_poke_$key" onclick="ajaxmenu(event, this.id, 1)">打招呼</a>
-							</p>
-							
-							<!--{if $ols[$value[uid]]}-->
-							<p><span class="gray">动作：</span><!--{date('m-d H:i',$ols[$value[uid]],1)}--></p>
-							<!--{/if}-->
+    <!--{if $list}-->
+    <table cellspacing="6" cellpadding="0">
+    <!--{loop $list $key $value}-->
+        <tr>
+            <td class="thumb <!--{if $ols[$value[uid]]}-->online<!--{/if}-->">
+                <table cellpadding="4" cellspacing="4">
+                    <tr>
+                        <td class="image">
+                        <div class="ar_r_t"><div class="ar_l_t"><div class="ar_r_b"><div class="ar_l_b">
+                        <a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],big)}--></a>
+                        </div></div></div></div>
+                        </td>
+                        <td>
+                            <h6>
+                                <a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a>
+                                <!--{if $value['videostatus']}-->
+                                <img src="<?=$_USER_SC['domain']?>image/videophoto.gif" align="absmiddle"> <span class="gray">已通过视频认证</span>
+                                <!--{/if}-->
+                            </h6>
+                            <p class="l_status">
+                            <!--{if $mtag[grade]>=8}-->
+                                <a href="cp.php?ac=mtag&op=manage&subop=member&tagid=$mtag[tagid]&uid=$value[uid]" id="a_mod_$key" onclick="ajaxmenu(event, this.id, 1)" class="r_option" style="padding-left:0.5em;">管理该成员</a>
+                            <!--{/if}-->
+                                <span class="r_option gray" id="mtag_member_$value[uid]">
+                                <!--{if $value[grade]==9}-->群主
+                                <!--{elseif $value[grade]==8}-->副群主
+                                <!--{elseif $value[grade]==1}-->明星
+                                <!--{elseif $value[grade]==-1}-->禁言
+                                <!--{elseif $value[grade]==-2}-->待审核<!--{/if}-->
+                                </span>
+                                <a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a>
+                                <span class="pipe">|</span><a href="cp.php?ac=pm&uid=$value[uid]" id="a_pm_$key" onclick="ajaxmenu(event, this.id, 1)">发短消息</a>
+                                <span class="pipe">|</span><a href="cp.php?ac=poke&op=send&uid=$value[uid]" id="a_poke_$key" onclick="ajaxmenu(event, this.id, 1)">打招呼</a>
+                            </p>
+                            
+                            <!--{if $ols[$value[uid]]}-->
+                            <p><span class="gray">动作：</span><!--{date('m-d H:i',$ols[$value[uid]],1)}--></p>
+                            <!--{/if}-->
 
-							<!--{if $value[resideprovince] || $value[residecity]}-->
-							<p><span class="gray">地区：</span><a href="cp.php?ac=friend&op=search&resideprovince=$value[p]&residecity=&searchmode=1">$value[resideprovince]</a> <a href="cp.php?ac=friend&op=search&resideprovince=$value[p]&residecity=$value[c]&searchmode=1">$value[residecity]</a></p>
-							<!--{/if}-->
-	
-							<!--{if $value[note]}-->
-							<p><span class="gray">状态：</span>$value[note]</p>
-							<!--{/if}-->
+                            <!--{if $value[resideprovince] || $value[residecity]}-->
+                            <p><span class="gray">地区：</span><a href="cp.php?ac=friend&op=search&resideprovince=$value[p]&residecity=&searchmode=1">$value[resideprovince]</a> <a href="cp.php?ac=friend&op=search&resideprovince=$value[p]&residecity=$value[c]&searchmode=1">$value[residecity]</a></p>
+                            <!--{/if}-->
+    
+                            <!--{if $value[note]}-->
+                            <p><span class="gray">状态：</span>$value[note]</p>
+                            <!--{/if}-->
 
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<!--{/loop}-->
-	</table>
-	<!--{else}-->
-	<div class="c_form">没有找到可浏览的成员信息。</div>
-	<!--{/if}-->
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--{/loop}-->
+    </table>
+    <!--{else}-->
+    <div class="c_form">没有找到可浏览的成员信息。</div>
+    <!--{/if}-->
 </div>
 
 <div class="page">$multi</div>
 
 
 <!--{template footer}-->
+<!--{/if}-->

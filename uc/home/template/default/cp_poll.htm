@@ -227,31 +227,24 @@
 </form>
 <!--{else}-->
     <link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/tp.css"/>
-    <!--{if $topic}-->
-        <!--{template cp_topic_menu}-->
-    <!--{else}-->
-	<h2 class="title"><img src="<?=$_USER_SC['domain']?>image/app/poll.gif" />投票</h2>
-	<div class="tabs_header">
-		<ul class="tabs">
-			<li class="active"><a href="cp.php?ac=poll"><span>发起新投票</span></a></li>
-			<li><a href="space.php?do=poll&view=me"><span>返回我的投票</span></a></li>
-		</ul>
-	</div>
-    <!--{/if}-->
+
     <div class="ricz">
+        <div class="tp" style="font-size:14px;font-weight:bold"><a href="cp.php?ac=poll"><span>发起新投票</span></a> | <a href="space.php?do=poll&view=me"><span>返回我的投票</span></a></div>
         <form id="addnewpoll" name="addnewpoll" method="post" action="cp.php?ac=poll">
-        <div class="tp"></div>
         <div class="tpnr">
             <ul>
                 <li class="bm"><span>投票主题</span><b>
 					<input type="text" class="txt" id="subject" name="subject" value=""> <br/>
-					<a id="addtip" href="javascript:;" onclick="initIntro();" onfocus="this.blur();">添加投票详细说明</a>
-</b></li>
+					<a id="addtip" href="javascript:;" onclick="initIntro();" onfocus="this.blur();">添加投票详细说明</a></b>
+				</li>
+				<li id="intropoll" style="display:none"><span>详细说明</span>
+					<textarea id="message" style="padding: 3px 2px;width:450px;height:50px;" name="message"></textarea>
+				</li>
                 <!--{eval $option=array(1,2,3,4,5,6,7,8,9,10); }-->
                 <!--{loop $option $key $val}-->
                 <li><span>候选项{$val}</span><b><input class="txt" name="option[]" type="text" maxlength="120"  />
-                <!--{if $val==10}-->
-                    <br />增加更多项
+					<!--{if $val==10}-->
+                    <br /><a id="moretip" href="javascript:;" onclick="showMoreOption();" onfocus="this.blur();">增加更多选项</a>
                     <!--{/if}-->
                 </b></li>
                 <!--{/loop}-->
@@ -265,7 +258,7 @@
             <ul>
                 <li><span>可投选项</span><b>
 					<select name="maxchoice">
-						<!--{loop $option $key $val}-->
+						<!--{loop array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20) $key $val}-->
 							<option value="$val">
 								<!--{if $val==1}-->
 								单选
@@ -318,6 +311,7 @@
             <input type="hidden" name="topicid" value="$_GET[topicid]" />
             <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
             <input type="submit" name="addpollsubmit" id="addpollsubmit" value="发起投票" class="fqtp" onclick="validate(this);return false;" />
+            <div id="__addnewpoll"></div>
         </div>
         </form>
     </div>
@@ -434,7 +428,7 @@
 		}
 	</script>
 <!--{/if}-->
-<!--{template sna_footer}-->
+<!--{template sns_footer}-->
 
 
 

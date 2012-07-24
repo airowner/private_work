@@ -3,16 +3,6 @@
 
 .jmtj,.wwnr ul li,.nro,.shtt,.cont,.conf,.nftt,.one,.rio,.ph dt,.ph dd,.rido,.ph li,.cono,dl,.dhjm{ overflow:hidden; zoom:1;}
 
-.heder{ height:154px; width:100%; background:url(../images/hebg.gif) repeat-x 0 0;}
-.henr{ width:950px; margin:0 auto; position:relative;}
-.logo{ position:absolute; left:0; top:45px;}
-a{ color:#000;}
-.menu{ background:url(../../images/imenu.png) no-repeat 0 0; width:491px; height:30px; position:absolute; left:460px; top:60px; padding-top:5px; padding-left:15px;}
-.menu ul li{ width:93px; height:28px; float:left; margin-left:18px;}
-.mime{ background:url(../../images/mimen.png) no-repeat 0 0; width:344px; height:26px; position:absolute; left:550px; top:95px;}
-.mime ul li{ font-size:12px;font-family:"微软雅黑","宋体"; float:left; margin-left:50px; display:inline;}
-.mime ul li a{ color:#FFF;}
-
 .main{ background:url(../images/mainbg.gif) no-repeat 0 0; width:1450px;position:absolute; left:50%; margin-left:-725px; height:1565px;}
 .cono{ width:950px; margin:0 auto; padding-top:10px;}
 .lero{ width:241px; float:left;}

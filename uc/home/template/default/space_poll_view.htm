@@ -1,4 +1,45 @@
 <!--{eval $_TPL['titles'] = array($poll['subject'], '投票');}-->
+<!--{template sns_header}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/wdtp.css"/>
+<div class="ricz">
+	<div class="ss">
+		<div class="hdd"></div>
+		<form method="get" action="space.php">
+			<input name="searchkey" value="" size="15" class="txt" type="text">
+			<input name="searchsubmit" value="搜索投票" class="btn" type="submit">
+			<input type="hidden" name="searchmode" value="1" />
+			<input type="hidden" name="do" value="poll" />
+			<input type="hidden" name="view" value="new" />
+		</form>
+	</div>
+<!--{if $space[self]}-->
+	<div class="hdfl">
+		<a class="fqhd" href="cp.php?ac=poll"><img src="<?=$_USER_SC['domain']?>images/fbrz.png" /></a>
+		<ul>
+			<li<!--{if $actives[new]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs01"><a class="o" href="space.php?uid=$space[uid]&do=$do&view=new">最新投票</a></li>
+			<li<!--{if $actives[hot]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs02"><a class="t" href="space.php?uid=$space[uid]&do=$do&view=hot">最热投票</a></li>
+			<li<!--{if $actives[reward]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs03"><a class="f" href="space.php?uid=$space[uid]&do=$do&view=reward">悬赏投票</a></li>
+			<!--{if $space[friendnum]}--><li<!--{if $actives[friend]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs04"><a class="s" href="space.php?uid=$space[uid]&do=$do&view=friend">好友投票</a></li><!--{/if}-->
+			<li<!--{if $actives[me]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}--> id="zs05"><a class="e" href="space.php?uid=$space[uid]&do=$do&view=me">我的投票</a></li>
+		</ul>
+	</div>
+<!--{else}-->
+<!--{eval
+	$_TPL['spacetitle'] = "投票";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=$do&view=me\">TA的所有投票</a>";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=poll&pid=$pid\">查看投票详情</a>";
+}-->
+<!--{template space_menu}-->
+<!--{/if}-->
+</div>
+<!--{template sns_footer}-->
+
+
+
+
+
+<!--{if 0}-->
+<!--{eval $_TPL['titles'] = array($poll['subject'], '投票');}-->
 <!--{template header}-->
 
 <!--{if $space[self]}-->
@@ -290,3 +331,4 @@ for(var i=0; i<elems.length; i++){
 </script>
 
 <!--{template footer}-->
+<!--{/if}-->

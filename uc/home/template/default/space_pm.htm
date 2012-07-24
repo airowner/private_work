@@ -1,4 +1,118 @@
 <!--{eval $_TPL['titles'] = array('短消息');}-->
+<!--{template sns_header}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/ckxx.css"/>
+<div class="ricz">
+		<div class="ss">
+			<div class="hdd" style="line-height:32px"><a href="cp.php?ac=pm"><span>发短消息</span></a></div>
+		</div>
+<!--{if $_GET['subop'] == 'view'}-->
+	<!--{if $list}-->
+		<div class="hdnr" id="pm_ul">
+			<!--{loop $list $key $value}-->
+			<div class="txqy">
+				<!--{if $value[msgfromid]}-->
+				<div class="letx"><a href="space.php?uid=$value[msgfromid]"><!--{avatar($value[msgfromid],'41x41')}--></a></div>
+				<!--{else}-->
+				<div class="letx"><img src="<?=$_USER_SC['domain']?>image/systempm.gif" width="41" height="41" /></div>		
+				<!--{/if}-->
+				<div class="ritx">
+					<p><!--{if $value[msgfromid]}--><a href="space.php?uid=$value[msgfromid]">{$_SN[$value[msgfromid]]}</a> <!--{/if}--></p>
+					<p>ID：$value[msgfromid]</p>
+				</div>
+			</div>
+			<h1>{$_SN[$value[msgfromid]]}发来了消息</h1>
+			<div class="xxnr">
+				$value[message]
+			</div>
+			<p class="czan" style="text-align:left">
+				<a href="cp.php?ac=pm&pmid=$value[pmid]&touid=$value[msgfromid]" id="a_reply_$value[pmid]" onclick="ajaxmenu(event, this.id)"><img src="<?=$_USER_SC['domain']?>images/hf.gif" /></a>
+				<a href="cp.php?ac=pm&op=delete&folder=inbox&pmid=$value[pmid]" id="a_delete_$value[pmid]" onclick="ajaxmenu(event, this.id)"><img src="<?=$_USER_SC['domain']?>images/xscd.gif" /></a>
+			</p>
+			<!--{/loop}-->
+		</div>
+	<!--{else}-->
+		<div class="hdnr">当前没有相应的短消息。</div>
+	<!--{/if}-->
+	<!--{if $touid && $list}-->
+	<!--{/if}-->
+<!--{elseif $_GET['subop'] == 'ignore'}-->
+	<div class="hdnr">
+		<h4 style="border-bottom:1px dashed #B7B7B7">忽略列表</h4>
+		<form id="ignoreform" name="ignoreform" method="post" action="cp.php?ac=pm&op=ignore">
+			<table cellspacing="0" cellpadding="0" class="formtable" width="100%">
+				<caption>
+					<p>添加到该列表中的用户给您发送短消息时将不予接收<br />
+						添加多个忽略人员名单时用逗号 "," 隔开，如“张三,李四,王五”<br />
+						如需禁止所有用户发来的短消息，请设置为 "&#123;ALL&#125;"</p>
+				</caption>
+				<tr>
+					<td><textarea id="ignorelist" name="ignorelist" cols="40" rows="6" style="width: 98%;" onkeydown="ctrlEnter(event, 'ignoresubmit');">$ignorelist</textarea></td>
+				</tr>
+				<tr>
+					<td><input type="submit" name="ignoresubmit" id="ignoresubmit" value="保存" class="submit" /></td>
+				</tr>
+			</table>
+			<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+		</form>
+	</div>
+<!--{else}-->
+	<div class="hdnr">
+		<h4 style="border-bottom:1px dashed #B7B7B7">消息</h4>
+	<!--{if $count}-->
+		  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 auto;">
+			  <tbody>
+			<!--{loop $list $key $value}-->	
+				<tr<!--{if $key % 2 == 1}--> class="hs"<!--{/if}-->>
+					<td style="width:70px; text-align:center;">
+						<!--{if $value[touid]}-->
+						<a href="space.php?do=pm&subop=view&pmid=$value[pmid]&touid=$value[touid]&daterange=$value[daterange]">
+						<!--{else}-->
+						<a href="space.php?do=pm&subop=view&pmid=$value[pmid]">
+						<!--{/if}-->
+						<!--{if $value['new']}-->
+						<img src="<?=$_USER_SC['domain']?>images/xxtb.gif" />
+						<!--{else}-->
+						<img src="<?=$_USER_SC['domain']?>images/yck.png" />
+						<!--{/if}-->
+						</a>
+					</td>
+					<td>
+					<!--{if $value[touid]}-->
+					<a href="space.php?uid=$value[touid]">{$_SN[$value[touid]]}</a>
+					<!--{else}-->
+						系统消息
+					<!--{/if}-->
+					</td>
+					<td>
+					<!--{if $value[touid]}-->
+					<a href="space.php?do=pm&subop=view&pmid=$value[pmid]&touid=$value[touid]&daterange=$value[daterange]">
+					<!--{else}-->
+					<a href="space.php?do=pm&subop=view&pmid=$value[pmid]">
+					<!--{/if}-->
+					$value[message]</a>
+					</td>
+					<td><!--{date('Y-n-j H:i',$value[dateline],1)}--></td>
+				</tr>
+			<!--{/loop}-->
+			</tbody>
+		  </table>
+		  <p class="page">$multi</p>
+		  </table>
+	<!--{else}-->
+		<div>当前没有相应的短消息。</div>
+	<!--{/if}-->
+	</div>	
+<!--{/if}-->
+</div>
+
+<!--{template sns_footer}-->
+
+
+
+
+
+<!--{if 0}-->
+<!--{eval $_TPL['titles'] = array('短消息');}-->
 <!--{template header}-->
 
 <h2 class="title"><img src="<?=$_USER_SC['domain']?>image/icon/pm.gif">消息</h2>
@@ -152,3 +266,4 @@
 </div>
 
 <!--{template footer}-->
+<!--{if 0}-->

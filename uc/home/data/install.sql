@@ -764,6 +764,7 @@ CREATE TABLE uchome_mtag (
   postperm tinyint(1) NOT NULL default '0',
   recommend tinyint(1) NOT NULL default '0',
   moderator varchar(255) NOT NULL default '',
+  createtime timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY  (tagid),
   KEY tagname (tagname),
   KEY threadnum (threadnum)

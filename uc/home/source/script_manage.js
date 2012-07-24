@@ -159,17 +159,16 @@ function post_add(pid, result) {
 		obj.appendChild(newli);
 		if(_$('message')) {
 			_$('message').value= '';
-			newnode = _$('quickpostimg').rows[0].cloneNode(true);
+			newnode = $('#quickpostimg span').get(0).cloneNode(true);
 			tags = newnode.getElementsByTagName('input');
 			for(i in tags) {
 				if(tags[i].name == 'pics[]') {
 					tags[i].value = 'http://';
 				}
 			}
-			var allRows = _$('quickpostimg').rows;
-			while(allRows.length) {
-				_$('quickpostimg').removeChild(allRows[0]);
-			}
+			$('#quickpostimg span').each(function(){
+                $(this).remove();
+            });
 			_$('quickpostimg').appendChild(newnode);
 		}
 		if(_$('post_replynum')) {

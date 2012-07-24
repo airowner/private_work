@@ -1,3 +1,93 @@
+<!--{template sns_header}-->
+<!--{if $_GET['op'] == 'delete'}-->
+<div class="qznr">
+	<p><b>删除短消息</b><br />确定删除指定的短消息吗？</p>
+	<form id="pmform" name="pmform" method="post" action="cp.php?ac=pm&op=delete&folder=$folder&pmid=$pmid">
+    <p class="czan">
+		<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+		<input type="hidden" name="deletesubmit" value="true" />
+		<input class="sc" type="submit" name="deletesubmit" value="确定"  />
+		<input class="qx" type="button" onclick="javascript:hideMenu();"/></p>
+    <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</form>
+</div>
+<!--{else}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/xxx.css"/>
+	<!--{if !$_SGLOBAL[inajax]}-->
+		<div class="ricz">
+		<div class="ss">
+			<div class="hdd" style="line-height:32px"><a href="space.php?do=pm&view=inbox"><span>返回收件箱</span></a></div>
+		</div>
+		<div class="hdnr">
+	<!--{/if}-->
+			<div class="xxx" id="__pmform_{$pmid}">
+				<form id="pmform_{$pmid}" name="pmform_{$pmid}" method="post" action="cp.php?ac=pm&op=send&touid=$touid&pmid=$pmid" class="ajaxshowdiv">
+				<h4>写消息</h4>
+				<ul class="fm">
+				<!--{if !$touid}-->
+					<script type="text/javascript" src="source/script_autocomplete.js"></script>
+					<li><b>收件人：</b><div class="rili">
+					<input type="text" id="username" name="username" value="" class="sjr" tabindex="1" <!--{if $friends}--> onclick="auc.handleEvent(this.value ,event);" onkeyup="auc.handleEvent(this.value ,event);" onkeydown="closeOpt(username,event);inputKeyDown(event);" autocomplete="off" <!--{/if}--> />
+					</div></li>
+					<!--{if $friends}-->
+					<div id="username_menu" class="ajax_selector" onclick="_$('username_menu').style.display='none';" style="display:none">
+						<div class="ajax_selector_option" style="width: 396px; height: 100px;">
+							<a href="javascript:;" onclick="_$('username_menu').style.display='none';" class="float_del" style="margin-right: 5px;">a</a>
+							<ul id="friendlist" class="blocklink">
+								<!--{loop $friends $key $value}-->
+									<!--{eval $fs[] = $value['username'];}-->
+									<li>$value[username]</li>
+								<!--{/loop}-->
+							</ul>
+						</div>
+					</div>
+					<!--{eval $friendstr = implode(',', $fs);}-->
+					<script type="text/javascript">
+						var close = true;
+						var auc = new sAutoComplete("auc", "username_menu", "friendlist", "username");
+						auc.addItem('$friendstr');
+						function closeOpt(key,evt) {
+							if(evt.keyCode==9) {
+								_$('username_menu').style.display='none';
+							}
+						}
+						function inputKeyDown(event) {
+							if(event.keyCode == 13){
+								doane(event);
+							}
+						}
+					</script>
+
+					<!--{/if}-->
+				<!--{/if}-->
+				<li><b>内容：</b><div class="rili"><textarea id="message" name="message" cols="40" rows="4" class="nr" onkeydown="ctrlEnter(event, 'pmsubmit_btn');"></textarea></div></li>
+				</ul>
+				<p class="fs">
+					<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+					<input type="hidden" name="pmsubmit" value="true" />
+					<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+					<!--{if $_SGLOBAL[inajax]}-->
+					<input type="button" name="pmsubmit_btn" id="pmsubmit_btn" value="发送" class="fsa" onclick="ajaxpost('pmform_{$pmid}','',2000)" />
+					<!--{else}-->
+					<input type="submit" name="pmsubmit_btn" id="pmsubmit_btn" value="发送" class="fsa" />
+					<!--{/if}-->
+					</p>
+				</form>
+			</div>
+			
+	<!--{if !$_SGLOBAL[inajax]}-->
+		</div>
+	</div>
+	<!--{/if}-->         
+<!--{/if}-->
+<!--{template sns_footer}-->
+
+
+
+
+
+
+<!--{if 0}-->
 <!--{template header}-->
 
 
@@ -102,3 +192,4 @@
 
 <!--{/if}-->
 <!--{template footer}-->
+<!--{/if}-->

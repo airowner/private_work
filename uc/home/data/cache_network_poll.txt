@@ -1,1 +1,1 @@
-a:0:{}
+a:1:{i:0;a:17:{s:3:"pid";s:1:"1";s:7:"topicid";s:1:"0";s:3:"uid";s:1:"3";s:8:"username";s:7:"wanglan";s:7:"subject";s:9:"test poll";s:8:"voternum";s:1:"0";s:8:"replynum";s:1:"0";s:8:"multiple";s:1:"0";s:9:"maxchoice";s:1:"1";s:3:"sex";s:1:"0";s:7:"noreply";s:1:"0";s:6:"credit";s:1:"0";s:9:"percredit";s:1:"0";s:10:"expiration";s:10:"1343750399";s:8:"lastvote";s:1:"0";s:8:"dateline";s:10:"1342797844";s:3:"hot";s:1:"0";}}
