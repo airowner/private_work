@@ -11,8 +11,6 @@ checkclose();
 //获取当前用户的空间信息
 //echo $_SGLOBAL['supe_uid'];
 $space = getspace($_SGLOBAL['supe_uid']);
-//添加菜单
-//window_set('送礼', "gift.php"); 
 
 //处理rewrite
 if($_SCONFIG['allowrewrite'] && isset($_GET['rewrite'])) {

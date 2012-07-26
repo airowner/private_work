@@ -187,8 +187,7 @@ function gettask() {
 	}
 
 	if($tasks) {
-		$r_key = array_rand($tasks, 1);
-		return $tasks[$r_key];
+		return $tasks;
 	} else {
 		return array();
 	}
