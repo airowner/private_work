@@ -68,36 +68,19 @@ setInterval(function(){
             <div class="qzfl">
                 <h3>圈子分类</h3>
                 <div class="qznr">
-                    <div class="dgqz">
-                        <h6>运动明星</h6>
+                    <!--{loop $mtags $key $value}-->
+                    <!--{if $key < 5}-->
+                    <div class="dgqz<!--{if $key == 4}--> zhg<!--{/if}-->">
+                        <h6>$value[title]</h6>
                         <div class="dgnr">
-                            <a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">更多</a>
+                            <!--{loop $sub_mtags[$key] $sub_value}-->
+                            <a href="space.php?do=mtag&tagid={$sub_value['tagid']}" title="$sub_value['tagname']"><!--{eval echo base::cutstr($sub_value['tagname'],4, '');}--></a>
+                            <!--{/loop}-->
+                            <a href="space.php?do=mtag&id={$value['fieldid']}">更多</a>
                         </div>
                     </div>
-                    <div class="dgqz">
-                        <h6>运动明星</h6>
-                        <div class="dgnr">
-                            <a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">更多</a>
-                        </div>
-                    </div>
-                    <div class="dgqz">
-                        <h6>运动明星</h6>
-                        <div class="dgnr">
-                            <a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">更多</a>
-                        </div>
-                    </div>
-                    <div class="dgqz">
-                        <h6>运动明星</h6>
-                        <div class="dgnr">
-                            <a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">更多</a>
-                        </div>
-                    </div>
-                    <div class="dgqz zhg">
-                        <h6>运动明星</h6>
-                        <div class="dgnr">
-                            <a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">港台</a><a href="#">更多</a>
-                        </div>
-                    </div>
+                    <!--{/if}-->
+                    <!--{/loop}-->
                 </div>
             </div>
             <!--圈子分类结束-->
@@ -113,15 +96,12 @@ setInterval(function(){
     
     <!--您可能感兴趣的-->
     <div class="nkngxq">
-        <h3><a href="#">换一批</a></h3>
+        <h3></h3>
         <div class="xqnr">
             <ul>
-                <li><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
-                <li><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
-                <li><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
-                <li><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
-                <li><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
-                <li class="nm"><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtp.png" /><br />海贼王</a></li>
+                <!--{loop $intrest $value}-->
+                <li<!--{if $key == 5}--> class="nm"<!--{/if}-->><a href="space.php?do=mtag&tagid={$value['tagid']}" target="_blank"><img src="$value['pic']" width="120" height="120" /><br /><!--{eval echo base::cutstr($sub_value['tagname'],20, '');}--></a></li>
+                <!--{/loop}-->
             </ul>
         </div>
     </div>

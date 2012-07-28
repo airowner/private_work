@@ -100,12 +100,14 @@ $_SCONFIG=Array
 			'click' => 1
 			)
 		),
-	'cronnextrun' => 1343317800,
+	'cronnextrun' => 1343489820,
 	'my_status' => '0',
 	'uniqueemail' => 1,
 	'updatestat' => 1,
 	'my_showgift' => 1,
 	'topcachetime' => 60,
-	'newspacenum' => 3
+	'newspacenum' => 3,
+	'sitekey' => 'd10efcgdm9cg2wPW',
+	'spacebarusername' => 'wanglan,zhanghua'
 	)
 ?>

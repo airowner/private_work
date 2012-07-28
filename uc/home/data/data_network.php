@@ -4,25 +4,74 @@ $_SGLOBAL['network']=Array
 	(
 	'blog' => Array
 		(
-		'hot1' => 3,
+		'blogid' => '',
+		'uid' => '',
+		'hot1' => '',
+		'hot2' => '',
+		'viewnum1' => '',
+		'viewnum2' => '',
+		'replynum1' => '',
+		'replynum2' => '',
+		'dateline' => '',
+		'order' => 'dateline',
+		'sc' => 'desc',
 		'cache' => 600
 		),
 	'pic' => Array
 		(
-		'hot1' => 3,
+		'picid' => '',
+		'uid' => '',
+		'hot1' => '',
+		'hot2' => '',
+		'dateline' => '',
+		'order' => 'dateline',
+		'sc' => 'desc',
 		'cache' => 700
 		),
 	'thread' => Array
 		(
-		'hot1' => 3,
+		'tid' => '',
+		'uid' => '',
+		'hot1' => '',
+		'hot2' => '',
+		'viewnum1' => '',
+		'viewnum2' => '',
+		'replynum1' => '',
+		'replynum2' => '',
+		'dateline' => '',
+		'lastpost' => '',
+		'order' => 'dateline',
+		'sc' => 'desc',
 		'cache' => 800
 		),
 	'event' => Array
 		(
+		'eventid' => '',
+		'uid' => '',
+		'hot1' => '',
+		'hot2' => '',
+		'membernum1' => '',
+		'membernum2' => '',
+		'follownum1' => '',
+		'follownum2' => '',
+		'dateline' => '',
+		'order' => 'dateline',
+		'sc' => 'desc',
 		'cache' => 900
 		),
 	'poll' => Array
 		(
+		'pid' => '',
+		'uid' => '',
+		'hot1' => '',
+		'hot2' => '',
+		'voternum1' => '',
+		'voternum2' => '',
+		'replynum1' => '',
+		'replynum2' => '',
+		'dateline' => '',
+		'order' => 'dateline',
+		'sc' => 'desc',
 		'cache' => 500
 		)
 	)

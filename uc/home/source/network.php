@@ -43,16 +43,18 @@ if(check_network_cache('blog')) {
     while ($value = $_SGLOBAL['db']->fetch_array($query)) {
         $value['message'] = getstr($value['message'], 86, 0, 0, 0, 0, -1);
         $value['subject'] = getstr($value['subject'], 50, 0, 0, 0, 0, -1);
-        $bloglist[] = $value;
+        $bloglist[$value['uid']] = $value;
     }
     if($_SGLOBAL['network']['blog']['cache']) {
         swritefile($cachefile, serialize($bloglist));
     }
 }
-foreach($bloglist as $key => $value) {
-    realname_set($value['uid'], $value['username']);
-    $bloglist[$key] = $value;
+$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('space')." WHERE uid IN (".simplode(array_keys($bloglist)).")");
+while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+    realname_set($value['uid'], $value['username'], $value['name'], $value['namestatus']);
+    $bloglist[$value['uid']] = $value + $bloglist[$value['uid']];
 }
+
 
 //图片
 /*
@@ -240,13 +242,14 @@ $star = array();
 $starlist = array();
 if($_SCONFIG['spacebarusername']) {
     $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('space')." WHERE username IN (".simplode(explode(',', $_SCONFIG['spacebarusername'])).")");
+    //~ echo "SELECT * FROM ".tname('space')." WHERE username IN (".simplode(explode(',', $_SCONFIG['spacebarusername'])).")";exit;
     while ($value = $_SGLOBAL['db']->fetch_array($query)) {
         realname_set($value['uid'], $value['username'], $value['name'], $value['namestatus']);
         $starlist[] = $value;
     }
 }
 if($starlist) {
-    $star = sarray_rand($starlist, 1);
+    $star = sarray_rand($starlist, 6);
 }
 
 //竞价排名
@@ -330,6 +333,12 @@ function check_network_cache($type) {
     return false;
 }
 
+    $sqlarr = mk_network_sql('blog',
+        array('blogid', 'uid'),
+        array('hot','viewnum','replynum'),
+        array('dateline'),
+        array('dateline','viewnum','replynum','hot')
+    );
 //获得SQL
 function mk_network_sql($type, $ids, $crops, $days, $orders) {
     global $_SGLOBAL;
@@ -342,7 +351,7 @@ function mk_network_sql($type, $ids, $crops, $days, $orders) {
         if($nt[$value]) {
             $wherearr[] = "main.{$value} IN (".$nt[$value].")";
         }
-    }
+    } 
     
     //范围
     foreach ($crops as $value) {

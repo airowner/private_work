@@ -12,8 +12,9 @@
                     <h3>居民</h3>
                     <div class="ronr">
                         <div class="jrlm"></div>
+                        <!--{eval $i=0}-->
                         <!--{loop $star $key $value}-->
-                        <!--{if !$key}-->
+                        <!--{if !$i}-->
                         <div class="jmtj">
                             <div class="tjtx">
                                 <a href="space.php?uid=$value[uid]" target="_blank"><!--{avatar($value[uid],'69x69')}--></a>
@@ -22,11 +23,12 @@
                                 <p><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}">{$_SN[$value[uid]]}</a><br />访问: $value[viewnum]<br />好友: $value[friendnum]</p>
                             </div>
                         </div>
-                        <!--{else}-->
-                        <!--{if $key==1}--><div class="jmtx"><!--{/if}-->
-                            <a href="space.php?uid=$value[uid]" target="_blank"><!--{avatar($value[uid],'47x47')}--></a>
+                        <!--{elseif $i < 6}-->
+                        <!--{if $i==1}--><div class="jmtx" style="margin-top:15px"><!--{/if}-->
+                            <a href="space.php?uid=$value[uid]" target="_blank"  title="{$_SN[$value[uid]]}"><!--{avatar($value[uid],'47x47')}--></a>
                         <!--{if $key==count($star)-1}--></div><!--{/if}-->
                         <!--{/if}-->
+                        <!--{eval $i++}-->
                         <!--{/loop}-->
                     </div>
                 </div>
@@ -135,7 +137,7 @@
             
         </div>
         <div class="rinr">
-            <div class="cjkj"><a href="#"><img src="<?=$_USER_SC['domain']?>images/cjkj.png" /></a></div>
+            <div class="cjkj"><a href="space.php?do=home"><img src="<?=$_USER_SC['domain']?>images/cjkj.png" /></a></div>
             <!--居民排行-->
             <div class="jmph">
                 <h3>居民排行</h3>
