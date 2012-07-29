@@ -1,12 +1,12 @@
 @charset "utf-8";
 /* CSS Document */
 .qznr{ border:1px solid #020202; width:134px; height:80px; padding:10px 8px;}
-.sc,.qx{ background:url(images/qd.gif) no-repeat 0 0; width:58px; height:23px; border:none; cursor:pointer;}
+.sc,.qx{ background:url(../images/qd.gif) no-repeat 0 0; width:58px; height:23px; border:none; cursor:pointer;}
 .qx{ background:url(../images/xqxd.gif) no-repeat 0 0; margin-left:10px;}
 .czan{ text-align:right; margin-top:10px;}
 
 .grxx,.content,.zrxq,.jdjs,.dtfl ul,.hffld ul,.ss,.hdfl ul,.rzbj,.tpnr ul li,.fxfl ul,.fxxq,.xcfl ul,.xc,.ggqy,.xcd,.lwfl ul,.lwnr ul,.lwxq,.dgrz,.xcnr{ overflow:hidden; zoom:1;}
-.main{ background:url(../../qz/images/qzbg.gif) no-repeat 0 30px; width:1450px;position:absolute; left:50%; margin-left:-725px; padding-top:96px;}
+.main{ background:url(../images/qzbg.gif) no-repeat 0 30px; width:1450px;position:absolute; left:50%; margin-left:-725px; padding-top:96px;}
 a{ color:#000;}
 
 .nleni ul li{ float:left;margin-right:15px;}
@@ -242,7 +242,7 @@ ins.modify { padding-top: 5px; color: #666; text-decoration: none; text-align: r
 
 
 .task_notice { position: relative; padding: 5px; background: #FCF9E6; }
-    .task_notice a.float_cancel { position: absolute; width: 16px; height: 16px; background: url(image/cancel.gif) no-repeat; line-height: 200px; top: 5px; right: -8px; overflow: hidden; display: block; }
+    .task_notice a.float_cancel { position: absolute; width: 16px; height: 16px; background: url(../image/cancel.gif) no-repeat; line-height: 200px; top: 5px; right: -8px; overflow: hidden; display: block; }
 .task_notice_body { width: 100%; overflow: hidden; }
     .task_notice .icon { float: left; position: relative; margin: 0 10px 0 0; width: 64px; height: 64px; }
     .task_notice h2 { margin: 0 0 5px; font-size: 12px; }

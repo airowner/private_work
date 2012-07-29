@@ -1054,3 +1054,4 @@ _div.prototype = {
 		if(this.Efollow!=null&&this.allowdrag==true){removeEvent(this.div, "mousemove", this.Efollow);this.Efollow=null}
 	}
 }
+

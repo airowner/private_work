@@ -1,23 +1,57 @@
 <!--{eval $_TPL['titles'] = array('同心情');}-->
+<!--{template sns_header}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/wdzh.css"/>
+<div class="ricz">
+    <div class="ss">
+        <div class="hd">心情</div>
+    </div>
+    
+    <div class="hdfl">
+        <ul>
+        <!--{if $space[self]}-->
+            <!--{if $space[friendnum]}-->
+            <li<!--{if $actives[we]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}-->><a href="space.php?uid=$space[uid]&do=doing&view=we"><span>最新好友记录</span></a><span>&nbsp;|&nbsp;</span></li><!--{/if}-->
+            <li<!--{if $actives[all]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}-->><a href="space.php?uid=$space[uid]&do=doing&view=all"><span>大家的记录</span></a><span>&nbsp;|&nbsp;</span></li>
+            <li<!--{if $actives[me]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}-->><a href="space.php?uid=$space[uid]&do=doing&view=me"><span>我的记录</span></a><span>&nbsp;|&nbsp;</span></li>
+        <!--{/if}-->
+            <li<!--{if $actives[mood]}--> class="sdd01"<!--{else}--> class="sdd02"<!--{/if}-->><a href="space.php?uid=$space[uid]&do=mood"><span>同心情的朋友</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="hdnr">
+        <div class="h_status">
+            他们现在与你有着同样的心情
+        </div>
+        <!--{template space_list}-->
+    </div>
+</div>
+<!--{template sns_footer}-->
+
+
+
+
+<!--{if 0}-->
+<!--{eval $_TPL['titles'] = array('同心情');}-->
 <!--{template header}-->
 
 
 <h2 class="title"><img src="<?=$_USER_SC['domain']?>image/app/doing.gif">记录</h2>
 <div class="tabs_header">
-	<ul class="tabs">
-		<!--{if $space[self]}-->
-		<!--{if $space[friendnum]}--><li><a href="space.php?uid=$space[uid]&do=doing&view=we"><span>最新好友记录</span></a></li><!--{/if}-->
-		<li><a href="space.php?uid=$space[uid]&do=doing&view=all"><span>大家的记录</span></a></li>
-		<li><a href="space.php?uid=$space[uid]&do=doing&view=me"><span>我的记录</span></a></li>
-		<!--{/if}-->
-		<li class="active"><a href="space.php?uid=$space[uid]&do=mood&view=all"><span>同心情的朋友</span></a></li>
-	</ul>
+    <ul class="tabs">
+        <!--{if $space[self]}-->
+        <!--{if $space[friendnum]}--><li><a href="space.php?uid=$space[uid]&do=doing&view=we"><span>最新好友记录</span></a></li><!--{/if}-->
+        <li><a href="space.php?uid=$space[uid]&do=doing&view=all"><span>大家的记录</span></a></li>
+        <li><a href="space.php?uid=$space[uid]&do=doing&view=me"><span>我的记录</span></a></li>
+        <!--{/if}-->
+        <li class="active"><a href="space.php?uid=$space[uid]&do=mood&view=all"><span>同心情的朋友</span></a></li>
+    </ul>
 </div>
 
 <div class="h_status">
-	他们现在与你有着同样的心情
+    他们现在与你有着同样的心情
 </div>
 
 <!--{template space_list}-->
 
 <!--{template footer}-->
+<!--{/if}-->

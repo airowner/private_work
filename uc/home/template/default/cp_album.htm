@@ -5,148 +5,148 @@
 <!--{/if}-->
 <!--{if $_GET['op']=='edit' || $_GET['op']=='editpic'}-->
 <div class="tp">
-	<p class="xlj"><a href="cp.php?ac=upload&album=$albumid">上传图片</a><span>|</span><a href="#">动态相册</a><span>|</span><a href="#">图片评论</a></p>
-	<p>小贴士：您如果已经设置了权限的相册，就不能把该相册内的单张图片设置成其他权限。</p>
+    <p class="xlj"><a href="cp.php?ac=upload&album=$albumid">上传图片</a><span>|</span><a href="#">动态相册</a><span>|</span><a href="#">图片评论</a></p>
+    <p>小贴士：您如果已经设置了权限的相册，就不能把该相册内的单张图片设置成其他权限。</p>
 </div>
 <div class="xcfl">
-	<ul>
-		<li<!--{if $_GET['op']=='edit'}--> class="sd01"<!--{else}--> class="sd02"<!--{/if}--> id="zt01"><a class="o" href="cp.php?ac=album&op=edit&albumid=$albumid">管理相册</a></li>
-		<li<!--{if $_GET['op']=='editpic'}--> class="sd01"<!--{else}--> class="sd02"<!--{/if}--> id="zt02"><a class="t" href="cp.php?ac=album&op=editpic&albumid=$albumid">编辑相册：我的图库</a></li>
-	</ul>
+    <ul>
+        <li<!--{if $_GET['op']=='edit'}--> class="sd01"<!--{else}--> class="sd02"<!--{/if}--> id="zt01"><a class="o" href="cp.php?ac=album&op=edit&albumid=$albumid">管理相册</a></li>
+        <li<!--{if $_GET['op']=='editpic'}--> class="sd01"<!--{else}--> class="sd02"<!--{/if}--> id="zt02"><a class="t" href="cp.php?ac=album&op=editpic&albumid=$albumid">编辑相册：我的图库</a></li>
+    </ul>
 </div>
 <!--{/if}-->
 <!--{if $_GET['op'] == 'edit'}-->
-	<div class="xcnr">
-		<div id="nr01">
-			<form method="post" id="theform" name="theform" action="cp.php?ac=album&op=edit&albumid=$albumid" class="c_form">
-			<h3>编辑相册</h3>
-			<div class="xm">
-				<span>相册名</span>
-				<div class="ri"><input type="text" id="albumname" name="albumname" value="$album[albumname]" size="20" class="xctx" />
-					<p><a href="cp.php?ac=album&op=delete&albumid=$album[albumid]" id="album_delete_$album[albumid]" onclick="ajaxmenu(event, this.id)">删除相册</a></p>
-				</div>
-			</div>
-			<div class="xm">
-				<span>隐私设置</span>
-				<div class="ri">
-					<select name="friend" onchange="passwordShow(this.value);">
-						<option value="0"$friendarr[0]>全站用户可见</option>
-						<option value="1"$friendarr[1]>全好友可见</option>
-						<option value="2"$friendarr[2]>仅指定的好友可见</option>
-						<option value="3"$friendarr[3]>仅自己可见</option>
-						<option value="4"$friendarr[4]>凭密码查看</option>
-					</select>
-				</div>
-			</div>
-			<div class="xm" id="span_password" style="$passwordstyle">
-				<span>密码</span>
-				<div class="ri"><input type="text" name="password" value="$album[password]" size="10"></div>
-			</div>
-			<div class="xm" id="tb_selectgroup" style="$selectgroupstyle">
-				<span>指定好友</span>
-				<div class="ri">
-					<select name="selectgroup" onchange="getgroup(this.value);">
-					<option value="">从好友组选择好友</option>
-					<!--{loop $groups $key $value}-->
-					<option value="$key">$value</option>
-					<!--{/loop}-->
-					</select> 多次选择会累加到下面的好友名单<br/>
-					<textarea name="target_names" id="target_names" style="width:85%;" rows="3">$album[target_names]</textarea>
-				</div>
-			</div>
-			<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
-			<input type="hidden" name="editsubmit" value="true" />
-			<input name="submit" type="submit" class="xg" value="确定" />
-			</form>
-		</div>
-	</div>
+    <div class="xcnr">
+        <div id="nr01">
+            <form method="post" id="theform" name="theform" action="cp.php?ac=album&op=edit&albumid=$albumid" class="c_form">
+            <h3>编辑相册</h3>
+            <div class="xm">
+                <span>相册名</span>
+                <div class="ri"><input type="text" id="albumname" name="albumname" value="$album[albumname]" size="20" class="xctx" />
+                    <p><a href="cp.php?ac=album&op=delete&albumid=$album[albumid]" id="album_delete_$album[albumid]" onclick="ajaxmenu(event, this.id)">删除相册</a></p>
+                </div>
+            </div>
+            <div class="xm">
+                <span>隐私设置</span>
+                <div class="ri">
+                    <select name="friend" onchange="passwordShow(this.value);">
+                        <option value="0"$friendarr[0]>全站用户可见</option>
+                        <option value="1"$friendarr[1]>全好友可见</option>
+                        <option value="2"$friendarr[2]>仅指定的好友可见</option>
+                        <option value="3"$friendarr[3]>仅自己可见</option>
+                        <option value="4"$friendarr[4]>凭密码查看</option>
+                    </select>
+                </div>
+            </div>
+            <div class="xm" id="span_password" style="$passwordstyle">
+                <span>密码</span>
+                <div class="ri"><input type="text" name="password" value="$album[password]" size="10"></div>
+            </div>
+            <div class="xm" id="tb_selectgroup" style="$selectgroupstyle">
+                <span>指定好友</span>
+                <div class="ri">
+                    <select name="selectgroup" onchange="getgroup(this.value);">
+                    <option value="">从好友组选择好友</option>
+                    <!--{loop $groups $key $value}-->
+                    <option value="$key">$value</option>
+                    <!--{/loop}-->
+                    </select> 多次选择会累加到下面的好友名单<br/>
+                    <textarea name="target_names" id="target_names" style="width:85%;" rows="3">$album[target_names]</textarea>
+                </div>
+            </div>
+            <input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+            <input type="hidden" name="editsubmit" value="true" />
+            <input name="submit" type="submit" class="xg" value="确定" />
+            </form>
+        </div>
+    </div>
 <!--{elseif $_GET['op'] == 'editpic'}-->
-	<!--{if $list}-->
-	<div class="xcnr">
-		<div id="nr01">
-			<h3>编辑图片</h3>
-			<p class="tsd">提示：您可以指定一张图片作为当前相册的封面图片，但是，在下次上传新的图片后，系统会自动选择一张新图片来更新本相册的封面图片。</p>
-			<form method="post" id="theform" name="theform" action="cp.php?ac=album&op=editpic&albumid=$albumid">
-				<div class="tpnrd">
-					<!--{loop $list $key $value}-->
-					<div class="dgtp<!--{if $key % 2 == 0}--> mar<!--{/if}-->">
-						<p class="xx"><input type="checkbox" name="ids[{$value[picid]}]" value="{$value[picid]}" /></p>
-						<p class="ftp"><a href="$value[bigpic]" target="_blank"><img src="$value[pic]" alt="" /></a>
-						<!--{if $album[albumname]}--><br /><a href="cp.php?ac=album&op=setpic&picid=$value[picid]" id="a_picid_$value[picid]" onclick="ajaxmenu(event, this.id, 0, 2000)">设为封面</a><!--{/if}-->
-						</p>
-						<textarea name="title[{$value[picid]}]" rows="4" cols="70">$value[title]</textarea>
-					</div>
-					<!--{/loop}-->
-				</div>
-				<div class="czan" style="text-align:left">
-					<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"><label for="chkall"> 全选</label>&nbsp;&nbsp;
-					<input type="submit" name="editpicsubmit" value="删除" class="sc" onclick="this.form.action+='&subop=delete';return ischeck('theform', 'ids')">
-					<input type="submit" name="editpicsubmit" value="转移到:" class="ydd" onclick="this.form.action+='&subop=move';return ischeck('theform', 'ids')">
-					<select name="newalbumid">
-					<!--{loop $albumlist $key $value}-->
-					<!--{if $albumid != $value[albumid]}--><option value="$value[albumid]">$value[albumname]</option><!--{/if}-->
-					<!--{/loop}-->
-					<!--{if $albumid>0}--><option value="0">默认相册</option><!--{/if}-->
-					</select>
-				</div>
-				<p>删除图片提示：如果你要删除的图片出现在你的日志，话题，删除后，会导致内容里面的图片同时无法显示。</p>
-				<div class="qrxg"><input type="submit" name="editpicsubmit" value="更新说明" class="xg" onclick="this.form.action+='&subop=update';"></div>
-				<input type="hidden" name="page" value="$page" />
-				<input type="hidden" name="editpicsubmit" value="true" />
-				<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-			</form>	
-			<p class="page">$multi</a></p>
-		</div>
-	</div>
-	<!--{else}-->
-	<div class="xcnr">该相册下还没有图片。</div>
-	<!--{/if}-->
+    <!--{if $list}-->
+    <div class="xcnr">
+        <div id="nr01">
+            <h3>编辑图片</h3>
+            <p class="tsd">提示：您可以指定一张图片作为当前相册的封面图片，但是，在下次上传新的图片后，系统会自动选择一张新图片来更新本相册的封面图片。</p>
+            <form method="post" id="theform" name="theform" action="cp.php?ac=album&op=editpic&albumid=$albumid">
+                <div class="tpnrd">
+                    <!--{loop $list $key $value}-->
+                    <div class="dgtp<!--{if $key % 2 == 0}--> mar<!--{/if}-->">
+                        <p class="xx"><input type="checkbox" name="ids[{$value[picid]}]" value="{$value[picid]}" /></p>
+                        <p class="ftp"><a href="$value[bigpic]" target="_blank"><img src="$value[pic]" alt="" /></a>
+                        <!--{if $album[albumname]}--><br /><a href="cp.php?ac=album&op=setpic&picid=$value[picid]" id="a_picid_$value[picid]" onclick="ajaxmenu(event, this.id, 0, 2000)">设为封面</a><!--{/if}-->
+                        </p>
+                        <textarea name="title[{$value[picid]}]" rows="4" cols="70">$value[title]</textarea>
+                    </div>
+                    <!--{/loop}-->
+                </div>
+                <div class="czan" style="text-align:left">
+                    <input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"><label for="chkall"> 全选</label>&nbsp;&nbsp;
+                    <input type="submit" name="editpicsubmit" value="删除" class="sc" onclick="this.form.action+='&subop=delete';return ischeck('theform', 'ids')">
+                    <input type="submit" name="editpicsubmit" value="转移到:" class="ydd" onclick="this.form.action+='&subop=move';return ischeck('theform', 'ids')">
+                    <select name="newalbumid">
+                    <!--{loop $albumlist $key $value}-->
+                    <!--{if $albumid != $value[albumid]}--><option value="$value[albumid]">$value[albumname]</option><!--{/if}-->
+                    <!--{/loop}-->
+                    <!--{if $albumid>0}--><option value="0">默认相册</option><!--{/if}-->
+                    </select>
+                </div>
+                <p>删除图片提示：如果你要删除的图片出现在你的日志，话题，删除后，会导致内容里面的图片同时无法显示。</p>
+                <div class="qrxg"><input type="submit" name="editpicsubmit" value="更新说明" class="xg" onclick="this.form.action+='&subop=update';"></div>
+                <input type="hidden" name="page" value="$page" />
+                <input type="hidden" name="editpicsubmit" value="true" />
+                <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+            </form> 
+            <p class="page">$multi</a></p>
+        </div>
+    </div>
+    <!--{else}-->
+    <div class="xcnr">该相册下还没有图片。</div>
+    <!--{/if}-->
 <!--{elseif $_GET['op'] == 'delete'}-->
-<div class="qznr">
-	<form method="post" id="theform" name="theform" action="cp.php?ac=album&op=delete&albumid=$albumid">
-	<p><b>删除相册</b><br>确定删除相册吗？</p>
-	<p>
-		相册中的图片: 
-		<select name="moveto">
-			<option value="-1">彻底删除</option>
-			<option value="0">转移到 默认相册</option>
-			<!--{loop $albums $value}-->
-			<option value="$value[albumid]">转移到 $value[albumname]</option>
-			<!--{/loop}-->
-		</select>
-	</p>
+<div>
+    <form method="post" id="theform" name="theform" action="cp.php?ac=album&op=delete&albumid=$albumid">
+    <p><b>删除相册</b><br>确定删除相册吗？</p>
+    <p>
+        相册中的图片: 
+        <select name="moveto">
+            <option value="-1">彻底删除</option>
+            <option value="0">转移到 默认相册</option>
+            <!--{loop $albums $value}-->
+            <option value="$value[albumid]">转移到 $value[albumname]</option>
+            <!--{/loop}-->
+        </select>
+    </p>
     <p class="czan"><input name="submit" class="sc" type="submit"><input class="qx" type="button" onclick="javascript:hideMenu();"></p>
     <input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
-	<input type="hidden" name="deletesubmit" value="true" />
+    <input type="hidden" name="deletesubmit" value="true" />
     <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-	</form>
+    </form>
 </div>
 
 <!--{elseif $_GET['op'] == 'edittitle'}-->
-<div class="qznr">
-	<form id="titleform" name="titleform" action="cp.php?ac=album&op=editpic&subop=update&albumid=$pic[albumid]" method="post">
-	<p><b>编辑图片说明</b></p>
-	<p>
-		<textarea name="title[{$pic[picid]}]" cols="50" rows="7">$pic[title]</textarea>
-	</p>
+<div>
+    <form id="titleform" name="titleform" action="cp.php?ac=album&op=editpic&subop=update&albumid=$pic[albumid]" method="post">
+    <p><b>编辑图片说明</b></p>
+    <p>
+        <textarea name="title[{$pic[picid]}]" cols="50" rows="7">$pic[title]</textarea>
+    </p>
     <p class="czan"><input type="submit" name="editpicsubmit" class="sc" value="更新"><input class="qx" type="button" onclick="javascript:hideMenu();"></p>
     <input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
     <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-	</form>
+    </form>
 </div>
 
 <!--{elseif $_GET[op] == 'edithot'}-->
-<div class="qznr">
-	<form method="post" action="cp.php?ac=album&op=edithot&picid=$picid">
-	<p><b>调整热度</b></p>
-	<p>
-		新的热度：<input type="text" name="hot" value="$pic[hot]" size="5">
-	</p>
+<div>
+    <form method="post" action="cp.php?ac=album&op=edithot&picid=$picid">
+    <p><b>调整热度</b></p>
+    <p>
+        新的热度：<input type="text" name="hot" value="$pic[hot]" size="5">
+    </p>
     <p class="czan"><input type="submit" name="btnsubmit" class="sc" value="更新"><input class="qx" type="button" onclick="javascript:hideMenu();"></p>
     <input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
     <input type="hidden" name="hotsubmit" value="true" />
     <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-	</form>
+    </form>
 </div>
 
 <!--{/if}-->
@@ -165,11 +165,11 @@
 <!--{if $_GET['op']=='edit' || $_GET['op']=='editpic'}-->
 <h2 class="title"><img src="<?=$_USER_SC['domain']?>image/app/album.gif" />相册<!--{if $album[albumname]}--> - $album[albumname]<!--{/if}--></h2>
 <div class="tabs_header">
-	<ul class="tabs">
-		<li<!--{if $_GET['op']=='edit'}--> class="active"<!--{/if}-->><a href="cp.php?ac=album&op=edit&albumid=$albumid"><span>编辑相册信息</span></a></li>
-		<li<!--{if $_GET['op']=='editpic'}--> class="active"<!--{/if}-->><a href="cp.php?ac=album&op=editpic&albumid=$albumid"><span>编辑图片</span></a></li>
-		<li><a href="space.php?uid=$space[uid]&do=album&view=me"><span>返回我的相册</span></a></li>
-	</ul>
+    <ul class="tabs">
+        <li<!--{if $_GET['op']=='edit'}--> class="active"<!--{/if}-->><a href="cp.php?ac=album&op=edit&albumid=$albumid"><span>编辑相册信息</span></a></li>
+        <li<!--{if $_GET['op']=='editpic'}--> class="active"<!--{/if}-->><a href="cp.php?ac=album&op=editpic&albumid=$albumid"><span>编辑图片</span></a></li>
+        <li><a href="space.php?uid=$space[uid]&do=album&view=me"><span>返回我的相册</span></a></li>
+    </ul>
 </div>
 <!--{/if}-->
 
@@ -177,52 +177,52 @@
 
 <form method="post" id="theform" name="theform" action="cp.php?ac=album&op=edit&albumid=$albumid" class="c_form">
 <table cellspacing="0" cellpadding="0" class="formtable">
-	<tr>
-		<th width="80"><label for="albumname">相册名</label></th>
-		<td><input type="text" id="albumname" name="albumname" value="$album[albumname]" size="20" class="t_input" /></td>
-	</tr>
-	<tr>
-		<th>隐私设置</th>
-		<td>
-			<select name="friend" onchange="passwordShow(this.value);">
-				<option value="0"$friendarr[0]>全站用户可见</option>
-				<option value="1"$friendarr[1]>全好友可见</option>
-				<option value="2"$friendarr[2]>仅指定的好友可见</option>
-				<option value="3"$friendarr[3]>仅自己可见</option>
-				<option value="4"$friendarr[4]>凭密码查看</option>
-			</select>
-			<span id="span_password" style="$passwordstyle">密码:<input type="text" name="password" value="$album[password]" size="10"></span>
-		</td>
-	</tr>
-	<tbody id="tb_selectgroup" style="$selectgroupstyle">
-	<tr>
-		<th>指定好友</th>
-		<td><select name="selectgroup" onchange="getgroup(this.value);">
-			<option value="">从好友组选择好友</option>
-			<!--{loop $groups $key $value}-->
-			<option value="$key">$value</option>
-			<!--{/loop}-->
-			</select> 多次选择会累加到下面的好友名单</td>
-	</tr>
-	<tr>
-		<th>&nbsp;</th>
-		<td>
-		<textarea name="target_names" id="target_names" style="width:85%;" rows="3">$album[target_names]</textarea>
-		<br>(可以填写多个好友名，请用空格进行分割)</td>
-	</tr>
-	</tbody>
-	<tr>
-		<th>&nbsp;</th>
-		<td>
-		<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
-		<input type="hidden" name="editsubmit" value="true" />
-		<button name="submit" type="submit" class="submit" value="true">确定</button>&nbsp;
-		</td>
-	</tr>
-	<tr>
-		<th>&nbsp;</th>
-		<td><a href="cp.php?ac=album&op=delete&albumid=$album[albumid]" id="album_delete_$album[albumid]" onclick="ajaxmenu(event, this.id)">删除相册</a></td>
-	</tr>
+    <tr>
+        <th width="80"><label for="albumname">相册名</label></th>
+        <td><input type="text" id="albumname" name="albumname" value="$album[albumname]" size="20" class="t_input" /></td>
+    </tr>
+    <tr>
+        <th>隐私设置</th>
+        <td>
+            <select name="friend" onchange="passwordShow(this.value);">
+                <option value="0"$friendarr[0]>全站用户可见</option>
+                <option value="1"$friendarr[1]>全好友可见</option>
+                <option value="2"$friendarr[2]>仅指定的好友可见</option>
+                <option value="3"$friendarr[3]>仅自己可见</option>
+                <option value="4"$friendarr[4]>凭密码查看</option>
+            </select>
+            <span id="span_password" style="$passwordstyle">密码:<input type="text" name="password" value="$album[password]" size="10"></span>
+        </td>
+    </tr>
+    <tbody id="tb_selectgroup" style="$selectgroupstyle">
+    <tr>
+        <th>指定好友</th>
+        <td><select name="selectgroup" onchange="getgroup(this.value);">
+            <option value="">从好友组选择好友</option>
+            <!--{loop $groups $key $value}-->
+            <option value="$key">$value</option>
+            <!--{/loop}-->
+            </select> 多次选择会累加到下面的好友名单</td>
+    </tr>
+    <tr>
+        <th>&nbsp;</th>
+        <td>
+        <textarea name="target_names" id="target_names" style="width:85%;" rows="3">$album[target_names]</textarea>
+        <br>(可以填写多个好友名，请用空格进行分割)</td>
+    </tr>
+    </tbody>
+    <tr>
+        <th>&nbsp;</th>
+        <td>
+        <input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+        <input type="hidden" name="editsubmit" value="true" />
+        <button name="submit" type="submit" class="submit" value="true">确定</button>&nbsp;
+        </td>
+    </tr>
+    <tr>
+        <th>&nbsp;</th>
+        <td><a href="cp.php?ac=album&op=delete&albumid=$album[albumid]" id="album_delete_$album[albumid]" onclick="ajaxmenu(event, this.id)">删除相册</a></td>
+    </tr>
 
 </table>
 <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
@@ -237,47 +237,47 @@
 
 <!--{if $list}-->
 <div class="album_list">
-	<form method="post" id="theform" name="theform" action="cp.php?ac=album&op=editpic&albumid=$albumid">
-	
-	<table cellspacing="6" cellpadding="0">
-		<!--{loop $list $value}-->
-		<tr>
-			<td class="album">
-				<table cellspacing="0" cellpadding="0">
-					<tr>
-						<td width="20"><input type="checkbox" name="ids[{$value[picid]}]" value="{$value[picid]}"></td>
-						<td class="image">
-							<a href="$value[bigpic]" target="_blank"><img src="$value[pic]" alt="" /></a>
-							<!--{if $album[albumname]}--><p style="text-align: center;"><a href="cp.php?ac=album&op=setpic&picid=$value[picid]" id="a_picid_$value[picid]" onclick="ajaxmenu(event, this.id, 0, 2000)">设为封面</a></p><!--{/if}-->
-						</td>
-						<td>
-							<textarea name="title[{$value[picid]}]" rows="4" cols="70">$value[title]</textarea>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<!--{/loop}-->
-		<tr>
-			<td style="padding:10px;">
-				<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"><label for="chkall"> 全选</label>
-				<input type="submit" name="editpicsubmit" value="更新说明" class="submit" onclick="this.form.action+='&subop=update';">
-				<input type="submit" name="editpicsubmit" value="删除" class="submit" onclick="this.form.action+='&subop=delete';return ischeck('theform', 'ids')">
-				<input type="submit" name="editpicsubmit" value="转移到:" class="submit" onclick="this.form.action+='&subop=move';return ischeck('theform', 'ids')">
-				<select name="newalbumid">
-				<!--{loop $albumlist $key $value}-->
-				<!--{if $albumid != $value[albumid]}--><option value="$value[albumid]">$value[albumname]</option><!--{/if}-->
-				<!--{/loop}-->
-				<!--{if $albumid>0}--><option value="0">默认相册</option><!--{/if}-->
-				</select>
-				<br>删除图片提示：如果你要删除的图片出现在你的日志、话题中，删除后，会导致内容里面的图片同时无法显示。
-			</td>
-		</tr>
-	</table>
-	<input type="hidden" name="page" value="$page" />
-	<input type="hidden" name="editpicsubmit" value="true" />
-	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-	</form>
+    <form method="post" id="theform" name="theform" action="cp.php?ac=album&op=editpic&albumid=$albumid">
+    
+    <table cellspacing="6" cellpadding="0">
+        <!--{loop $list $value}-->
+        <tr>
+            <td class="album">
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="20"><input type="checkbox" name="ids[{$value[picid]}]" value="{$value[picid]}"></td>
+                        <td class="image">
+                            <a href="$value[bigpic]" target="_blank"><img src="$value[pic]" alt="" /></a>
+                            <!--{if $album[albumname]}--><p style="text-align: center;"><a href="cp.php?ac=album&op=setpic&picid=$value[picid]" id="a_picid_$value[picid]" onclick="ajaxmenu(event, this.id, 0, 2000)">设为封面</a></p><!--{/if}-->
+                        </td>
+                        <td>
+                            <textarea name="title[{$value[picid]}]" rows="4" cols="70">$value[title]</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--{/loop}-->
+        <tr>
+            <td style="padding:10px;">
+                <input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"><label for="chkall"> 全选</label>
+                <input type="submit" name="editpicsubmit" value="更新说明" class="submit" onclick="this.form.action+='&subop=update';">
+                <input type="submit" name="editpicsubmit" value="删除" class="submit" onclick="this.form.action+='&subop=delete';return ischeck('theform', 'ids')">
+                <input type="submit" name="editpicsubmit" value="转移到:" class="submit" onclick="this.form.action+='&subop=move';return ischeck('theform', 'ids')">
+                <select name="newalbumid">
+                <!--{loop $albumlist $key $value}-->
+                <!--{if $albumid != $value[albumid]}--><option value="$value[albumid]">$value[albumname]</option><!--{/if}-->
+                <!--{/loop}-->
+                <!--{if $albumid>0}--><option value="0">默认相册</option><!--{/if}-->
+                </select>
+                <br>删除图片提示：如果你要删除的图片出现在你的日志、话题中，删除后，会导致内容里面的图片同时无法显示。
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="page" value="$page" />
+    <input type="hidden" name="editpicsubmit" value="true" />
+    <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+    </form>
 </div>
 <div class="page">$multi</div>
 <!--{else}-->
@@ -291,23 +291,23 @@
 <a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 <div class="popupmenu_inner">
 <form method="post" id="theform" name="theform" action="cp.php?ac=album&op=delete&albumid=$albumid">
-	<p>确定删除相册吗？</p>
-	<p>
-		相册中的图片: 
-		<select name="moveto">
-			<option value="-1">彻底删除</option>
-			<option value="0">转移到 默认相册</option>
-			<!--{loop $albums $value}-->
-			<option value="$value[albumid]">转移到 $value[albumname]</option>
-			<!--{/loop}-->
-		</select>
-	</p>
-	<p class="btn_line">
-		<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
-		<input type="hidden" name="deletesubmit" value="true" />
-		<button name="submit" type="submit" class="submit" value="true">确定</button>&nbsp;
-	</p>
-	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+    <p>确定删除相册吗？</p>
+    <p>
+        相册中的图片: 
+        <select name="moveto">
+            <option value="-1">彻底删除</option>
+            <option value="0">转移到 默认相册</option>
+            <!--{loop $albums $value}-->
+            <option value="$value[albumid]">转移到 $value[albumname]</option>
+            <!--{/loop}-->
+        </select>
+    </p>
+    <p class="btn_line">
+        <input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+        <input type="hidden" name="deletesubmit" value="true" />
+        <button name="submit" type="submit" class="submit" value="true">确定</button>&nbsp;
+    </p>
+    <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 </form>
 </div>
 
@@ -316,14 +316,14 @@
 <h1>编辑图片说明</h1>
 <a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 <div class="popupmenu_inner">
-	<form id="titleform" name="titleform" action="cp.php?ac=album&op=editpic&subop=update&albumid=$pic[albumid]" method="post">
-		<textarea name="title[{$pic[picid]}]" cols="50" rows="7">$pic[title]</textarea>
-		<p class="btn_line">
-			<input type="submit" name="editpicsubmit" class="submit" value="更新">
-			<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
-		</p>
-		<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-	</form>
+    <form id="titleform" name="titleform" action="cp.php?ac=album&op=editpic&subop=update&albumid=$pic[albumid]" method="post">
+        <textarea name="title[{$pic[picid]}]" cols="50" rows="7">$pic[title]</textarea>
+        <p class="btn_line">
+            <input type="submit" name="editpicsubmit" class="submit" value="更新">
+            <input type="hidden" name="refer" value="$_SGLOBAL[refer]">
+        </p>
+        <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+    </form>
 </div>
 
 <!--{elseif $_GET[op] == 'edithot'}-->
@@ -332,13 +332,13 @@
 <a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 <div class="popupmenu_inner">
 <form method="post" action="cp.php?ac=album&op=edithot&picid=$picid">
-	<p class="btn_line">
-		新的热度：<input type="text" name="hot" value="$pic[hot]" size="5"> 
-		<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
-		<input type="hidden" name="hotsubmit" value="true" />
-		<input type="submit" name="btnsubmit" value="确定" class="submit" />
-	</p>
-	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+    <p class="btn_line">
+        新的热度：<input type="text" name="hot" value="$pic[hot]" size="5"> 
+        <input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+        <input type="hidden" name="hotsubmit" value="true" />
+        <input type="submit" name="btnsubmit" value="确定" class="submit" />
+    </p>
+    <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 </form>
 </div>
 

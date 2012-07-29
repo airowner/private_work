@@ -13,7 +13,12 @@
         </div>
         <div class="rigr">
             <div class="zbkj"><a href="<!--{eval echo usr_url('cp', array('ac'=>'theme'))}-->">装扮空间</a></div>
-            <div class="qtcz"><a href="<!--{eval echo usr_url('cp', array('ac'=>'invite'))}-->">邀请好友</a><a href="<!--{eval echo usr_url('cp', array('ac'=>'task'))}-->">任务中心</a><a href="<!--{eval echo usr_url('cp', array('ac'=>'magic'))}-->">道具中心</a><a href="<!--{eval echo usr_url('cp', array('ac'=>'privacy'))}-->">隐私设置</a><a href="<!--{eval echo usr_url('cp')}-->">账号设置</a></div>
+            <div class="qtcz"><a href="<!--{eval echo usr_url('cp', array('ac'=>'invite'))}-->">邀请好友</a><a href="<!--{eval echo usr_url('cp', array('ac'=>'task'))}-->">任务中心</a>
+            <!--{if 0}-->
+            <a href="<!--{eval echo usr_url('cp', array('ac'=>'magic'))}-->">道具中心</a>
+            <!--{/if}-->
+            <a href="<!--{eval echo usr_url('cp', array('ac'=>'privacy'))}-->">隐私设置</a>
+            <a href="<!--{eval echo usr_url('cp')}-->">账号设置</a></div>
         </div>
     </div>
 </div>
@@ -25,7 +30,7 @@
         <div class="cdnr">
             <ul>
                 <p class="sy dq"><a href="<!--{eval echo usr_url('space', array('do'=>'home'))}-->">首页</a></p>
-                <p class="xq"><a href="<!--{eval echo usr_url('space', array('do'=>'mood'))}-->">心情</a><span><a href="<!--{eval echo usr_url('cp', array('ac'=>'theme'))}-->#">发表</a></span></p>
+                <p class="xq"><a href="<!--{eval echo usr_url('space', array('do'=>'mood'))}-->">心情</a><span><a href="<!--{eval echo usr_url('space', array('do'=>'doing'))}-->">发表</a></span></p>
                 <p class="fx"><a href="<!--{eval echo usr_url('space', array('do'=>'share'))}-->">分享</a></p>
                     <ul class="xni">
                         <li><a href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'friend'))}-->">好友的分享</a></li>
@@ -49,7 +54,7 @@
                 <p class="tp"><a href="<!--{eval echo usr_url('space', array('do'=>'poll'))}-->">投票</a></p>
                 <p class="hd" style="float:none"><a href="<!--{eval echo usr_url('event')}-->">活动</a></p>
                 <p class="hy"><a href="<!--{eval echo usr_url('space', array('do'=>'friend'))}-->">好友</a><span><a href="<!--{eval echo usr_url('cp', array('ac'=>'friend', 'op'=>'search'))}-->">查找</a></span></p>
-                <p class="qz"><a href="<!--{eval echo usr_url('space', array('do'=>'mtag'))}-->">圈子</a><span><a href="<!--{eval echo usr_url('cp', array('ac'=>'thread'))}-->">发表</a></span></p>
+                <p class="qz"><a href="<!--{eval echo usr_url('mtag')}-->">圈子</a><span><a href="<!--{eval echo usr_url('cp', array('ac'=>'thread'))}-->">发表</a></span></p>
             </ul>
         </div>
     </div>
