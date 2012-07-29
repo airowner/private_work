@@ -38,3 +38,17 @@ p.bt{ font-weight:bold; }
 span.dqa{ font-weight:bold; color:#df4a47;}
 
 #to04,#to03,#to02{ font-weight:normal;}
+
+
+.tznr{ margin:15px 0; overflow:hidden; zoom:1}
+.zzxx{ width:61px; float:left;}
+.zzxx p{ line-height:20px; color:#0068b7;}
+.nrxx{ width:670px; float:right;}
+h2{ font-size:14px; margin-bottom:25px;}
+.nrxx p a{ color:#0068b7;}
+.zz{ margin-bottom:25px; height:26px; line-height:26px; background-color:#f0efec; padding-left:10px; position:relative;}
+p.hf{ color:#898989; text-align:right;}
+p.hf a{ color:#898989;}
+.zz b{ margin-right:10px;}
+.zz span{ position:absolute; right:10px; top:0;} 
+p.hf span{ margin:0 5px;}

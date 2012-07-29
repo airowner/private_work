@@ -177,51 +177,53 @@
     <div class="cont">
         <!--潮流时尚-->
         <div class="clsh">
-            <h3>潮流时尚</h3>
+            <h3>话题</h3>
             <div class="shnr">
+                <!--{if $threadlist}-->
                 <div class="shtt">
                     <div class="leim">
-                        <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/shim.gif" /></a>
+                        <a href="space.php?uid=$threadlist[0][uid]" target="_blank"><!--{avatar($threadlist[0][uid],'64x64')}--></a>
                     </div>
                     <div class="ritx">
-                        <p><a href="#" target="_blank">Nike All Court 中帮球鞋</a></p>
-                        <p class="ti">2011.08.03 12:00</p>
-                        <p class="jj">不久前我们曾给大家带来了Nike All Court Twist鞋款的消息，此次奉上另一款。</p>
+                        <p><a href="space.php?do=thread&id=$threadlist[0]['tid']" target="_blank">$threadlist[0]['subject']</a></p>
+                        <p class="ti"><!--{date('m-d H:i',$threadlist[0][dateline],1)}--></p>
+                        <p class="jj"><!--{eval echo base::cutstr($threadlist[0]['message'], 76)}--></p>
                     </div>
                 </div>
                     <ul>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
+                        <!--{loop $threadlist $key $value}-->
+                        <!--{if $key > 0 && $key < 7}-->
+                        <li><a href="space.php?do=thread&id=$value['tid']" target="_blank">$value['subject']</a><span><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></span></li>
+                        <!--{/if}-->
+                        <!--{/loop}-->
                     </ul>
+                <!--{/if}-->
             </div>
         </div>
         <!--潮流时尚结束-->
         <!--玩乐-->
         <div class="clsh wl">
-            <h3>玩乐</h3>
+            <h3>活动</h3>
             <div class="shnr">
+                <!--{if $eventlist}-->
                 <div class="shtt">
                     <div class="leim">
-                        <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/shim.gif" /></a>
+                        <a href="space.php?uid=$eventlist[0][uid]" target="_blank"><!--{avatar($eventlist[0][uid],'64x64')}--></a>
                     </div>
                     <div class="ritx">
-                        <p><a href="#" target="_blank">Nike All Court 中帮球鞋</a></p>
-                        <p class="ti">2011.08.03 12:00</p>
-                        <p class="jj">不久前我们曾给大家带来了Nike All Court Twist鞋款的消息，此次奉上另一款。</p>
+                        <p><a href="space.php?do=event&id=$eventlist[0]['eventid']" target="_blank">$eventlist[0]['title']</a></p>
+                        <p class="ti"><!--{date('m-d H:i',$eventlist[0][starttime],1)}--></p>
+                        <p class="jj"><!--{eval echo base::cutstr($eventlist[0]['province'] . ' - ' . $eventlist[0]['city'] . ' - ' . $eventlist[0]['location'] , 76)}--></p>
                     </div>
                 </div>
                     <ul>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
-                        <li><a href="#" target="_blank">小清新自拍开晒自拍开晒开</a><span>拍开晒开</span></li>
+                        <!--{loop $eventlist $key $value}-->
+                        <!--{if $key > 0 && $key < 7}-->
+                        <li><a href="space.php?do=event&id=$value['eventid']" target="_blank">$value['title']</a><span><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></span></li>
+                        <!--{/if}-->
+                        <!--{/loop}-->
                     </ul>
+                <!--{/if}-->
             </div>
         </div>
         <!--玩乐结束-->

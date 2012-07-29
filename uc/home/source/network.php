@@ -3,7 +3,7 @@
     [UCenter Home] (C) 2007-2008 Comsenz Inc.
     $Id: network_album.php 12078 2009-05-04 08:28:37Z zhengqingpeng $
 */
-
+define('IN_UC', 1);
 if(!defined('IN_UCHOME')) {
     exit('Access Denied');
 }
@@ -55,6 +55,87 @@ while ($value = $_SGLOBAL['db']->fetch_array($query)) {
     $bloglist[$value['uid']] = $value + $bloglist[$value['uid']];
 }
 
+require_once(S_ROOT . '/uc_client/model/base.php');
+//话题
+$cachefile = S_ROOT.'./data/cache_network_thread.txt';
+if(check_network_cache('thread')) {
+    $threadlist = unserialize(sreadfile($cachefile));
+} else {
+    $sqlarr = mk_network_sql('thread',
+        array('tid', 'uid'),
+        array('hot','viewnum','replynum'),
+        array('dateline','lastpost'),
+        array('dateline','viewnum','replynum','hot')
+    );
+    extract($sqlarr);
+
+    //显示数量
+    $shownum = 7;
+    $threadlist = array();
+    $query = $_SGLOBAL['db']->query("SELECT main.*, m.tagname, p.message
+        FROM ".tname('thread')." main
+        LEFT JOIN (".tname('mtag')." m, ".tname("post")." p) ON (m.tagid=main.tagid and p.tagid=main.tagid and p.tid=main.tid and p.isthread=1)
+        WHERE ".implode(' AND ', $wherearr)."
+        ORDER BY main.{$order} $sc LIMIT 0,$shownum");
+
+    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+        $value['tagname'] = getstr($value['tagname'], 20);
+        $value['subject'] = getstr($value['subject'], 50);
+        $threadlist[] = $value;
+    }
+    if($_SGLOBAL['network']['thread']['cache']) {
+        swritefile($cachefile, serialize($threadlist));
+    }
+}
+foreach($threadlist as $key => $value) {
+    realname_set($value['uid'], $value['username']);
+    $value['message'] = strip_tags($value['message']);
+    $threadlist[$key] = $value;
+}
+
+
+//活动
+include_once(S_ROOT.'./data/data_eventclass.php');
+$cachefile = S_ROOT.'./data/cache_network_event.txt';
+if(check_network_cache('event')) {
+    $eventlist = unserialize(sreadfile($cachefile));
+} else {
+    $sqlarr = mk_network_sql('event',
+        array('eventid', 'uid'),
+        array('hot','membernum','follownum'),
+        array('dateline'),
+        array('dateline','membernum','follownum','hot')
+    );
+    extract($sqlarr);
+
+    //显示数量
+    $shownum = 7;
+    
+    $eventlist = array();
+    $query = $_SGLOBAL['db']->query("SELECT main.*
+        FROM ".tname('event')." main
+        WHERE ".implode(' AND ', $wherearr)."
+        ORDER BY main.{$order} $sc LIMIT 0,$shownum");
+    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+        $value['title'] = getstr($value['title'], 45);
+        if($value['poster']){
+            $value['pic'] = pic_get($value['poster'], $value['thumb'], $value['remote']);
+        } else {
+            $value['pic'] = $_SGLOBAL['eventclass'][$value['classid']]['poster'];
+        }
+        $eventlist[] = $value;
+    }
+    if($_SGLOBAL['network']['event']['cache']) {
+        swritefile($cachefile, serialize($eventlist));
+    }
+}
+foreach($eventlist as $key => $value) {
+    realname_set($value['uid'], $value['username']);
+    $eventlist[$key] = $value;
+}
+
+
+
 
 //图片
 /*
@@ -93,84 +174,6 @@ if(check_network_cache('pic')) {
 foreach($piclist as $key => $value) {
     realname_set($value['uid'], $value['username'], $value['name'], $value['namestatus']);
     $piclist[$key] = $value;
-}
-
-
-//话题
-$cachefile = S_ROOT.'./data/cache_network_thread.txt';
-if(check_network_cache('thread')) {
-    $threadlist = unserialize(sreadfile($cachefile));
-} else {
-    $sqlarr = mk_network_sql('thread',
-        array('tid', 'uid'),
-        array('hot','viewnum','replynum'),
-        array('dateline','lastpost'),
-        array('dateline','viewnum','replynum','hot')
-    );
-    extract($sqlarr);
-
-    //显示数量
-    $shownum = 10;
-    
-    $threadlist = array();
-    $query = $_SGLOBAL['db']->query("SELECT main.*, m.tagname
-        FROM ".tname('thread')." main
-        LEFT JOIN ".tname('mtag')." m ON m.tagid=main.tagid
-        WHERE ".implode(' AND ', $wherearr)."
-        ORDER BY main.{$order} $sc LIMIT 0,$shownum");
-    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
-        $value['tagname'] = getstr($value['tagname'], 20);
-        $value['subject'] = getstr($value['subject'], 50);
-        $threadlist[] = $value;
-    }
-    if($_SGLOBAL['network']['thread']['cache']) {
-        swritefile($cachefile, serialize($threadlist));
-    }
-}
-foreach($threadlist as $key => $value) {
-    realname_set($value['uid'], $value['username']);
-    $threadlist[$key] = $value;
-}
-
-
-//活动
-include_once(S_ROOT.'./data/data_eventclass.php');
-$cachefile = S_ROOT.'./data/cache_network_event.txt';
-if(check_network_cache('event')) {
-    $eventlist = unserialize(sreadfile($cachefile));
-} else {
-    $sqlarr = mk_network_sql('event',
-        array('eventid', 'uid'),
-        array('hot','membernum','follownum'),
-        array('dateline'),
-        array('dateline','membernum','follownum','hot')
-    );
-    extract($sqlarr);
-
-    //显示数量
-    $shownum = 4;
-    
-    $eventlist = array();
-    $query = $_SGLOBAL['db']->query("SELECT main.*
-        FROM ".tname('event')." main
-        WHERE ".implode(' AND ', $wherearr)."
-        ORDER BY main.{$order} $sc LIMIT 0,$shownum");
-    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
-        $value['title'] = getstr($value['title'], 45);
-        if($value['poster']){
-            $value['pic'] = pic_get($value['poster'], $value['thumb'], $value['remote']);
-        } else {
-            $value['pic'] = $_SGLOBAL['eventclass'][$value['classid']]['poster'];
-        }
-        $eventlist[] = $value;
-    }
-    if($_SGLOBAL['network']['event']['cache']) {
-        swritefile($cachefile, serialize($eventlist));
-    }
-}
-foreach($eventlist as $key => $value) {
-    realname_set($value['uid'], $value['username']);
-    $eventlist[$key] = $value;
 }
 
 

@@ -184,10 +184,12 @@
                     <div class="qznr">
                     <p class="rs">人数：{$count}</p>
                     <ul>
+                        <!--{eval $i=0}-->
                         <!--{loop $list $key $value}-->
-                        <!--{if $key <= 9}-->
-                        <li<!--{if $key % 3 == 1}--> class="nmg"<!--{/if}-->><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'48x48')}--></a></li>
+                        <!--{if $i < 9}-->
+                        <li<!--{if $i % 3 == 2}--> class="nmg"<!--{/if}-->><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'48x48')}--></a></li>
                         <!--{/if}-->
+                        <!--{eval $i++}-->
                         <!--{/loop}-->
                     </ul>
                     </div>

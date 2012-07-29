@@ -98,6 +98,7 @@ p.qtlj span{ margin:0 5px;}
 
 /*************************************************FEED***/
 .feed_header { position: relative; padding: 5px 10px 0 15px; height: 30px; background: url(../image/c_title.gif) no-repeat; line-height: 20px; }
+.r_option{position:absolute; top:5px;right:5px;}
 .feed_header .active{ font-weight: bold; }
 .feed { margin: 0 0 20px; width: 100%; line-height: 20px; overflow: hidden; }
   .feedtime { margin: 20px 0 10px; color: #000; }
