@@ -1,19 +1,35 @@
 <!--{eval $_TPL['nosidebar']=1;}-->
-<!--{template header}-->
+<!--{template common_header}-->
+<link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/login.css" />
+<style type="text/css">
+    .ye_r_t,
+.ye_l_t,
+.ye_r_b,
+.ye_l_b{ background: url(<?=$_USER_SC['domain']?>image/yel_bg.gif) no-repeat; }
+.ye_r_t { width: 100%; background-position: right top; }
+  .ye_l_t { padding: 5px 0 0; background-position: left top; }
+    .ye_r_b { background-position: right bottom; }
+      .ye_l_b { padding: 0 5px 5px; background-position: left bottom; }
+.showmessage { margin: 50px auto; width: 600px; background: #FCF9E6; }
+    .showmessage h2 { font-size: 14px; }
+    .showmessage .ye_l_b { padding: 15px 20px 20px; }
+    .showmessage p { padding: 2em 1em;  font-size: 14px; overflow: hidden; }
+    .showmessage .op { font-size: 12px; text-align: right; }
+</style>
 <div class="showmessage">
-	<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-		<caption>
-			<h2>信息提示</h2>
-		</caption>
-		<p>$message</p>
-		<p class="op">
-		<!--{if $url_forward}-->
-			<a href="$url_forward">页面跳转中...</a>
-		<!--{else}-->
-			<a href="javascript:history.go(-1);">返回上一页</a> | 
-			<a href="index.php">返回首页</a>
-		<!--{/if}-->
-		</p>
-	</div></div></div></div>
+    <div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
+        <caption>
+            <h2>信息提示</h2>
+        </caption>
+        <p>$message</p>
+        <p class="op">
+        <!--{if $url_forward}-->
+            <a href="$url_forward">页面跳转中...</a>
+        <!--{else}-->
+            <a href="javascript:history.go(-1);">返回上一页</a> | 
+            <a href="index.php">返回首页</a>
+        <!--{/if}-->
+        </p>
+    </div></div></div></div>
 </div>
 <!--{template footer}-->

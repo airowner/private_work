@@ -15,10 +15,10 @@
                 <!--{else}-->
                 <li><a href="<!--{eval echo usr_url('network')}-->"><img alt="广场" src="<?=$_USER_SC['domain']?>images/gc.png" /></a></li>
                 <!--{/if}-->
-                <!--{if $_SERVER['REQUEST_URI'] == usr_url('space', array('do'=>'mtag')) || $_SERVER['REQUEST_URI'] == usr_url('space', array('do'=>'thread'))}-->
-                <li><a href="<!--{eval echo usr_url('space', array('do'=>'mtag'))}-->"><img alt="圈子" src="<?=$_USER_SC['domain']?>images/qz.gif" /></a></li>
+                <!--{if $_SERVER['REQUEST_URI'] == usr_url('mtag') || $_SERVER['REQUEST_URI'] == usr_url('space', array('do'=>'thread'))}-->
+                <li><a href="<!--{eval echo usr_url('mtag')}-->"><img alt="圈子" src="<?=$_USER_SC['domain']?>images/qz.gif" /></a></li>
                 <!--{else}-->
-                <li><a href="<!--{eval echo usr_url('space', array('do'=>'mtag'))}-->"><img alt="圈子" src="<?=$_USER_SC['domain']?>images/qz_index.png" /></a></li>
+                <li><a href="<!--{eval echo usr_url('mtag')}-->"><img alt="圈子" src="<?=$_USER_SC['domain']?>images/qz_index.png" /></a></li>
                 <!--{/if}-->
                 <!--{if $_SERVER['PHP_SELF'] == usr_url('event')}-->
                 <li><a href="<!--{eval echo usr_url('event')}-->"><img alt="活动" src="<?=$_USER_SC['domain']?>images/hd.gif" /></a></li>

@@ -52,89 +52,76 @@
             <!--搜索框开始-->
             <div class="ssnr">
                 <div class="ssqy">
-                    <form>
-                        <p class="xxa"><span><input type="radio" />昵称</span><input type="radio" />犬种</p>
-                        <div  class="ssk">昵称：<input class="nc" type="text" /><span>性别：</span><input class="xb" type="text" /><input class="sebtn" type="button" /></div>
+                    <form method="get" action="cp.php">
+                        <p class="xxa"><span>&nbsp;</span></p>
+                        <div  class="ssk">昵称：<input name="searchkey" value="" size="15" class="nc" type="text">
+                        <input name="searchsubmit" value="找人" class="sebtn" type="submit"></div>
+                        <input type="hidden" name="searchmode" value="1" />
+                        <input type="hidden" name="ac" value="friend" />
+                        <input type="hidden" name="op" value="search" />
                     </form>
                 </div>
                 <div class="gjc">
-                    <a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span><a href="#" target="_blank">篮球</a><span>|</span>
+                    <!--{loop $showlist $key $value}-->
+                        <a href="space.php?uid=$value[uid]" target="_blank" rev="$value[note]">{$_SN[$value[uid]]}></a>
+                       <!--{if $key!=count($showlist)-1}--><span>|</span><!--{/if}-->
+                    <!--{/loop}-->
                 </div>
             </div>
             <!--搜索框结束-->
             <div class="xqxt">
-                <h3><a class="dq" href="#">运动</a><span>|</span><a href="#">明星</a><span>|</span><a href="#">歌曲</a><span>|</span><a href="#">电影</a><span>|</span><a href="#">书籍</a><span>|</span><a href="#">游戏</a><span>|</span><a href="#">美食</a><span>|</span><a href="#">名人</a></h3>
+                <h3>
+                    <!--{eval $i=0;$__tagid=null;}-->
+                    <!--{loop $mtags $key $value}-->
+                    <a id="{$key}_mtag"<!--{if $i==0}--> class="dq"<!--{eval $__tagid=$key}--><!--{/if}--> href="#" onclick="return mchange('$key')">$value</a>
+                    <!--{if $i!=count($mtags)-1}-->
+                    <span>|</span>
+                    <!--{/if}-->
+                    <!--{eval $i++}-->
+                    <!--{/loop}-->
+                </h3>
                 <div id="m_interest">
                     <div class="brbcontent_gray">
+                        
                         <div class="managebox" id="CBPeople" style="position: relative; width:704px; overflow: hidden; margin: 0 auto; height:161px; border:1px solid #a0a0a0;">
-                            <div id="love_div" class="peoplebox" style="position: absolute; left:0px;">
-                            <table border="0" cellpadding="7" cellspacing="5" width="1460" align="center">
-                            <tbody>
-                                <tr>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                    <td><a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xqtx.jpg" alt="lets 小喂"><span>景木木</span></a></td>
-                                 </tr>
-                               </tbody>
-                             </table>
+                            <div style="position: absolute; left:0px;">
+                            <!--{loop $mtagusers $key $value}-->
+                            <ul id="mtag_{$key}" class="love_div_ul peoplebox"<!--{if $key!=$__tagid}--> style="display:none"<!--{/if}-->>
+                                <!--{loop $value $k $v}-->
+                                <li>
+                                    <a href="space.php?uid=$v" target="_blank"  title="{$_SN[$v]}"><!--{avatar($v,'48x48')}--><span>{$_SN[$v]}</span></a>
+                                </li>
+                                <!--{/loop}-->
+                            </ul>
+                            <!--{/loop}-->
                             </div>
-                                <!--script type="text/javascript">
-                                mem.GetUserListByLove(1);
-                                </script-->
-                                <div class="member_drag">
-                                    <div class="pointer">
-                                    </div>
+                           
+                            <div class="member_drag">
+                                <div class="pointer">
                                 </div>
-                                </div>
-                                <div class="brbbot_gray">
-                                    <div>
-                                        <p>
-                                        </p>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
+                        <div class="brbbot_gray">
+                            <div>
+                                <p>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+                        <script type="text/javascript">
+            //mem.GetUserListByLove(1);
+            var cur_mtag = '$__tagid';
+            function mchange(key){
+                document.getElementById('mtag_'+cur_mtag).style.display = 'none';
+                document.getElementById(cur_mtag + '_mtag').className = '';
+                document.getElementById('mtag_'+key).style.display = '';
+                document.getElementById(key + '_mtag').className = 'dq';
+                cur_mtag = key;
+                return false;
+            }
+            </script>
         </div>
         <div class="rinr">
             <div class="cjkj"><a href="space.php?do=home"><img src="<?=$_USER_SC['domain']?>images/cjkj.png" /></a></div>
@@ -248,71 +235,18 @@
         <div class="lenf">
             <div class="nftt">
             <h3>居民秀</h3>
-            <form>
-                <span><input type="radio" />所有居民&nbsp;</span><span><input type="radio" />今天生日&nbsp;</span><span>星座&nbsp;<select><option>不限</option></select></span><span>性别&nbsp;<select><option>不限</option></select></span>
-            </form>
             </div>
             <div class="jmtl">
+                <!--{loop $user_show $key $value}-->
+                <!--{eval $i=$key+1}-->
+                <!--{if $i % 12 == 1}-->
                 <div class="dhjm">
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
+                <!--{/if}-->
+                    <a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}"><!--{avatar($value[uid],'48x48')}--></a>
+                <!--{if $i % 12 == 0 || $i == count($user_show)}-->
                 </div>
-                <div class="dhjm">
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                </div>
-                <div class="dhjm">
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                </div>
-                <div class="dhjm">
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                    <a href="#" target="_blank"><img src="<?=$_USER_SC['domain']?>images/jmtxli.gif" /></a>
-                </div>
+                <!--{/if}-->
+                <!--{/loop}-->
             </div>
         </div>
         <!--居民秀内容结束-->
@@ -321,35 +255,24 @@
             <h3>推荐博客</h3>
             <div class="bknr">
                 <ul>
-                    <li>
-                        <dl>
-                            <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tktx.gif" /></a></dt>
-                            <dd><a href="#">婲臉木偶</a></dd>
-                            <dd>来自加拿大</dd>
-                            <dd>拖长的影子比时</dd>
-                        </dl>
-                    </li>
-                    <li>
-                        <dl>
-                            <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tktx.gif" /></a></dt>
-                            <dd><a href="#">婲臉木偶</a></dd>
-                            <dd>来自加拿大</dd>
-                            <dd>拖长的影子比时</dd>
-                        </dl>
-                    </li>
-                    <li style="border:none;">
-                        <dl>
-                            <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tktx.gif" /></a></dt>
-                            <dd><a href="#">婲臉木偶</a></dd>
-                            <dd>来自加拿大</dd>
-                            <dd>拖长的影子比时</dd>
-                        </dl>
-                    </li>
+                <!--{eval $i=0}-->
+                <!--{loop $hotblog $key $value}-->
+                <li<!--{if $i==2}--> style="border:none;"<!--{/if}-->>
+                    <dl>
+                        <dt><a href="space.php?uid=$value[uid]" target="_blank" title="{$_SN[$value[uid]]}"><!--{avatar($value[uid],'60x60')}--></a></dt>
+                        <dd><a href="space.php?do=blog&uid=$value[uid]"><!--{eval echo base::cutstr($_SN[$value[uid]], 12)}--></a></dd>
+                        <dd>来自{$value[resideprovince]}$value[residecity]</dd>
+                        <dd><a href="space.php?do=blog&uid=$value[uid]&blogid=$value[blogid]" title="$value['subject']"><!--{eval echo base::cutstr($value['subject'], 12)}--></a></dd>
+                    </dl>
+                </li>
+                <!--{eval $i++}-->
+                <!--{/loop}-->
                 </ul>
             </div>
         </div>
         <!--推荐博客结束-->
     </div>
+
 
 
 <!--{if 0}-->

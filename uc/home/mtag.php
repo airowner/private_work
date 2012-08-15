@@ -83,25 +83,89 @@ $sub_mtags = array_map('getSubMtag', array_slice($mtags, 0, 5));
 //公告announcement
 //~ $sql = "select * from " . tname("mtag") . " where announcement!='' order by ";
 //可能感兴趣
-//ajax
-$sql = "select * from " . tname("mtag") . " where pic!='' order by rand() limit 6";
-$query = $_SGLOBAL['db']->query($sql);
-$intrest = array();
-while ($value = $_SGLOBAL['db']->fetch_array($query)) {
-    $intrest[] = $value;
+$interest = array();
+$fs = array();
+if($_SCONFIG['mtaginterest']){
+    $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('mtag')." WHERE tagid IN (".$_SCONFIG['mtaginterest'].")");
+    while ($v = $_SGLOBAL['db']->fetch_array($query)) {
+        $fs[$v['tagid']] = $v;
+    }
+    foreach(explode(',', $_SCONFIG['mtaginterest']) as $tagid){
+        $interest[$tagid] = $fs[$tagid];
+    }
 }
 //推荐圈子
+$jingxuan = array();
+$fs = array();
+$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('mtag')." WHERE tagid IN (".$_SCONFIG['mtagrecommend'].") limit 12");
+while ($v = $_SGLOBAL['db']->fetch_array($query)) {
+    $fs[$v['tagid']] = $v;
+}
+foreach(explode(',', $_SCONFIG['mtagrecommend']) as $tagid){
+    $jingxuan[] = $fs[trim($tagid)];
+}
 
 //精选圈子排行
+$jingxuanorder = array();
+$fs = array();
+$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('mtag')." WHERE tagid IN (".$_SCONFIG['mtagrecommendorder'].") limit 10");
+while ($v = $_SGLOBAL['db']->fetch_array($query)) {
+    $fs[$v['tagid']] = $v;
+}
+foreach(explode(',', $_SCONFIG['mtagrecommendorder']) as $tagid){
+    $jingxuanorder[] = $fs[trim($tagid)];
+}
 
 //同城圈子
+$tongcheng = array();
+$fs = array();
+$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('mtag')." WHERE tagid IN (".$_SCONFIG['mtagbeijing'].") limit 7");
+while ($v = $_SGLOBAL['db']->fetch_array($query)) {
+    $fs[$v['tagid']] = $v;
+}
+foreach(explode(',', $_SCONFIG['mtagbeijing']) as $tagid){
+    $tongcheng[] = $fs[trim($tagid)];
+}
 
 //北京圈子排行榜
+$beijingorder = array();
+$fs = array();
+$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('mtag')." WHERE tagid IN (".$_SCONFIG['mtagbeijing'].") limit 10");
+while ($v = $_SGLOBAL['db']->fetch_array($query)) {
+    $fs[$v['tagid']] = $v;
+}
+foreach(explode(',', $_SCONFIG['mtagbeijingorder']) as $tagid){
+    $beijingorder[] = $fs[trim($tagid)];
+}
 
 //人气群主
-
+$hotmtagowner = array();
+$fs = array();
+if($_SCONFIG['spacehotmtagownerusername']){
+    $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('tagspace')." main LEFT JOIN ".tname('mtag'). " t ON (main.tagid =t.tagid) WHERE main.username IN (".simplode(explode(',', $_SCONFIG['spacehotmtagownerusername'])).") and main.grade=9 group by main.uid");
+    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+        $fs[$value['username']] = $value;
+        realname_set($value['uid'], $value['username']);
+    }
+    foreach(explode(',', $_SCONFIG['spacehotmtagownerusername']) as $username){
+        if(!isset($fs[$username])) continue;
+        $hotmtagowner[] = $fs[$username];
+    }
+}
 //人气群成员
-
+$hotmtaguser = array();
+$fs = array();
+if($_SCONFIG['spacehotmtaguserusername']){
+    $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('tagspace')." WHERE username IN (".simplode(explode(',', $_SCONFIG['spacehotmtaguserusername'])).")");
+    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+        $fs[$value['username']] = $value;
+        realname_set($value['uid'], $value['username']);
+    }
+    foreach(explode(',', $_SCONFIG['spacehotmtaguserusername']) as $username){
+        if(!isset($fs[$username])) continue;
+        $hotmtaguser[] = $fs[$username];
+    }
+}
 //广告
 
 

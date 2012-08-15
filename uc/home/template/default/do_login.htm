@@ -1,11 +1,10 @@
 <!--{eval $_TPL['nosidebar']=1;}-->
-<!--{template header}-->
-<link rel="stylesheet" type="text/css" href="{$_USER_SC['domain']}css/login.css" />
 <!--{template common_header}-->
+<link rel="stylesheet" type="text/css" href="{$_USER_SC['domain']}css/login.css" />
 
 <div class="main">
-	<div class="content">
-    	<ul class="xx">
+    <div class="content">
+        <ul class="xx">
             <li><a href="<!--{eval echo usr_url('do', array('ac'=>$_SCONFIG['register_action']))}-->"><img src="<?=$_USER_SC['domain']?>images/yhzc.png" /></a></li>
             <li><a href="<!--{eval echo usr_url('do', array('ac'=>$_SCONFIG['login_action']))}-->"><img src="<?=$_USER_SC['domain']?>images/yhdl.png" /></a></li>
             <li><a href="<!--{eval echo usr_url('do', array('ac'=>'lostpasswd'))}-->"><img src="<?=$_USER_SC['domain']?>images/wjmm.png" /></a></li>
@@ -14,89 +13,64 @@
             <div class="zcxq">
                 <form id="loginform" name="loginform" action="<!--{eval echo usr_url('do', array('ac'=>$_SCONFIG[login_action], $url_plus, 'ref'))}-->$url_plus" method="post" class="c_form">
                 <!--{if $invitearr}-->
-			<a href="<!--{eval echo usr_url('space', $url_plus)}-->" target="_blank"><!--{avatar($invitearr[uid],small)}--></a>
-			<a href="<!--{eval echo usr_url('space', $url_plus)}-->" target="_blank">{$_SN[$invitearr[uid]]}</a>
+            <a href="<!--{eval echo usr_url('space', $url_plus)}-->" target="_blank"><!--{avatar($invitearr[uid],small)}--></a>
+            <a href="<!--{eval echo usr_url('space', $url_plus)}-->" target="_blank">{$_SN[$invitearr[uid]]}</a>
                 <!--{/if}-->
-	<!--{if $_SCONFIG['seccode_login']}-->
-	<!--{if $_SCONFIG['questionmode']}-->
+    <!--{if $_SCONFIG['seccode_login']}-->
+    <!--{if $_SCONFIG['questionmode']}-->
             请先回答问题
-			<p><!--{eval question();}--></p>
-			<input type="text" id="seccode" name="seccode" value="" tabindex="1" class="t_input"<!--{if empty($_SGLOBAL['input_seccode'])}--> onBlur="checkSeccode()"<!--{/if}--> />&nbsp;<span id="checkseccode">&nbsp;</span>
-	<!--{else}-->
-		验证码
-			<script>seccode();</script>
-			<p>请输入上面的4位字母或数字，看不清可<a href="javascript:updateseccode()">更换一张</a></p>
-			<input type="text" id="seccode" name="seccode" value="" tabindex="1" class="t_input"<!--{if empty($_SGLOBAL['input_seccode'])}--> onBlur="checkSeccode()"<!--{/if}--> />&nbsp;<span id="checkseccode">&nbsp;</span>
-	<!--{/if}-->
-	<!--{/if}-->
+            <p><!--{eval question();}--></p>
+            <input type="text" id="seccode" name="seccode" value="" tabindex="1" class="t_input"<!--{if empty($_SGLOBAL['input_seccode'])}--> onBlur="checkSeccode()"<!--{/if}--> />&nbsp;<span id="checkseccode">&nbsp;</span>
+    <!--{else}-->
+        验证码
+            <script>seccode();</script>
+            <p>请输入上面的4位字母或数字，看不清可<a href="javascript:updateseccode()">更换一张</a></p>
+            <input type="text" id="seccode" name="seccode" value="" tabindex="1" class="t_input"<!--{if empty($_SGLOBAL['input_seccode'])}--> onBlur="checkSeccode()"<!--{/if}--> />&nbsp;<span id="checkseccode">&nbsp;</span>
+    <!--{/if}-->
+    <!--{/if}-->
     <ul><!--{if $_SGLOBAL['input_seccode']}-->
         <!--{else}-->
-        <li><b>用户名</b><div class="rizc"><input class="tx" type="text" name="username" /><p>请输入常用邮箱，作为登录帐号</p></div></li>
-        <li><b>密　码</b><div class="rizc"><input class="tx" type="password" name="password" tabindex="3" /><p>请输入常用邮箱，作为登录帐号</p></div></li>
+        <li><b>用户名</b><div class="rizc"><input class="tx" type="text" name="username" /><p></p></div></li>
+        <li><b>密　码</b><div class="rizc"><input class="tx" type="password" name="password" tabindex="3" /><p></p></div></li>
         <li><b>自动登录</b><div class="rizc" style="line-height:22px;"><input type="checkbox" id="cookietime" name="cookietime" value="315360000" $cookiecheck style="margin-bottom: -2px;"><p></p></div></li>
+        <input type="hidden" name="refer" value="$refer" />
+        <li><b>&nbsp;</b><div class="rizc"><input type="submit" id="loginsubmit" name="loginsubmit" value="登录" class="submit" tabindex="5" /><p></p></div></li>
         <!--{/if}-->
-        <li><b>&nbsp;</b><div class="rizc">
-            <input class="tjan"  id="loginsubmit" name="loginsubmit" type="submit" />
-            <input type="hidden" name="refer" value="$refer" />
-        </div></li>
-        <li><b>邮箱</b><div class="rizc"><input class="tx" type="text" /><p>请输入常用邮箱，作为登录帐号</p></div></li>
-        <li><b>密码</b><div class="rizc"><input class="tx" type="text" /><p>6-16位字符，注意区分大小写</p></div></li>
-        <li><b>确认密码</b><div class="rizc"><input class="tx" type="text" /><p>请输入重复密码</p></div></li>
-        <li><b>昵称</b><div class="rizc"><input class="tx" type="text" /></div></li>
-        <li><b>验证码</b><div class="rizc"><input class="yzm" type="text" /><img src="<?=$_USER_SC['domain']?>images/yzm.gif" /><a href="#">换一换</a></div></li>
-        <li><b>&nbsp;</b><div class="rizc"><input type="checkbox" />我已阅读并同意遵守《gopo.cc服务条款》</div></li>
-        <li><b>&nbsp;</b><div class="rizc"><input class="zca" type="button" /></div></li>
     </ul>
-	<tbody style="display:<!--{if $_SGLOBAL['input_seccode']}-->none<!--{/if}-->;">
-	<tr><th width="100"><label for="username">用户名</label></th><td><input type="text" name="username" id="username" class="t_input" value="$membername" tabindex="2" /></td></tr>
-	<tr><th width="100"><label for="password">密　码</label></th><td><input type="password" name="password" id="password" class="t_input" tabindex="3" value="$password" /></td></tr>
-	<tr>
-		<th width="100">&nbsp;</th>
-		<td>
-			<input type="checkbox" id="cookietime" name="cookietime" value="315360000" $cookiecheck style="margin-bottom: -2px;"><label for="cookietime">下次自动登录</label>
-		</td>
-	</tr>
-	</tbody>
-	<tr><th width="100">&nbsp;</th><td>
-		<input type="hidden" name="refer" value="$refer" />
-		<input type="submit" id="loginsubmit" name="loginsubmit" value="登录" class="submit" tabindex="5" />
-		<a href="do.php?ac=lostpasswd">忘记密码?</a>
-	</td></tr>
-</table>
 <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" /></form>
 <script type="text/javascript">
-	var lastSecCode = '';
-	function checkSeccode() {
-		var seccodeVerify = _$('seccode').value;
-		if(seccodeVerify == lastSecCode) {
-			return;
-		} else {
-			lastSecCode = seccodeVerify;
-		}
-		ajaxresponse('checkseccode', 'op=checkseccode&seccode=' + (is_ie && document.charset == 'utf-8' ? encodeURIComponent(seccodeVerify) : seccodeVerify));
-	}
-	function ajaxresponse(objname, data) {
-		var x = new Ajax('XML', objname);
+    var lastSecCode = '';
+    function checkSeccode() {
+        var seccodeVerify = _$('seccode').value;
+        if(seccodeVerify == lastSecCode) {
+            return;
+        } else {
+            lastSecCode = seccodeVerify;
+        }
+        ajaxresponse('checkseccode', 'op=checkseccode&seccode=' + (is_ie && document.charset == 'utf-8' ? encodeURIComponent(seccodeVerify) : seccodeVerify));
+    }
+    function ajaxresponse(objname, data) {
+        var x = new Ajax('XML', objname);
         x.get('<!--{eval echo usr_url('do', array('ac'=>$_SCONFIG[register_action]))}-->' + data, function(s){
-			var obj = _$(objname);
-			s = trim(s);
-			if(s.indexOf('succeed') > -1) {
-				obj.style.display = '';
-				obj.innerHTML = '<img src="<?=$_USER_SC['domain']?>image/check_right.gif" width="13" height="13">';
-				obj.className = "warning";
-			} else {
-				warning(obj, s);
-			}
-		});
-	}
-	function warning(obj, msg) {
-		if((ton = obj.id.substr(5, obj.id.length)) != 'password2') {
-			_$(ton).select();
-		}
-		obj.style.display = '';
-		obj.innerHTML = '<img src="<?=$_USER_SC['domain']?>image/check_error.gif" width="13" height="13"> &nbsp; ' + msg;
-		obj.className = "warning";
-	}
+            var obj = _$(objname);
+            s = trim(s);
+            if(s.indexOf('succeed') > -1) {
+                obj.style.display = '';
+                obj.innerHTML = '<img src="<?=$_USER_SC['domain']?>image/check_right.gif" width="13" height="13">';
+                obj.className = "warning";
+            } else {
+                warning(obj, s);
+            }
+        });
+    }
+    function warning(obj, msg) {
+        if((ton = obj.id.substr(5, obj.id.length)) != 'password2') {
+            _$(ton).select();
+        }
+        obj.style.display = '';
+        obj.innerHTML = '<img src="<?=$_USER_SC['domain']?>image/check_error.gif" width="13" height="13"> &nbsp; ' + msg;
+        obj.className = "warning";
+    }
 
 </script>
 
@@ -110,7 +84,7 @@ _$('seccode').focus();
                 </form>
             </div>
             <div class="ycnr">
-            	<h3>注册为会员的好处</h3>
+                <h3>注册为会员的好处</h3>
                 <p>1、建立个人作品集，得到更多网友和更多设计公司的关注。</p>
                 <p>2、建立个人作品集，得到更多网友和更多设计公司的关注。</p>
                 <p>3、建立个人作品集，得到更多网友和更多设计公司的关注。</p>

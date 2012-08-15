@@ -21,8 +21,8 @@ if(!@include_once(S_ROOT.'./config.php')) {
 	header("Location: install/index.php");//安装
 	exit();
 }
-include_once(S_ROOT.'./source/function_common.php');
 include_once(S_ROOT.'../usr/usr.php');
+include_once(S_ROOT.'./source/function_common.php');
 
 //时间
 $mtime = explode(' ', microtime());
@@ -129,5 +129,6 @@ if($_SGLOBAL['app']) {
 		}
 	}
 }
+
 
 ?>

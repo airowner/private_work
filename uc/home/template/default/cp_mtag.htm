@@ -1,7 +1,7 @@
 <!--{eval $_TPL['mtag'] = 1;}-->
 <!--{template header}-->
 <!--{if $_GET[op]=='manage'}-->
-                    <!--{if $_GET['subop'] != 'member'}-->
+     <!--{if $_GET['subop'] != 'member'}-->
 <link rel="stylesheet" type="text/css" href="{$_USER_SC['domain']}css/qzej.css"/>
 <div class="main">
     <div class="content">
@@ -318,7 +318,10 @@
 </form>
 </div>
 <!--{else}-->
-   
+<link rel="stylesheet" type="text/css" href="{$_USER_SC['domain']}css/qzej.css"/> 
+<div class="main">
+    <div class="content" style="background:#FFF">
+        <div style="width:500px;margin:0 auto;">
     <h2 class="title"><img src="<?=$_USER_SC['domain']?>image/app/mtag.gif" />群组</h2>
     <div class="tabs_header">
         <ul class="tabs">
@@ -503,6 +506,9 @@
     <input type="hidden" name="view" value="hot" />
     </form>
     <!--{/if}-->
+    </div>
+    </div>
+
 <!--{/if}-->
 <!--{template footer}-->
 

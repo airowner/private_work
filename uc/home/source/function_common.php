@@ -220,7 +220,7 @@ function tname($name) {
 
 //对话框
 function showmessage($msgkey, $url_forward='', $second=1, $values=array()) {
-	global $_SGLOBAL, $_SC, $_SCONFIG, $_TPL, $space, $_SN;
+	global $_SGLOBAL, $_SC, $_SCONFIG, $_TPL, $space, $_SN, $_USER_SC;
 
 	obclean();
 
@@ -234,6 +234,7 @@ function showmessage($msgkey, $url_forward='', $second=1, $values=array()) {
 	} else {
 		$message = $msgkey;
 	}
+
 	//手机
 	if($_SGLOBAL['mobile']) {
 		include template('showmessage');

@@ -119,3 +119,10 @@ a{ color:#000;}
 
 .uchome-message-pic img{max-width:580px;_width:580px;}
 .hfxq img{max-width:500px;_width:500px;}
+
+.love_div_ul{
+    width: 1160px;
+    margin: 5px 10px;
+}
+
+.love_div_ul li{width: 58px;float:left}

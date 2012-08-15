@@ -99,7 +99,7 @@ setInterval(function(){
         <h3></h3>
         <div class="xqnr">
             <ul>
-                <!--{loop $intrest $value}-->
+                <!--{loop $interest $value}-->
                 <li<!--{if $key == 5}--> class="nm"<!--{/if}-->><a href="space.php?do=mtag&tagid={$value['tagid']}" target="_blank"><img src="$value['pic']" width="120" height="120" /><br /><!--{eval echo base::cutstr($sub_value['tagname'],20, '');}--></a></li>
                 <!--{/loop}-->
             </ul>
@@ -112,116 +112,25 @@ setInterval(function(){
             <div class="tjqz">
                 <h3>推荐圈子</h3>
                 <div class="tjnr">
-                    <p class="fl"><b>精选</b><span>|</span><a href="#">电影</a><span>|</span><a href="#">时尚</a><span>|</span><a href="#">设计</a><span>|</span><a href="#">摄影</a><span>|</span><a href="#">其他</a></p>
+                    <p class="fl"><b>&nbsp;</b></p>
                     <ul>
+                        <!--{loop $jingxuan $key $value}-->
                         <li>
                             <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
+                                <dt><a href="space.php?do=mtag&tagid=$value['tagid']">
+                                <!--{if $value['pic']}-->
+                                <img src="$value['pic']" width="50" height="50" />
+                                <!--{else}-->
+                                <img src="image/nologo.jpg" width="50" height="50" />
+                                <!--{/if}-->
+                                </a></dt>
                                 <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
+                                    <p class="jr"><a href="space.php?do=mtag&tagid=$value['tagid']"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                    <p><span>$value['tagname']</span><br />成员：$value['membernum']人</p>
                                 </dd>
                             </dl>
                         </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="nm">
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="nm">
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="nm">
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
+                        <!--{/loop}-->
                     </ul>
                 </div>
             </div>
@@ -231,114 +140,47 @@ setInterval(function(){
         <div class="ritw">
             <h3>精选圈子排行榜</h3>
             <div class="phnr">
+                <!--{loop $jingxuanorder $key $value}-->
+                <!--{if $key==0}-->
                 <div class="one">
                     <div class="leo">ONE</div>
                     <div class="rio">
-                        <div class="ritxd"><a href="#">zyd1984123</a><br />积分 1234</div>
-                        <div class="leimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                        <div class="ritxd"><a href="space.php?do=mtag&tagid=$value['tagid']">$value['tagname']</a><br />成员 <!--{$value['membernum']}--></div>
+                        <div class="leimd">
+                            <!--{if $value['pic']}-->
+                            <img src="$value['pic']" width="42" height="42" />
+                            <!--{else}-->
+                            <img src="image/nologo.jpg" width="42" height="42" />
+                            <!--{/if}-->
+                        </div>
                     </div>
                 </div>
-                <ul class="ph">
-                    <li class="lidldd">
-                        <dl><dt><b>02</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">02</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt class="hbj"><b>03</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">03</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>04</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">04</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt class="hbj"><b>05</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">05</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>06</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">06</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt class="hbj"><b>07</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">07</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>08</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">08</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt class="hbj"><b>09</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">09</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>10</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">10</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
+                <!--{else}-->
+                    <!--{if $key==1}-->
+                    <ul class="ph">
+                    <!--{/if}-->
+                        <li<!--{if $key==1}--> class="lidldd"<!--{else}--> class="lidldt"<!--{/if}-->>
+                            <dl><dt><b><!--{eval printf('%02d', $key+1)}--></b><span><a href="space.php?do=mtag&tagid=$value['tagid']">$value['tagname']</a></span></dt>
+                                <dd>
+                                    <div class="lido"><!--{eval printf('%02d', $key+1)}--></div>
+                                    <div class="rido">
+                                        <div class="rile"><a href="space.php?do=mtag&tagid=$value['tagid']">$value['tagname']</a></a><br />成员 <!--{$value['membernum']}--></div>
+                                        <div class="riimd">
+                                        <!--{if $value['pic']}-->
+                                        <img src="$value['pic']" width="42" height="42" />
+                                        <!--{else}-->
+                                        <img src="image/nologo.jpg" width="42" height="42" />
+                                        <!--{/if}-->
+                                        </div>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </li>
+                    <!--{if $key==count($jingxuanorder)-1}-->
                     </ul>
+                    <!--{/if}-->
+                <!--{/if}-->
+                <!--{/loop}-->
                     </div>
         </div>
         <!--精选圈子结束-->
@@ -350,71 +192,47 @@ setInterval(function(){
             <h3>同城圈子</h3>
             <div class="tcnr">
                 <div class="qhcs">
-                    <div class="csqh"><a href="#">切换城市</a></div>
-                    <p><a href="#">没有你的城市？去这里找找吧</a></p>
+                    <div class="csqh"><a href="space.php?do=mtag&id=2">切换城市</a></div>
+                    <p><a href="space.php?do=mtag&id=2">没有你的城市？去这里找找吧</a></p>
                 </div>
+                <!--{loop $tongcheng $key $value}-->
+                <!--{if $key==0}-->
                 <div class="lecs">
-                    <a class="cst" href="#"><img src="<?=$_USER_SC['domain']?>images/bjt.png" /></a><span>北京北京-更换新Logo</span><br />成员：10293人<br /><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a>
+                    <a class="cst" href="space.php?do=mtag&tagid=$value['tagid']">
+                    <!--{if $value['pic']}-->
+                    <img src="$value['pic']" width="180" height="180" />
+                    <!--{else}-->
+                    <img src="image/nologo.jpg" width="180" height="180" />
+                    <!--{/if}-->
+                    </a><span>$value['tagname']</span><br />成员：<!--{$value['membernum']}-->人<br /><a href="space.php?do=mtag&tagid=$value['tagid']"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a>
                 </div>
-                <ul class="bd">
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                    </ul>
+                <!--{else}-->
+                    <!--{if $key==1}-->
+                    <ul class="bd">
+                    <!--{elseif $key==4}-->
                     <ul>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt><a href="#"><img src="<?=$_USER_SC['domain']?>images/tjqtx.png" /></a></dt>
-                                <dd>
-                                    <p class="jr"><a href="#"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
-                                    <p><span>爱看电影</span><br />成员：441916人</p>
-                                </dd>
-                            </dl>
-                        </li>
+                    <!--{/if}-->
+                    <li>
+                        <dl>
+                            <dt><a href="space.php?do=mtag&tagid=$value['tagid']">
+                            <!--{if $value['pic']}-->
+                            <img src="$value['pic']" width="50" height="50" />
+                            <!--{else}-->
+                            <img src="image/nologo.jpg" width="50" height="50" />
+                            <!--{/if}-->
+                            </a></dt>
+                            <dd>
+                                <p class="jr"><a href="space.php?do=mtag&tagid=$value['tagid']"><img src="<?=$_USER_SC['domain']?>images/jr.gif" /></a><p>
+                                <p><span>$value['tagname']</span><br />成员：<!--{$value['membernum']}-->人</p>
+                            </dd>
+                        </dl>
+                    </li>
+                    <!--{if $key=3 || $key==count($beijingorder)-1}-->
                     </ul>
-                    <a class="more" href="#" target="_blank">查看更多»</a>
+                    <!--{/if}-->
+                <!--{/if}-->
+                <!--{/loop}-->
+                    <a class="more" href="space.php?do=mtag&id=2" target="_blank">查看更多»</a>
             </div>
         </div>
         <!--同城圈子结束-->
@@ -422,115 +240,48 @@ setInterval(function(){
         <div class="rith">
             <h3>北京圈子排行榜</h3>
             <div class="phnr">
+                <!--{loop $beijingorder $key $value}-->
+                <!--{if $key==0}-->
                 <div class="one">
                     <div class="leo">ONE</div>
                     <div class="rio">
-                        <div class="ritxd"><a href="#">zyd1984123</a><br />积分 1234</div>
-                        <div class="leimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                        <div class="ritxd"><a href="space.php?do=mtag&tagid=$value['tagid']">$value['tagname']</a><br />成员 <!--{$value['membernum']}--></div>
+                        <div class="leimd">
+                            <!--{if $value['pic']}-->
+                            <img src="$value['pic']" width="42" height="42" />
+                            <!--{else}-->
+                            <img src="image/nologo.jpg" width="42" height="42" />
+                            <!--{/if}-->
+                        </div>
                     </div>
                 </div>
-                <ul class="ph">
-                    <li class="lidldd">
-                        <dl><dt><b>02</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">02</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt class="hbj"><b>03</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">03</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>04</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">04</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt class="hbj"><b>05</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">05</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>06</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">06</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt class="hbj"><b>07</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">07</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>08</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">08</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt class="hbj"><b>09</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">09</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>10</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">10</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
+                <!--{else}-->
+                    <!--{if $key==1}-->
+                    <ul class="ph">
+                    <!--{/if}-->
+                        <li<!--{if $key==1}--> class="lidldd"<!--{else}--> class="lidldt"<!--{/if}-->>
+                            <dl><dt><b><!--{eval printf('%02d', $key+1)}--></b><span><a href="space.php?do=mtag&tagid=$value['tagid']">$value['tagname']</a></span></dt>
+                                <dd>
+                                    <div class="lido"><!--{eval printf('%02d', $key+1)}--></div>
+                                    <div class="rido">
+                                        <div class="rile"><a href="space.php?do=mtag&tagid=$value['tagid']">$value['tagname']</a></a><br />成员 <!--{$value['membernum']}--></div>
+                                        <div class="riimd">
+                                        <!--{if $value['pic']}-->
+                                        <img src="$value['pic']" width="42" height="42" />
+                                        <!--{else}-->
+                                        <img src="image/nologo.jpg" width="42" height="42" />
+                                        <!--{/if}-->
+                                        </div>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </li>
+                    <!--{if $key==count($beijingorder)-1}-->
                     </ul>
-                    </div>
+                    <!--{/if}-->
+                <!--{/if}-->
+                <!--{/loop}-->
+            </div>
         </div>
         <!--北京圈子结束-->
     </div>
@@ -540,230 +291,72 @@ setInterval(function(){
         <div class="rqqz">
             <h3>人气群主</h3>
             <div class="phnr rqph">
+                <!--{loop $hotmtagowner $key $value}-->
+                <!--{if $key==0}-->
                 <div class="one">
                     <div class="leo">ONE</div>
                     <div class="rio">
-                        <div class="ritxd"><a href="#">zyd1984123</a><br />积分 1234</div>
-                        <div class="leimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                        <div class="ritxd"><a href="space.php?uid={$value['uid']}" title="$_SN[$value['uid']]"><!--{eval echo base::cutstr($_SN[$value['uid']],16, '');}--></a><br />来自 <a href="space.php?do=mtag&tagid={$value['tagidid']}">$value['tagname']</a></div>
+                        <div class="leimd"><a href="space.php?uid={$value['uid']}" title="$_SN[$value['uid']]"><!--{avatar($value[uid],'42x42')}--></a></div>
                     </div>
                 </div>
-                <ul class="ph">
-                    <li class="lidldd">
-                        <dl><dt><b>02</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">02</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>03</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">03</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>04</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">04</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>05</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">05</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>06</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">06</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>07</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">07</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>08</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">08</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>09</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">09</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>10</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">10</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
+                <!--{else}-->
+                    <!--{if $key==1}-->
+                    <ul class="ph">
+                    <!--{/if}-->
+                        <li<!--{if $key==1}--> class="lidldd"<!--{else}--> class="lidldt"<!--{/if}-->>
+                            <dl><dt><b><!--{eval printf('%02d', $key+1)}--></b><span><a href="space.php?uid={$value['uid']}" title="$_SN[$value['uid']]"><!--{eval echo base::cutstr($_SN[$value['uid']],16, '');}--></a></span></dt>
+                                <dd>
+                                    <div class="lido"><!--{eval printf('%02d', $key+1)}--></div>
+                                    <div class="rido">
+                                        <div class="rile"><a href="space.php?uid={$value['uid']}" title="$_SN[$value['uid']]"><!--{eval echo base::cutstr($_SN[$value['uid']],16, '');}--></a><br />来自 <a href="space.php?do=mtag&tagid={$value['tagidid']}">$value['tagname']</a></div>
+                                        <div class="riimd"><a href="space.php?uid={$value['uid']}" title="$_SN[$value['uid']]"><!--{avatar($value[uid],'42x42')}--></a></div>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </li>
+                    <!--{if $key==count($hotmtagowner)-1}-->
                     </ul>
-                    </div>
+                    <!--{/if}-->
+                <!--{/if}-->
+                <!--{/loop}-->
+             </div>
         </div>
         <!--人气群主结束-->
         <!--人气群成员-->
         <div class="rqqz rqqcy">
             <h3>人气群成员</h3>
             <div class="phnr rqph">
+                <!--{loop $hotmtaguser $key $value}-->
+                <!--{if $key==0}-->
                 <div class="one">
                     <div class="leo">ONE</div>
                     <div class="rio">
-                        <div class="ritxd"><a href="#">zyd1984123</a><br />积分 1234</div>
-                        <div class="leimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
+                        <div class="ritxd"><a href="space.php?uid={$value['uid']}" title="$_SN[$value['uid']]"><!--{eval echo base::cutstr($_SN[$value['uid']],16, '');}--></a><br />来自 <a href="space.php?do=mtag&tagid={$value['tagidid']}">$value['tagname']</a></div>
+                        <div class="leimd"><a href="space.php?uid={$value['uid']}" title="$_SN[$value['uid']]"><!--{avatar($value[uid],'42x42')}--></a></div>
                     </div>
                 </div>
-                <ul class="ph">
-                    <li class="lidldd">
-                        <dl><dt><b>02</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">02</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>03</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">03</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>04</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">04</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>05</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">05</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>06</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">06</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>07</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">07</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>08</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">08</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>09</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">09</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li class="lidldt">
-                        <dl><dt><b>10</b><span>zyd1984123</span></dt>
-                            <dd>
-                                <div class="lido">10</div>
-                                <div class="rido">
-                                    <div class="rile"><a href="#">zyd1984123</a><br />积分 1234</div>
-                                    <div class="riimd"><img src="<?=$_USER_SC['domain']?>images/txo.gif" /></div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </li>
+                <!--{else}-->
+                    <!--{if $key==1}-->
+                    <ul class="ph">
+                    <!--{/if}-->
+                        <li<!--{if $key==1}--> class="lidldd"<!--{else}--> class="lidldt"<!--{/if}-->>
+                            <dl><dt><b><!--{eval printf('%02d', $key+1)}--></b><span><a href="space.php?uid={$value['uid']}" title="$_SN[$value['uid']]"><!--{eval echo base::cutstr($_SN[$value['uid']],16, '');}--></a></span></dt>
+                                <dd>
+                                    <div class="lido"><!--{eval printf('%02d', $key+1)}--></div>
+                                    <div class="rido">
+                                        <div class="rile"><a href="space.php?uid={$value['uid']}" title="$_SN[$value['uid']]"><!--{eval echo base::cutstr($_SN[$value['uid']],16, '');}--></a><br />来自 <a href="space.php?do=mtag&tagid={$value['tagidid']}">$value['tagname']</a></div>
+                                        <div class="riimd"><a href="space.php?uid={$value['uid']}" title="$_SN[$value['uid']]"><!--{avatar($value[uid],'42x42')}--></a></div>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </li>
+                    <!--{if $key==count($hotmtaguser)-1}-->
                     </ul>
-                    </div>
+                    <!--{/if}-->
+                <!--{/if}-->
+                <!--{/loop}-->
+             </div>
         </div>
         <!--人气群成员结束-->
         <div class="ggd">
@@ -773,7 +366,11 @@ setInterval(function(){
         </div>
     </div>
 </div>
-    
+
+
+
+
+   
 <!--{if 0}-->
 <div class="searchbar floatright">
 <form method="get" action="space.php">

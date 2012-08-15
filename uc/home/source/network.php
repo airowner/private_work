@@ -237,10 +237,61 @@ while ($value = $_SGLOBAL['db']->fetch_array($query)) {
     $newest_user[] = $value;
 }
 //居民秀
+$user_show = array();
+$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('space')." WHERE avatar=1 order by lastlogin desc limit 0, 48");
+while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+    realname_set($value['uid'], $value['username']);
+    $user_show[] = $value;
+}
+
+//推荐博客
+$hotblog = array();
+$hotbloglist = array();
+$hotbloguid = array();
+if($_SCONFIG['spacehotblogusername']) {
+    $query = $_SGLOBAL['db']->query("SELECT m.uid, m.username, m.name, m.namestatus, f.resideprovince, f.residecity FROM ".tname('space')." m LEFT JOIN ".tname('spacefield')." f ON m.uid=f.uid WHERE m.username IN (".simplode(explode(',', $_SCONFIG['spacehotblogusername'])).")");
+    //~ echo "SELECT * FROM ".tname('space')." WHERE username IN (".simplode(explode(',', $_SCONFIG['spacehotblogusername'])).")";exit;
+    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+        realname_set($value['uid'], $value['username'], $value['name'], $value['namestatus']);
+        $hotbloglist[$value['uid']] = $value;
+    }
+}
+if($hotbloglist) {
+    $hotblog = sarray_rand($hotbloglist, 3);
+    $query = $_SGLOBAL['db']->query("SELECT * FROM (SELECT uid, blogid, subject FROM ".tname('blog')." where uid in (" . simplode(array_keys($hotblog)) . ") order by dateline desc) t group by uid;");
+    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+        $hotblog[$value['uid']] += $value;
+    }
+}
+//~ var_dump($hotblog);exit;
 
 //兴趣分类及内容
-
-//站长推荐
+$mtags = array();
+$mtagusers = array();
+$fs = array();
+if($_SCONFIG['mtaginterest']){
+    $query = $_SGLOBAL['db']->query("SELECT tagid, tagname FROM ".tname('mtag')." WHERE tagid IN (".$_SCONFIG['mtaginterest'].")");
+    while ($v = $_SGLOBAL['db']->fetch_array($query)) {
+        $fs[$v['tagid']] = $v['tagname'];
+    }
+    foreach(explode(',', $_SCONFIG['mtaginterest']) as $tagid){
+        $mtags[$tagid] = $fs[$tagid];
+    }
+    $query = $_SGLOBAL['db']->query("SELECT tagid, group_concat(uid) as uids FROM ".tname('tagspace')." WHERE tagid IN ( " . $_SCONFIG['mtaginterest'] .") group by tagid");
+    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+        $mtagusers[$value['tagid']] = array();
+        $i = 0;
+        foreach(explode(',', $value['uids']) as $value_uid){
+            if($i<40){
+                realname_set($value_uid, '');
+                $mtagusers[$value['tagid']][] = $value_uid;
+            }
+            $i++;
+        }
+    }
+}
+    
+//站长推荐 左上角
 $star = array();
 $starlist = array();
 if($_SCONFIG['spacebarusername']) {
@@ -265,11 +316,14 @@ while ($value = $_SGLOBAL['db']->fetch_array($query)) {
     $value['note'] = addslashes(getstr($value['note'], 80, 0, 0, 0, 0, -1));
     $showlist[$value['uid']] = $value;
 }
+/*
 if(empty($star) && $showlist) {
     $star = sarray_rand($showlist, 1);
 }
+*/
 
 //在线用户
+/*
 $onlinelist = array();
 $query = $_SGLOBAL['db']->query("SELECT s.*, sf.note FROM ".tname('session')." s
     LEFT JOIN ".tname('spacefield')." sf ON sf.uid=s.uid
@@ -288,6 +342,7 @@ if(empty($star) && $onlinelist) {
 
 //在线人数
 $olcount = getcount('session', array());
+*/
 
 //应用
 /*

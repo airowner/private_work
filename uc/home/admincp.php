@@ -34,7 +34,7 @@ if(checkperm('banvisit')) {
 $isfounder = ckfounder($_SGLOBAL['supe_uid']);
 
 $acs = array(
-    array('index','config', 'privacy', 'ip', 'spam', 'hotuser', 'defaultuser', 'usergroup', 'credit', 'magic', 'magiclog', 'profield', 'ad', 'userapp'),
+    array('index','config', 'privacy', 'ip', 'spam', 'hotuser', 'hotblog', 'defaultuser', 'usergroup', 'credit', 'magic', 'magiclog', 'profield', 'ad', 'userapp', 'mtaginterest', 'hotmtagowner', 'hotmtaguser', 'mtagrecommend', 'mtagrecommendorder', 'mtagbeijingorder', 'mtagbeijing'),
     array('tag', 'mtag', 'event', 'report', 'space'),
     array('cache', 'network', 'profilefield', 'eventclass', 'click', 'task', 'censor', 'stat', 'block', 'cron', 'app', 'log'),
     array('feed', 'blog', 'album', 'pic', 'comment', 'thread', 'post', 'doing', 'share', 'poll')
@@ -137,7 +137,7 @@ switch ($cpaccess) {
         break;
 }
 
-if($ac == 'defaultuser') {
+if(in_array($ac, array('defaultuser', 'hotblog', 'mtaginterest', 'hotmtagowner', 'hotmtaguser', 'mtagrecommend', 'mtagrecommendorder', 'mtagbeijingorder', 'mtagbeijing'))) {
     $acfile = 'hotuser';
 } else {
     $acfile = $ac;

@@ -31,6 +31,36 @@ $_SGLOBAL['profield']=Array
 		'mtagminnum' => '0',
 		'manualmoderator' => '0',
 		'manualmember' => 1
+		),
+	4 => Array
+		(
+		'fieldid' => 4,
+		'title' => '魔兽团',
+		'formtype' => 'text',
+		'inputnum' => '0',
+		'mtagminnum' => '0',
+		'manualmoderator' => '0',
+		'manualmember' => '0'
+		),
+	5 => Array
+		(
+		'fieldid' => 5,
+		'title' => '精灵团',
+		'formtype' => 'text',
+		'inputnum' => '0',
+		'mtagminnum' => '0',
+		'manualmoderator' => '0',
+		'manualmember' => '0'
+		),
+	6 => Array
+		(
+		'fieldid' => 6,
+		'title' => '测试圈子',
+		'formtype' => 'text',
+		'inputnum' => '0',
+		'mtagminnum' => '0',
+		'manualmoderator' => '0',
+		'manualmember' => '0'
 		)
 	)
 ?>

@@ -100,7 +100,7 @@ $_SCONFIG=Array
 			'click' => 1
 			)
 		),
-	'cronnextrun' => 1343581200,
+	'cronnextrun' => 1345040400,
 	'my_status' => '0',
 	'uniqueemail' => 1,
 	'updatestat' => 1,
@@ -108,6 +108,18 @@ $_SCONFIG=Array
 	'topcachetime' => 60,
 	'newspacenum' => 3,
 	'sitekey' => 'd10efcgdm9cg2wPW',
-	'spacebarusername' => 'wanglan,zhanghua'
+	'spacebarusername' => '',
+	'defaultfusername' => '',
+	'spacehotblogusername' => 'wanglan,zhanghua',
+	'spaceinterestmtagusername' => '',
+	'mtaginterest' => '1,2',
+	'spacehotmtagownerusername' => 'wanglan',
+	'spacehotmtaguserusername' => 'zhanghua,wanglan,admin',
+	'mtagbeijingorder' => '5,4',
+	'spacemtagbeijingusername' => '测试群组111
+北京圈子',
+	'mtagbeijing' => '4,5',
+	'mtagrecommend' => '9,7',
+	'mtagrecommendorder' => '7,9,8'
 	)
 ?>
