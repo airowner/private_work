@@ -195,7 +195,7 @@ window.onload=function()
                         <div class="dlxx">
                             <div class="zhxx">
                                 <div class="xxsr"><span>帐号</span><input class="txt" type="text" name="username" id="username" /></div>
-                                <div class="xxsr"><span>密码</span><input class="txt" type="text" name="password" id="password" /></div>
+                                <div class="xxsr"><span>密码</span><input class="txt" type="password" name="password" id="password" /></div>
                             </div>
                             <div class="dlan"><input class="an" type="submit" id="loginsubmit" name="loginsubmit"/></div>
                         </div>
@@ -207,26 +207,19 @@ window.onload=function()
                 <h3><a href="#">M</a></h3>
                 <div class="hdnr">
                     <ul class="ph">
+                        <!--{loop $index['event'] $key $value}-->
                         <li class="lidldd">
-                            <dl><dt style="border-top:none;">六月甘蓝清澈风景边走边拍</dt>
-                                <dd><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/hdim.gif"/></a></dd>
+                            <dl><dt 
+                            <!--{if !$key}--> style="border-top:none;"
+                            <!--{elseif $key==1}--> class="on"
+                            <!--{elseif $key==2}--> class="tw"
+                            <!--{elseif $key==3}--> class="th"
+                            <!--{/if}-->
+                            ><!--{eval echo base::cutstr($value['title'], 24)}--></dt>
+                                <dd><a href="space.php?do=event&id=$value['eventid']" target="_blank"><img src="attachment/$value['poster']" width="188" height="134"/></a></dd>
                             </dl>
                         </li>
-                        <li class="lidldt">
-                            <dl><dt class="on">六月甘蓝清澈风景边走边拍</dt>
-                                <dd><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/hdim.gif"/></a></dd>
-                            </dl>
-                        </li>
-                        <li class="lidldt">
-                            <dl><dt class="tw">六月甘蓝清澈风景边走边拍</dt>
-                                <dd><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/hdim.gif"/></a></dd>
-                            </dl>
-                        </li>
-                        <li class="lidldt" >
-                            <dl><dt  class="th">六月甘蓝清澈风景边走边拍</dt>
-                                <dd><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/hdim.gif"/></a></dd>
-                            </dl>
-                        </li>
+                        <!--{/loop}-->
                     </ul>
                 </div>
                 <!--活动结束-->
@@ -246,25 +239,16 @@ window.onload=function()
                             <div id="love_div" class="peoplebox" style="position: absolute; left:0px;">
                                 <table border="0" cellpadding="0" cellspacing="7" width="275px;">
                                 <tbody>
+                                <!--{loop $index['user_show'] $key $value}-->
+                                <!--{if $key%4==0}-->
                                 <tr>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
+                                <!--{/if}-->
+                                    <td><a href="space.php?uid=$value[uid]" target="_blank" alt="$_SN[$value[uid]]"><!--{avatar($value[uid],'64x64')}--></a></td>
+                                 <!--{if $key%4==3 || $key == count($index['user_show'])-1}-->
                                  </tr>
-                                 <tr>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
-                                 </tr>
-                                 <tr>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
-                                    <td><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/123.jpg" alt="lets 小喂"></a></td>
-                                 </tr>
-                </tbody>
+                                 <!--{/if}-->
+                                <!--{/loop}-->
+                                </tbody>
                                 </table>
                             </div>
 
@@ -277,15 +261,20 @@ window.onload=function()
                         <h3><a href="#">M</a></h3>
                         <div class="honr">
                             <div class="hoto">
-                                <div class="leim"><a href="#"><img src="<?=$_USER_SC['domain']?>images/hotim.jpg" /></a></div>
+                                <!--{loop $index['hotblog'] $key $value}-->
+                                <!--{if !$key}-->
+                                <div class="leim"><a href="space.php?do=blog&uid=$value['uid']&blogid=$value['blogid']"  title="$value['subject']"><img src="$value['pid']" width='86' height='86' /></a></div>
+                                <!--{else}-->
+                                <!--{if $key==1}-->
                                 <div class="ritx">
                                     <ul>
-                                        <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜新装扮</a></li>
-                                        <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜新装扮</a></li>
-                                        <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜新装扮</a></li>
-                                        <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜新装扮</a></li>
+                                <!--{/if}-->
+                                        <li><a href="space.php?do=blog&uid=$value['uid']&blogid=$value['blogid']" target="_blank"><!--{eval echo base::cutstr($value['subject'], 36)}--></a></li>
+                                <!--{if $key==4 || $key == count($index['hotblog'])-1}-->
                                     </ul>
                                 </div>
+                                <!--{/if}-->
+                                <!--{/loop}-->
                             </div>
                             <div class="qtnr">
                                 <div class="tjqz">
@@ -321,47 +310,30 @@ window.onload=function()
                 <div class="jybz">
                     <h3><a href="#" target="_blank">M</a></h3>
                     <div class="bznr">
+                        <!--{loop $index['hotbloguser'] $key $value}-->
+                        <!--{if !$key}-->
                         <div class="obz">
-                            <div class="tx"><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/cxtx.jpg" /></a></div>
+                            <div class="tx"><a href="space.php?uid=$value[uid]" target="_blank"><!--{avatar($value[uid],'76x76')}--></a></div>
                             <div class="ycxx">
-                                <p class="mz"><a href="<!--{eval echo usr_url('index')}-->" target="_blank">Admin</a></p>
-                                <p>榜上有名</p>
-                                <p>积分：2133</p>
+                                <p class="mz"><a href="space.php?uid=$value[uid]" target="_blank">{$_SN[$value[uid]]}</a></p>
+                                <p>经验：$value['experience']</p>
+                                <p>积分：$value['credit']</p>
                             </div>
                         </div>
+                        <!--{else}-->
+                        <!--{if $key==1}-->
                         <h4><a href="#" target="_blank">M</a></h4>
+                        <!--{/if}-->
                         <div class="obz xbz">
-                            <div class="tx"><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xbztx.jpg" /></a></div>
+                            <div class="tx"><a href="space.php?uid=$value[uid]" target="_blank"><!--{avatar($value[uid],'61x61')}--></a></div>
                             <div class="ycxx">
-                                <p class="mz"><a href="<!--{eval echo usr_url('index')}-->" target="_blank">Admin</a></p>
-                                <p>榜上有名</p>
-                                <p>积分：2133</p>
+                                <p class="mz"><a href="space.php?uid=$value[uid]" target="_blank">{$_SN[$value[uid]]}</a></p>
+                                <p>经验：$value['experience']</p>
+                                <p>积分：$value['credit']</p>
                             </div>
                         </div>
-                        <div class="obz xbz">
-                            <div class="tx"><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xbztx.jpg" /></a></div>
-                            <div class="ycxx">
-                                <p class="mz"><a href="<!--{eval echo usr_url('index')}-->" target="_blank">Admin</a></p>
-                                <p>榜上有名</p>
-                                <p>积分：2133</p>
-                            </div>
-                        </div>
-                        <div class="obz xbz">
-                            <div class="tx"><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xbztx.jpg" /></a></div>
-                            <div class="ycxx">
-                                <p class="mz"><a href="<!--{eval echo usr_url('index')}-->" target="_blank">Admin</a></p>
-                                <p>榜上有名</p>
-                                <p>积分：2133</p>
-                            </div>
-                        </div>
-                        <div class="obz xbz">
-                            <div class="tx"><a href="<!--{eval echo usr_url('index')}-->" target="_blank"><img src="<?=$_USER_SC['domain']?>images/xbztx.jpg" /></a></div>
-                            <div class="ycxx">
-                                <p class="mz"><a href="<!--{eval echo usr_url('index')}-->" target="_blank">Admin</a></p>
-                                <p>榜上有名</p>
-                                <p>积分：2133</p>
-                            </div>
-                        </div>
+                        <!--{/if}-->
+                        <!--{/loop}-->
                     </div>
                 </div>
             </div>
