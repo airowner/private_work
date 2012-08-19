@@ -145,6 +145,13 @@ if($id) {
     //实名
     realname_get();
 
+    //推荐
+    $r_mtag = array();
+    $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('mtag')." WHERE tagid != {$id} order by rand() limit 2");
+    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+        $r_mtag[] = $value;
+    }
+
     $_TPL['css'] = 'thread';
     include_once template("space_thread_view");
 

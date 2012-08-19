@@ -68,7 +68,7 @@ if($avatar_exists) {
 	//任务完成向导
 	$task['guide'] = '请按照以下的说明来参与本任务：
 		<ul>
-		<li>1. <a href="cp.php?ac=avatar" target="_blank">新窗口打开个人头像设置页面</a>；</li>
+		<li>1. <a href="cp.php?ac=profile" target="_blank">新窗口打开个人头像设置页面</a>；</li>
 		<li>2. 在新打开的设置页面中，请选择您的照片进行上传编辑。</li>
 		</ul>';
 

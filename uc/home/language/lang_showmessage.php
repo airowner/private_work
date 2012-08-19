@@ -20,7 +20,7 @@ $_SGLOBAL['msglang'] = array(
 	'no_open_videophoto' => '目前站点已经关闭视频认证功能',
 	'is_blacklist' => '受对方的隐私设置影响，您目前没有权限进行本操作',
 	'no_privilege_newusertime' => '您目前处于见习期间，需要等待 \\1 小时后才能进行本操作',
-	'no_privilege_avatar' => '您需要设置自己的头像后才能进行本操作，<a href="cp.php?ac=avatar">点这里设置</a>',
+	'no_privilege_avatar' => '您需要设置自己的头像后才能进行本操作，<a href="cp.php?ac=profile">点这里设置</a>',
 	'no_privilege_friendnum' => '您需要添加 \\1 个好友之后，才能进行本操作，<a href="cp.php?ac=friend&op=find">点这里添加好友</a>',
 	'no_privilege_email' => '您需要验证激活自己的邮箱后才能进行本操作，<a href="cp.php?ac=profile&op=contact">点这里激活邮箱</a>',
 	'uniqueemail_check' => '您填入的邮箱地址已经被占用，请尝试使用其他邮箱',

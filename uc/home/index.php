@@ -47,6 +47,15 @@ foreach($hotbloguser as $user){
     $index['hotbloguser'][] = $hotbloglist[$user];
 }
 
+//推荐圈子
+$mtags = explode(',', $_SCONFIG['mtagrecommend']);
+$mtag = $mtags[0];
+$index['mtagrecommend'] = array();
+$query = $_SGLOBAL['db']->query("SELECT m.*, t.pic, t.tagname from ".tname('thread')." m, ".tname('mtag')." t where m.tagid=t.tagid and t.tagid='{$mtag}' order by dateline desc limit 3");
+while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+        $index['mtagrecommend'][] = $value;
+}
+
 
 $index['hotblog'] = array();
 $query = $_SGLOBAL['db']->query("SELECT * from ".tname('blog')." where pic!='' order by dateline desc limit 1");

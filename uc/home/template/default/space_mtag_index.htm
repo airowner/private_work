@@ -34,7 +34,9 @@
                         <!--{/if}-->
                     </p>
                     <div class="qztp">
-                        <a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/qztp.gif" /></a>
+                        <!--{loop $pics $key $value}-->
+                        <a href="space.php?uid=$value['uid']&do=thread&id=$value['tid']"><img src="$value['pic']" width="80" height="80" /></a>
+                        <!--{/loop}-->
                     </div>
                     <p class="tzbt">
                     <!--{if $mtag['grade'] >= 8}-->
@@ -114,7 +116,7 @@
                 
             </div>
             <div class="rixq">
-                <div class="ycjj">$mtag[tagname]</div>
+                <div class="ycjj">$mtag['announcement']</div>
                 <!--{if $modlist}-->
                 <div class="qzcy">
                     <h4>群主</h4>
@@ -138,9 +140,9 @@
                 <div class="qzcy">
                     <h4>该圈子成员 ($mtag[membernum])</h4>
                     <ul>
-                        <!--{loop $list $key $value}-->
+                        <!--{loop $memberlist $key $value}-->
                         <!--{if $key <= 9}-->
-                        <li><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],'48x48')}--></a></li>
+                        <li><a href="space.php?uid=$value[uid]" title="$_SN[$value['uid']]" ><!--{avatar($value[uid],'48x48')}--></a></li>
                         <!--{/if}-->
                         <!--{/loop}-->
                     </ul>
@@ -148,32 +150,30 @@
                 <div class="tyxh">
                     <h4>喜欢该圈子的成员也喜欢</h4>
                     <ul>
+                        <!--{loop $r_mtag $value}-->
                         <li>
                             <dl>
-                                <dt><img src="{$_USER_SC['domain']}images/tyxh.png" /></dt>
+                                <!--{if $value['pic']}-->
+                                <dt><img src="$value['pic']" width="100" height="100" /></dt>
+                                <!--{else}-->
+                                <dt><img src="image/nologo.jpg" width="100" height="100" /></dt>
+                                <!--{/if}-->
                                 <dd>
-                                    <p><a href="#">设计博客圈</a><br /><span>72712人喜欢</span></p>
+                                    <p><a href="space.php?do=mtag&tagid=$value['tagid']">$value['tagname']</a><br /><span>$value['membernum']人喜欢</span></p>
                                 </dd>
                             </dl>
                         </li>
-                        <li>
-                            <dl>
-                                <dt><img src="{$_USER_SC['domain']}images/tyxh.png" /></dt>
-                                <dd>
-                                    <p><a href="#">gizakka慢生活杂倒萨阿达</a><br /><span>72712人喜欢</span></p>
-                                </dd>
-                            </dl>
-                        </li>
+                        <!--{/loop}-->
                     </ul>
                 </div>
                 <div class="xgg">
-                    <a href="#"><img src="{$_USER_SC['domain']}images/xgg.png" /></a>
+                    <!--{template data/adtpl/10}-->
                 </div>
                 <div class="xgg">
-                    <a href="#"><img src="{$_USER_SC['domain']}images/xgg.png" /></a>
+                    <!--{template data/adtpl/11}-->
                 </div>
                 <div class="xgg">
-                    <a href="#"><img src="{$_USER_SC['domain']}images/xgg.png" /></a>
+                    <!--{template data/adtpl/12}-->
                 </div>
             </div>
         </div>

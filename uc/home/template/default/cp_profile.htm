@@ -1,6 +1,4 @@
-<!--{template header}-->
 <!--{template sns_header}-->
-<!--template cp_header}-->
 
 <link rel="stylesheet" type="text/css" href="<?=$_USER_SC['domain']?>css/wdzh.css"/>
 <script type="text/javascript">
@@ -105,7 +103,7 @@
                 <li><b>喜欢的犬种：</b><div class="rixq"><input class="qzd" type="text" /><a href="#">点击添加</a>最多可以添加5个</div></li>
                 <li><b>兴趣爱好：</b><div class="rixq"><input class="qzd" type="text" />多个词请用“,”或"空格"隔开<p>例：<span>睡觉&nbsp;&nbsp;旅游</span></p></div></li>
             </ul>
-            <p><input class="tj" type="button" /></p>
+            <p><input type="submit" name="profilesubmit" value="保存" class="tj" /></p>
         </div>
 <!--{/if}-->
         <div class="hidden" id="to02">
@@ -138,10 +136,9 @@
                 <li><b>喜欢的玩具：</b><div class="rixq"><input class="qzd" type="text" />多个词请用“,”或"空格"隔开<p>例：<span>睡觉&nbsp;&nbsp;旅游</span></p></div></li>
                 <li><b>喜欢做的事：</b><div class="rixq"><input class="qzd" type="text" />多个词请用“,”或"空格"隔开<p>例：<span>睡觉&nbsp;&nbsp;旅游</span></p></div></li>
             </ul>
-            <p><input class="tj" type="button" /></p>
+            <p><input type="submit" name="profilesubmit" value="保存" class="tj" /></p>
         
         </div>
-        <input type="submit" name="profilesubmit" value="保存" class="submit" />
         <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
         </form>
     </div>

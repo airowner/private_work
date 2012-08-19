@@ -81,6 +81,10 @@
                         </div>
                     </div>
                 </li>
+                <!--{if $_SGLOBAL[supe_uid]}-->
+                <li><a href="<!--{if !empty($_SGLOBAL['member']['newpm'])}--><!--{eval echo usr_url('space', array('do'=>'pm', 'filter'=>'newpm'))}--><!--{else}--><!--{eval echo usr_url('space', array('do'=>'pm'))}--><!--{/if}-->">消息<!--{if !empty($_SGLOBAL['member']['newpm'])}-->(新)<!--{/if}--></a></li>
+                <!--{if $_SGLOBAL['member']['allnotenum']}--><li class="notify" id="membernotemenu" onmouseover="showMenu(this.id)"><a href="<!--{eval echo usr_url('space', array('do'=>'notice'))}-->">{$_SGLOBAL[member][allnotenum]}个提醒</a></li><!--{/if}-->
+                <!--{/if}-->
             </ul>   
         </div>
         <!--{else}-->

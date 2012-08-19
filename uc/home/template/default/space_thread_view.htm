@@ -198,33 +198,27 @@
                     <h4 class="cyxh"><a href="#">M</a></h4>
                     <div class="qznr">
                     <ul>
+                        <!--{loop $r_mtag $value}-->
                         <li>
                             <dl>
-                                <dt><img src="<?=$_USER_SC['domain']?>images/tyxh.png" /></dt>
+                                <dt><img src="$value['pic']" width="100" height="100" /></dt>
                                 <dd>
-                                    <p><a href="#">设计博客圈</a><br /><span>72712人喜欢</span></p>
+                                    <p><a href="space.php?do=mtag&tagid=$value['tagid']">$value['tagname']</a><br /><span>$value['membernum']人喜欢</span></p>
                                 </dd>
                             </dl>
                         </li>
-                        <li style="margin:0;">
-                            <dl>
-                                <dt><img src="<?=$_USER_SC['domain']?>images/tyxh.png" /></dt>
-                                <dd>
-                                    <p><a href="#">gizakka慢生活杂倒萨阿达</a><br /><span>72712人喜欢</span></p>
-                                </dd>
-                            </dl>
-                        </li>
+                        <!--{/loop}-->
                     </ul>
                     </div>
                 </div>
                 <div class="xgg">
-                    <a href="#"><img src="<?=$_USER_SC['domain']?>images/xgg.png" /></a>
+                    <!--{template data/adtpl/10}-->
                 </div>
                 <div class="xgg">
-                    <a href="#"><img src="<?=$_USER_SC['domain']?>images/xgg.png" /></a>
+                    <!--{template data/adtpl/11}-->
                 </div>
                 <div class="xgg">
-                    <a href="#"><img src="<?=$_USER_SC['domain']?>images/xgg.png" /></a>
+                    <!--{template data/adtpl/12}-->
                 </div>
             </div>
         </div>

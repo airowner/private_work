@@ -161,6 +161,32 @@ if($tagname) {
             realname_get();
         }
         
+        $memberlist = array();
+        $membercount = $_SGLOBAL['db']->result($_SGLOBAL['db']->query("SELECT COUNT(*) FROM ".tname('tagspace')." WHERE tagid='$tagid'"),0);
+        $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('tagspace')." WHERE tagid='$tagid' limit 12");
+        while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+            $memberlist[] = $value;
+        }
+        
+        //推荐
+        $r_mtag = array();
+        $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('mtag')." WHERE tagid != {$tagid} order by rand() limit 2");
+        while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+            $r_mtag[] = $value;
+        }
+        
+        //圈子图片
+        $pics = array();
+        $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('post')." WHERE tagid={$tagid} and isthread=1 limit 10");
+        while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+            if($value['pic']){
+                $pics[] = $value;
+            }elseif(preg_match('/([:\/.0-9a-zA-Z]+\.(jpg|png|gif|jpeg))/', $value['message'], $ms)){
+                $pics[] = array('pic'=>$ms[1]) + $value;
+            }
+        }
+        $pics = array_slice($pics, 0, 7);
+        
         $_TPL['css'] = 'thread';
         include_once template("space_mtag_list");
         
@@ -218,6 +244,25 @@ if($tagname) {
             realname_get();
         }
         //var_dump($mtag);exit;
+        
+        //推荐
+        $r_mtag = array();
+        $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('mtag')." WHERE tagid != {$tagid} order by rand() limit 2");
+        while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+            $r_mtag[] = $value;
+        }
+        
+        //圈子图片
+        $pics = array();
+        $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('post')." WHERE tagid={$tagid} and isthread=1 limit 10");
+        while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+            if($value['pic']){
+                $pics[] = $value;
+            }elseif(preg_match('/([:\/.0-9a-zA-Z]+\.(jpg|png|gif|jpeg))/', $value['message'], $ms)){
+                $pics[] = array('pic'=>$ms[1]) + $value;
+            }
+        }
+        $pics = array_slice($pics, 0, 7);
         
         $_TPL['css'] = 'thread';
         include_once template("space_mtag_member");
@@ -298,6 +343,25 @@ if($tagname) {
         }
         
         realname_get();
+        
+        //推荐
+        $r_mtag = array();
+        $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('mtag')." WHERE tagid != {$tagid} order by rand() limit 2");
+        while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+            $r_mtag[] = $value;
+        }
+        
+        //圈子图片
+        $pics = array();
+        $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('post')." WHERE tagid={$tagid} and isthread=1 limit 10");
+        while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+            if($value['pic']){
+                $pics[] = $value;
+            }elseif(preg_match('/([:\/.0-9a-zA-Z]+\.(jpg|png|gif|jpeg))/', $value['message'], $ms)){
+                $pics[] = array('pic'=>$ms[1]) + $value;
+            }
+        }
+        $pics = array_slice($pics, 0, 7);
         
         $_TPL['css'] = 'thread';
         include_once template("space_mtag_index");

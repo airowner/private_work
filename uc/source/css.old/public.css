@@ -126,3 +126,78 @@ a{ color:#000;}
 }
 
 .love_div_ul li{width: 58px;float:left}
+
+.menu li.dropmenu { margin: 0 10px 0 0; padding: 10px 15px 10px 10px; height: 20px; background: url(image/triangle.gif) no-repeat right center; overflow: hidden; }
+.dropmenu_drop { margin: -1px 0 0; padding: 0 10px 10px; width: 150px; border: 1px solid #EBE6C9; background: #FFF; z-index: 200; }
+.dropmenu_drop li { padding: 5px 10px; border-bottom: 1px solid #EEE; }
+.dropmenu_drop li a { color: #2C629E; font-size: 12px; font-weight: normal; }
+.weightdropmenu_drop .active { font-weight: bold; }
+
+
+.tabs_header { margin-bottom: 15px; height: 29px; border-bottom: 1px solid #EBE6C9; clear: both; overflow: hidden; }
+
+.tabs_header ul.tabs li a,
+.tabs_header ul.tabs li a span{ background: url(image/tab_bg.gif) no-repeat;  display: block; }
+.tabs_header ul.tabs { position: absolute; z-index: 10; }
+.tabs_header ul.tabs li { float: left; margin: 0 1px 0 0; display: inline; }
+.tabs_header ul.tabs li a { float: left; padding: 0 0 0 10px; height: 30px; background-position: left top;  }
+.tabs_header ul.tabs li a span { padding: 9px 10px 7px 0; background-position: right top; font-size: 14px; line-height: 14px; }
+.tabs_header ul.tabs li a span img{ vertical-align: middle; }
+
+.tabs_header ul.tabs li.active a { float: left; padding: 0 0 0 10px; height: 30px; background: url(image/active_tab_bg.gif) no-repeat left top; color: #000; display: block; }
+.tabs_header ul.tabs li.active a span { padding: 9px 10px 7px 0; background: url(image/active_tab_bg.gif) no-repeat right top; line-height: 14px; display: block; }
+.tabs_header ul.tabs li.null { margin: 0 0 0 15px; padding: 0 0 0 25px; height: 25px; background: url(image/add_button.gif) no-repeat 0 0; line-height: 24px; }
+.tabs_header ul.tabs li.null a { padding: 0 10px 0 0; height: 25px; background: url(image/add_button.gif) no-repeat right top; color: #FFF; font-size: 12px; }
+
+/*
+.c_header { margin: 0 0 10px; width: 100%; line-height: 26px; overflow: hidden; }
+.c_header .avatar48 { float: left; margin: 0 10px 0 0; }
+*/
+h2.title { margin: 0 0 20px; font-size: 14px; }
+h2.title img { margin: 0 5px 0 0; vertical-align: middle; }
+
+
+.floatleft{ float: left; }
+.floatright{ float: right; }
+.calendarbox{ padding: 10px; width: 230px; text-align: center; overflow: hidden; }
+
+.calendarbox ul{ margin: 10px 0 0; width: 224px; }
+.calendarbox li.calendarli, .calendarbox li.calendarblank{ float: left; margin: 1px; width: 30px; height : 30px; background: #FFF; color: #ccc; display:inline; line-height: 30px;}
+.calendarbox li.calendarblank{ background: none; }
+.calendarbox li a{display: block; }
+.calendarbox li.calendarweek{ background: #FFF; font-weight: bold; color: #666;}
+.calendarbox li.on_link, .calendarbox li.on_today, .calendarbox li.on_select{ text-align: left; }
+.calendarbox li.on_link a, .calendarbox li.on_today a, .calendarbox li.on_select a{ width: 28px; height: 28px; line-height: 28px; background: #E9F2FC; border: 1px solid #BCD7F6; text-align: center;}
+.calendarbox li.on_link a{ background: #E9F2FC; border: 1px solid #BCD7F6;}
+    .calendarbox li.on_link a:hover{ border: 1px solid #8FBCF0;}
+.calendarbox li.on_today a{ background: #F7EEB8; border: 1px solid #E0D486;}
+.calendarbox li.on_select a{ background: #D3E7FC; border: 1px solid #8FBCF0; }
+
+.dayevents{ position: absolute; margin: -30px 0 0 -222px; padding: 0 2px 0 0; width: 220px; } 
+.dayevents ul{ margin: 0; width: auto; background: #FFF; border: 1px solid #C9C9C9; }
+.calendarbox li.dayeventsli{ float: none; padding: 0 0 0 20px; width: auto; height: auto; background-position: 10px 14px; text-align: left; line-height: 28px; display: block; }  
+.calendarbox li.dayeventsli a{ float: none; width: auto; height: auto; display: inline; background: none; border: none; }
+.calendarbox li.dayeventsli a:hover{ float: none; width: auto; height: auto; display: inline; background: none; border: none; }
+
+.active{font-weight:bold;}
+.sidebox { margin: 0 0 10px; }
+.sidebox h2.title { margin: 0 0 10px; padding: 6px 10px; height: 18px; background: url(image/sidebar_title.gif) no-repeat; color: #333; font-size: 12px; line-height: 18px; }
+.sidebox h3.title { padding: 5px; border-bottom: 1px solid #EBE6C9; background: #FCF9E6; }
+.sidebox div.more { text-align: right; }
+.sidebox ul.friendbox li { height: 90px; }
+.sidebox p.gray { color: #999; line-height: 14px; text-align: center; }
+.sidebox .content { padding: 5px; }
+.threadfriend { padding: 0; }
+.threadfriend li { width: 100%; overflow: hidden; }
+.threadfriend .avatar48 { float: left; margin: 0 10px 10px 0; }
+.threadfriend p { padding: 5px 0; }
+.threadfriend .quote { color: #999; }
+#sidebar .avatar_list li{ padding: 8px 11px; }
+.sidebox .threadimg60 { margin: 0 0 10px; }
+
+
+.zzxx{ width:90px; float:left;}
+.zzxx p{ line-height:20px; color:#0068b7;}
+.nrxx{ width:450px; float:right;}
+h2{ font-size:14px; margin-bottom:25px;}
+.nrxx p a{ color:#0068b7;}

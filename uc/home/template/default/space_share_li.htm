@@ -1,29 +1,34 @@
 <!--{if empty($ajax_edit)}--><li id="share_$value[sid]_li"><!--{/if}-->
 <div class="wzfx">
     <div class="fxbt">
-        <a href="$value[image_link]">{$_SN[$value[uid]]}</a>分享了<a href="<!--{eval echo usr_url('space', array('do'=>'share', 'id'=>$value['sid'], 'uid'=>$value['uid']))}-->">$value[title_template]</a><span><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
+        <!--{if $value['image_link']}-->
+        <a href="$value[image_link]">
+        <!--{else}-->
+        <a href="space.php?uid=$value['uid']">
+        <!--{/if}-->
+            {$_SN[$value[uid]]}</a>分享了<a href="<!--{eval echo usr_url('space', array('do'=>'share', 'id'=>$value['sid'], 'uid'=>$value['uid']))}-->">$value[title_template]</a><span><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
     </div>
     <p>
-		<!--{if $value[sid] && ($_SGLOBAL[supe_uid] == $value[uid] || checkperm('manageshare'))}-->
+        <!--{if $value[sid] && ($_SGLOBAL[supe_uid] == $value[uid] || checkperm('manageshare'))}-->
         <a href="<!--{eval echo usr_url('cp', array('ac'=>'topic', 'op'=>'join', 'id'=>$value['sid'], 'idtype'=>'sid'))}-->" id="a_topicjoin_$value[sid]" onclick="ajaxmenu(event, this.id)">凑热闹</a><span class="pipe">|</span>
-		<!--{/if}-->
-		<!--{if $value[sid]}--><a href="space.php?uid=$value[uid]&do=share&id=$value[sid]">评论</a>&nbsp;<!--{/if}-->
-		<!--{if $value[uid]==$_SGLOBAL[supe_uid]}--><!--{if $value['type']=='link' || 'video' == $value['type'] || 'music' == $value['type']}--><span class="pipe">|</span><!--{/if}--><a href="<!--{eval echo usr_url('cp', array('ac'=>'share', 'op'=>'delete', 'sid'=>$value['sid']))}-->" id="s_$value[sid]_delete" onclick="ajaxmenu(event, this.id)">删除</a><!--{/if}-->
+        <!--{/if}-->
+        <!--{if $value[sid]}--><a href="space.php?uid=$value[uid]&do=share&id=$value[sid]">评论</a>&nbsp;<!--{/if}-->
+        <!--{if $value[uid]==$_SGLOBAL[supe_uid]}--><!--{if $value['type']=='link' || 'video' == $value['type'] || 'music' == $value['type']}--><span class="pipe">|</span><!--{/if}--><a href="<!--{eval echo usr_url('cp', array('ac'=>'share', 'op'=>'delete', 'sid'=>$value['sid']))}-->" id="s_$value[sid]_delete" onclick="ajaxmenu(event, this.id)">删除</a><!--{/if}-->
     </p>
     <p><b id="quote">$value[body_general]</b></p>
-	<!--{if $value['image']}-->
-    <p class="sp"><a href="$value[image_link]"><img src="$value[image]" alt="" width="100" /></a></p>
-	<!--{/if}-->
+    <!--{if $value['image']}-->
+    <p class="sp"><a href="space.php?uid=$value[uid]&do=share&id=$value[sid]">$value[image]</a></p>
+    <!--{/if}-->
     <p>
-	$value[body_template]
+    $value[body_template]
     </p>
-	<!--{if 'video' == $value['type']}-->
+    <!--{if 'video' == $value['type']}-->
     <p class="sp"><img src="<?=$_USER_SC['domain']?>image/vd.gif" alt="点击播放" onclick="javascript:showFlash('{$value['body_data']['host']}', '{$value['body_data']['flashvar']}', this, '{$value['sid']}');" style="cursor:pointer;" /></p>
-	<!--{elseif 'music' == $value['type']}-->
+    <!--{elseif 'music' == $value['type']}-->
     <p class="sp"><img src="<?=$_USER_SC['domain']?>image/music.gif" alt="点击播放" onclick="javascript:showFlash('music', '{$value['body_data']['musicvar']}', this, '{$value['sid']}');" style="cursor:pointer;" /></p>
-	<!--{elseif 'flash' == $value['type']}-->
+    <!--{elseif 'flash' == $value['type']}-->
     <p class="sp"><img src="<?=$_USER_SC['domain']?>image/flash.gif" alt="点击查看" onclick="javascript:showFlash('flash', '{$value['body_data']['flashaddr']}', this, '{$value['sid']}');" style="cursor:pointer;" /></p>
-	<!--{/if}-->
+    <!--{/if}-->
 </div>
 <!--{if empty($ajax_edit)}--></li><!--{/if}-->
 
@@ -32,40 +37,40 @@
 
 <!--{if 0}-->
 <!--{if empty($ajax_edit)}--><li id="share_$value[sid]_li"><!--{/if}-->
-	<div class="title">
-		<div class="r_option">
-		<!--{if $value[sid] && ($_SGLOBAL[supe_uid] == $value[uid] || checkperm('manageshare'))}-->
-		<a href="cp.php?ac=topic&op=join&id=$value[sid]&idtype=sid" id="a_topicjoin_$value[sid]" onclick="ajaxmenu(event, this.id)">凑热闹</a><span class="pipe">|</span>
-		<!--{/if}-->
-		<!--{if $value[sid]}--><a href="space.php?uid=$value[uid]&do=share&id=$value[sid]">评论</a>&nbsp;<!--{/if}-->
-		<!--{if $value[uid]==$_SGLOBAL[supe_uid]}--><!--{if $value['type']=='link' || 'video' == $value['type'] || 'music' == $value['type']}--><span class="pipe">|</span><!--{/if}--><a href="cp.php?ac=share&op=delete&sid=$value[sid]" id="s_$value[sid]_delete" onclick="ajaxmenu(event, this.id)">删除</a><!--{/if}-->
-		</div>
-		<a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a> <a href="space.php?uid=$value[uid]&do=share&id=$value[sid]">$value[title_template]</a>
-		&nbsp;<span class="gray"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
-	</div>
-	<div class="feed">
-	<div style="width:100%;overflow:hidden;">
-	<!--{if $value['image']}-->
-	<a href="$value[image_link]"><img src="$value[image]" class="summaryimg image" alt="" width="70" /></a>
-	<!--{/if}-->
-	<div class="detail">
-	$value[body_template]
-	</div>
-	<!--{if 'video' == $value['type']}-->
-	<div class="media">
-	<img src="<?=$_USER_SC['domain']?>image/vd.gif" alt="点击播放" onclick="javascript:showFlash('{$value['body_data']['host']}', '{$value['body_data']['flashvar']}', this, '{$value['sid']}');" style="cursor:pointer;" />
-	</div>
-	<!--{elseif 'music' == $value['type']}-->
-	<div class="media">
-	<img src="<?=$_USER_SC['domain']?>image/music.gif" alt="点击播放" onclick="javascript:showFlash('music', '{$value['body_data']['musicvar']}', this, '{$value['sid']}');" style="cursor:pointer;" />
-	</div>
-	<!--{elseif 'flash' == $value['type']}-->
-	<div class="media">
-	<img src="<?=$_USER_SC['domain']?>image/flash.gif" alt="点击查看" onclick="javascript:showFlash('flash', '{$value['body_data']['flashaddr']}', this, '{$value['sid']}');" style="cursor:pointer;" />
-	</div>
-	<!--{/if}-->
-	<div class="quote"><span id="quote" class="q">$value[body_general]</span></div>
-	</div>
-	</div>
+    <div class="title">
+        <div class="r_option">
+        <!--{if $value[sid] && ($_SGLOBAL[supe_uid] == $value[uid] || checkperm('manageshare'))}-->
+        <a href="cp.php?ac=topic&op=join&id=$value[sid]&idtype=sid" id="a_topicjoin_$value[sid]" onclick="ajaxmenu(event, this.id)">凑热闹</a><span class="pipe">|</span>
+        <!--{/if}-->
+        <!--{if $value[sid]}--><a href="space.php?uid=$value[uid]&do=share&id=$value[sid]">评论</a>&nbsp;<!--{/if}-->
+        <!--{if $value[uid]==$_SGLOBAL[supe_uid]}--><!--{if $value['type']=='link' || 'video' == $value['type'] || 'music' == $value['type']}--><span class="pipe">|</span><!--{/if}--><a href="cp.php?ac=share&op=delete&sid=$value[sid]" id="s_$value[sid]_delete" onclick="ajaxmenu(event, this.id)">删除</a><!--{/if}-->
+        </div>
+        <a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a> <a href="space.php?uid=$value[uid]&do=share&id=$value[sid]">$value[title_template]</a>
+        &nbsp;<span class="gray"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
+    </div>
+    <div class="feed">
+    <div style="width:100%;overflow:hidden;">
+    <!--{if $value['image']}-->
+    <a href="$value[image_link]"><img src="$value[image]" class="summaryimg image" alt="" width="70" /></a>
+    <!--{/if}-->
+    <div class="detail">
+    $value[body_template]
+    </div>
+    <!--{if 'video' == $value['type']}-->
+    <div class="media">
+    <img src="<?=$_USER_SC['domain']?>image/vd.gif" alt="点击播放" onclick="javascript:showFlash('{$value['body_data']['host']}', '{$value['body_data']['flashvar']}', this, '{$value['sid']}');" style="cursor:pointer;" />
+    </div>
+    <!--{elseif 'music' == $value['type']}-->
+    <div class="media">
+    <img src="<?=$_USER_SC['domain']?>image/music.gif" alt="点击播放" onclick="javascript:showFlash('music', '{$value['body_data']['musicvar']}', this, '{$value['sid']}');" style="cursor:pointer;" />
+    </div>
+    <!--{elseif 'flash' == $value['type']}-->
+    <div class="media">
+    <img src="<?=$_USER_SC['domain']?>image/flash.gif" alt="点击查看" onclick="javascript:showFlash('flash', '{$value['body_data']['flashaddr']}', this, '{$value['sid']}');" style="cursor:pointer;" />
+    </div>
+    <!--{/if}-->
+    <div class="quote"><span id="quote" class="q">$value[body_general]</span></div>
+    </div>
+    </div>
 <!--{if empty($ajax_edit)}--></li><!--{/if}-->
 <!--{/if}-->

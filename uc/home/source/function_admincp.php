@@ -76,7 +76,7 @@ function getorders($alloworders, $default, $pre='') {
 
 //对话框
 function cpmessage($msgkey, $url_forward='', $second=1, $values=array()) {
-	global $_SGLOBAL, $_SC, $_SCONFIG, $_TPL, $_SN, $space;
+	global $_SGLOBAL, $_SC, $_SCONFIG, $_TPL, $_SN, $space, $_USER_SC;
 	
 	//去掉广告
 	$_SGLOBAL['ad'] = array();

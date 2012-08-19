@@ -6,7 +6,7 @@
 <div class="ricz">
 <!--{if $space[self]}-->
     <div class="ss">
-        <div class="hdd"><img src="<?=$_USER_SC['domain']?>images/hy.png" />&nbsp;&nbsp;<a href="#">找到组织</a></div>
+        <div class="hdd"><img src="<?=$_USER_SC['domain']?>images/hy.png" />&nbsp;&nbsp;<a href="javascript:void(0)">找到组织</a></div>
         <!--{if $_GET[view]=='me'}-->
         <form method="get" action="space.php">
             <input type="hidden" name="do" value="friend">
@@ -19,7 +19,7 @@
             <input type="hidden" name="ac" value="friend" />
             <input type="hidden" name="op" value="search" />
             <input class="txt" type="text" name="searchkey" />
-            <input class="btn" type="submit" name="searchsubmit" />
+            <input class="btn" type="submit" name="searchsubmit"  value="找好友" />
             <input type="hidden" name="searchmode" value="1" />
         </form>
         <!--{/if}-->
@@ -75,12 +75,11 @@
                             </p>
                         </div>
                         <!--{/if}-->
-                        </div>
                     </li>
-                <!--{if $i % $column == $column - 1 || $i+1 == count($list)}-->
+                <!--{if ($i+1) % $column == 0 || $i == count($list)-1}-->
                 </ul>
-                <!--{eval $i++;}-->
                 <!--{/if}-->
+                <!--{eval $i++;}-->
             <!--{/loop}-->
             </div>
             <p class="page">$multi</p>
@@ -102,7 +101,47 @@
 <!--{/if}-->
 </div>
 <!--{else}-->
-sss
+    <div id="space_friend">
+        <h3 class="feed_header">
+            <a href="cp.php?ac=friend&op=search" class="r_option" target="_blank">寻找好友</a>
+            好友(共 $count 个)
+        </h3><br>
+
+        <!--{if $list}-->
+        <div id="friend_ul">
+            <ul class="line_list">
+            <!--{loop $list $key $value}-->
+                <li>
+                <table width="100%">
+                    <tr>
+                    <td width="70">
+                        <div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
+                    </td>
+                    <td>
+                    <div class="thumbTitle"><p<!--{if $ols[$value[uid]]}--> class="online_icon_p"<!--{/if}-->><a href="space.php?uid=$value[uid]"<!--{eval g_color($value[groupid]);}-->>{$_SN[$value[uid]]}</a> <!--{eval g_icon($value[groupid]);}--></p></div>
+
+                    <!--{if $value[note]}--><div>$value[note]</div><!--{/if}-->
+
+                    <!--{if $ols[$value[uid]]}--><div class="gray"><!--{date('H:i',$ols[$value[uid]],1)}--></div><!--{/if}-->
+                    <div class="setti">
+
+                    <!--{if !$value['isfriend']}-->
+                    <a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a>
+                    <!--{/if}-->
+                    </div>
+                    </td></tr></table>
+                </li>
+            <!--{/loop}-->
+            </ul>
+        </div>
+        <div class="page">$multi</div>
+
+        <!--{else}-->
+        <div class="c_form">
+            没有相关用户列表。
+        </div>
+        <!--{/if}-->
+    </div>
 <!--{/if}-->
 <!--{template sns_footer}-->
 

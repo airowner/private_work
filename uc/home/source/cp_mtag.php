@@ -256,6 +256,24 @@ if($_GET['op'] == 'manage') {
         $postperms = array($mtag['postperm'] => ' selected');
         $closeapply = array($mtag['closeapply'] => ' checked');
     }
+    //推荐
+    $r_mtag = array();
+    $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('mtag')." WHERE tagid != {$tagid} order by rand() limit 2");
+    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+        $r_mtag[] = $value;
+    }
+
+    //圈子图片
+    $pics = array();
+    $query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('post')." WHERE tagid={$tagid} and isthread=1 limit 10");
+    while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+        if($value['pic']){
+            $pics[] = $value;
+        }elseif(preg_match('/([:\/.0-9a-zA-Z]+\.(jpg|png|gif|jpeg))/', $value['message'], $ms)){
+            $pics[] = array('pic'=>$ms[1]) + $value;
+        }
+    }
+    $pics = array_slice($pics, 0, 7);
     
     $actives = array($_GET['subop'] => ' class="active"');
     
@@ -571,6 +589,26 @@ if($_GET['op'] == 'manage') {
         $existmtag[$value['fieldid']][] = $value['tagname'];
     }
 }
+/*
+//推荐
+$r_mtag = array();
+$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('mtag')." WHERE tagid != {$tagid} order by rand() limit 2");
+while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+    $r_mtag[] = $value;
+}
+
+//圈子图片
+$pics = array();
+$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('post')." WHERE tagid={$tagid} and isthread=1 limit 10");
+while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+    if($value['pic']){
+        $pics[] = $value;
+    }elseif(preg_match('/([:\/.0-9a-zA-Z]+\.(jpg|png|gif|jpeg))/', $value['message'], $ms)){
+        $pics[] = array('pic'=>$ms[1]) + $value;
+    }
+}
+$pics = array_slice($pics, 0, 7);
+*/
 
 include template("cp_mtag");
 

@@ -100,7 +100,7 @@ $_SCONFIG=Array
 			'click' => 1
 			)
 		),
-	'cronnextrun' => 1345050000,
+	'cronnextrun' => 1345376700,
 	'my_status' => '0',
 	'uniqueemail' => 1,
 	'updatestat' => 1,
@@ -119,7 +119,7 @@ $_SCONFIG=Array
 	'spacemtagbeijingusername' => '测试群组111
 北京圈子',
 	'mtagbeijing' => '4,5',
-	'mtagrecommend' => '9,7',
+	'mtagrecommend' => '2,9,7',
 	'mtagrecommendorder' => '7,9,8'
 	)
 ?>

@@ -23,7 +23,9 @@
                 </div>
                 <div class="qzxq">
                     <div class="qztp">
-                        <a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/tp.png" /></a><a href="#"><img src="images/qztp.gif" /></a>
+                        <!--{loop $pics $key $value}-->
+                        <a href="space.php?uid=$value['uid']&do=thread&id=$value['tid']"><img src="$value['pic']" width="80" height="80" /></a>
+                        <!--{/loop}-->
                     </div>
                     <!--{/if}-->
                     <!--{if $_GET['subop'] != 'member'}-->
@@ -194,32 +196,30 @@
                 <div class="tyxh">
                     <h4>喜欢该圈子的成员也喜欢</h4>
                     <ul>
+                       <!--{loop $r_mtag $value}-->
                         <li>
                             <dl>
-                                <dt><img src="{$_USER_SC['domain']}images/tyxh.png" /></dt>
+                                <!--{if $value['pic']}-->
+                                <dt><img src="$value['pic']" width="100" height="100" /></dt>
+                                <!--{else}-->
+                                <dt><img src="image/nologo.jpg" width="100" height="100" /></dt>
+                                <!--{/if}-->
                                 <dd>
-                                    <p><a href="#">设计博客圈</a><br /><span>72712人喜欢</span></p>
+                                    <p><a href="space.php?do=mtag&tagid=$value['tagid']">$value['tagname']</a><br /><span>$value['membernum']人喜欢</span></p>
                                 </dd>
                             </dl>
                         </li>
-                        <li>
-                            <dl>
-                                <dt><img src="{$_USER_SC['domain']}images/tyxh.png" /></dt>
-                                <dd>
-                                    <p><a href="#">gizakka慢生活杂倒萨阿达</a><br /><span>72712人喜欢</span></p>
-                                </dd>
-                            </dl>
-                        </li>
+                        <!--{/loop}-->
                     </ul>
                 </div>
                 <div class="xgg">
-                    <a href="#"><img src="{$_USER_SC['domain']}images/xgg.png" /></a>
+                    <!--{template data/adtpl/10}-->
                 </div>
                 <div class="xgg">
-                    <a href="#"><img src="{$_USER_SC['domain']}images/xgg.png" /></a>
+                    <!--{template data/adtpl/11}-->
                 </div>
                 <div class="xgg">
-                    <a href="#"><img src="{$_USER_SC['domain']}images/xgg.png" /></a>
+                    <!--{template data/adtpl/12}-->
                 </div>
             </div>
         </div>
@@ -227,6 +227,10 @@
     </div>
                 <!--{/if}-->
 <!--{elseif $_GET[op]=='mtaginvite'}-->
+<link rel="stylesheet" type="text/css" href="{$_USER_SC['domain']}css/qzej.css"/>
+<div class="main">
+    <div class="content">
+        <div class="qxq">
 <h2 class="title"><img src="<?=$_USER_SC['domain']?>image/app/mtag.gif" />群组邀请</h2>
 <div class="tabs_header">
     <ul class="tabs">
@@ -268,7 +272,8 @@
     <!--{else}-->
     暂时没有新的群组邀请。
     <!--{/if}-->
-
+</div>
+</div>
 </div> 
 <!--{elseif $_GET[op]=='join'}-->
 <div class="qznr" id="__joinform_{$tagid}">

@@ -170,8 +170,8 @@ window.onload=function()
             <ul>
                 <li><a href="<!--{eval echo usr_url('index')}-->"><img alt="首页" src="<?=$_USER_SC['domain']?>images/home.gif" /></a></li>
                 <li><a href="<!--{eval echo usr_url('network')}-->"><img alt="广场" src="<?=$_USER_SC['domain']?>images/gc.png" /></a></li>
-                <li><a href="<!--{eval echo usr_url('space', array('do'=>'mtag'))}-->"><img alt="圈子" src="<?=$_USER_SC['domain']?>images/qz_index.png" /></a></li>
-                <li><a href="<!--{eval echo usr_url('space', array('do'=>'event'))}-->"><img alt="活动" src="<?=$_USER_SC['domain']?>images/hd.png" /></a></li>
+                <li><a href="<!--{eval echo usr_url('mtag')}-->"><img alt="圈子" src="<?=$_USER_SC['domain']?>images/qz_index.png" /></a></li>
+                <li><a href="<!--{eval echo usr_url('event')}-->"><img alt="活动" src="<?=$_USER_SC['domain']?>images/hd.png" /></a></li>
             </ul>
         </div>
     </div>
@@ -204,7 +204,7 @@ window.onload=function()
                     </form>
                 </div>
                 <!--活动开始-->
-                <h3><a href="#">M</a></h3>
+                <h3><a href="javascript:void(0)">M</a></h3>
                 <div class="hdnr">
                     <ul class="ph">
                         <!--{loop $index['event'] $key $value}-->
@@ -227,14 +227,14 @@ window.onload=function()
             </div>
             <div class="minr">
                 <div class="showbox">
-                    <div id="listbox0"><img src="<?=$_USER_SC['domain']?>images/QQad0.png" height="154" width="490" border="0" /></div>
-                    <div id="listbox1"><img src="<?=$_USER_SC['domain']?>images/QQad1.png" height="154" width="490" border="0" /></div>
-                    <div id="listbox2"><img src="<?=$_USER_SC['domain']?>images/QQad2.png" height="154" width="490" border="0" /></div>
-                    <div id="listbox3"><img src="<?=$_USER_SC['domain']?>images/QQad3.png" height="154" width="490" border="0" /></div>
+                    <div id="listbox0"><img src="<!--{template data/adtpl/1}-->" height="154" width="490" border="0" /></div>
+                    <div id="listbox1"><img src="<!--{template data/adtpl/2}-->" height="154" width="490" border="0" /></div>
+                    <div id="listbox2"><img src="<!--{template data/adtpl/3}-->" height="154" width="490" border="0" /></div>
+                    <div id="listbox3"><img src="<!--{template data/adtpl/4}-->" height="154" width="490" border="0" /></div>
                 </div>
                 <div class="mitp">
                     <div class="lemi">
-                        <h3><a href="#">M</a></h3>
+                        <h3><a href="javascript:void(0)">M</a></h3>
                         <div class="managebox" id="CBPeople" style="position: relative; width:138px; overflow: hidden; margin: 0 auto; padding-left:10px;">
                             <div id="love_div" class="peoplebox" style="position: absolute; left:0px;">
                                 <table border="0" cellpadding="0" cellspacing="7" width="275px;">
@@ -258,7 +258,7 @@ window.onload=function()
                         </div>
                     </div>
                     <div class="rimi">
-                        <h3><a href="#">M</a></h3>
+                        <h3><a href="javascript:void(0)">M</a></h3>
                         <div class="honr">
                             <div class="hoto">
                                 <!--{loop $index['hotblog'] $key $value}-->
@@ -278,27 +278,39 @@ window.onload=function()
                             </div>
                             <div class="qtnr">
                                 <div class="tjqz">
-                                    <h4><a href="#">M</a></h3>
+                                    <h4><a href="javascript:void(0)">M</a></h3>
                                     <div class="qznr">
-                                        <div class="leqz"><a href="#"><img src="<?=$_USER_SC['domain']?>images/hotim.jpg" /></a></div>
+                                        <!--{loop $index['mtagrecommend'] $key $value}-->
+                                        <!--{if !$key}-->
+                                        <div class="leqz">
+                                            <a href="space.php?do=mtag&tagid=$value['tagid']">
+                                                <!--{if $value['pic']}-->
+                                                <img src="$value['pic']" width='86' height='86' />
+                                                <!--{else}-->
+                                                <img src="image/nologo.jpg" width='86' height='86' />
+                                                <!--{/if}-->
+                                            </a>
+                                        </div>
                                         <div class="riqz">
-                                            <h6><a href="#">长发圈</a></h6>
+                                            <h6><a href="javascript:void(0)">$value['tagname']</a></h6>
                                             <ul>
-                                                <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜</a></li>
-                                                <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美出镜</a></li>
-                                                <li><a href="<!--{eval echo usr_url('index')}-->" target="_blank">悠闲下午浓情时光完美装扮</a></li>
+                                        <!--{/if}-->
+                                                <li><a href="space.php?uid=$value['uid']&do=thread&id=$value['tid']" target="_blank"><!--{eval echo base::cutstr($value['subject'], 36)}--></a></li>
+                                        <!--{if $key==2 || $key==count($index['mtagrecommend'])-1}-->
                                             </ul>
                                         </div>
+                                        <!--{/if}-->
+                                        <!--{/loop}-->
                                     </div>
                                 </div>
                                 <div class="qffg"></div>
                                 <div class="tjyx">
-                                    <h4><a href="#">M</a></h4>
+                                    <h4><a href="javascript:void(0)">M</a></h4>
                                     <ul>
-                                        <li><a href="<!--{eval echo usr_url('index')}-->"><img src="<?=$_USER_SC['domain']?>images/tjyx.gif" /></a></li>
-                                        <li><a href="<!--{eval echo usr_url('index')}-->"><img src="<?=$_USER_SC['domain']?>images/tjyx.gif" /></a></li>
-                                        <li><a href="<!--{eval echo usr_url('index')}-->"><img src="<?=$_USER_SC['domain']?>images/tjyx.gif" /></a></li>
-                                        <li><a href="<!--{eval echo usr_url('index')}-->"><img src="<?=$_USER_SC['domain']?>images/tjyx.gif" /></a></li>
+                                        <li><!--{template data/adtpl/13}--></li>
+                                        <li><!--{template data/adtpl/14}--></li>
+                                        <li><!--{template data/adtpl/15}--></li>
+                                        <li><!--{template data/adtpl/16}--></li>
                                     </ul>
                                 </div>
                             </div>
@@ -308,7 +320,7 @@ window.onload=function()
             </div>
             <div class="rinr">
                 <div class="jybz">
-                    <h3><a href="#" target="_blank">M</a></h3>
+                    <h3><a href="javascript:void(0)" target="_blank">M</a></h3>
                     <div class="bznr">
                         <!--{loop $index['hotbloguser'] $key $value}-->
                         <!--{if !$key}-->
@@ -322,7 +334,7 @@ window.onload=function()
                         </div>
                         <!--{else}-->
                         <!--{if $key==1}-->
-                        <h4><a href="#" target="_blank">M</a></h4>
+                        <h4><a href="javascript:void(0)" target="_blank">M</a></h4>
                         <!--{/if}-->
                         <div class="obz xbz">
                             <div class="tx"><a href="space.php?uid=$value[uid]" target="_blank"><!--{avatar($value[uid],'61x61')}--></a></div>

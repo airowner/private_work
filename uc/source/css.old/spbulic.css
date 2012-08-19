@@ -94,7 +94,9 @@ p.qtlj span{ margin:0 5px;}
 			/* Hide from IE Mac \*/ .s_clear { display: block; } /* End hide from IE Mac */
 
 .face { margin: 0 1px; vertical-align: middle; }
+/*
 .online_icon_p { padding: 0 0 0 10px; width: auto; background: transparent url(../image/online_icon.gif) no-repeat left center; text-align: left; }
+*/
 
 /*************************************************FEED***/
 .feed_header { position: relative; padding: 5px 10px 0 15px; height: 30px; background: url(../image/c_title.gif) no-repeat; line-height: 20px; }
@@ -250,3 +252,4 @@ ins.modify { padding-top: 5px; color: #666; text-decoration: none; text-align: r
     .task_notice h3 { margin: 10px 0 5px; font-size: 14px; }
     .task_notice p { color: #666; }
         .task_notice p span.num { color: #F60; font-size: 20px; }
+
