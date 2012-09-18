@@ -1227,6 +1227,9 @@ CREATE TABLE uchome_spacefield (
   magicstar tinyint(1) NOT NULL default '0',
   magicexpire int(10) unsigned NOT NULL default '0',
   timeoffset varchar(20) NOT NULL default '',
+  emplyee varchar(255) NOT NULL default '',
+  likedog varchar(255) NOT NULL default '',
+  aihao varchar(255) NOT NULL default '',
   PRIMARY KEY  (uid)
 ) ENGINE=MyISAM;
 

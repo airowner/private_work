@@ -70,8 +70,15 @@
                     <!--{if $space[sex]==1}-->男<!--{else}-->女<!--{/if}-->
                 <!--{/if}-->
                 </div></li>
-                <li><b>常住地址：</b><div class="rixq">
-                    <select><option>北京</option></select><select><option>北京</option></select><select><option>北京</option></select>
+                <li><b>常住地址：</b><div class="rixq" id="birthcitybox">
+                    <script type="text/javascript" src="source/script_city.js"></script>
+                    <script type="text/javascript">
+                    <!--
+                    showprovince('birthprovince', 'birthcity', '$space[birthprovince]', 'birthcitybox');
+                    showcity('birthcity', '$space[birthcity]', 'birthprovince', 'birthcitybox');
+                    
+                    //-->
+                    </script>
                 </div></li>
                 <li><b>生日：</b><div class="rixq">
                     <select id="birthyear" name="birthyear" onchange="showbirthday();">
@@ -92,16 +99,40 @@
                         <option value="3"{$friendarr[birth][3]}>仅自己可见</option>
                     </select>
                 </div></li>
-                <li><b>职业：</b><div class="rixq"><select><option>高新技术</option></select></div></li>
+                <li><b>职业：</b><div class="rixq">
+                    <select name="emplyee">
+                        <option value="0">请选择行业</option>
+                        <option value="1"<!--{if $space[emplyee]==1}--> selected="selected"<!--{/if}-->>高新技术</option>
+                        <option value="2"<!--{if $space[emplyee]==2}--> selected="selected"<!--{/if}-->>人事招聘</option>
+                        <option value="3"<!--{if $space[emplyee]==3}--> selected="selected"<!--{/if}-->>广告公关</option>
+                        <option value="4"<!--{if $space[emplyee]==4}--> selected="selected"<!--{/if}-->>企业服务</option>
+                        <option value="5"<!--{if $space[emplyee]==5}--> selected="selected"<!--{/if}-->>媒体</option>
+                        <option value="6"<!--{if $space[emplyee]==6}--> selected="selected"<!--{/if}-->>文化艺术</option>
+                        <option value="7"<!--{if $space[emplyee]==7}--> selected="selected"<!--{/if}-->>法律</option>
+                        <option value="8"<!--{if $space[emplyee]==8}--> selected="selected"<!--{/if}-->>金融财务</option>
+                        <option value="9"<!--{if $space[emplyee]==9}--> selected="selected"<!--{/if}-->>餐饮/旅游/娱乐/体育</option>
+                        <option value="10"<!--{if $space[emplyee]==10}--> selected="selected"<!--{/if}-->>服务业</option>
+                        <option value="11"<!--{if $space[emplyee]==11}--> selected="selected"<!--{/if}-->>教育/科研</option>
+                        <option value="12"<!--{if $space[emplyee]==12}--> selected="selected"<!--{/if}-->>消费品</option>
+                        <option value="13"<!--{if $space[emplyee]==13}--> selected="selected"<!--{/if}-->>房地产/建筑/装潢</option>
+                        <option value="14"<!--{if $space[emplyee]==14}--> selected="selected"<!--{/if}-->>医疗保健</option>
+                        <option value="15"<!--{if $space[emplyee]==15}--> selected="selected"<!--{/if}-->>运输物流</option>
+                        <option value="16"<!--{if $space[emplyee]==16}--> selected="selected"<!--{/if}-->>制造加工业</option>
+                        <option value="17"<!--{if $space[emplyee]==17}--> selected="selected"<!--{/if}-->>农林牧渔业</option>
+                        <option value="18"<!--{if $space[emplyee]==18}--> selected="selected"<!--{/if}-->>政府及公共事业机构</option>
+                        <option value="19"<!--{if $space[emplyee]==19}--> selected="selected"<!--{/if}-->>非盈利机构/协会/社团</option>
+                        <option value="99"<!--{if $space[emplyee]==99}--> selected="selected"<!--{/if}-->>其他</option>
+                    </select>
+                </div></li>
                 <li><b>手机：</b><div class="rixq"><input type="text" class="sj" name="mobile" value="$space[mobile]" />
-                    <select name="friend[mobile]">
+                    <select name="friend[mobile]"
                         <option value="3"{$friendarr[mobile][3]}<!--{if !$space[mobile]}--> selected<!--{/if}-->>仅自己可见</option>
                         <option value="0"{$friendarr[mobile][0]}>全用户可见</option>
                         <option value="1"{$friendarr[mobile][1]}>仅好友可见</option>
                     </select>
-                <p><input type="checkbox" />有优惠活动时可以通知我</p></div></li>
-                <li><b>喜欢的犬种：</b><div class="rixq"><input class="qzd" type="text" /><a href="#">点击添加</a>最多可以添加5个</div></li>
-                <li><b>兴趣爱好：</b><div class="rixq"><input class="qzd" type="text" />多个词请用“,”或"空格"隔开<p>例：<span>睡觉&nbsp;&nbsp;旅游</span></p></div></li>
+                </div></li>
+                <li><b>喜欢的犬种：</b><div class="rixq"><input class="qzd" name="likedog" type="text" value="$space[likedog]"/>多个词请用“,”或"空格"隔开</div></li>
+                <li><b>兴趣爱好：</b><div class="rixq"><input class="qzd" name="aihao" type="text" value="$space[aihao]" />多个词请用“,”或"空格"隔开<p>例：<span>睡觉&nbsp;&nbsp;旅游</span></p></div></li>
             </ul>
             <p><input type="submit" name="profilesubmit" value="保存" class="tj" /></p>
         </div>

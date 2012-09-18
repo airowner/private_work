@@ -34,7 +34,11 @@ if($_GET['op'] == 'base') {
 			'birthprovince' => getstr($_POST['birthprovince'], 20, 1, 1),
 			'birthcity' => getstr($_POST['birthcity'], 20, 1, 1),
 			'resideprovince' => getstr($_POST['resideprovince'], 20, 1, 1),
-			'residecity' => getstr($_POST['residecity'], 20, 1, 1)
+			'residecity' => getstr($_POST['residecity'], 20, 1, 1),
+			'mobile' => getstr($_POST['mobile'], 40, 1, 1),
+			'emplyee' => getstr($_POST['emplyee'], 80, 1, 1),
+			'likedog' => getstr($_POST['likedog'], 80, 1, 1),
+			'aihao' => getstr($_POST['aihao'], 80, 1, 1),
 		);
 		
 		//性别
