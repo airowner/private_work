@@ -32,9 +32,9 @@
         <!--{else}-->
         <li><b>用户名</b><div class="rizc"><input class="tx" type="text" name="username" /><p></p></div></li>
         <li><b>密　码</b><div class="rizc"><input class="tx" type="password" name="password" tabindex="3" /><p></p></div></li>
-        <li><b>自动登录</b><div class="rizc" style="line-height:22px;"><input type="checkbox" id="cookietime" name="cookietime" value="315360000" $cookiecheck style="margin-bottom: -2px;"><p></p></div></li>
-        <input type="hidden" name="refer" value="$refer" />
-        <li><b>&nbsp;</b><div class="rizc"><input type="submit" id="loginsubmit" name="loginsubmit" value="登录" class="submit" tabindex="5" /><p></p></div></li>
+        <li><b>自动登录</b><div class="rizc" style="line-height:22px;"><input type="checkbox" id="cookietime" name="cookietime" value="315360000" $cookiecheck style="margin-bottom: -2px;"></div></li>
+        
+        <li><input type="hidden" name="refer" value="$refer" /><div class="rizc"><input type="submit" id="loginsubmit" name="loginsubmit" value="登录" class="submit" tabindex="5" /></div></li>
         <!--{/if}-->
     </ul>
 <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" /></form>
