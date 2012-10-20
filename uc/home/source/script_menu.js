@@ -160,10 +160,7 @@ function setMenuPosition(showid, offset) {
 			menuobj.style.left = (showobj.X + menuobj.w > document.body.clientWidth) && (showobj.X + showobj.w - menuobj.w >= 0) ? showobj.X + showobj.w - menuobj.w + 'px' : showobj.X + 'px';
 			menuobj.style.top = offset == 1 ? showobj.Y + 'px' : (offset == 2 || ((showobj.Y + showobj.h + menuobj.h > sTop + document.documentElement.clientHeight) && (showobj.Y - menuobj.h >= 0)) ? (showobj.Y - menuobj.h) + 'px' : showobj.Y + showobj.h + 'px');
 		} else if(offset == -1) {
-            if(document.body.clientWidth == 0){
-                document.body.clientWidth = window.innerWidth;
-            }
-			menuobj.style.left = (document.body.clientWidth-menuobj.w)/2 + 'px';
+			menuobj.style.left = (document.documentElement.clientWidth-menuobj.w)/2 + 'px';
 			var divtop = sTop + (document.documentElement.clientHeight-menuobj.h)/2;
 			if(divtop > 100) divtop = divtop - 100;
 			menuobj.style.top = divtop + 'px';
@@ -171,6 +168,7 @@ function setMenuPosition(showid, offset) {
 		if(menuobj.style.clip && !is_opera) {
 			menuobj.style.clip = 'rect(auto, auto, auto, auto)';
 		}
+        menuobj.style.width = "550px";
 	}
 }
 
