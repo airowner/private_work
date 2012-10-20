@@ -120,6 +120,11 @@ function showMenu(ctrlid, click, offset, duration, timeout, layer, showid, maxh,
 	ctrlobj.className += ' hover';
 	initMenu(ctrlid, menuobj, duration, timeout, layer, drag);
 
+    alert($(menuobj).find('input[type="button"]').css('backgroundImage'))
+    if(!$(menuobj).find('input[type="button"]').css('backgroundImage')){
+        $(menuobj).find('input[type="button"]').css('color', 'auto');
+    }
+
 	menuobj.style.display = '';
 	if(!is_opera) {
 		menuobj.style.clip = 'rect(auto, auto, auto, auto)';
