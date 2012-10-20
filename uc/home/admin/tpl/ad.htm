@@ -80,7 +80,7 @@
 		var styles,key;
 		styles = new Array('html','flash','image','text');
 		for(key in styles){
-			var obj=$('style_'+styles[key]);
+			var obj=_$('style_'+styles[key]);
 			obj.style.display = styles[key]==theobj.options[theobj.selectedIndex].value?'':'none';
 		}
 	}
@@ -93,8 +93,8 @@
 		
 		<table cellspacing="0" cellpadding="0" class="formtable">
 		<tr><th style="width:12em;">广告类型</th>
-		<td><input type="radio" name="system" value="1" $systems[1] onclick="$('style_system').style.display='';">系统内置广告 
-			<input type="radio" name="system" value="0" $systems[0] onclick="$('style_system').style.display='none';">用户自定义广告
+		<td><input type="radio" name="system" value="1" $systems[1] onclick="_$('style_system').style.display='';">系统内置广告 
+			<input type="radio" name="system" value="0" $systems[0] onclick="_$('style_system').style.display='none';">用户自定义广告
 		</td></tr>
 		<tr><th>广告标题</th>
 		<td><input name="title" value="$advalue[title]" class="t_input"></td>
@@ -199,6 +199,9 @@
 	</div>
 
 	</form>
+	<script>
+	style_show('<?php echo $advalue['system'];?>');
+	</script>
 	
 <!--{elseif $_GET['op'] == 'tpl'}-->
 	<div class="bdrcontent">
