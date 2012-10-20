@@ -120,9 +120,11 @@ function showMenu(ctrlid, click, offset, duration, timeout, layer, showid, maxh,
 	ctrlobj.className += ' hover';
 	initMenu(ctrlid, menuobj, duration, timeout, layer, drag);
 
-    if(!$(menuobj).find('input[type="button"]').css('backgroundImage') == 'none'){
-        $(menuobj).find('input[type="button"]').css('color', 'auto');
-    }
+    $(menuobj).find('input[type="button"]').each(function(){
+        if($(this).css('backgroundImage') == 'none'){
+            $(this).css('color', 'auto');
+        }
+    });
 
 	menuobj.style.display = '';
 	if(!is_opera) {
