@@ -310,7 +310,11 @@ function ajaxpost_load() {
 	showloading('none');
 	
 	if(is_ie) {
-		var s = _$('ajaxframe').contentWindow.document.XMLDocument.text;
+        try{
+            var s = _$('ajaxframe').contentWindow.document.XMLDocument.text;
+        }catch(e){
+            var s = _$('ajaxframe').contentWindow.document.documentElement.innerText;
+        }
 	} else {
 		var s = _$('ajaxframe').contentWindow.document.documentElement.firstChild.nodeValue;
 	}
