@@ -40,7 +40,7 @@ p.bt{ font-weight:bold; }
 p.hs a{ color:#999;}
 p.hs{ color:#999;}
 
-.page{ height:24px; text-align:center; font-family:Arial; padding-top:200px;}
+.page{ height:24px; text-align:center; font-family:Arial; /*padding-top:200px;*/}
 .page a,.page span{ margin-right:10px;}
 span.dqa{ font-weight:bold; color:#df4a47;}
 

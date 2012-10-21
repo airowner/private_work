@@ -9,8 +9,8 @@
         <div class="fxzz">
         <ul>
             <!--{if $space[friendnum]}--><li<!--{if $actives[we]}--> class="sdd02"<!--{else}--> class="sdd01"<!--{/if}--> id="zs01"><a class="o" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'we', 'uid'=>$space['uid']))}-->"><span>好友的分享</span></a></li><!--{/if}-->
-                <li<!--{if $actives[me]}--> class="sdd02"<!--{else}--> class="sdd01"<!--{/if}--> id="zs02"><a class="t" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'all', 'uid'=>$space['uid']))}-->"><span>大家的分享</span></a></li>
-                <li<!--{if $actives[all]}--> class="sdd02"<!--{else}--> class="sdd01"<!--{/if}--> id="zs03"><a class="f" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'me', 'uid'=>$space['uid']))}-->"><span>我的分享</span></a></li>
+                <li<!--{if $actives[all]}--> class="sdd02"<!--{else}--> class="sdd01"<!--{/if}--> id="zs02"><a class="t" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'all', 'uid'=>$space['uid']))}-->"><span>大家的分享</span></a></li>
+                <li<!--{if $actives[me]}--> class="sdd02"<!--{else}--> class="sdd01"<!--{/if}--> id="zs03"><a class="f" href="<!--{eval echo usr_url('space', array('do'=>'share', 'view'=>'me', 'uid'=>$space['uid']))}-->"><span>我的分享</span></a></li>
         </ul>
         </div>
         <!--{else}-->
